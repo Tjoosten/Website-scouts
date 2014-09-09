@@ -1,0 +1,12 @@
+body {
+  padding-top: 75px;
+}
+
+.content-container {
+	margin-bottom:20px;
+	background-color: #ffffff;
+	border: 1.9px solid #aac12b;
+    border-radius: 4px;
+    -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+}
