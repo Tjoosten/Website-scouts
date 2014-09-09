@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col-md-12">
-      <ol class="breadcrumb">
+      <ol class="breadcrumb border">
         <li><a href="<?php echo base_url(); ?>"><span class="glyphicon glyphicon-home"></span></a></li>
         <li><a href="<?php echo base_url(); ?>takken">Takken</a></li>
         <li class="active">
@@ -18,7 +18,7 @@
     <div class="row">
       <div class="col-sm-3 col-md-3 col-lg-3">
         
-        <div class="panel panel-default">
+        <div class="panel panel-default border">
           <div class="panel-heading">
             Wat doen we?
           </div>
@@ -38,7 +38,7 @@
       </div>
 
       <div class="col-sm-9 col-md-9 col-lg-9">
-        <div class="panel panel-default">
+        <div class="panel panel-default border">
           <div class="panel-body">
             <?php foreach($Beschrijving as $Tak): ?>
               <div style="margin-top: -20px;" class="page-header">

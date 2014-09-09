@@ -2,7 +2,7 @@
 
   <div class="row">
     <div class="col-md-12">
-      <ol class="breadcrumb">
+      <ol class="breadcrumb border">
         <li><a href="<?php echo base_url(); ?>"><span class="glyphicon glyphicon-home"></span></a></li>
         <li class="active">Takken</li>
       </ol>
@@ -11,7 +11,7 @@
 
   <div class="row">
     <div class="col-md-3 col-sm-3 col-lg-3">
-      <div class="panel panel-default">
+      <div class="panel panel-default border">
       	<div class="panel-heading">
       		Takken:
       	</div>
@@ -27,7 +27,7 @@
     </div>	
 
     <div class="col-sm-9 col-md-9 col-lg-9">
-      <div class="panel panel-default">
+      <div class="panel panel-default border">
         <div class="panel-body">
         
         <div style="margin-top: -20px;" class="page-header">
@@ -38,7 +38,7 @@
           <div class="well well-sm">
             <div class="media">
               <a class="pull-left" href="<?php echo base_url(); ?>/Takken/<?php echo $Kapoen->Tak; ?>">
-                <img style="width: 75px; height: 75px;" class="img-responsive img-rounded media-object" src="/assets/img/kapoen.jpg" alt="<?php echo $Kapoen->Title; ?>">
+                <img style="width: 75px; height: 75px;" class="img-responsive img-rounded media-object" src="/assets/img/kapoenen.png" alt="<?php echo $Kapoen->Title; ?>">
               </a>
               <div class="media-body">
                 <h4 class="media-heading"> <?php echo $Kapoen->Title; ?> <small> <?php echo $Kapoen->Sub_title; ?> </small></h4>
@@ -58,7 +58,7 @@
           <div class="well well-sm">
             <div class="media">
               <a class="pull-left" href="<?php echo base_url(); ?>/Takken/<?php echo $Welp->Tak ?>">
-                <img style="width: 75px; height: 75px;" class="img-responsive img-rounded media-object" src="/assets/img/welpen.png" alt="<?php echo $Kapoen->Title; ?>">
+                <img style="width: 75px; height: 75px;" class="img-takken img-responsive img-rounded media-object" src="/assets/img/welpen.png" alt="<?php echo $Kapoen->Title; ?>">
               </a>
               <div class="media-body">
                 <h4 class="media-heading"> <?php echo $Welp->Title; ?> <small> <?php echo $Welp->Sub_title; ?> </small> </h4>
@@ -78,7 +78,7 @@
           <div class="well well-sm">
             <div class="media">
               <a class="pull-left" href="<?php echo base_url(); ?>/Takken/<?php echo $JongGiver->Tak ?>">
-                <img style="width: 75px; height: 75px;" class="img-responsive img-rounded media-object" src="/assets/img/welpen.png" alt="<?php echo $JongGiver->Title; ?>">
+                <img style="width: 75px; height: 75px;" class="img-responsive img-rounded media-object" src="/assets/img/jong-givers.png" alt="<?php echo $JongGiver->Title; ?>">
               </a>
               <div class="media-body">
                 <h4 class="media-heading"> <?php echo $JongGiver->Title; ?> <small> <?php echo $JongGiver->Sub_title; ?> </small> </h4>
@@ -98,7 +98,7 @@
           <div class="well well-sm">
             <div class="media">
               <a class="pull-left" href="<?php echo base_url(); ?>Takken/<?php echo $Giver->Tak ?>">
-                <img style="width: 75px; height: 75px;" class="img-responsive img-rounded media-object" src="/assets/img/welpen.png" alt="<?php echo $Giver->Title; ?>">
+                <img style="width: 75px; height: 75px;" class="img-responsive img-rounded media-object" src="/assets/img/givers.png" alt="<?php echo $Giver->Title; ?>">
               </a>
               <div class="media-body">
                 <h4 class="media-heading"> <?php echo $Giver->Title; ?> <small> <?php echo $Giver->Sub_title; ?> </small> </h4>
