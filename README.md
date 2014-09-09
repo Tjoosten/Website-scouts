@@ -7,12 +7,12 @@ This is the development bin vor the website off St-joris-turnhout.be
 
 ### Developer(s)
 
-*** Tim Joosten ***
+*Tim Joosten*
 - Twitter
 - Facebook
 - Mail: Topairy@gmail.com
 
-### License
+License
 =================
 
 Copyright 2012 Scouts Sint-Joris Turnhout, Tim Joosten
