@@ -35,7 +35,7 @@
 
         // Database
         $DB['Beschrijving'] = $this->Takken->Kapoenen();
-        $DB['Activiteiten'] = $this->Takken->Kapoenen(); 
+        $DB['Activiteiten'] = $this->Activiteiten->Kapoenen(); 
       // == END Variables == //
 
         // View(s)

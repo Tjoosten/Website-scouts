@@ -3,7 +3,8 @@
   <div class="row">
     <div class="col-md-12">
       <ol class="breadcrumb">
-        <li><a href="">Home</a></li>
+        <li><a href="<?php echo base_url(); ?>"><span class="glyphicon glyphicon-home"></span></a></li>
+        <li class="active">Takken</li>
       </ol>
     </div>
   </div>
@@ -44,6 +45,9 @@
                 
                 <!-- Description -->
                 <?php 
+                  $text = $Kapoen->Beschrijving;
+                  $result = Parsedown::instance()->parse($text);
+                  echo word_limiter($result, 1);
                 ?>
               </div>
             </div>
@@ -61,6 +65,9 @@
 
                   <!-- Description -->
                   <?php 
+                    $text = $Welp->Beschrijving;
+                    $result = Parsedown::instance()->parse($text);
+                    echo word_limiter($result, 1);
                   ?>
                 </div>
               </div>
@@ -78,6 +85,9 @@
 
                   <!-- Description -->
                   <?php 
+                    $text = $JongGiver->Beschrijving;
+                    $result = Parsedown::instance()->parse($text);
+                    echo word_limiter($result, 1);
                   ?>
                 </div>
               </div>
@@ -87,7 +97,7 @@
         <?php foreach($Givers as $Giver): ?>
           <div class="well well-sm">
             <div class="media">
-              <a class="pull-left" href="<?php echo base_url(); ?>/Takken/<?php echo $Giver->Tak ?>">
+              <a class="pull-left" href="<?php echo base_url(); ?>Takken/<?php echo $Giver->Tak ?>">
                 <img style="width: 75px; height: 75px;" class="img-responsive img-rounded media-object" src="/assets/img/welpen.png" alt="<?php echo $Giver->Title; ?>">
               </a>
               <div class="media-body">
@@ -95,7 +105,7 @@
 
                   <!-- Description -->
                   <?php 
-                    $text = $Giver->Description;
+                    $text = $Giver->Beschrijving;
                     $result = Parsedown::instance()->parse($text);
                     echo word_limiter($result, 1);
                   ?>
@@ -106,12 +116,41 @@
 
         <?php foreach($Jins as $Jin): ?>
           <div class="well well-sm">
+            <div class="media">
+              <a class="pull-left" href="<?php echo base_url(); ?>Takken/<?php $Jin->Tak; ?>">
+                <img style="width: 75px; height: 75px;" class="img-responsive img-rounded media-object" src="/assets/img/jins.png" alt="<?php echo $Jin->Title; ?>">
+              </a>
+              <div class="media-body">
+                <h4 class="media-heading"> <?php echo $Jin->Title; ?> <small> <?php echo $Giver->Sub_title; ?> </small> </h4>
+
+                <!-- Description -->
+                <?php 
+                  $text = $Jin->Beschrijving;
+                  $result = Parsedown::instance()->parse($text);
+                  echo word_limiter($result, 1);
+                ?>
+              </div>
+            </div>
           </div>
         <?php endforeach; ?>
 
         <?php foreach($Leiding as $Output): ?>
           <div style="margin-bottom: 2px;" class="well well-sm">
-          
+            <div class="media">
+              <a class="pull-left" href="<?php echo base_url(); ?>Takken/<?php $Output; ?>">
+                <img style="height: 75px; width: 75px;" class="img-responsive img-rounded media-object" src="/assets/img/leiding.png" alt="<?php echo $Output->Title; ?>">
+              </a>
+            </div>
+            <div class="media-body">
+              <h4 class="media-heading"> <?php echo $Output->Title; ?> <small> <?php echo $Output->Sub_title; ?> </small> </h4>
+
+              <!-- Description -->
+              <?php 
+                $text = $Output->Beschrijving;
+                $result = Parsedown::instance()->parse($text);
+                echo word_limiter($result, 1);
+              ?>
+            </div>
           </div>
         <?php endforeach; ?>
 

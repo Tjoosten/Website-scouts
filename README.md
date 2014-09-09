@@ -3,14 +3,20 @@ Website scouts (Sint-Joris Turnhout).
 
 ### General info
 
-This is the development bin vor the website off St-joris-turnhout.be
+This is the development bin for the website St-joris-turnhout.be.
+
+### Maintance note 
+
+Version 1.0 that now is active will no longer maintance. So we got more time to imegrate to version 2.0 that will build woth Codeigniter and bootstrap. 
+Version 2.0 will give the client more functions to maintain the website and provides a system core that will maintance friendlier. and om consistent.
 
 ### Developer(s)
 
-*Tim Joosten*
-- Twitter
-- Facebook
+*** Tim Joosten ***
+- Twitter: @Pentuim_photogr
+- Facebook: Tim Jo
 - Mail: Topairy@gmail.com
+- Github: Tjoosten
 
 License
 =================
