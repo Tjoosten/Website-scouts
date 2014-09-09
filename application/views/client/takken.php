@@ -35,72 +35,23 @@
 
         <?php foreach($Kapoenen as $Kapoen): ?>
           <div class="well well-sm">
-            <div class="media">
-              <a class="pull-left" href="<?php echo base_url(); ?>/Takken/<?php echo $Kapoen->Tak; ?>">
-                <img style="width: 75px; height: 75px;" class="img-responsive img-rounded media-object" src="/assets/img/kapoen.jpg" alt="<?php echo $Kapoen->Title; ?>">
-              </a>
-              <div class="media-body">
-                <h4 class="media-heading"> <?php echo $Kapoen->Title; ?> <small> <?php echo $Kapoen->Sub_title; ?> </small></h4>
-                
-                <!-- Description -->
-                <?php 
-                ?>
-              </div>
-            </div>
+            <p>Test</p>
           </div>
         <?php endforeach; ?>
 
         <?php foreach($Welpen as $Welp): ?>
           <div class="well well-sm">
-            <div class="media">
-              <a class="pull-left" href="<?php echo base_url(); ?>/Takken/<?php echo $Welp->Tak ?>">
-                <img style="width: 75px; height: 75px;" class="img-responsive img-rounded media-object" src="/assets/img/welpen.png" alt="<?php echo $Kapoen->Title; ?>">
-              </a>
-              <div class="media-body">
-                <h4 class="media-heading"> <?php echo $Welp->Title; ?> <small> <?php echo $Welp->Sub_title; ?> </small> </h4>
-
-                  <!-- Description -->
-                  <?php 
-                  ?>
-                </div>
-              </div>
+            <p>Test</p>
           </div>
         <?php endforeach; ?>
 
         <?php foreach($JongGivers as $JongGiver): ?>
           <div class="well well-sm">
-            <div class="media">
-              <a class="pull-left" href="<?php echo base_url(); ?>/Takken/<?php echo $JongGiver->Tak ?>">
-                <img style="width: 75px; height: 75px;" class="img-responsive img-rounded media-object" src="/assets/img/welpen.png" alt="<?php echo $JongGiver->Title; ?>">
-              </a>
-              <div class="media-body">
-                <h4 class="media-heading"> <?php echo $JongGiver->Title; ?> <small> <?php echo $JongGiver->Sub_title; ?> </small> </h4>
-
-                  <!-- Description -->
-                  <?php 
-                  ?>
-                </div>
-              </div>
           </div>
         <?php endforeach; ?>
 
         <?php foreach($Givers as $Giver): ?>
           <div class="well well-sm">
-            <div class="media">
-              <a class="pull-left" href="<?php echo base_url(); ?>/Takken/<?php echo $Giver->Tak ?>">
-                <img style="width: 75px; height: 75px;" class="img-responsive img-rounded media-object" src="/assets/img/welpen.png" alt="<?php echo $Giver->Title; ?>">
-              </a>
-              <div class="media-body">
-                <h4 class="media-heading"> <?php echo $Giver->Title; ?> <small> <?php echo $Giver->Sub_title; ?> </small> </h4>
-
-                  <!-- Description -->
-                  <?php 
-                    $text = $Giver->Description;
-                    $result = Parsedown::instance()->parse($text);
-                    echo word_limiter($result, 1);
-                  ?>
-                </div>
-              </div>
           </div>
         <?php endforeach; ?>
 
