@@ -1,5 +1,6 @@
 <?php 
 	Class Model_Takken extends CI_Model {
+		// Selecting Queries
 		function Kapoenen() {
 			$this->db->select()
 					 ->where('Tak', 'Kapoenen');
@@ -7,7 +8,7 @@
 			$Query = $this->db->get('Takken');
 			return $Query->result(); 
 		}
-
+		
 		function Welpen() {
 			$this->db->select()
 					 ->where('Tak', 'Welpen');
@@ -46,5 +47,10 @@
 
 			$Query = $this->db->get('Takken');
 			return $Query->result(); 
+		}
+		
+		// Edit Query's
+		function Takken_edit() {
+			
 		}
 	}
