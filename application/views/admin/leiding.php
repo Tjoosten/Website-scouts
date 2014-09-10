@@ -11,11 +11,14 @@
 
 			<!-- Tab panes -->
 			<div class="tab-content">
-        <div class="tab-pane active" id="admin">...</div>
+        <div class="tab-pane active" id="admin">
+        </div>
         
-        <div class="tab-pane" id="leiding">...</div>
+        <div class="tab-pane" id="leiding">
+        </div>
         
-        <div class="tab-pane" id="new">...</div>
+        <div class="tab-pane" id="new">
+        </div>
 			</div>
 
 		</div>
