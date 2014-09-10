@@ -24,6 +24,9 @@
           </div>
 
           <div class="panel-body">
+           <?php if(count($Activiteiten) == 0): ?>
+              <span class="text-muted">Geen activiteiten beschikbaar.</span>
+            <?php else: ?>
             <ul class="list-unstyled">
               <?php foreach($Activiteiten as $Activiteit): ?>
                 <li>
@@ -32,6 +35,7 @@
                 </li>
               <?php endforeach; ?>
             </ul>
+          <?php endif; ?>
           </div>
         </div>
 

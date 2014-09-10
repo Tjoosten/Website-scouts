@@ -17,12 +17,12 @@
                 </a>
 
                 <ul class="dropdown-menu" role="menu">
-                  <li><a href="<?php echo base_url(); ?>"><span class="fa fa-chevron-right"></span> De Kapoenen</a></li>
-                  <li><a href="<?php echo base_url(); ?>"><span class="fa fa-chevron-right"></span> De Welpen</a></li>
-                  <li><a href="<?php echo base_url(); ?>"><span class="fa fa-chevron-right"></span> De Jong-givers</a></li>
-                  <li><a href="<?php echo base_url(); ?>"><span class="fa fa-chevron-right"></span> De Givers</a></li>
-                  <li><a href="<?php echo base_url(); ?>"><span class="fa fa-chevron-right"></span> De Jins</a></li>
-                  <li><a href="<?php echo base_url(); ?>"><span class="fa fa-chevron-right"></span> De Leiding</a></li>
+                  <li><a href="<?php echo base_url(); ?>Takken/Kapoenen"><span class="fa fa-chevron-right"></span> De Kapoenen</a></li>
+                  <li><a href="<?php echo base_url(); ?>Takken/Welpen"><span class="fa fa-chevron-right"></span> De Welpen</a></li>
+                  <li><a href="<?php echo base_url(); ?>Takken/JongGivers"><span class="fa fa-chevron-right"></span> De Jong-givers</a></li>
+                  <li><a href="<?php echo base_url(); ?>Takken/Givers"><span class="fa fa-chevron-right"></span> De Givers</a></li>
+                  <li><a href="<?php echo base_url(); ?>Takken/Jins"><span class="fa fa-chevron-right"></span> De Jins</a></li>
+                  <li><a href="<?php echo base_url(); ?>Takken/Leiding"><span class="fa fa-chevron-right"></span> De Leiding</a></li>
                 </ul>
               </li>
 
