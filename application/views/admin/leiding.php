@@ -12,6 +12,8 @@
 			<!-- Tab panes -->
 			<div class="tab-content">
         <div class="tab-pane active" id="admin">
+        	<div class="col-sm-8 col-md-8 col-lg-8">
+        	</div>
         </div>
         
         <div class="tab-pane" id="leiding">
