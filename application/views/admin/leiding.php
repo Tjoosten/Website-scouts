@@ -4,16 +4,18 @@
 			
 			<!-- Nav tabs -->
 			<ul class="nav nav-tabs" role="tablist">
-  				<li class="active"><a href="#home" role="tab" data-toggle="tab">Home</a></li>
-  				<li><a href="#profile" role="tab" data-toggle="tab">Profile</a></li>
-  				<li><a href="#messages" role="tab" data-toggle="tab">Messages</a></li>
+        <li class="active"><a href="#admin" role="tab" data-toggle="tab">Admin's</a></li>
+        <li><a href="#leiding" role="tab" data-toggle="tab">Leiding</a></li>
+        <li><a href="#new" role="tab" data-toggle="tab">Nieuwe Admin / Leiding</a></li>
 			</ul>
 
 			<!-- Tab panes -->
 			<div class="tab-content">
-  				<div class="tab-pane active" id="home">...</div>
- 				<div class="tab-pane" id="profile">...</div>
-  				<div class="tab-pane" id="messages">...</div>
+        <div class="tab-pane active" id="admin">...</div>
+        
+        <div class="tab-pane" id="leiding">...</div>
+        
+        <div class="tab-pane" id="new">...</div>
 			</div>
 
 		</div>
