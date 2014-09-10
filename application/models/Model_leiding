@@ -1,0 +1,31 @@
+<?php
+  class Model_leiding extends CI_Model {
+    function Leiding_insert() {
+      $Values = array(
+        "Naam" => $this->input->post('Naam'),
+        "Mail" => $this->input->post('Mail'),
+        "GSM" => $this->input->post('GSM'),
+        "Tak" => $this->input->post('Tak'),
+        "Admin_role" => "0",
+        "Blocked" => "0",
+        "Pass" => md5($this->input->post('root')),
+      );
+      
+      $this->db->insert('users', $Values);
+      
+      // Redirect
+      redirect('');
+    }
+    
+    function Leiding_Block() {
+    }
+    
+    function Leiding_Unblock() {
+    }
+    
+    function Leiding_Promote() {
+    }
+    
+    function Leiding_Degradate() {
+    }
+  }
