@@ -38,15 +38,26 @@
         </p>	
       </div>
 
- 			<div class="tab-pane" id="Welpen"></div>
+ 			<div class="tab-pane" id="Welpen">
+ 			  <?php foreach($Welpen as $Welp): ?>
+ 			  <?php endforeach; ?>
+ 			</div>
  			
-  		<div class="tab-pane" id="JongGivers"></div>
+  		<div class="tab-pane" id="JongGivers">
+  		  <?php foreach($JongGivers as $JongGiver): ?>
+  		  <?php endforeach; ?>
+  		</div>
   		
-  		<div class="tab-pane" id="Givers"></div>
+  		<div class="tab-pane" id="Givers">
+  		  <?php foreach($Givers as $Giver): ?>
+  		  <?php endforeach; ?>
+  		</div>
   		
-  		<div class="tab-pane" id="Jins"></div>
+  		<div class="tab-pane" id="Jins">
+  		</div>
   		
-  		<div class="tab-pane" id="Leiding"></div>
+  		<div class="tab-pane" id="Leiding">
+  		</div>
 		</div>
 
 		</div>
