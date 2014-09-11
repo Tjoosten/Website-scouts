@@ -13,6 +13,30 @@
 			<div class="tab-content">
         <div class="tab-pane active" id="admin">
         	<div class="col-sm-8 col-md-8 col-lg-8">
+        		<p>
+        		  <table class="table table-condensed">
+        		  	<thead>
+        		  		<tr>
+      		  				<th>#</th>
+      		  				<th>Naam:</th>
+      		  				<th>Mail:</th>
+      		  				<th>Tak:<th>
+      		  				<th></th> <!-- Functies -->
+        		  		</tr>
+        		  	</thead>
+        		  	<tbody>
+        		  		<?php foreach(): ?>
+        		  			<tr>
+        		  				<td><code><?php echo ?></code></td>
+        		  				<td><?php echo ?></td>
+        		  				<td><?php echo ?></td>
+        		  				<td><?php echo ?></td>
+        		  				<td><?php echo ?></td>
+        		  			</tr>
+        		  		<?php endforeach; ?>
+        		  	</tbody>
+        		  </table>
+        		</p>
         	</div>
         </div>
         
