@@ -20,18 +20,21 @@
       		  				<th>#</th>
       		  				<th>Naam:</th>
       		  				<th>Mail:</th>
-      		  				<th>Tak:<th>
+      		  				<th>GSM:<th>
       		  				<th></th> <!-- Functies -->
         		  		</tr>
         		  	</thead>
         		  	<tbody>
-        		  		<?php foreach(): ?>
+        		  		<?php foreach($Administrators as $Admin): ?>
         		  			<tr>
-        		  				<td><code><?php echo ?></code></td>
-        		  				<td><?php echo ?></td>
-        		  				<td><?php echo ?></td>
-        		  				<td><?php echo ?></td>
-        		  				<td><?php echo ?></td>
+        		  				<td><code>#<?php echo $Admin->id; ?></code></td>
+        		  				<td><?php echo $Admin->username; ?></td>
+        		  				<td><?php echo $Admon->Mail; ?></td>
+        		  				<td><?php echo $Admin->GSM; ?></td>
+        		  				<td>
+        		  				  <div class="btn-group">
+        		  				  </div>
+        		  				</td>
         		  			</tr>
         		  		<?php endforeach; ?>
         		  	</tbody>
