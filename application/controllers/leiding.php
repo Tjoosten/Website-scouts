@@ -4,6 +4,7 @@ class leiding extends CI_Controller {
 
   function __construct() {
     parent::__construct();
+    $this->load->model('Model_leiding', 'Leiding');
   }
 
   function index() {
@@ -12,9 +13,12 @@ class leiding extends CI_Controller {
 
       $data['Title'] = "test";
       
+      $DB['Admin']   = $this->Leiding->Administrattors();
+      $DB['Leiding'] = $this->Leiding->Leiding;
+      
       $this->load->view('components/admin_header', $data);
       $this->load->view('components/navbar_admin');
-      $this->load->view('admin/leiding');
+      $this->load->view('admin/leiding', $DB);
       $this->load->view('components/footer');
     } else {
       //If no session, redirect to login page
