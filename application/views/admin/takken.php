@@ -54,9 +54,13 @@
   		</div>
   		
   		<div class="tab-pane" id="Jins">
+  		  <?php foreach(): ?>
+  		  <?php endforeach; ?>
   		</div>
   		
   		<div class="tab-pane" id="Leiding">
+  		  <?php foreach(): ?>
+  		  <?php endforeach; ?>
   		</div>
 		</div>
 
