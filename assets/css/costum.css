@@ -1,12 +1,49 @@
-body {
+/*  general */
+.background {
   padding-top: 75px;
+
+  /* General */
+  background-image: url(background.png);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center 110px;
+  background-color: #bdd732;
 }
 
-.content-container {
-	margin-bottom:20px;
+.border {
+	border: 1.9px solid #aac12b; 
+}
+
+.Icon-color, 
+.Title-color {
+	color: #bdd732;
+}
+
+/* Takken pagina */
+.img-takken {
 	background-color: #ffffff;
-	border: 1.9px solid #aac12b;
-    border-radius: 4px;
-    -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
-    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+}
+
+.color-kapoenen {
+  background-color: ;
+}
+
+.color-welpen {
+  background-color: ;
+}
+
+.color-jonggivers {
+  background-color: ;
+}
+
+.color-givers {
+  background-color: ;
+}
+
+.color-jins {
+  background-color: ;
+}
+
+.color-leiding {
+  background-color: ;
 }

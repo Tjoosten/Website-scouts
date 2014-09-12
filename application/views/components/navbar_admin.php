@@ -11,12 +11,13 @@
           </div>
           <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-              <li><a href="/index.php/Takken">Takken</a></li>
-              <li><a href="/index.php/verhuur">Verhuur</a></li>
-              <li><a href="/index.php/fotos">Foto's</a></li>
-              <li><a href="">Planning</a></li>
-              <li><a href="/index.php/info">Info</a></li>
-              <li><a href="">Contact</a></li>
+              <li> <a href="<?php echo base_url(); ?>backend"> <span class="fa fa-leaf Icon-color"></span> Takken </a> </li>
+              <li> <a href="<?php echo base_url(); ?>verhuur/admin_verhuur"> <span class="fa fa-home Icon-color"></span> Verhuur </a> </li>
+            </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+              <li><a href="<?php echo base_url(); ?>leiding/"><span class="octicon octicon-organization"></span></a></li>
+              <li><a href="<?php echo base_url(); ?>backend/Logout"><span class="octicon octicon-sign-out"></span></a></li>
             </ul>
           </div>
         </div>
