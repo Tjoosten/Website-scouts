@@ -13,6 +13,9 @@ class backend extends CI_Controller {
 
       $this->load->model('Model_takken','Takken');
 
+      $data['Title'] = "Admin takken";
+      $data['Role'] = $session_data['Admin'];
+
       $DB['Kapoenen']   = $this->Takken->Kapoenen();
       $DB['Welpen']     = $this->Takken->Welpen();
       $DB['JongGivers'] = $this->Takken->JongGivers();
@@ -20,8 +23,8 @@ class backend extends CI_Controller {
       $DB['Jins']       = $this->Takken->Jins();
       $DB['Leiding']    = $this->Takken->Leiding();
       
-      $this->load->view('components/admin_header');
-      $this->load->view('components/navbar_admin');
+      $this->load->view('components/admin_header', $data);
+      $this->load->view('components/navbar_admin', $data);
       $this->load->view('admin/takken', $DB);
       $this->load->view('components/footer');
     } else {

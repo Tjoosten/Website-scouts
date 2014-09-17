@@ -1,9 +1,18 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 	class Takken extends CI_Controller {
-		public function index() {
-			// Model(s)
-			$this->load->model('Model_Takken','Takken');
+        /*
+         | Developer: Tim Joosten 
+         | License: 4GPL
+         | Copyright: St-joris Turnhout, Tim Joosten
+         */
 
+        function __construct() { 
+            parent::__construct();
+            $this->load->model('Model_Takken', 'Takken');
+            $this->load->model('Model_activiteiten', 'Activiteiten');
+        }
+
+		public function index() {
 			// Variable(s)
 				// General
 				$Data['Title'] = "Takken";
@@ -25,10 +34,6 @@
 		}
 
     public function Kapoenen() {
-    	// Model(s)
-    	$this->load->model('Model_Takken','Takken');
-    	$this->load->model('Model_activiteiten', 'Activiteiten');
-
     	// Variable(s)
     	  // General
         $Data['Title']  = "De Kapoenen"; 
@@ -46,10 +51,6 @@
     }
 
     public function Welpen() {
-    	// Model(s)
-    	$this->load->model('Model_Takken', 'Takken');
-    	$this->load->model('Model_activiteiten', 'Activiteiten');
-
     	// Variable(s)
     	  // General
     	  $Data['Title'] = "De Welpen"; 
@@ -67,10 +68,6 @@
     }
 
     public function JongGivers() {
-    	// Model(s)
-    	$this->load->model('Model_Takken', 'Takken');
-    	$this->load->model('Model_activiteiten', 'Activiteiten');
-
     	// Variable(s)
     	  // General 
     	  $Data['Title'] = "De Jong-Givers";
@@ -88,10 +85,6 @@
     }
 
     public function Givers() {
-    	// Model(s)
-    	$this->load->model('Model_takken', 'Takken');
-    	$this->load->model('Model_activteiten', 'Activiteiten');
-
     	// Variable(s)
     	  // General 
     	  $Data['Title'] = "De Givers";
@@ -99,7 +92,7 @@
     	  // Database
     	  $DB['Beschrijving'] = $this->Takken->Givers();
     	  $DB['Activiteiten'] = $this->Activiteiten->Givers(); 
-    	// == END Variables == //
+    	  // == END Variables == //
 
     	  // View(s)
     	  $this->load->view('components/header', $Data);
@@ -109,29 +102,23 @@
     }
 
     public function Jins() {
-    	// Model(s)
-    	$this->load->model('Model_takken', 'Takken'); 
-      $this->load->model('Model_activeiten', 'Activiteiten');
     	// Variables
     	  // General
     	  $Data['Title'] = "De Jins"; 
 
         // Database
         $DB['Beschrijving'] = $this->Takken->Jins();
-        $DB['Activiteiten'] = $this->Activeiten->Jins();
+        $DB['Activiteiten'] = $this->Activiteiten->Jins();
       // == END Variables == //
 
         // View(s)
-        $this->load->view('cvomponents/header', $Data);
+        $this->load->view('components/header', $Data);
         $this->load->view('components/navbar');
         $this->load->view('client/tak_pagina', $DB);
         $this->load->view('components/footer');
     }
 
     public function Leiding() {
-    	// Model(s)
-    	$this->load->model('Model_takken', 'Takken'); 
-
     	// Variables
     	  // General
     	  $Data['Title'] = "De Leiding"; 
@@ -146,4 +133,16 @@
     	  $this->load->view('client/tak_pagina', $DB);
     	  $this->load->view('components/footer');
     }
-	}
+
+    // Admin controllers
+    public function Takken_edit() {
+        if($this->session->userdata('logged_in')) {
+            $this->load->model('Model_takken', 'Takken');
+            $this->Takken->Takken_edit();
+            redirect('backend', 'refresh');
+        } else {
+            // If nos session found redirect to login 
+            redirect('Admin', 'refresh');
+        }
+    }
+}

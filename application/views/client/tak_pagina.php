@@ -52,8 +52,9 @@
               <!-- Description -->
               <?php
                 $text = $Tak->Beschrijving;
-                $result = Parsedown::instance()->parse($text);
-                echo $result;
+                echo Parsedown::instance()
+                              ->setBreaksEnabled(true)
+                              ->parse($text);
               ?>
             <?php endforeach; ?>
           </div>

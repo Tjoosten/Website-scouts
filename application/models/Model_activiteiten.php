@@ -1,5 +1,11 @@
 <?php
  Class Model_activiteiten extends CI_Model {
+   /* 
+    | Developer: Tim Joosten
+    | License: 4GPL
+    | Copyright: Sint-Joris Turnhout, Tim Joosten
+    */
+
    function Kapoenen() {
      $this->db->select() 
               ->where('Tak', 'Kapoenen')

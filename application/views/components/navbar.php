@@ -7,7 +7,7 @@
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/">Sint-Joris</a>
+            <a class="navbar-brand font-heading" href="/">Sint-Joris</a>
           </div>
           <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
@@ -39,7 +39,7 @@
               </li>
 
               <li>
-                <a href="<?php echo base_url(); ?>">
+                <a href="/Planning.pdf">
                   <span class="fa fa-file-text-o Icon-color"></span> Planning
                 </a>
               </li>
@@ -47,12 +47,6 @@
               <li>
                 <a href="<?php echo base_url(); ?>Info">
                   <span class="fa fa-info-circle Icon-color"></span> Info
-                </a>
-              </li>
-
-              <li>
-                <a href="<?php echo base_url();?>">
-                  <span class="fa fa-calendar Icon-color"></span> Activiteiten
                 </a>
               </li>
 
