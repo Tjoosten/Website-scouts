@@ -17,7 +17,7 @@
   			<div class="tab-pane active" id="Kapoenen">
   				<p>
   					<?php foreach($Kapoenen as $Kapoen): ?>
-  						<form method="POST" action="">
+  						<form method="POST" action="<?php echo base_url(); ?>Takken/Takken_edit/<?php echo $Kapoen->ID; ?>">
   							<label for="Title"> Heading: </label>
   							<input style="width:35%;" class="form-control" id="Title" name="Title" value="<?php echo $Kapoen->Title; ?>" placeholder="Titel">
   							<br>
@@ -27,7 +27,7 @@
   							<br>
 
   							<label for="beschrijving">Beschrijving:</label>
-  							<textarea rows="10" id="beschrijving" style="width: 55%; "class="form-control"></textarea>
+  							<textarea rows="10" id="Beschrijving" style="width: 55%;" class="form-control" name="Beschrijving"><?php echo $Kapoen->Beschrijving; ?></textarea>
   							<br>
   					 <?php endforeach; ?>
 
@@ -41,17 +41,17 @@
  			<div class="tab-pane" id="Welpen">
  			  <?php foreach($Welpen as $Welp): ?>
           <p>
-            <form method="POST" action="">
+            <form method="POST" action="<?php echo base_url(); ?>Takken/Takken_edit/<?php echo $Welp->ID; ?>">
               <label for="Title">Heading:</label>
               <input style="width: 35%;" class="form-control" id="Title" name="Title" value="<?php echo $Welp->Title; ?>" placeholder="Titel">
               <br>
 
               <label for="Sub">Sub heading:</label>
-              <input style="width: 35%;" class="form-control" id="Sub" name="Sub" value="<?php echo $Welp->Sub_title; ?>" placeholder="Sub titel">
+              <input style="width: 35%;" class="form-control" id="Sub" name="Sub_title" value="<?php echo $Welp->Sub_title; ?>" placeholder="Sub titel">
               <br>
 
               <label for="beschrijving">Beschrijving</label>
-              <textarea rows="10" id="beschrijving" style="width: 55%;" class="form-control"></textarea>
+              <textarea rows="10" id="beschrijving" style="width: 55%;" class="form-control" name="Beschrijving"></textarea>
               <br>
 
               <button class="btn btn-danger" type="submit">Wijzig!</button>
@@ -64,7 +64,7 @@
   		<div class="tab-pane" id="JongGivers">
   		  <?php foreach($JongGivers as $JongGiver): ?>
           <p>
-            <form method="POST" action="">
+            <form method="POST" action="<?php echo base_url(); ?>Takken/Takken_edit/<?php echo $JongGiver->ID; ?>">
               <label for="Title"> Heading: </label>
               <input style="width: 35%;" class="form-control" id="Title" name="Title" value="<?php echo $JongGiver->Title; ?>" placeholder="Titel">
               <br>
@@ -74,7 +74,7 @@
               <br>
 
               <label for="beschrijving">Beschrijving:</label>
-              <textarea rows="10" id="beschrijving" style="width: 55%;" class="form-control" name=""></textarea>
+              <textarea rows="10" id="beschrijving" style="width: 55%;" class="form-control" name="Beschrijving"></textarea>
               <br>
 
               <button class="btn btn-danger" type="submit">Wijzig!</button>
@@ -87,7 +87,7 @@
   		<div class="tab-pane" id="Givers">
   		  <?php foreach($Givers as $Giver): ?>
           <p>
-            <form method="POST" action="">
+            <form method="POST" action="<?php echo base_url(); ?>Takken/Takken_edit/<?php echo $Giver->ID; ?>">
               <label for="title">Heiding:</label>
               <input style="width: 35%;" class="form-control" id="title" name="Title" value="<?php echo $Giver->Title; ?>" placeholder="Titel">
               <br>
@@ -97,7 +97,7 @@
               <br>
 
               <label for="beschrijving">Beschrijving:</label>
-              <textarea rows="10" id="beschrijving" style="width: 55%;" class="form-control" name=""></textarea>
+              <textarea rows="10" id="beschrijving" style="width: 55%;" class="form-control" name="Beschrijving"></textarea>
               <br>
 
               <button class="btn btn-danger" type="submit">Wijzig!</button>
@@ -110,7 +110,7 @@
   		<div class="tab-pane" id="Jins">
   		  <?php foreach($Jins as $jin): ?>
           <p>
-            <form method="POST" action="">
+            <form method="POST" action="<?php echo base_url(); ?>Takken/Takken_edit/<?php echo $jin->ID; ?>">
               <label for="title">Headin:</label>
               <input style="width: 35%;" class="form-control" id="title" name="Title" value="<?php echo $jin->Title; ?>" placeholder="Titel">
               <br>
@@ -120,7 +120,7 @@
               <br>
 
               <label for="beschrijving">Beschrijving:</label>
-              <textarea rows="10" id="beschrijving" style="width: 55%;" class="form-control" name=""></textarea>
+              <textarea rows="10" id="beschrijving" style="width: 55%;" class="form-control" name="Beschrijving"></textarea>
               <br>
 
               <button class="btn btn-danger" type="submit">Wijzig!</button>
@@ -133,7 +133,7 @@
   		<div class="tab-pane" id="Leiding">
   		  <?php foreach($Leiding as $Output): ?>
           <p>
-            <form method="POST" action="">
+            <form method="POST" action="<?php echo base_url(); ?>Takken/Takken_edit/<?php echo $Output->ID; ?>">
               <label for="title">Headin:</label>
               <input style="width: 35%;" class="form-control" id="title" name="Title" value="<?php echo $Output->Title; ?>" placeholder="Titel">
               <br>
@@ -143,7 +143,7 @@
               <br>
 
               <label for="beschrijving">Beschrijving:</label>
-              <textarea rows="10" id="beschrijving" style="width: 55%;" class="form-control" name=""></textarea>
+              <textarea rows="10" id="beschrijving" style="width: 55%;" class="form-control" name="Beschrijving"></textarea>
               <br>
 
               <button class="btn btn-danger" type="submit">Wijzig!</button>

@@ -1,6 +1,12 @@
 <?php 
 	class Model_verhuringen extends CI_Model {
 		
+	/*
+	 | Developer: Tim Joosten
+	 | License: 4GPL
+	 | Copyright: Sint-Joris Turnhout, Tim Joosten
+	 */
+
 		// Client side
 		function Verhuring_kalender() {
 			$this->db->select(); 
@@ -24,6 +30,41 @@
 		// -------- //
 
 		// Admin side 
+		function Status_optie() {
+			$Value = array(
+					"Status" => "1",
+				);
 
+			$this->db->where("ID", $this->uri->segment(3))
+					 ->update("Verhuur", $Value);
+		}
+
+		function Status_bevestigd() {
+			$Value = array(
+					"Status" => "2",
+				); 
+
+			$this->db->where("ID", $this->uri->segment(3))
+					 ->update("Verhuur", $Value);
+		}
+		
+		function Verhuur_delete() {
+
+		}
+		
+		function Verhuur_bevestigd() {
+			$this->db->select(); 
+
+			$Query = $this->db->get('Verhuur');
+			return $Query->result();
+		}
+
+		function verhuur_info() {
+			$this->db->select() 
+					 ->where("ID", $this->uri->segment(3));
+
+			$Query = $this->db->get('Verhuur'); 
+			return $Query->result();
+		}
 		// -------- //
 	}

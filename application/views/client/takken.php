@@ -41,7 +41,7 @@
                 <img style="width: 75px; height: 75px;" class="color-white img-responsive img-rounded media-object" src="/assets/img/kapoenen.png" alt="<?php echo $Kapoen->Title; ?>">
               </a>
               <div class="media-body color-white">
-                <h4 class="media-heading"> <?php echo $Kapoen->Title; ?> <small> <?php echo $Kapoen->Sub_title; ?> </small></h4>
+                <h4 class="font-title media-heading"> <?php echo $Kapoen->Title; ?> <small> <?php echo $Kapoen->Sub_title; ?> </small></h4>
                 
                 <!-- Description -->
                 <?php 
