@@ -1,9 +1,9 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 	class Info extends CI_Controller {
 		/* 
-		 |
-		 |
-		 |
+		 | Developer: Tim Joosten
+		 | License: 4GPL
+		 | Copyright: St-joris Turnhout, Tim Joosten
 		 */
 
 		public function index() {

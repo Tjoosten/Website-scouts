@@ -50,4 +50,15 @@
      $Query = $this->db->get('Activiteiten');
      return $Query->result();
    }
+	 
+	 function Insert() {
+		 $Values = array(
+			  "Tak" => $this->uri->segment(3),
+			 	"Datum" => $this->input->post('Datum'),
+				"Naam" => $this->input->post('Naam'),
+				"Beschrijving" => $this->input->post('Beschrijving'),
+		 	);
+			
+			$this->db->insert('Activiteiten', $Values);
+	 }
  }
