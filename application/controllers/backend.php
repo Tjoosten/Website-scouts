@@ -12,7 +12,8 @@ class backend extends CI_Controller {
     if($this->session->userdata('logged_in'))  {
       $session_data = $this->session->userdata('logged_in');
 
-      $data['Title'] = "Admin takken";
+      $data['Title']  = "Admin takken";
+			$data['Active'] = "1";
 			
 			// Session
       $data['Role'] = $session_data['Admin'];

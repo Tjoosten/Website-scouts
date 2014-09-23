@@ -11,7 +11,7 @@
           </div>
           <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-              <li class="dropdown">
+              <li class="<?php if($Active == 1): ?> active <?php endif; ?> dropdown">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="<?php echo base_url(); ?>Takken">
                   <span class="fa fa-leaf Icon-color"></span> Takken
                 </a>
@@ -26,31 +26,31 @@
                 </ul>
               </li>
 
-              <li>
+              <li <?php if($Active == 2): ?> class="active" <?php endif; ?>>
                 <a href="<?php echo base_url(); ?>Verhuur">
                   <span class="fa fa-home Icon-color"></span> Verhuur
                 </a>
               </li>
 
-              <li>
+              <li <?php if($Active == 3): ?> class="active" <?php endif; ?>>
                 <a href="<?php echo base_url(); ?>Fotos">
                   <span class="fa fa-camera-retro Icon-color"></span> Foto's
                 </a>
               </li>
 
-              <li>
+              <li <?php if($Active == 4): ?> class="active" <?php endif; ?>>
                 <a href="/Planning.pdf">
                   <span class="fa fa-file-text-o Icon-color"></span> Planning
                 </a>
               </li>
 
-              <li>
+              <li <?php if($Active == 5): ?> class="active" <?php endif; ?>>
                 <a href="<?php echo base_url(); ?>Info">
                   <span class="fa fa-info-circle Icon-color"></span> Info
                 </a>
               </li>
 
-              <li>
+              <li <?php if($Active == 6): ?> class="active" <?php endif; ?>>
                 <a href="<?php echo base_url(); ?>">
                   <span class="fa fa-envelope Icon-color"></span> Contact
                 </a>

@@ -86,7 +86,6 @@
 					<p>
 				</div>
 				
-				<?php ?>
 				<div class="tab-pane" id="Nieuw_kapoenen">
 					<p>
 						<form method="POST" action="<?php echo base_url(); ?>/backend/Insert_act/Kapoenen">
@@ -110,7 +109,7 @@
 			<?php endif; ?>
 
 			<?php if($Tak == 2): ?>
- 				<div class="tab-pane" id="Welpen">
+ 				<div class="tab-pane active" id="Welpen">
  			  	<?php foreach($Welpen as $Welp): ?>
           	<p>
             	<form method="POST" action="<?php echo base_url(); ?>Takken/Takken_edit/<?php echo $Welp->ID; ?>">
@@ -260,29 +259,39 @@
 			<?php endif; ?>
   		
 			<?php if($Tak == 4): ?>
-  		<div class="tab-pane" id="Givers">
-  		  <?php foreach($Givers as $Giver): ?>
-          <p>
-            <form method="POST" action="<?php echo base_url(); ?>Takken/Takken_edit/<?php echo $Giver->ID; ?>">
-              <label for="title">Heiding:</label>
-              <input style="width: 35%;" class="form-control" id="title" name="Title" value="<?php echo $Giver->Title; ?>" placeholder="Titel">
-              <br>
+  			<div class="tab-pane" id="Givers">
+  		  	<?php foreach($Givers as $Giver): ?>
+          	<p>
+            	<form method="POST" action="<?php echo base_url(); ?>Takken/Takken_edit/<?php echo $Giver->ID; ?>">
+              	<label for="title">Heiding:</label>
+              	<input style="width: 35%;" class="form-control" id="title" name="Title" value="<?php echo $Giver->Title; ?>" placeholder="Titel">
+              	<br>
 
-              <label for="Sub">Sub heading: </label>
-              <input style="width:35%;" class="form-control" id="Sub" name="Sub_title" value="<?php echo $Giver->Sub_title; ?>" placeholder="Sub title">
-              <br>
+              	<label for="Sub">Sub heading: </label>
+              	<input style="width:35%;" class="form-control" id="Sub" name="Sub_title" value="<?php echo $Giver->Sub_title; ?>" placeholder="Sub title">
+              	<br>
 
-              <label for="beschrijving">Beschrijving:</label>
-              <textarea rows="10" id="beschrijving" style="width: 55%;" class="form-control" name="Beschrijving"><?php echo $Giver->Beschrijving; ?></textarea>
-              <br>
+              	<label for="beschrijving">Beschrijving:</label>
+              	<textarea rows="10" id="beschrijving" style="width: 55%;" class="form-control" name="Beschrijving"><?php echo $Giver->Beschrijving; ?></textarea>
+              	<br>
 
-              <button class="btn btn-danger" type="submit">Wijzig!</button>
-              <button class="btn btn-danger" type="reset">Reset!</button>
-            </form>
-          </p>
-  		  <?php endforeach; ?>
-  		</div>
-		<?php endif; ?>
+              	<button class="btn btn-danger" type="submit">Wijzig!</button>
+              	<button class="btn btn-danger" type="reset">Reset!</button>
+            	</form>
+          	</p>
+  		  	<?php endforeach; ?>
+  			</div>
+				
+				<div class="tab-pane" id="act_givers">
+					<p>
+					</p>
+				</div>
+				
+				<div class="tab-pane" id="Nieuw_givers">
+					<p>
+					</p>
+				</div>
+			<?php endif; ?>
   		
 			<?php if($Tak == 5): ?>
   			<div class="tab-pane" id="Jins">
@@ -307,10 +316,20 @@
           	</p>
   		  	<?php endforeach; ?>
   			</div>
+				
+				<div class="tab-pane" id="act_jins">
+					<p>
+					</p>
+				</div>
+				
+				<div class="tab-pane" id="Nieuw_jins">
+					<p>
+					</p>
+				</div>
 			<?php endif; ?>
 			
 			<?php if($Tak == 6): ?>
-  			<div class="tab-pane" id="Leiding">
+  			<div class="tab-pane active" id="Leiding">
   		  	<?php foreach($Leiding as $Output): ?>
           	<p>
             	<form method="POST" action="<?php echo base_url(); ?>Takken/Takken_edit/<?php echo $Output->ID; ?>">

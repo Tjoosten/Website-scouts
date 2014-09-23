@@ -47,7 +47,7 @@
                 <?php 
                   $text = $Kapoen->Beschrijving;
                   $result = Parsedown::instance()->parse($text);
-                  echo word_limiter($result, 1);
+                  echo strip_tags(word_limiter($result, $Limit));
                 ?>
               </div>
             </div>
@@ -67,7 +67,7 @@
                   <?php 
                     $text = $Welp->Beschrijving;
                     $result = Parsedown::instance()->parse($text);
-                    echo strip_tags(word_limiter($result, 1));
+                    echo strip_tags(word_limiter($result, $Limit));
                   ?>
                 </div>
               </div>
@@ -87,7 +87,7 @@
                   <?php 
                     $text = $JongGiver->Beschrijving;
                     $result = Parsedown::instance()->parse($text);
-                    echo strip_tags(word_limiter($result, 1));
+                    echo strip_tags(word_limiter($result, $Limit));
                   ?>
                 </div>
               </div>
@@ -107,7 +107,7 @@
                   <?php 
                     $text = $Giver->Beschrijving;
                     $result = Parsedown::instance()->parse($text);
-                    echo strip_tags(word_limiter($result, 1));
+                    echo strip_tags(word_limiter($result, $Limit));
                   ?>
                 </div>
               </div>
@@ -127,7 +127,7 @@
                 <?php 
                   $text = $Jin->Beschrijving;
                   $result = Parsedown::instance()->parse($text);
-                  echo strip_tags(word_limiter($result, 1));
+                  echo strip_tags(word_limiter($result, $Limit));
                 ?>
               </div>
             </div>
@@ -147,7 +147,7 @@
                 <?php 
                   $text = $Output->Beschrijving;
                   $result = Parsedown::instance()->parse($text);
-                  echo strip_tags(word_limiter($result, 1));
+                  echo strip_tags(word_limiter($result, $Limit));
                 ?>
               </div>
             </div>

@@ -53,8 +53,31 @@
 													</div>
 
 												<div class="btn-group">
-													<a class="btn btn-xs btn-danger" href="<?php echo base_url(); ?>Verhuur/Change_optie/<?php echo $Output->ID; ?>"><span class="octicon octicon-issue-opened"></span></a>
-													<a class="btn btn-xs btn-danger" href="<?php echo base_url(); ?>Verhuur/Change_bevestigd/<?php echo $Output->ID; ?>"><span class="octicon octicon-issue-closed"></span></a>
+													<?php if($Output->Status == 1): ?>
+														<a disabled class="btn btn-xs btn-danger" href="<?php echo base_url(); ?>Verhuur/Change_optie/<?php echo $Output->ID; ?>">
+															<span class="octicon octicon-issue-opened"></span>
+														</a>
+
+														<a class="btn btn-xs btn-danger" href="<?php echo base_url(); ?>Verhuur/Change_bevestigd/<?php echo $Output->ID; ?>">
+															<span class="octicon octicon-issue-closed"></span>
+														</a>
+													<?php elseif($Output->Status == 2): ?>
+														<a class="btn btn-xs btn-danger" href="<?php echo base_url(); ?>Verhuur/Change_optie/<?php echo $Output->ID; ?>">
+															<span class="octicon octicon-issue-opened"></span>
+														</a>
+
+														<a disabled class="btn btn-xs btn-danger" href="<?php echo base_url(); ?>Verhuur/Change_bevestigd/<?php echo $Output->ID; ?>">
+															<span class="octicon octicon-issue-closed"></span>
+														</a>
+													<?php elseif($Output->Status == 0): ?>
+														<a class="btn btn-xs btn-danger" href="<?php echo base_url(); ?>Verhuur/Change_optie/<?php echo $Output->ID; ?>">
+															<span class="octicon octicon-issue-opened"></span>
+														</a>
+
+														<a class="btn btn-xs btn-danger" href="<?php echo base_url(); ?>Verhuur/Change_bevestigd/<?php echo $Output->ID; ?>">
+															<span class="octicon octicon-issue-closed"></span>
+														</a>
+													<?php endif; ?>
 												</div>
 											</div>
 										</td>
@@ -68,25 +91,25 @@
 
   				<div class="tab-pane" id="Verhuur">
   					<p>
-					 <form method="POST" action="">
+					 <form method="POST" action="<?php echo base_url(); ?>verhuur/toevoegen_verhuur">
 					 	<label for="Start">Start datum:</label>
-					 	<input class="form-control" style="width: 30%;" id="Start" name="" placeholder="00/00/00">
+					 	<input class="form-control" style="width: 30%;" id="Start" name="Start_datum" placeholder="00/00/00">
 					 	<br>
 
 					 	<label for="Eind">Eind datum:</label>
-					 	<input class="form-control" style="width: 30%;" id="Eind" name="" placeholder="bv. 00/00/00">
+					 	<input class="form-control" style="width: 30%;" id="Eind" name="Eind_datum" placeholder="bv. 00/00/00">
 					 	<br>
 					 	
 					 	<label for="Groep">Groep:</label>
-					 	<input class="form-control" style="width: 30%;" id="Groep" name="" placeholder="Groep">
+					 	<input class="form-control" style="width: 30%;" id="Groep" name="Groep" placeholder="Groep">
 					 	<br>
 					 
 					 	<label for="GSM">Gsm-nummer:</label>
-					 	<input class="form-control" style="width: 30%;" id="GSM" placeholder="GSM nummer">
+					 	<input class="form-control" style="width: 30%;" id="GSM" name="GSM" placeholder="GSM nummer">
 					 	<br>
 
 					 	<label for="Mail">Email:</label>
-					 	<input class="form-control" style="width: 30%;" id="Mail" placeholder="E-mail adres">
+					 	<input class="form-control" style="width: 30%;" id="Mail" name="Email" placeholder="E-mail adres">
 					 	<br>
 
 					 	<button type="submite" class="btn btn-success">Toevoegen</button>

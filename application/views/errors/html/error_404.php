@@ -6,7 +6,7 @@
  <!-- BEGIN HEAD -->
 <head>
       <meta charset="UTF-8" />
-    <title>free bootstrap error 404 page by binary theme Template </title>
+    <title> 404 - Page not found. </title>
      <meta content="width=device-width, initial-scale=1.0" name="viewport" />
 	<meta content="" name="description" />
 	<meta content="" name="author" />

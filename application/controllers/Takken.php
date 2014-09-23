@@ -1,5 +1,6 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 	class Takken extends CI_Controller {
+		
         /*
          | Developer: Tim Joosten 
          | License: 4GPL
@@ -15,7 +16,9 @@
 		public function index() {
 			// Variable(s)
 				// General
-				$Data['Title'] = "Takken";
+				$Data['Title']  = "Takken";
+				$Data['Active'] = "1";
+                $Data['Limit']  = "40"; 
 
 				// Database
 				$DB['Kapoenen']   = $this->Takken->Kapoenen();
@@ -28,7 +31,7 @@
 
 			// View(s)
 			$this->load->view('components/header', $Data);
-			$this->load->view('components/navbar');
+			$this->load->view('components/navbar', $Data);
 			$this->load->view('client/takken', $DB);
 			$this->load->view('components/footer');
 		}
@@ -37,6 +40,7 @@
     	// Variable(s)
     	  // General
         $Data['Title']  = "De Kapoenen"; 
+				$Data['Active'] = "1";
 
         // Database
         $DB['Beschrijving'] = $this->Takken->Kapoenen();
@@ -45,7 +49,7 @@
 
         // View(s)
         $this->load->view('components/header', $Data);
-        $this->load->view('components/navbar');
+        $this->load->view('components/navbar', $Data);
         $this->load->view('client/tak_pagina', $DB);
         $this->load->view('components/footer');
     }
@@ -53,7 +57,8 @@
     public function Welpen() {
     	// Variable(s)
     	  // General
-    	  $Data['Title'] = "De Welpen"; 
+    	  $Data['Title']  = "De Welpen"; 
+				$Data['Active'] = "1";
 
     	  // Database
     	  $DB['Beschrijving'] = $this->Takken->Welpen();
@@ -62,7 +67,7 @@
 
     	  // View(s)
     	  $this->load->view('components/header', $Data);
-    	  $this->load->view('components/navbar');
+    	  $this->load->view('components/navbar', $Data);
     	  $this->load->view('client/tak_pagina', $DB);
     	  $this->load->view('components/footer');
     }
@@ -70,7 +75,8 @@
     public function JongGivers() {
     	// Variable(s)
     	  // General 
-    	  $Data['Title'] = "De Jong-Givers";
+    	  $Data['Title']  = "De Jong-Givers";
+				$Data['Active'] = "1";
 
     	  // Database
     	  $DB['Beschrijving'] = $this->Takken->JongGivers();
@@ -79,7 +85,7 @@
 
     	  // View(s)
     	  $this->load->view('components/header', $Data);
-    	  $this->load->view('components/navbar');
+    	  $this->load->view('components/navbar', $Data);
     	  $this->load->view('client/tak_pagina', $DB);
     	  $this->load->view('components/footer');
     }
@@ -87,7 +93,8 @@
     public function Givers() {
     	// Variable(s)
     	  // General 
-    	  $Data['Title'] = "De Givers";
+    	  $Data['Title']  = "De Givers";
+				$Data['Active'] = "1";
 
     	  // Database
     	  $DB['Beschrijving'] = $this->Takken->Givers();
@@ -96,7 +103,7 @@
 
     	  // View(s)
     	  $this->load->view('components/header', $Data);
-    	  $this->load->view('components/navbar');
+    	  $this->load->view('components/navbar', $Data);
     	  $this->load->view('client/tak_pagina', $DB);
     	  $this->load->view('components/footer');
     }
@@ -104,7 +111,8 @@
     public function Jins() {
     	// Variables
     	  // General
-    	  $Data['Title'] = "De Jins"; 
+    	  $Data['Title']  = "De Jins"; 
+				$Data['Active'] = "1"; 
 
         // Database
         $DB['Beschrijving'] = $this->Takken->Jins();
@@ -113,7 +121,7 @@
 
         // View(s)
         $this->load->view('components/header', $Data);
-        $this->load->view('components/navbar');
+        $this->load->view('components/navbar', $Data);
         $this->load->view('client/tak_pagina', $DB);
         $this->load->view('components/footer');
     }
@@ -121,7 +129,8 @@
     public function Leiding() {
     	// Variables
     	  // General
-    	  $Data['Title'] = "De Leiding"; 
+    	  $Data['Title']  = "De Leiding"; 
+				$Data['Active'] = "1";
 
     	  // Database
     	  $DB['Beschrijving'] = $this->Takken->Leiding();
@@ -129,7 +138,7 @@
 
     	  // View(s)
     	  $this->load->view('components/header', $Data);
-    	  $this->load->view('components/navbar');
+    	  $this->load->view('components/navbar', $Data);
     	  $this->load->view('client/tak_pagina', $DB);
     	  $this->load->view('components/footer');
     }

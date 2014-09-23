@@ -20,7 +20,7 @@
 				"Start_datum" => $this->input->post('Start_datum'),
 				"Eind_datum" => $this->input->post('Eind_datum'), 
 				"Groep" => $this->input->post('Groep'), 
-				"Email" => $this->input->post('Mail'),
+				"Email" => $this->input->post('Email'),
 				"GSM" => $this->input->post('GSM'),
 				"Status" => "0",
 				);
@@ -30,6 +30,19 @@
 		// -------- //
 
 		// Admin side 
+		function Wijzig_verhuur() {
+			$Values = array(
+				"Start_datum" => $this->input->post('Start'),
+				"Eind_datum" => $this->input->post('Eind'),
+				"Groep" => $this->input->post('Groep'),
+				"Email" => $this->input->post('Mail'),
+				"GSM" => $this->input->post('GSM'),
+				);
+
+			$this->db->where("ID", $this->uri->segment(3))
+			          ->update('Verhuur', $Values);
+		}
+
 		function Status_optie() {
 			$Value = array(
 					"Status" => "1",
@@ -49,7 +62,8 @@
 		}
 		
 		function Verhuur_delete() {
-
+			$this->db->where('ID', $this->uri->segment(3))
+					 ->delete('Verhuur'); 
 		}
 		
 		function Verhuur_bevestigd() {

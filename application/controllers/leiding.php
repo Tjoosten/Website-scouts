@@ -11,6 +11,7 @@ class leiding extends CI_Controller {
   function __construct() {
     parent::__construct();
     $this->load->model('Model_leiding', 'Leiding');
+    $this->load->helper('email');
   }
 
   function index() {
@@ -18,7 +19,8 @@ class leiding extends CI_Controller {
       $session_data = $this->session->userdata('logged_in');
 
       // General
-      $data['Title'] = "Leiding";
+      $data['Title']  = "Leiding";
+			$data['Active'] = "6";
       
       // Session
       $data['Role'] = $session_data['Admin'];

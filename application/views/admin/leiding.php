@@ -23,7 +23,7 @@
       		  				<th>#</th>
       		  				<th>Naam:</th>
       		  				<th>Mail:</th>
-      		  				<th>GSM:<th>
+      		  				<th>GSM:</th>
       		  				<th></th> <!-- Functies -->
         		  		</tr>
         		  	</thead>
@@ -32,11 +32,29 @@
         		  			<tr>
         		  				<td><code>#<?php echo $Output->id; ?></code></td>
         		  				<td><?php echo $Output->username; ?></td>
-        		  				<td><?php echo $Output->Mail; ?></td>
+
+        		  				<td> 
+                                    <a href="mailto:<?php echo $Output->Mail; ?>"><?php echo $Output->Mail; ?></a>
+                                </td>
         		  				<td><?php echo $Output->GSM; ?></td>
         		  				<td>
-        		  				  <div class="btn-group">
-        		  				  </div>
+                                    <div class="btn-toolbar">
+        		  				        <div class="btn-group">
+                                            <a href="<?php echo base_url(); ?>leiding/Leiding_delete/<?php echo $Output->id; ?>" class="btn btn-danger btn-xs">
+                                                <span class="fa fa-close"></span>
+                                            </a>
+
+                                            <?php if($Output->Blocked == 1): ?>
+                                                <a class="btn btn-xs btn-success" href="<?php echo base_url(); ?>leiding/Leiding_unblock/<?php echo $Output->id; ?>"> 
+                                                    <span class="fa fa-lock"></span> 
+                                                </a>
+                                            <?php elseif($Output->Blocked == 0): ?>
+                                                <a class="btn btn-xs btn-danger" href="<?php echo base_url(); ?>leiding/Leiding_block/<?php echo $Output->id; ?>"> 
+                                                    <span class="fa fa-lock"></span> 
+                                                </a>
+                                            <?php endif; ?>
+        		  				        </div>
+                                    </div>
         		  				</td>
         		  			</tr>
         		  		<?php endforeach; ?>
@@ -104,7 +122,7 @@
                                 <tr>
                                     <td><code>#<?php echo $Output->id; ?></code></td>
                                     <td><?php echo $Output->username; ?></td>
-                                    <td><?php echo $Output->Mail; ?></td>
+                                    <td><a href="mailto:<?php echo $Output->Mail; ?>"><?php echo $Output->Mail; ?></a></td>
                                     <td><?php echo $Output->GSM; ?></td>
 
                                     <td>
