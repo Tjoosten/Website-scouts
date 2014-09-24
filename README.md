@@ -23,11 +23,7 @@ Versioning
 
 **Bv. 15.09 Trusty Thar**
 
-15 = Day
-
-09 = Month
-
-Name = Some character and name of a animal
+15 = Day, 09 = Month, Name = Some character and name of a animal
 
 License
 =================
