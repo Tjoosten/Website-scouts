@@ -74,4 +74,30 @@
 				
 			$this->db->insert('Activity_log', $Values);
 		}
+		
+		function Verhuur_option() {
+			$Values = array(
+				"Gebruiker" => $Session['username'],
+				"Bericht"   => "Heeft de optie van een verhuring aangepast",
+				"Datum"     => date("F j, Y, g:i a"),
+				);
+				
+			$this->db->insert('Activity_log', $Values);
+		}
+		
+		function Verhuur_delete() {
+			$Values = array(
+				"Gebruiker" => $Session['username'],
+				"Bericht"   => "Heeft een verhuring verwijderd", 
+				"Datum"     => date("F j, Y, g:i a"),
+				);
+				
+			$this->db->insert('Activity_log', $Values);
+		}
+		
+		function Verhuur_insert() {
+			"Gebruiker" => $Session['username'], 
+			"Bericht"   => "Heeft een verhuring toegevoegd",
+			"Datum"     => date("F j, Y, g:i a"),
+		}
 	}
