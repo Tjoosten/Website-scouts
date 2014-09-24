@@ -44,6 +44,7 @@
           							<thead>
           								<tr>
           									<th>Start datum</th>
+          									<th></th>
           									<th>Eind datum</th>
           								</tr>
           							</thead>
@@ -51,6 +52,7 @@
           								<?php foreach($Verhuringen as $Verhuur): ?>
           									<tr>
           										<td><?php echo $Verhuur->Start_datum; ?></td>
+          										<td> - </td>
           										<td><?php echo $Verhuur->Eind_datum; ?></td>
           									</tr>
           								<?php endforeach; ?>
