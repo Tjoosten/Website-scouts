@@ -44,6 +44,9 @@ class VerifyLogin extends CI_Controller {
         );
 
         $this->session->set_userdata('logged_in', $sess_array);
+				
+				$this->load->model('Model_Log', 'Log');
+				$this->Log->logged_in();
       }
       return TRUE;
     } else {

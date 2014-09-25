@@ -6,6 +6,7 @@ class backend extends CI_Controller {
     parent::__construct();
     $this->load->model('Model_takken', 'Takken'); 
 		$this->load->model('Model_activiteiten', 'Activiteiten');
+		$this->load->model('Model_Log', 'Log');
   }
 
   function index() {
@@ -55,6 +56,7 @@ class backend extends CI_Controller {
 	}
   
   function logout() {
+		$this->Log->Logged_out();
     $this->session->unset_userdata('logged_in');
     session_destroy();
     redirect('Admin', 'refresh');

@@ -7,7 +7,9 @@
    */
 
   Class Model_Log extends CI_Model {
-    function Logged_in() {
+    function logged_in() {
+			$Session = $this->session->userdata('logged_in');
+			
       $Values = array(
 			  "Gebruiker" => $Session['username'], 
 			  "Bericht"   => "Heeft zich ingelogd", 
@@ -18,6 +20,8 @@
     }
 		
     function Logged_out() {
+			$Session = $this->session->userdata('logged_in');
+			
       $Values = array(
 			  "Gebruiker" => $Session['username'],
 			  "Bericht"   => "Heeft zich uitgelogd",
@@ -28,6 +32,8 @@
 		}
 		
 		function Created_login() {
+			$Session = $this->session->userdata('logged_in');
+			
 		  $Values = array(
 		    "Gebruiker" => $Session['username'],
 		    "Bericht"   => "Heeft een login toegegevoegd",
@@ -37,7 +43,9 @@
 		  $this->db->insert('Activity_log', $Values);
 		}
 		
-		function Deleted_login()  {
+		function Delete_login() {
+			$Session = $this->session->userdata('logged_in');
+			
 			$Values = array(
 				"Gebruiker" => $Session['username'],
 				"Bericht"   => "Heeft een login verwijderd",
@@ -46,6 +54,8 @@
 		}
 		
 		function Add_admin() {
+			$Session = $this->session->userdata('logged_in');
+			
 			$Values = array(
 				"Gebruiker" => $Session['username'],
 				"Bericht"   => "Heeft iemand administrator gemaakt",
@@ -56,6 +66,8 @@
 		}
 		
 		function Delete_admin() {
+			$Session = $this->session->userdata('logged_in');
+			
 			$Values = array(
 				"Gebruiker" => $Session['username'],
 				"Bericht"   => "Heeft iemand verwijderd als administrator",
@@ -65,7 +77,33 @@
 			$this->db->insert('Activity_log', $Values);
 		}
 		
+		function Log_Block() {
+			$Session = $this->session->userdata('logged_in');
+			
+			$Values = array(
+				"Gebruiker" => $Session['username'],
+				"Bericht"   => "Heeft een login geblokkeerd",
+				"Datum"     => date("F j, Y, g:i a"),
+				);
+				
+				$this->db->insert('Activity_log', $Values);
+		}
+			
+		function Log_Unblock() {
+			$Session = $this->session->userdata('logged_in');
+			
+			$Values = array(
+				"Gebruiker" => $Session['username'],
+				"Bericht"   => "Heeft een login vrijgegeven",
+				"Datum"     => date("F j, Y, g:i a"),
+			 );
+			 
+			 $this->db->insert('Activity_log', $Values);
+		}
+		
 		function Make_user() {
+			$Session = $this->session->userdata('logged_in');
+			
 			$Values = array(
 				"Gebruiker" => $Session['username'],
 				"Bericht"   => "Heeft een login aangemaakt",
@@ -76,6 +114,8 @@
 		}
 		
 		function Verhuur_option() {
+			$Session = $this->session->userdata('logged_in');
+			
 			$Values = array(
 				"Gebruiker" => $Session['username'],
 				"Bericht"   => "Heeft de optie van een verhuring aangepast",
@@ -86,6 +126,8 @@
 		}
 		
 		function Verhuur_delete() {
+			$Session = $this->session->userdata('logged_in');
+			
 			$Values = array(
 				"Gebruiker" => $Session['username'],
 				"Bericht"   => "Heeft een verhuring verwijderd", 
@@ -96,8 +138,26 @@
 		}
 		
 		function Verhuur_insert() {
-			"Gebruiker" => $Session['username'], 
-			"Bericht"   => "Heeft een verhuring toegevoegd",
-			"Datum"     => date("F j, Y, g:i a"),
+			$Session = $this->session->userdata('logged_in'); 
+			
+			$Values = array(
+				"Gebruiker" => $Session['username'], 
+				"Bericht"   => "Heeft een verhuring toegevoegd",
+				"Datum"     => date("F j, Y, g:i a"),
+				);
+			
+			$this->db->insert('Activity_log', $Values);
+		} 
+		
+		function Verhuur_wijzig() {
+			$Session = $this->session->userdata('logged_in');
+			
+			$Values = array(
+				"Gebruiker" => $Session['username'],
+				"Bericht"   => "Heeft de data van een verhuring gewijzigd",
+				"Datum"     => date('F j, Y, g:i a'),
+				);
+				
+				$this->db->insert('Activity_log', $Values);
 		}
 	}

@@ -3,12 +3,13 @@
         function __construct() {
             parent::__construct();
             $this->load->model('Model_verhuringen','Verhuringen');
+						$this->load->model('Model_Log', 'Log');
             $this->load->library('email');
         }
 
 		public function index() {
             $data['Title']  = "verhuur";
-			$data['Active'] = "2";
+						$data['Active'] = "2";
 
             $this->load->view('components/header', $data);
             $this->load->view('components/navbar', $data);
@@ -30,7 +31,7 @@
 
         public function verhuur_aanvraag() {
             $data['Title'] = " Aanvraag verhuur"; 
-			$data['Active'] = "2";
+						$data['Active'] = "2";
 
             $this->load->view('components/header', $data);
             $this->load->view('components/navbar', $data);
@@ -41,7 +42,7 @@
         public function toevoegen_verhuur() {
             // Email template
             $this->email->from('contact@st-joris-turnhout.be', 'Contact st-joris turnhout');
-            $this->email->to('verhuur@st-joris-turnhout.be'); 
+            $this->email->to('Topairy@gmail.com'); 
 
             $this->email->subject('Nieuwe verhuring');
             $this->email->message('Er is een nieuwe verhuring aangevraagd op http://www.st-joris-turnhout.be');  
@@ -79,16 +80,6 @@
             }
         }
 
-        public function Change_optie() {
-            if($this->session->userdata('logged_in')) {
-                $this->Verhuringen->Status_optie();
-                redirect('Verhuur/Admin_verhuur');
-            } else {
-                // Geen sessie gevonden, ga naar login pagina
-                redirect('Admin', 'refresh');
-            }
-        }
-
         public function verhuur_edit() {
             if($this->session->userdata('logged_in')) {
                 // Global variables
@@ -114,16 +105,6 @@
 
         }
 
-        public function Wijzig_verhuur() {
-            if($this->session->userdata('logged_in')) {
-                $this->Verhuringen->Wijzig_verhuur();
-                redirect('Verhuur/Admin_verhuur');
-            } else {
-                // Geen sessie gevonden, ga naar login pagina
-                redirect('Admin', 'Refresh');
-            }
-        }
-
         public function verhuur_info() {
             if($this->session->userdata('logged_in')) {
                 // Global variables
@@ -146,9 +127,31 @@
                 redirect('Admin', 'Refresh');
             }
         }
+				
+        public function Wijzig_verhuur() {
+            if($this->session->userdata('logged_in')) {
+                $this->Verhuringen->Wijzig_verhuur();
+                redirect('Verhuur/Admin_verhuur');
+            } else {
+                // Geen sessie gevonden, ga naar login pagina
+                redirect('Admin', 'Refresh');
+            }
+        }
+				
+        public function Change_optie() {
+            if($this->session->userdata('logged_in')) {
+                $this->Verhuringen->Status_optie();
+								$this->Log->Verhuur_option();
+                redirect('Verhuur/Admin_verhuur');
+            } else {
+                // Geen sessie gevonden, ga naar login pagina
+                redirect('Admin', 'refresh');
+            }
+        }
 
         public function Change_bevestigd() {
             if($this->session->userdata('logged_in')) {
+								$this->Log->Verhuur_option();
                 $this->Verhuringen->Status_bevestigd(); 
                 redirect('Verhuur/Admin_verhuur');
             } else {
@@ -160,6 +163,7 @@
         public function Verhuur_delete() {
             if($this->session->userdata('logged_in')) {
                 $this->Verhuringen->Verhuur_delete();
+								$this->Log->Verhuur_delete();
                 redirect('Verhuur/Admin_verhuur');
             } else {
                 // Geen sessie gevonden, ga naar login pagina

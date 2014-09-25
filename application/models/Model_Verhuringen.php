@@ -35,7 +35,7 @@
 				"Start_datum" => $this->input->post('Start'),
 				"Eind_datum" => $this->input->post('Eind'),
 				"Groep" => $this->input->post('Groep'),
-				"Email" => $this->input->post('Mail'),
+				"Email" => $this->input->post('Email'),
 				"GSM" => $this->input->post('GSM'),
 				);
 
