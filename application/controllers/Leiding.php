@@ -11,7 +11,7 @@ class leiding extends CI_Controller {
   function __construct() {
     parent::__construct();
     $this->load->model('Model_leiding', 'Leiding');
-    $this->load->helper('email');
+    $this->load->model('Model_Log', 'Log');
   }
 
   function index() {
@@ -42,6 +42,7 @@ class leiding extends CI_Controller {
   // Database functies
   function Insert_leiding() {
     if($this->session->userdata('logged_in')) {
+			$this->Log->Created_login();
       $this->Leiding->Leiding_insert();
       redirect('leiding');
     } else {
@@ -52,7 +53,8 @@ class leiding extends CI_Controller {
 
   function Leiding_block() {
     if($this->session->userdata('logged_in')) {
-      $this->Leiding->Leiding_Block(); 
+      $this->Leiding->Leiding_Block();
+			$this->Log->Log_Block(); 
       redirect('leiding');
     } else {
       // Geen sessie gevonden,  ga naar login 
@@ -63,6 +65,7 @@ class leiding extends CI_Controller {
   function Leiding_unblock() {
     if($this->session->userdata('logged_in')) {
       $this->Leiding->Leiding_Unblock();
+			$this->Log->Log_Unblock();
       redirect('leiding');
     } else {
       // Geen sessie gevonden, ga naar login 
@@ -72,6 +75,7 @@ class leiding extends CI_Controller {
 
   function Leiding_upgrade() {
     if($this->session->userdata('logged_in')) {
+			$this->Log->Add_admin();
       $this->Leiding->Leiding_upgrade();
       redirect('leiding');
     } else {
@@ -82,6 +86,7 @@ class leiding extends CI_Controller {
 
   function Leiding_downgrade() {
     if($this->session->userdata('logged_in')) {
+			$this->Log->Delete_admin();
       $this->Leiding->Leiding_downgrade(); 
       redirect('leiding');
     } else {
@@ -92,6 +97,7 @@ class leiding extends CI_Controller {
 
   function Leiding_delete() {
     if($this->session->userdata('logged_in')) {
+			$this->Log->Delete_login();
       $this->Leiding->Leiding_delete();
       redirect('leiding');
     } else {
