@@ -130,7 +130,7 @@
     	// Variables
     	  // General
     	  $Data['Title']  = "De Leiding"; 
-				$Data['Active'] = "1";
+		  $Data['Active'] = "1";
 
     	  // Database
     	  $DB['Beschrijving'] = $this->Takken->Leiding();
@@ -139,7 +139,7 @@
     	  // View(s)
     	  $this->load->view('components/header', $Data);
     	  $this->load->view('components/navbar', $Data);
-    	  $this->load->view('client/tak_pagina', $DB);
+    	  $this->load->view('client/tak_leiding', $DB);
     	  $this->load->view('components/footer');
     }
 
