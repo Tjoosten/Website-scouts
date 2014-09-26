@@ -20,13 +20,14 @@
         
         <div class="panel panel-default border">
           <div class="panel-heading">
-            Wat doen we?
+            Menu:
           </div>
 
           <div class="list-group">
-            
+            <a class="list-group-item" href="<?php echo base_url(); ?>"><span class="fa fa-asterisk"></span> Leidingsploeg </a>
+            <a class="list-group-item" href="<?php echo base_url(); ?>"><span class="fa fa-envelope"></span> Contacteer hoofdleiding</a>
           </div>
-          </div>
+        </div>
       </div>
 
       <div class="col-sm-9 col-md-9 col-lg-9">
