@@ -50,7 +50,7 @@
           				<br>
 
           				<label for="Email"> E-mail </label>
-          				<input style="width: 35%;" name="Mail" class="form-control" name="Email" id="Email" placeholder="Voorbeeld@domein.be">
+          				<input style="width: 35%;" class="form-control" name="Email" id="Email" placeholder="Voorbeeld@domein.be">
           				<br>
 
           				<button class="btn btn-success" type="submit"> Aanvragen </button>
