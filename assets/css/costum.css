@@ -1,5 +1,5 @@
 /*  general */
-body {
+.background {
   padding-top: 75px;
 
   /* General */
@@ -8,6 +8,16 @@ body {
   background-attachment: fixed;
   background-position: center 110px;
   background-color: #bdd732;
+}
+
+.font-heading {
+  font-family: Allan, helvetica, arial, sans-serif;
+  font-size: 22px;
+}
+
+.font-title {
+  font-family: Allan, helvetica, arial, sans-serif;
+  font-size: 18px;
 }
 
 .border {
@@ -20,6 +30,38 @@ body {
 }
 
 /* Takken pagina */
-.img-takken {
-	background-color: #ffffff;
+.color-white {
+  background-color: #ffffff;
+  padding-top:6px;
+  padding-left: 6px;
+  padding-right: 6px;
+  padding-bottom: 6px;
+  border: 1.9px solid #dddddd;
+    border-radius: 4px;
+    -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+}
+
+.color-kapoenen {
+  background-color: #FFFF00;
+}
+
+.color-welpen {
+  background-color: #228B22;
+}
+
+.color-jonggivers {
+  background-color: #F5821F;
+}
+
+.color-givers {
+  background-color: #256F91;
+}
+
+.color-jins {
+  background-color: #ED1C23;
+}
+
+.color-leiding {
+  background-color: #663399;
 }
