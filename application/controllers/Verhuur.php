@@ -57,6 +57,19 @@
         }
 
         // Admin side
+				public function Download_verhuringen() {
+					if($this->session->userdata('logged_in')) {
+						$this->load->dbutil();
+						$this->load->helper('download');
+						
+						$this->Verhuringen->Download_verhuringen();
+						
+					} else {
+						// if no session, redirect to login page
+						redirect('Verhuur/Admin_verhuur');
+					}
+				}
+				
         public function Admin_verhuur() {
             if($this->session->userdata('logged_in'))  {
                 $session_data = $this->session->userdata('logged_in');

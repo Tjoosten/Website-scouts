@@ -43,7 +43,10 @@
                 </a>
 								
 								<ul class="dropdown-menu">
-									<li><a href=""> Test </a></li>
+									<li><a href=""> Herstel database </a></li>
+									<li><a href=""> Optimaliseer database </a></li>
+									<li class="divider"></li>
+									<li><a href=""> Back-up database </a></li>
 								</ul>
               </li>
 							

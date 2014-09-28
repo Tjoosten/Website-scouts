@@ -80,5 +80,14 @@
 			$Query = $this->db->get('Verhuur'); 
 			return $Query->result();
 		}
+		
+		function Download_verhuringen() {
+			$this->db->select('Start_datum, Eind_datum, Groep, Email, GSM');
+			
+			$query = $this->db->get('Verhuur');
+			$data = $this->dbutil->csv_from_result($query, ';');
+        
+			force_download('Verhurings_data.csv', $data);
+		}
 		// -------- //
 	}

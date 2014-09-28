@@ -17,16 +17,18 @@
 								<span class="pull-left">
 									<form action="" method="POST" class="form-inline">
 										<input type="text" name="Term" placeholder="Search" class="form-control">
-										<a class="btn btn-danger" type="submit" href="">
+										<button class="btn btn-danger" type="submit">
 											<span class="fa fa-search"></span>
-										</a>
+										</button>
 									</form>
 								</span>
 							</div>
 							
 							<div class="col-md-6">
 								<span class="pull-right">
-									<a href="<?php echo base_url();?>Welcome/test" class="btn btn-info"><span class="octicon octicon-cloud-download"></span> Download</a>
+									<a href="<?php echo base_url();?>Verhuur/Download_verhuringen" class="btn btn-info">
+										<span class="octicon octicon-cloud-download"></span> Download
+									</a>
 								</span>
 							</div>
 						</div>
