@@ -163,7 +163,7 @@
         public function Verhuur_delete() {
             if($this->session->userdata('logged_in')) {
                 $this->Verhuringen->Verhuur_delete();
-								$this->Log->Verhuur_delete();
+				$this->Log->Verhuur_delete();
                 redirect('Verhuur/Admin_verhuur');
             } else {
                 // Geen sessie gevonden, ga naar login pagina

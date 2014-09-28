@@ -24,8 +24,8 @@
           </div>
 
           <div class="list-group">
-            <a class="list-group-item" href="<?php echo base_url(); ?>"><span class="fa fa-asterisk"></span> Leidingsploeg </a>
-            <a class="list-group-item" href="<?php echo base_url(); ?>"><span class="fa fa-envelope"></span> Contacteer hoofdleiding</a>
+            <a class="list-group-item" href="<?php echo base_url(); ?>Leiding/leidingsploeg"><span class="fa fa-asterisk"></span> Leidingsploeg </a>
+            <a class="list-group-item" href="mailto:dorien.joosten@gmail.com"><span class="fa fa-envelope"></span> Contacteer hoofdleiding</a>
           </div>
         </div>
       </div>

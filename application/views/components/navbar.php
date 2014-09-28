@@ -51,7 +51,7 @@
               </li>
 
               <li <?php if($Active == 6): ?> class="active" <?php endif; ?>>
-                <a href="<?php echo base_url(); ?>">
+                <a href="mailto:Contact@st-joris-turnhout.be">
                   <span class="fa fa-envelope Icon-color"></span> Contact
                 </a>
               </li>

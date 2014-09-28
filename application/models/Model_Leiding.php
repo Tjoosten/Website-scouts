@@ -7,6 +7,13 @@
      | Copyright: Sint-Joris Turnhout, Tim Joosten
      */
 
+     function ploeg() {
+        $this->db->select();
+
+        $Query = $this->db->get('users');
+        return $Query->result();
+     }
+
     function Leiding_insert() {
       $Values = array(
         "username" => $this->input->post('Naam'),

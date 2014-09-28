@@ -14,6 +14,18 @@ class leiding extends CI_Controller {
     $this->load->model('Model_Log', 'Log');
   }
 
+  function Leidingsploeg() {
+    $data['Title']  = "Leidingsploeg";
+    $data['Active'] = "1";
+
+    $DB['ploeg'] = $this->Leiding->Ploeg(); 
+
+    $this->load->view('components/header', $data);
+    $this->load->view('components/navbar', $data);
+    $this->load->view('client/leidingsploeg', $DB);
+    $this->load->view('components/footer');
+  }
+
   function index() {
     if($this->session->userdata('logged_in'))  {
       $session_data = $this->session->userdata('logged_in');

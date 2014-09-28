@@ -7,7 +7,7 @@
     <meta name="description" content="Website van Scouts &amp; Gidsen - Sint-joris, Turnhout">
     <meta name="author" content="Tim Joosten">
 
-    <title> Scouts &amp; Gidesen - Sint-Joris | <?php echo $Title; ?> </title>
+    <title> Scouts &amp; Gidsen - Sint-Joris | <?php echo $Title; ?> </title>
     <!-- Fav. icon & CSS sheets -->
     <link rel="icon" href="/assets/ico/favicon.ico">
     <link rel="stylesheet" href="/assets/css/bootstrap.min.css">

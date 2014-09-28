@@ -7,7 +7,7 @@
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/">Sint-Joris</a>
+            <a class="navbar-brand font-heading" href="<?php echo base_url(); ?>">Sint-Joris</a>
           </div>
           <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
@@ -36,6 +36,16 @@
 									<a href="<?php echo base_url(); ?>leiding/"><span class="octicon octicon-organization Icon-color"></span></a>
 								</li>
               <?php endif; ?>
+
+              <li>
+                <a class="dropdown-toggle" data-toggle="dropdown" href="">
+                  <span class="octicon octicon-database Icon-color"></span>
+                </a>
+								
+								<ul class="dropdown-menu">
+									<li><a href=""> Test </a></li>
+								</ul>
+              </li>
 							
               <li>
 								<a href="<?php echo base_url(); ?>backend/Logout"><span class="octicon octicon-sign-out Icon-color"></span></a>
