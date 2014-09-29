@@ -63,10 +63,11 @@
 						$this->load->helper('download');
 						
 						$this->Verhuringen->Download_verhuringen();
+						redirect('Verhuur/Admin_verhuur');
 						
 					} else {
 						// if no session, redirect to login page
-						redirect('Verhuur/Admin_verhuur');
+						redirect('Admin');
 					}
 				}
 				
