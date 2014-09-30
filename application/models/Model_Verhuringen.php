@@ -30,6 +30,19 @@
 		// -------- //
 
 		// Admin side 
+		function Search() {
+			$Values = array(
+				"Start_datum" => $this->input->post('Term'),
+				"Eind_datum"  => $this->input->post('Term'),
+			);
+			
+			$this->db->select();
+			$this->db->like($Values);
+			
+			$Query = $this->db->get('Verhuur');
+			return $Query->Result();
+		}
+		
 		function Wijzig_verhuur() {
 			$Values = array(
 				"Start_datum" => $this->input->post('Start'),

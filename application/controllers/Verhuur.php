@@ -63,11 +63,34 @@
 						$this->load->helper('download');
 						
 						$this->Verhuringen->Download_verhuringen();
-						redirect('Verhuur/Admin_verhuur');
-						
+						redirect('Verhuur/Admin_verhuur');			
 					} else {
 						// if no session, redirect to login page
 						redirect('Admin');
+					}
+				}
+				
+				public function Search() {
+					if($this->session->userdata('logged_in')) {
+						$Session = $this->session->userdata('logged_in');
+						
+						// Session variables
+						$data['Role'] = $Session['Admin'];
+						
+						// Global variables
+						$data['Title'] = "Verhuringen";
+						$data['Active'] = "2";
+						
+						// Database Variables
+						$data['Bevestigd'] = $this->Verhuringen->Search();
+						
+						$this->load->view('components/admin_header', $data);
+						$this->load->view('components/navbar_admin', $data);
+						$this->load->view('admin/verhuur_index', $data);
+						$this->load->view('components/footer');
+					} else {
+						// if no session, redirect to login page
+						redirect('Admin','Refresh');
 					}
 				}
 				
@@ -177,7 +200,7 @@
         public function Verhuur_delete() {
             if($this->session->userdata('logged_in')) {
                 $this->Verhuringen->Verhuur_delete();
-				$this->Log->Verhuur_delete();
+								$this->Log->Verhuur_delete();
                 redirect('Verhuur/Admin_verhuur');
             } else {
                 // Geen sessie gevonden, ga naar login pagina

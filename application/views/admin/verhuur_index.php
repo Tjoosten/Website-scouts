@@ -15,7 +15,7 @@
 						<div style="margin-bottom: 7px;" class="row">
 							<div class="col-md-6">
 								<span class="pull-left">
-									<form action="" method="POST" class="form-inline">
+									<form action="<?php echo base_url(); ?>Verhuur/Search" method="POST" class="form-inline">
 										<input type="text" name="Term" placeholder="Search" class="form-control">
 										<button class="btn btn-danger" type="submit">
 											<span class="fa fa-search"></span>
@@ -68,9 +68,15 @@
 										<td>
 											<div class="btn-toolbar" role="toolbar">
 													<div class="btn-group">
-														<a class="btn btn-xs btn-danger" href="<?php echo base_url(); ?>Verhuur/verhuur_info/<?php echo $Output->ID; ?>"><span class="octicon octicon-file-text"></span></a>
-														<a class="btn btn-xs btn-danger" href="<?php echo base_url(); ?>Verhuur/verhuur_edit/<?php echo $Output->ID; ?>"><span class="octicon octicon-pencil"></span></a>
-														<a class="btn btn-xs btn-danger" href="<?php echo base_url(); ?>Verhuur/Verhuur_delete/<?php echo $Output->ID; ?>"><span class="octicon octicon-trashcan"></span></a>
+														<a class="btn btn-xs btn-danger" href="<?php echo base_url(); ?>Verhuur/verhuur_info/<?php echo $Output->ID; ?>">
+															<span class="octicon octicon-file-text"></span>
+														</a>
+														<a class="btn btn-xs btn-danger" href="<?php echo base_url(); ?>Verhuur/verhuur_edit/<?php echo $Output->ID; ?>">
+															<span class="octicon octicon-pencil"></span>
+														</a>
+														<a class="btn btn-xs btn-danger" href="<?php echo base_url(); ?>Verhuur/Verhuur_delete/<?php echo $Output->ID; ?>">
+															<span class="octicon octicon-trashcan"></span>
+														</a>
 													</div>
 
 												<div class="btn-group">
