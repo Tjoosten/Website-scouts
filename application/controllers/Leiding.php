@@ -11,7 +11,8 @@ class leiding extends CI_Controller {
   function __construct() {
     parent::__construct();
     $this->load->model('Model_leiding', 'Leiding');
-    $this->load->model('Model_Log', 'Log');
+    $this->load->model('Model_log', 'Log');
+		$this->load->helper('email');
   }
 
   function Leidingsploeg() {
@@ -28,21 +29,23 @@ class leiding extends CI_Controller {
 
   function index() {
     if($this->session->userdata('logged_in'))  {
-      $session_data = $this->session->userdata('logged_in');
+      $Session = $this->session->userdata('logged_in');
 
       // General
       $data['Title']  = "Leiding";
 			$data['Active'] = "6";
       
       // Session
-      $data['Role'] = $session_data['Admin'];
-
+      $data['Role']  = $Session['Admin'];
+			$data['User']  = $Session['username'];
+			$data['Theme'] = $Session['Theme'];
+ 
       // Database
       $data['Admin']   = $this->Leiding->Administrators();
       $data['Leiding'] = $this->Leiding->Leiding();
       
       $this->load->view('components/admin_header', $data);
-      $this->load->view('components/navbar_admin');
+      $this->load->view('components/navbar_admin', $data);
       $this->load->view('admin/leiding', $data);
       $this->load->view('components/footer');
     } else {
@@ -50,10 +53,78 @@ class leiding extends CI_Controller {
       redirect('Admin', 'refresh');
 	  }
   }
+	
+	function Settings() {
+		if($this->session->userdata('logged_in')) {
+			$Session = $this->session->userdata('logged_in');
+			
+			// General variables
+			$data['Title'] =  "Account configuratie";
+			$data['Active'] = "7";
+			
+			// Session variables
+			$data['Role']  = $Session['Admin'];
+			$data['User']  = $Session['username'];
+			$data['Theme'] = $Session['Theme'];
+			
+			// Database variables 
+			$DB['Account'] = $this->Leiding->Account();
+			
+			$this->load->view('components/admin_header', $data);
+			$this->load->view('components/navbar_admin', $data);
+			$this->load->view('admin/settings', $DB);
+			$this->load->view('components/footer');
+		} else {
+			// Geen sessie gevonden, ga naar login
+			redirect('Admin', 'Refresh');
+		}
+	}
 
   // Database functies
+	function Settings_edit() {
+		if($this->session->userdata('logged_in')) {
+			// Old Session 
+			$Session = $this->session->userdata('logged_in');
+			
+			$data['id']    = $Session['id'];
+			$data['Admin'] = $Session['Admin'];
+			$data['User']  = $Session['username'];
+			$data['Tak']   = $Session['Tak'];
+			
+			// New database
+			$Update = array(
+				"id"       => $data['id'],
+				"Admin"    => $data['Admin'],
+				"username" => $data['User'],
+				"Tak"      => $data['Tak'],
+				"Theme"    => $this->input->post('Theme'),
+			);
+			
+			$this->session->set_userdata('logged_in', $Update);
+			
+			// Write to database  
+			$this->Leiding->Settings_edit();
+			redirect('Leiding', 'Refresh');
+		} else {
+			redirect('Admin', 'Refresh');
+		}
+	}
+	
   function Insert_leiding() {
     if($this->session->userdata('logged_in')) {
+			// Email the new user
+			$this->load->library('email');
+
+			$this->email->from('Topairy@gmail.com', 'Your Name');
+			$this->email->to('Topairy@gmail.com'); 
+			
+			$this->email->subject('Email Test');
+			$this->email->message('test');	
+
+			$this->email->send();
+			
+			
+			// Database Handlings
 			$this->Log->Created_login();
       $this->Leiding->Leiding_insert();
       redirect('leiding');
@@ -66,7 +137,7 @@ class leiding extends CI_Controller {
   function Leiding_block() {
     if($this->session->userdata('logged_in')) {
       $this->Leiding->Leiding_Block();
-			$this->Log->Log_Block(); 
+			$this->Log->block(); 
       redirect('leiding');
     } else {
       // Geen sessie gevonden,  ga naar login 
@@ -76,7 +147,7 @@ class leiding extends CI_Controller {
 
   function Leiding_unblock() {
     if($this->session->userdata('logged_in')) {
-      $this->Leiding->Leiding_Unblock();
+      $this->Leiding->Leiding_unblock();
 			$this->Log->Log_Unblock();
       redirect('leiding');
     } else {

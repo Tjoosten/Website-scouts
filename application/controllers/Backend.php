@@ -11,14 +11,16 @@ class backend extends CI_Controller {
 
   function index() {
     if($this->session->userdata('logged_in'))  {
-      $session_data = $this->session->userdata('logged_in');
+      $Session = $this->session->userdata('logged_in');
 
       $data['Title']  = "Admin takken";
 			$data['Active'] = "1";
 			
 			// Session
-      $data['Role'] = $session_data['Admin'];
-			$data['Tak']  = $session_data['Tak'];
+      $data['Role']  = $Session['Admin'];
+			$data['User']  = $Session['username'];
+			$data['Tak']   = $Session['Tak'];
+			$data['Theme'] = $Session['Theme'];
 			
 			// Tak beschrijvingen
       $DB['Kapoenen']   = $this->Takken->Kapoenen();
@@ -56,8 +58,8 @@ class backend extends CI_Controller {
 	}
   
   function logout() {
-		$this->Log->Logged_out();
-    $this->session->unset_userdata('logged_in');
+		$this->Log->Logged_out();    
+		$this->session->unset_userdata('logged_in');
     session_destroy();
     redirect('Admin', 'refresh');
   }

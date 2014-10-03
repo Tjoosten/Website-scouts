@@ -77,7 +77,7 @@
 			$this->db->insert('Activity_log', $Values);
 		}
 		
-		function Log_Block() {
+		function block() {
 			$Session = $this->session->userdata('logged_in');
 			
 			$Values = array(
@@ -89,7 +89,7 @@
 				$this->db->insert('Activity_log', $Values);
 		}
 			
-		function Log_Unblock() {
+		function Log_unblock() {
 			$Session = $this->session->userdata('logged_in');
 			
 			$Values = array(
@@ -112,7 +112,7 @@
 				
 			$this->db->insert('Activity_log', $Values);
 		}
-		
+
 		function Verhuur_option() {
 			$Session = $this->session->userdata('logged_in');
 			

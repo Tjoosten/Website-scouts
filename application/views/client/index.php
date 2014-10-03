@@ -125,7 +125,7 @@
       </div>
       <hr>
       <footer>
-        <p>© Sint-Joris Turnhout</p>
+        <p>© <?php echo date("Y")?> - Sint-Joris Turnhout</p>
       </footer>
     </div>
 	</body>

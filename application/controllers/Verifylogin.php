@@ -40,12 +40,13 @@ class VerifyLogin extends CI_Controller {
           'username' => $row->username,
           'Admin' => $row->Admin_role,
           'Tak' => $row->Tak,
+					'Theme' => $row->Theme,
           // Vul session aan met volledige DB ROW
         );
 
         $this->session->set_userdata('logged_in', $sess_array);
 				
-				$this->load->model('Model_Log', 'Log');
+				$this->load->model('Model_log', 'Log');
 				$this->Log->logged_in();
       }
       return TRUE;

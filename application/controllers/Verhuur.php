@@ -75,7 +75,9 @@
 						$Session = $this->session->userdata('logged_in');
 						
 						// Session variables
-						$data['Role'] = $Session['Admin'];
+						$data['Role']  = $Session['Admin'];
+						$data['User']  = $Session['username'];
+						$data['Theme'] = $Session['Theme'];
 						
 						// Global variables
 						$data['Title'] = "Verhuringen";
@@ -96,9 +98,15 @@
 				
         public function Admin_verhuur() {
             if($this->session->userdata('logged_in'))  {
-                $session_data = $this->session->userdata('logged_in');
-                // Session variables
-                $data['Role'] = $session_data['Admin'];
+							  // Load Helpers & Drivers
+							  $this->load->helper('email');
+								
+                $Session = $this->session->userdata('logged_in');
+                
+								// Session variables
+                $data['Role']  = $Session['Admin'];
+								$data['User']  = $Session['username'];
+								$data['Theme'] = $Session['Theme'];
 
                 // Gobal variables
                 $data['Title']  = "Verhuringen";
@@ -124,8 +132,11 @@
 								$data['Active'] = "2";
 
                 // Session Variables
-                $session_data = $this->session->userdata('logged_in');
-                $data['Role'] = $session_data['Admin'];
+                $Session = $this->session->userdata('logged_in');
+                
+								$data['Role']  = $Session['Admin'];
+								$data['User']  = $Session['username'];
+								$data['Theme'] = $Session['Theme'];
 
                 // Database variables
                 $data['Info'] = $this->Verhuringen->verhuur_info();
@@ -152,8 +163,11 @@
                 $data['Info'] = $this->Verhuringen->verhuur_info();
 
                 // Session variables
-                $session_data = $this->session->userdata('logged_in'); // Load session
-                $data['Role'] = $session_data['Admin'];
+                $Session = $this->session->userdata('logged_in'); // Load session
+                
+								$data['Role']  = $Session['Admin'];
+								$data['User']  = $Session['Username'];
+								$data['Theme'] = $Session['Theme'];
 
                 $this->load->view('components/admin_header', $data); 
                 $this->load->view('components/navbar_admin', $data);

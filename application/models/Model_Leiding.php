@@ -22,6 +22,7 @@
         "Tak" => $this->input->post('Tak'),
         "Admin_role" => "0",
         "Blocked" => "0",
+				"Theme" => "0",
         "password" => md5('root'),
       );
       
@@ -43,6 +44,35 @@
       $Query = $this->db->get('users');
       return $Query->result();
     }
+		
+		function Account() {
+			$this->db->select()
+				       ->where('username', $this->uri->segment(3));
+			
+			$Query = $this->db->get('users');
+			return $Query->result(); 
+		}
+		
+	function Settings_edit() {
+			
+				if (empty($this->input->post('Pass'))) {
+					$Values = array(
+						"Mail"  => $this->input->post('Email'),
+						"GSM"   => $this->input->post('GSM'),
+						"Theme" => $this->input->post('Theme'),
+					  );
+				  } else {
+						$Values = array(
+							"Mail"     => $this->input->post('Email'),
+							"GSM"      => $this->input->post('GSM'),
+				   	 	"password" => md5($this->input->post('Pass')),
+							"Theme"    => $this->input->post('Theme'),
+						);
+				  }
+	   
+			$this->db->where('id', $this->uri->segment(3))
+				       ->update("users", $Values);
+		}
 
     function Leiding_Block() {
       $Value = array(

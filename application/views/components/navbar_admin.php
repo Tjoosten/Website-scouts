@@ -36,20 +36,13 @@
 									<a href="<?php echo base_url(); ?>leiding/"><span class="octicon octicon-organization Icon-color"></span></a>
 								</li>
               <?php endif; ?>
-
-              <li>
-                <a class="dropdown-toggle" data-toggle="dropdown" href="">
-                  <span class="octicon octicon-database Icon-color"></span>
-                </a>
-								
-								<ul class="dropdown-menu">
-									<li><a href=""> Herstel database </a></li>
-									<li><a href=""> Optimaliseer database </a></li>
-									<li class="divider"></li>
-									<li><a href=""> Back-up database </a></li>
-								</ul>
-              </li>
 							
+							<li>
+								<a href="<?php echo base_url(); ?>Leiding/settings/<?php echo $User ?>">
+									<span class="octicon octicon-gear Icon-color"></span>
+								</a>
+							</li>
+
               <li>
 								<a href="<?php echo base_url(); ?>backend/Logout"><span class="octicon octicon-sign-out Icon-color"></span></a>
 							</li>

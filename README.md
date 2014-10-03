@@ -12,18 +12,11 @@ Version 2.0 will give the client more functions to maintain the website and prov
 
 ### Developer(s)
 
-**Tim Joosten**
+*** Tim Joosten ***
 - Twitter: @Pentuim_photogr
 - Facebook: Tim Jo
 - Mail: Topairy@gmail.com
 - Github: Tjoosten
-
-Versioning
-================
-
-**Bv. 15.09 Trusty Thar**
-
-15 = Day, 09 = Month, Name = Some character and name of a animal.
 
 License
 =================

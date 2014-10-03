@@ -62,7 +62,17 @@
 										</td>
 
 										<td><?php echo $Output->Groep; ?></td>
-										<td><?php echo $Output->Email; ?></td>
+										
+										<td>
+											<?php if(valid_email($Output->Email)): ?>
+												<a href="<?php echo $Output->Email; ?>">
+													<?php echo $Output->Email; ?>
+												</a>
+											<?php else: ?>
+												<?php echo $Output->Email; ?>
+											<?php endif; ?>
+										</td>
+										
 										<td><?php echo $Output->GSM; ?></td>
 
 										<td>

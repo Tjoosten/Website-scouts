@@ -15,7 +15,8 @@
 			<!-- Tab panes -->
 			<div class="tab-content">
         <div class="tab-pane active" id="admin">
-        	<div class="col-sm-8 col-md-8 col-lg-8">
+        	<div class="row">
+					<div class="col-sm-8 col-md-8 col-lg-8">
         		<p>
         		  <table class="table table-condensed">
         		  	<thead>
@@ -33,9 +34,14 @@
         		  				<td><code>#<?php echo $Output->id; ?></code></td>
         		  				<td><?php echo $Output->username; ?></td>
 
-        		  				<td> 
-                                    <a href="mailto:<?php echo $Output->Mail; ?>"><?php echo $Output->Mail; ?></a>
-                                </td>
+        		  				<td>
+												<?php if (valid_email($Output->Mail)): ?> 
+                      		<a href="mailto:<?php echo $Output->Mail; ?>"><?php echo $Output->Mail; ?></a>
+                     		<?php else: ?>
+													<?php echo $Output->Mail; ?>
+												<?php endif; ?>
+										  </td>
+											
         		  				<td><?php echo $Output->GSM; ?></td>
         		  				<td>
                                     <div class="btn-toolbar">
@@ -62,6 +68,7 @@
         		  </table>
         		</p>
         	</div>
+				</div>
         </div>
         
         <?php if($Role == 1): ?>
@@ -102,6 +109,7 @@
         
         <div class="tab-pane" id="leiding">
             <p>
+							<div class="row">
                 <div class="col-sm-9 col-md-9 col-lg-9">
                     <table class="table table-condensed">
                         <thead>
@@ -122,7 +130,13 @@
                                 <tr>
                                     <td><code>#<?php echo $Output->id; ?></code></td>
                                     <td><?php echo $Output->username; ?></td>
-                                    <td><a href="mailto:<?php echo $Output->Mail; ?>"><?php echo $Output->Mail; ?></a></td>
+                                    <td>
+																			<?php if (valid_email($Output->Mail)): ?> 
+							                      		<a href="mailto:<?php echo $Output->Mail; ?>"><?php echo $Output->Mail; ?></a>
+							                     		<?php else: ?>
+																				<?php echo $Output->Mail; ?>
+																			<?php endif; ?>
+                                    </td>
                                     <td><?php echo $Output->GSM; ?></td>
 
                                     <td>
@@ -176,6 +190,7 @@
                             <?php endforeach; ?>
                         </tbody>
                     </table>
+									</div>
                 </p>
             </div>
         </div>

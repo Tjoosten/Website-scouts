@@ -1,17 +1,17 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 	class Takken extends CI_Controller {
 		
-        /*
-         | Developer: Tim Joosten 
-         | License: 4GPL
-         | Copyright: St-joris Turnhout, Tim Joosten
-         */
+   /*
+    | Developer: Tim Joosten 
+    | License: 4GPL
+    | Copyright: St-joris Turnhout, Tim Joosten
+    */
 
-        function __construct() { 
-            parent::__construct();
-            $this->load->model('Model_Takken', 'Takken');
-            $this->load->model('Model_activiteiten', 'Activiteiten');
-        }
+    function __construct() { 
+      parent::__construct();
+      $this->load->model('Model_Takken', 'Takken');
+      $this->load->model('Model_activiteiten', 'Activiteiten');
+    }
 
 		public function index() {
 			// Variable(s)
@@ -130,11 +130,11 @@
     	// Variables
     	  // General
     	  $Data['Title']  = "De Leiding"; 
-		  $Data['Active'] = "1";
+		  	$Data['Active'] = "1";
 
     	  // Database
     	  $DB['Beschrijving'] = $this->Takken->Leiding();
-    	// == END Variables == // 
+    		// == END Variables == // 
 
     	  // View(s)
     	  $this->load->view('components/header', $Data);
