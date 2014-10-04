@@ -39,7 +39,7 @@
               </li>
 
               <li <?php if($Active == 4): ?> class="active" <?php endif; ?>>
-                <a href="/Planning.pdf">
+                <a href="/assets/files/Planning.pdf">
                   <span class="fa fa-file-text-o Icon-color"></span> Planning
                 </a>
               </li>

@@ -90,6 +90,7 @@ class leiding extends CI_Controller {
 			$data['Admin'] = $Session['Admin'];
 			$data['User']  = $Session['username'];
 			$data['Tak']   = $Session['Tak'];
+			$data['Theme'] = $Session['Theme'];
 			
 			// New database
 			$Update = array(

@@ -65,7 +65,7 @@
 										
 										<td>
 											<?php if(valid_email($Output->Email)): ?>
-												<a href="<?php echo $Output->Email; ?>">
+												<a href="mailto:<?php echo $Output->Email; ?>">
 													<?php echo $Output->Email; ?>
 												</a>
 											<?php else: ?>

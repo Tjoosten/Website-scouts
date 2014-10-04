@@ -21,13 +21,20 @@
 							 </li>
               <?php endif; ?>
 							
-              <li <?php if($Active == 4): ?> class="active" <?php endif; ?>> 
-								<a href=""><span class="fa fa-camera-retro Icon-color"></span> Foto's</a> 
-							</li>
-							
               <li <?php if($Active == 5): ?> class="active" <?php endif; ?>> 
 								<a href=""><span class="fa fa-info-circle Icon-color"></span> Info </a> 
 							</li>
+							
+              <li class="<?php if($Active == 1): ?> active <?php endif; ?> dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="<?php echo base_url(); ?>Takken">
+                  <span class="fa fa-asterisk Icon-color"></span> Media
+                </a>
+
+                <ul class="dropdown-menu" role="menu">
+									<li><a href="<?php echo base_url(); ?>Upload_files"><span class="fa fa-file-text-o"></span> T groentje</a></li>
+		              <li><a href="<?php echo base_url(); ?>Fotos/Index_admin"><span class="fa fa-camera-retro"></span> Foto's</a></li>
+                </ul>
+              </li>
             </ul>
 
             <ul class="nav navbar-nav navbar-right">

@@ -55,7 +55,7 @@
 		
 	function Settings_edit() {
 			
-				if (empty($this->input->post('Pass'))) {
+				if (!empty($this->input->post('Pass'))) {
 					$Values = array(
 						"Mail"  => $this->input->post('Email'),
 						"GSM"   => $this->input->post('GSM'),
