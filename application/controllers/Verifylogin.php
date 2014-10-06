@@ -41,6 +41,7 @@ class VerifyLogin extends CI_Controller {
           'Admin' => $row->Admin_role,
           'Tak' => $row->Tak,
 					'Theme' => $row->Theme,
+					'Email' => $row->Mail,
           // Vul session aan met volledige DB ROW
         );
 

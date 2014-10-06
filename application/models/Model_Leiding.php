@@ -53,7 +53,7 @@
 			return $Query->result(); 
 		}
 		
-	function Settings_edit() {
+	/* function Settings_edit() {
 			
 				if(!empty($this->input->post('Pass'))) {
 					$Values = array(
@@ -72,7 +72,7 @@
 	   
 			$this->db->where('id', $this->uri->segment(3))
 				       ->update("users", $Values);
-		}
+		} */
 
     function Leiding_Block() {
       $Value = array(
@@ -93,12 +93,22 @@
     }
     
     function Leiding_upgrade() {
+			$Session = $this->session->userdata('logged_in');
+			
       $Value = array(
         "Admin_role" => "1",
       );
+			
+			$Values = array(
+				"User"  => $Session['username'],
+				"Email" => $Session['Email'],
+				"Verhuur" => "0",
+			);
       
       $this->db->where("id", $this->uri->segment(3))
                ->update("users", $Value);
+			
+			$this->db->insert('Notifications', $Values);
     }
     
     function Leiding_downgrade() {
