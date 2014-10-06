@@ -40,12 +40,23 @@
         }
 
         public function toevoegen_verhuur() {
+					
             // Email template
+						$data['exec']  = $this->benchmark->elapsed_time();
+						$data['Start'] = $this->input->post('Start_datum');
+						$data['Eind']  = $this->input->post('Eind_datum');
+						$data['GSM']   = $this->input->post('GSM');
+						$data['Groep'] = $this->input->post('Groep');
+						$data['Mail']  = $this->input->post('Email');
+						
+						$message = $this->load->view('email/verhuur', $data , TRUE);
+						
             $this->email->from('contact@st-joris-turnhout.be', 'Contact st-joris turnhout');
-            $this->email->to('Topairy@gmail.com'); 
+            $this->email->to('Topairy@gmail.com, Verhuur@st-joris-turnhout.be'); 
 
+						$this->email->set_mailtype("html");
             $this->email->subject('Nieuwe verhuring');
-            $this->email->message('Er is een nieuwe verhuring aangevraagd op http://www.st-joris-turnhout.be');  
+            $this->email->message($message);  
 
             $this->email->send();
 

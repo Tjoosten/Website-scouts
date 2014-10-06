@@ -108,7 +108,7 @@
         <img class="img-thumbnail img-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" style="width: 140px; height: 140px;">
           <h2 class="font-heading">Ontbijt!</h2>
           <p>Elke laatste zondag  van de maand! Doe onze scouts een ontbijt. Een ontbijt waar u als u wilt aanwezig kunt zijn met uw kinderen. Dit vind plaats op de scouts gronden U zicht enkel in te schrijven. Hier voor kunt u voorlopig terecht bij Leo Willems.  </p>
-          <p><a class="btn btn-default" href="<?php echo base_url(); ?>Info">Lees meer &raquo;</a></p>
+          <p><a class="btn btn-default" href="mailto:Verhuur@st-joris-turnhout.be">Inschrijven &raquo;</a></p>
         </div>
         <div class="col-lg-4">
         <img class="img-thumbnail img-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" style="width: 140px; height: 140px;">

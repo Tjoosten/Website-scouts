@@ -46,16 +46,16 @@
         		  				<td>
                                     <div class="btn-toolbar">
         		  				        <div class="btn-group">
-                                            <a href="<?php echo base_url(); ?>leiding/Leiding_delete/<?php echo $Output->id; ?>" class="btn btn-danger btn-xs">
+                                            <a title="Account verwijderen" href="<?php echo base_url(); ?>leiding/Leiding_delete/<?php echo $Output->id; ?>" class="btn btn-danger btn-xs">
                                                 <span class="fa fa-close"></span>
                                             </a>
 
                                             <?php if($Output->Blocked == 1): ?>
-                                                <a class="btn btn-xs btn-success" href="<?php echo base_url(); ?>leiding/Leiding_unblock/<?php echo $Output->id; ?>"> 
+                                                <a title="Blokkering opheffen" class="btn btn-xs btn-success" href="<?php echo base_url(); ?>leiding/Leiding_unblock/<?php echo $Output->id; ?>"> 
                                                     <span class="fa fa-lock"></span> 
                                                 </a>
                                             <?php elseif($Output->Blocked == 0): ?>
-                                                <a class="btn btn-xs btn-danger" href="<?php echo base_url(); ?>leiding/Leiding_block/<?php echo $Output->id; ?>"> 
+                                                <a title="Blokkering account" class="btn btn-xs btn-danger" href="<?php echo base_url(); ?>leiding/Leiding_block/<?php echo $Output->id; ?>"> 
                                                     <span class="fa fa-lock"></span> 
                                                 </a>
                                             <?php endif; ?>
@@ -157,28 +157,28 @@
                                         <td>
                                             <div class="btn-toolbar">
                                                 <div class="btn-group">
-                                                    <a class="btn btn-xs btn-danger" href="<?php echo base_url(); ?>leiding/Leiding_delete/<?php echo $Output->id; ?>">
+                                                    <a title="verwijder login" class="btn btn-xs btn-danger" href="<?php echo base_url(); ?>leiding/Leiding_delete/<?php echo $Output->id; ?>">
                                                         <span class="fa fa-close"></span>
                                                     </a>
                                                 </div>
 
                                                 <div class="btn-group">
                                                     <?php if($Output->Blocked == 1): ?>
-                                                        <a class="btn btn-xs btn-success" href="<?php echo base_url(); ?>leiding/Leiding_unblock/<?php echo $Output->id; ?>"> 
+                                                        <a title="blokkering opheffen" class="btn btn-xs btn-success" href="<?php echo base_url(); ?>leiding/Leiding_unblock/<?php echo $Output->id; ?>"> 
                                                             <span class="fa fa-lock"></span> 
                                                         </a>
                                                     <?php elseif($Output->Blocked == 0): ?>
-                                                        <a class="btn btn-xs btn-danger" href="<?php echo base_url(); ?>leiding/Leiding_block/<?php echo $Output->id; ?>"> 
+                                                        <a title="blokkering account" class="btn btn-xs btn-danger" href="<?php echo base_url(); ?>leiding/Leiding_block/<?php echo $Output->id; ?>"> 
                                                             <span class="fa fa-lock"></span> 
                                                         </a>
                                                     <?php endif; ?>
 
                                                     <?php if($Output->Admin_role == 1): ?>
-                                                        <a class="btn-success btn btn-xs" href="<?php echo base_url(); ?>leiding/Leiding_downgrade/<?php echo $Output->id; ?>">
+                                                        <a title="administrator rechten verwijderen" class="btn-success btn btn-xs" href="<?php echo base_url(); ?>leiding/Leiding_downgrade/<?php echo $Output->id; ?>">
                                                             <span class="fa fa-key"></span>
                                                         </a>
                                                     <?php elseif($Output->Admin_role == 0): ?>
-                                                        <a class="btn btn-xs btn-danger" href="<?php echo base_url(); ?>leiding/Leiding_upgrade/<?php echo $Output->id; ?>">
+                                                        <a title="administrator rechten toewijzen" class="btn btn-xs btn-danger" href="<?php echo base_url(); ?>leiding/Leiding_upgrade/<?php echo $Output->id; ?>">
                                                             <span class="fa fa-key"></span>
                                                         </a>
                                                     <?php endif; ?>

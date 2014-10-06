@@ -4,7 +4,7 @@ class Fotos extends CI_Controller {
   function __construct() {
     parent::__construct();
 		$this->load->model('Model_fotos', 'Images');
-		$this->load->helper(array('form', 'url', 'file'));
+		$this->load->helper(array('form', 'url'));
   }
 
 	// Client side
@@ -68,15 +68,12 @@ class Fotos extends CI_Controller {
 				$data['Role']  = $Session['Admin']; 
 				$data['Theme'] = $Session['Theme'];
 				
-				// Error variable
-				$data['error'] = array('error' => $this->upload->display_errors());
-				
 				// Database variables
 				$data['DB'] = $this->Images->Backend_select();
 				
 				$this->load->view('components/admin_header', $data);
 				$this->load->view('components/navbar_admin', $data);
-				$this->load->view('admin/index_foto', $data);
+				$this->load->view('admin/index_foto',array('error' => $this->upload->display_errors()),  $data);
 				$this->load->view('components/footer');
 				
 			}	else {
@@ -91,13 +88,9 @@ class Fotos extends CI_Controller {
 	
 	function delete() {
 		if($this->session->userdata('logged_in')) {
-			// Delete file
+			
 			unlink('./assets/fotos/'.$this->uri->segment(3));
-			
-			// Delete out of database
 			$this->Images->Delete();
-			
-			
 			redirect('Fotos/Index_admin');
 		} else {
 			// geen sessie gevonden, ga naar login
