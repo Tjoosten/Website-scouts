@@ -44,8 +44,8 @@
 		}
 		
 		function Wijzig_verhuur() {
-			$Start = human_to_unix($this->input->post('Start'));
-			$Eind  = human_to_unix($this->input->post('Eind'))
+			$Start = human_to_unix($this->input->post('Start'), 'eu');
+			$Eind  = human_to_unix($this->input->post('Eind'), 'eu');
 			
 			$Values = array(
 				"Start_datum" => $Start,
