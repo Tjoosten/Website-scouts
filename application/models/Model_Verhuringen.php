@@ -45,8 +45,8 @@
 		
 		function Wijzig_verhuur() {
 			$Values = array(
-				"Start_datum" => $this->input->post('Start'),
-				"Eind_datum" => $this->input->post('Eind'),
+				"Start_datum" => human_to_unix($this->input->post('Start')),
+				"Eind_datum" => human_to_unix($this->input->post('Eind')),
 				"Groep" => $this->input->post('Groep'),
 				"Email" => $this->input->post('Mail'),
 				"GSM" => $this->input->post('GSM'),
