@@ -8,11 +8,11 @@
 			<?php foreach($Info as $Output): ?>
 			<form method="POST" action="<?php echo base_url(); ?>Verhuur/Wijzig_verhuur/<?php echo $Output->ID; ?>">
 				<label for="Start">Start datum</label>
-				<input id="Start" type="text "class="form-control" style="width: 30%" name="Start" value="<?php echo $Output->Start_datum; ?>" Placeholder="00/00/00">
+				<input id="Start" type="text "class="form-control" style="width: 30%" name="Start" value="<?php echo date('d-m-Y' ,$Output->Start_datum); ?>" Placeholder="00/00/00">
 				<br>
 
 				<label for="Eind">Eind datum:</label>
-				<input id="Eind" type="text" class="form-control" style="width: 30%;" name="Eind" value="<?php echo $Output->Eind_datum; ?>" placeholder="00/00/00">
+				<input id="Eind" type="text" class="form-control" style="width: 30%;" name="Eind" value="<?php echo date('d-m-Y' ,$Output->Eind_datum); ?>" placeholder="00/00/00">
 				<br>
 
 				<label for="Groep">Groep: </label>

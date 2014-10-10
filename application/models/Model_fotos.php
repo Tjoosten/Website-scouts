@@ -10,9 +10,9 @@
 		
 		function Insert($image_data = array()) {
 			$Values = array(
-				"Naam" => $this->input->post('Naam'),
-		    "Tak"  => $this->input->post('Tak'),			
-				"Web_url" =>$this->input->post('URL'),
+				"Naam"      => $this->input->post('Naam'),
+		    "Tak"       => $this->input->post('Tak'),			
+				"Web_url"   => $this->input->post('URL'),
 				"File_path" => "/assets/fotos/".$image_data['file_name'],
 				"File_name" => $image_data['file_name'],
 			);

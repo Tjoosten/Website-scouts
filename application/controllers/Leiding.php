@@ -12,6 +12,7 @@ class leiding extends CI_Controller {
     parent::__construct();
     $this->load->model('Model_leiding', 'Leiding');
     $this->load->model('Model_log', 'Log');
+    $this->load->library('email');
 		$this->load->helper('email');
   }
 
@@ -31,25 +32,29 @@ class leiding extends CI_Controller {
     if($this->session->userdata('logged_in'))  {
       $Session = $this->session->userdata('logged_in');
 
-      // General
-      $data['Title']  = "Leiding";
-			$data['Active'] = "6";
+      if($Session['Admin'] == 1) { 
+        // General
+        $data['Title']  = "Leiding";
+			  $data['Active'] = "6";
       
-      // Session
-      $data['Role']  = $Session['Admin'];
-			$data['User']  = $Session['username'];
-			$data['Theme'] = $Session['Theme'];
+        // Session
+        $Session = $this->session->userdata('logged_in');
+        $data['Role']  = $Session['Admin'];
+			  $data['User']  = $Session['username'];
+			  $data['Theme'] = $Session['Theme'];
  
-      // Database
-      $data['Admin']   = $this->Leiding->Administrators();
-      $data['Leiding'] = $this->Leiding->Leiding();
+        // Database
+        $data['Admin']   = $this->Leiding->Administrators();
+        $data['Leiding'] = $this->Leiding->Leiding();
       
-      $this->load->view('components/admin_header', $data);
-      $this->load->view('components/navbar_admin', $data);
-      $this->load->view('admin/leiding', $data);
-      $this->load->view('components/footer');
+        $this->load->view('components/admin_header', $data);
+        $this->load->view('components/navbar_admin', $data);
+        $this->load->view('admin/leiding', $data);
+        $this->load->view('components/footer');
+      } else {
+        $this->load->view('alerts/no_permission');
+      }
     } else {
-      //If no session, redirect to login page
       redirect('Admin', 'refresh');
 	  }
   }
@@ -75,7 +80,6 @@ class leiding extends CI_Controller {
 			$this->load->view('admin/settings', $DB);
 			$this->load->view('components/footer');
 		} else {
-			// Geen sessie gevonden, ga naar login
 			redirect('Admin', 'Refresh');
 		}
 	}
@@ -113,24 +117,19 @@ class leiding extends CI_Controller {
 	
   function Insert_leiding() {
     if($this->session->userdata('logged_in')) {
-			// Email the new user
-			$this->load->library('email');
 
+			// Email the new user
 			$this->email->from('Topairy@gmail.com', 'Your Name');
-			$this->email->to('Topairy@gmail.com'); 
-			
+			$this->email->to('Topairy@gmail.com');
 			$this->email->subject('Email Test');
 			$this->email->message('test');	
-
-			$this->email->send();
-			
+			$this->email->send();		
 			
 			// Database Handlings
 			$this->Log->Created_login();
       $this->Leiding->Leiding_insert();
       redirect('leiding');
     } else {
-      // If nos session found redirect to login 
       redirect('Admin', 'refresh');
     }
   }
@@ -141,7 +140,6 @@ class leiding extends CI_Controller {
 			$this->Log->block(); 
       redirect('leiding');
     } else {
-      // Geen sessie gevonden,  ga naar login 
       redirect('Admin', 'refresh');
     }
   }
@@ -152,40 +150,54 @@ class leiding extends CI_Controller {
 			$this->Log->Log_Unblock();
       redirect('leiding');
     } else {
-      // Geen sessie gevonden, ga naar login 
       redirect('Admin', 'refresh');
     }
   }
 
   function Leiding_upgrade() {
     if($this->session->userdata('logged_in')) {
-			$this->Log->Add_admin();
-      $this->Leiding->Leiding_upgrade();
-      redirect('leiding');
+      $Session = $this->session->userdata('logged_in'); 
+      
+      if($Session['Admin'] == 1) { 
+			  $this->Log->Add_admin();
+        $this->Leiding->Leiding_upgrade();
+        redirect('leiding');
+      } else {
+        $this->load->view('alerts/no_permission');
+      }
     } else {
-      // Geen sessie gevonden, ga naar login
       redirect('Admin', 'refresh');
     }
   }
 
   function Leiding_downgrade() {
     if($this->session->userdata('logged_in')) {
-			$this->Log->Delete_admin();
-      $this->Leiding->Leiding_downgrade(); 
-      redirect('leiding');
+      $Session = $this->session->userdata('logged_in'); 
+
+      if($Session['Admin_role']  == 1 ) { 
+			  $this->Log->Delete_admin();
+        $this->Leiding->Leiding_downgrade(); 
+        redirect('leiding');
+      } else {
+        $this->load->view('alerts/no_permission'); 
+      }
     } else {
-      // Geen sessie gevinden, ga naar login
       redirect('Admin', 'refresh');
     }
   }
 
   function Leiding_delete() {
     if($this->session->userdata('logged_in')) {
-			$this->Log->Delete_login();
-      $this->Leiding->Leiding_delete();
-      redirect('leiding');
+      $Session = $this->session->userdata('logged_in'); 
+
+      if($Session['Admin'] == 1) { 
+			 $this->Log->Delete_login();
+        $this->Leiding->Leiding_delete();
+        redirect('leiding');
+      } else {
+        $this->load->view('alerts/no_permission');
+      }
     } else {
-      // Geen sessie gevonden, ga naar login
       redirect('Admin', 'refresh');
     }
   }

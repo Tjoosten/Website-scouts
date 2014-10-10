@@ -50,8 +50,8 @@
           							<tbody>
           								<?php foreach($Verhuringen as $Verhuur): ?>
           									<tr>
-          										<td><?php echo $Verhuur->Start_datum; ?></td>
-          										<td><?php echo $Verhuur->Eind_datum; ?></td>
+          										<td><?php echo date('d-m-Y' ,$Verhuur->Start_datum); ?></td>
+          										<td><?php echo date('d-m-Y' ,$Verhuur->Eind_datum); ?></td>
           									</tr>
           								<?php endforeach; ?>
           							</tbody>
