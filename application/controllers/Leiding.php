@@ -38,7 +38,6 @@ class leiding extends CI_Controller {
 			  $data['Active'] = "6";
       
         // Session
-        $Session = $this->session->userdata('logged_in');
         $data['Role']  = $Session['Admin'];
 			  $data['User']  = $Session['username'];
 			  $data['Theme'] = $Session['Theme'];

@@ -10,9 +10,9 @@
             $this->load->helper('text');
         }
 
-		public function index() {
+		  public function index() {
             $data['Title']  = "verhuur";
-			$data['Active'] = "2";
+			      $data['Active'] = "2";
 
             $this->load->view('components/header', $data);
             $this->load->view('components/navbar', $data);
@@ -22,7 +22,7 @@
 
         public function verhuur_kalender() {
             $data['Title']  = "Verhuur kalender";
-			$data['Active'] = "2";
+			      $data['Active'] = "2";
 						
             $DB['Verhuringen'] = $this->Verhuringen->Verhuring_kalender(); 
 
@@ -43,21 +43,24 @@
         }
 
         public function toevoegen_verhuur() {
-					
+					if($this->session->userdata('logged_in')) {
+            $this->Verhuringen->InsertDB();
+            redirect('Verhuur/Admin');
+          } else {
             // Email template
-			      $data['exec']  = $this->benchmark->elapsed_time();
-			      $data['Start'] = $this->input->post('Start_datum');
-			      $data['Eind']  = $this->input->post('Eind_datum');
-			      $data['GSM']   = $this->input->post('GSM');
+            $data['exec']  = $this->benchmark->elapsed_time();
+            $data['Start'] = $this->input->post('Start_datum');
+            $data['Eind']  = $this->input->post('Eind_datum');
+            $data['GSM']   = $this->input->post('GSM');
             $data['Groep'] = $this->input->post('Groep');
-			      $data['Mail']  = $this->input->post('Email');
-						
-			      $message = $this->load->view('email/verhuur', $data , TRUE);
-						
+            $data['Mail']  = $this->input->post('Email');
+            
+            $message = $this->load->view('email/verhuur', $data , TRUE);
+            
             $this->email->from('contact@st-joris-turnhout.be', 'Contact st-joris turnhout');
             $this->email->to('Topairy@gmail.com, Verhuur@st-joris-turnhout.be'); 
 
-			      $this->email->set_mailtype("html");
+            $this->email->set_mailtype("html");
             $this->email->subject('Nieuwe verhuring');
             $this->email->message($message);  
 
@@ -67,16 +70,23 @@
 
             // Schrijft naar database
             $this->Verhuringen->InsertDB(); 
-            redirect('Verhuur/Admin_verhuur');
+            redirect('Verhuur');
+          }
         }
 
         // Admin side
 				public function Download_verhuringen() {
-					if($this->session->userdata('logged_in')) {
-						$this->load->dbutil();
-						
-						$this->Verhuringen->Download_verhuringen();
-						redirect('Verhuur/Admin_verhuur');			
+          $Session = $this->session->userdata('logged_in');
+          $Admin = $Session['Admin'];
+
+					if($Session) {
+            if ($Admin == 1) {
+						  $this->load->dbutil();
+						  $this->Verhuringen->Download_verhuringen();
+						  redirect('Verhuur/Admin_verhuur');	
+            } else {
+              $this->load->view('alerts/no_permission');
+            }		
 					} else {
 						// if no session, redirect to login page
 						redirect('Admin');
@@ -84,25 +94,30 @@
 				}
 				
 				public function Search() {
-					if($this->session->userdata('logged_in')) {
-						$Session = $this->session->userdata('logged_in');
+          $Session = $this->session->userdata('logged_in');
+          $Admin = $Session['Admin'];
+
+					if($Session) {
+						if($Admin == 1) {
+						  // Session variables
+						  $data['Role']  = $Session['Admin'];
+						  $data['User']  = $Session['username'];
+						  $data['Theme'] = $Session['Theme'];
 						
-						// Session variables
-						$data['Role']  = $Session['Admin'];
-						$data['User']  = $Session['username'];
-						$data['Theme'] = $Session['Theme'];
+						  // Global variables
+						  $data['Title'] = "Verhuringen";
+						  $data['Active'] = "2";
 						
-						// Global variables
-						$data['Title'] = "Verhuringen";
-						$data['Active'] = "2";
+						  // Database Variables
+						  $data['Bevestigd'] = $this->Verhuringen->Search();
 						
-						// Database Variables
-						$data['Bevestigd'] = $this->Verhuringen->Search();
-						
-						$this->load->view('components/admin_header', $data);
-						$this->load->view('components/navbar_admin', $data);
-						$this->load->view('admin/verhuur_index', $data);
-						$this->load->view('components/footer');
+						  $this->load->view('components/admin_header', $data);
+						  $this->load->view('components/navbar_admin', $data);
+						  $this->load->view('admin/verhuur_index', $data);
+						  $this->load->view('components/footer');
+            } else {
+              $this->load->view('alerts/no_permission');
+            }
 					} else {
 						// if no session, redirect to login page
 						redirect('Admin','Refresh');
@@ -148,7 +163,7 @@
         public function verhuur_edit() {
             if($this->session->userdata('logged_in')) {
 							$Session = $this->session->userdata('logged_in'); 
-							$Admin = $Session['Admin_role']; 
+							$Admin = $Session['Admin']; 
 							
 							if($Admin == 1) {
                 // Global variables
@@ -182,7 +197,7 @@
         public function verhuur_info() {
             if($this->session->userdata('logged_in')) {
 							$Session = $this->session->userdata('logged_in');
-							$Admin   = $Session['Admin_role'];
+							$Admin   = $Session['Admin'];
 							
 							if($Admin == 1) {
                 // Global variables
@@ -215,7 +230,7 @@
         public function Wijzig_verhuur() {
             if($this->session->userdata('logged_in')) {
 							$Session = $this->session->userdata('logged_in');
-							$Admin = $Session['Admin_role']; 
+							$Admin = $Session['Admin']; 
 							
 						  if($Admin == 1 ) {
                 $this->Verhuringen->Wijzig_verhuur();
@@ -232,7 +247,7 @@
         public function Change_optie() {
             if($this->session->userdata('logged_in')) {
 							$Session = $this->session->userdata('logged_in'); 
-							$Admin = $Session['Admin_role']; 
+							$Admin = $Session['Admin']; 
 							
 							if($Admin == 1) {
                 $this->Verhuringen->Status_optie();
@@ -250,7 +265,7 @@
         public function Change_bevestigd() {
             if($this->session->userdata('logged_in')) {
 							$Session = $this->session->userdata('logged_in');
-							$Admin = $Session['Admin_role'];
+							$Admin = $Session['Admin'];
 							
 							if($Admin == 1) {
 								$this->Log->Verhuur_option();
@@ -269,7 +284,7 @@
             if($this->session->userdata('logged_in')) {
 							// Session gedeelte
 							$Session = $this->session->userdata('logged_in');
-							$Admin = $Session['Admin_role'];
+							$Admin = $Session['Admin'];
 							
 							if($Admin == 1) {
                 $this->Verhuringen->Verhuur_delete();
