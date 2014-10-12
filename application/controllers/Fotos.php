@@ -89,7 +89,7 @@ class Fotos extends CI_Controller {
 	function delete() {
 		if($this->session->userdata('logged_in')) {
 			
-			unlink('./assets/fotos/'.$this->uri->segment(3));
+			unlink('./assets/fotos/'. $this->uri->segment(3));
 			$this->Images->Delete();
 			redirect('Fotos/Index_admin');
 		} else {

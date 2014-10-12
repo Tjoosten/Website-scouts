@@ -3,8 +3,8 @@
  
     function __construct(){
 		parent::__construct();
-      	// this controller can only be called from the command line
-      	if (!$this->input->is_cli_request()) show_error('Direct access is not allowed');
+      // this controller can only be called from the command line
+      if (!$this->input->is_cli_request()) show_error('Direct access is not allowed');
 			// Load model
 			$this->load->model('Model_cron','Cron');
     }

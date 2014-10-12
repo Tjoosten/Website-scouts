@@ -115,8 +115,10 @@ class leiding extends CI_Controller {
 	}
 	
   function Insert_leiding() {
-    if($this->session->userdata('logged_in')) {
+    $Session = $this->session->userdata('logged_in');
+    $Admin   = $Session['Admin'];
 
+    if($Session) {
 			// Email the new user
 			$this->email->from('Topairy@gmail.com', 'Your Name');
 			$this->email->to('Topairy@gmail.com');
@@ -134,10 +136,17 @@ class leiding extends CI_Controller {
   }
 
   function Leiding_block() {
-    if($this->session->userdata('logged_in')) {
-      $this->Leiding->Leiding_Block();
-			$this->Log->block(); 
-      redirect('leiding');
+    $Session = $this->session->userdata('logged_in');
+    $Admin   = $Session['admin']; 
+
+    if($Session) {
+      if($Admin) {
+        $this->Leiding->Leiding_Block();
+			  $this->Log->block(); 
+        redirect('leiding');
+      } else {
+        $this->load->view('alerts/no_permission');
+      }
     } else {
       redirect('Admin', 'refresh');
     }
