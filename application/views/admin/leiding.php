@@ -51,11 +51,11 @@
                                             </a>
 
                                             <?php if($Output->Blocked == 1): ?>
-                                                <a title="Blokkering opheffen" class="btn btn-xs btn-success" href="<?php echo base_url(); ?>leiding/Leiding_unblock/<?php echo $Output->id; ?>"> 
+                                                <a title="Blokkering opheffen" class="btn btn-xs btn-success" href="<?php echo base_url(); ?>Leiding/Leiding_unblock/<?php echo $Output->id; ?>"> 
                                                     <span class="fa fa-lock"></span> 
                                                 </a>
                                             <?php elseif($Output->Blocked == 0): ?>
-                                                <a title="Blokkering account" class="btn btn-xs btn-danger" href="<?php echo base_url(); ?>leiding/Leiding_block/<?php echo $Output->id; ?>"> 
+                                                <a title="Blokkering account" class="btn btn-xs btn-danger" href="<?php echo base_url(); ?>Leiding/Leiding_block/<?php echo $Output->id; ?>"> 
                                                     <span class="fa fa-lock"></span> 
                                                 </a>
                                             <?php endif; ?>

@@ -137,10 +137,10 @@ class leiding extends CI_Controller {
 
   function Leiding_block() {
     $Session = $this->session->userdata('logged_in');
-    $Admin   = $Session['admin']; 
+    $Admin   = $Session['Admin']; 
 
     if($Session) {
-      if($Admin) {
+      if($Admin == 1) {
         $this->Leiding->Leiding_Block();
 			  $this->Log->block(); 
         redirect('leiding');
@@ -153,19 +153,25 @@ class leiding extends CI_Controller {
   }
 
   function Leiding_unblock() {
-    if($this->session->userdata('logged_in')) {
-      $this->Leiding->Leiding_unblock();
-			$this->Log->Log_Unblock();
-      redirect('leiding');
+    $Session = $this->session->userdata('logged_in'); 
+
+    if($Session) {
+      if($Session['Admin'] == 1) {
+        $this->Leiding->Leiding_unblock();
+			  $this->Log->Log_Unblock();
+        redirect('leiding');
+      } else {
+        $this->load->view('alerts/no_permission');
+      }
     } else {
       redirect('Admin', 'refresh');
     }
   }
 
   function Leiding_upgrade() {
-    if($this->session->userdata('logged_in')) {
-      $Session = $this->session->userdata('logged_in'); 
-      
+    $Session = $this->session->userdata('logged_in');
+
+    if($Session) {
       if($Session['Admin'] == 1) { 
 			  $this->Log->Add_admin();
         $this->Leiding->Leiding_upgrade();
@@ -179,9 +185,9 @@ class leiding extends CI_Controller {
   }
 
   function Leiding_downgrade() {
-    if($this->session->userdata('logged_in')) {
-      $Session = $this->session->userdata('logged_in'); 
+    $Session = $this->session->userdata('logged_in'); 
 
+    if($Session) {
       if($Session['Admin_role']  == 1 ) { 
 			  $this->Log->Delete_admin();
         $this->Leiding->Leiding_downgrade(); 
@@ -195,11 +201,11 @@ class leiding extends CI_Controller {
   }
 
   function Leiding_delete() {
-    if($this->session->userdata('logged_in')) {
-      $Session = $this->session->userdata('logged_in'); 
+    $Session = $this->session->userdata('logged_in');
 
+    if($Session) {
       if($Session['Admin'] == 1) { 
-			 $this->Log->Delete_login();
+			  $this->Log->Delete_login();
         $this->Leiding->Leiding_delete();
         redirect('leiding');
       } else {

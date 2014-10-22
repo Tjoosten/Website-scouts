@@ -51,6 +51,8 @@
 				"Bericht"   => "Heeft een login verwijderd",
 				"Datum"     => date("F j, Y, g:i a"),
  			);
+
+ 			$this->db->insert('Activity_log', $Values);
 		}
 		
 		function Add_admin() {

@@ -18,6 +18,7 @@
 			);
 			
 			$this->db->insert('Photo_Gallery', $Values);
+			return $this->db->affected_rows(); 
 		}
 		
 		function Backend_select() {
@@ -30,6 +31,8 @@
 		
 		function Delete() {
       $this->db->where('File_name', $this->uri->segment(3))
-               ->delete('Photo_Gallery');
+         	     ->delete('Photo_Gallery');
+
+      return $this->db->affected_rows(); 
 		}
 	} 

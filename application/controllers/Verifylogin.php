@@ -36,12 +36,12 @@ class VerifyLogin extends CI_Controller {
 
       foreach($result as $row) {
         $sess_array = array(
-          'id' => $row->id,
+          'id'       => $row->id,
           'username' => $row->username,
-          'Admin' => $row->Admin_role,
-          'Tak' => $row->Tak,
-					'Theme' => $row->Theme,
-					'Email' => $row->Mail,
+          'Admin'    => $row->Admin_role,
+          'Tak'      => $row->Tak,
+					'Theme'    => $row->Theme,
+					'Email'    => $row->Mail,
           // Vul session aan met volledige DB ROW
         );
 

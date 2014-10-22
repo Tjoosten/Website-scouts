@@ -52,13 +52,21 @@
    }
 	 
 	 function Insert() {
-		 $Values = array(
+      // Replace characters that can jam the timestamp
+      $old_sep = array("/","-");
+      $new_sep = ".";
+
+      // Values
+      $Datum = str_replace($old_sep, $new_sep, $this->input->post('Datum'));
+
+		  $Values = array(
 			  "Tak" => $this->uri->segment(3),
-			 	"Datum" => $this->input->post('Datum'),
+			 	"Datum" => $Datum,
 				"Naam" => $this->input->post('Naam'),
 				"Beschrijving" => $this->input->post('Beschrijving'),
 		 	);
 			
 			$this->db->insert('Activiteiten', $Values);
+      return $this->db->affected_rows();
 	 }
  }
