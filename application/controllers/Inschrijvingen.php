@@ -38,27 +38,31 @@
 			$Data['Title']  = "Admin inschrijvingen ontbijt";
 			$Data['Active'] = "4";
 
-			// Session
-       		$Data['Role']  = $Session['Admin'];
-			$Data['User']  = $Session['username'];
-			$Data['Theme'] = $Session['Theme'];
+			if($Session) {
+				// Session
+       	$Data['Role']  = $Session['Admin'];
+				$Data['User']  = $Session['username'];
+				$Data['Theme'] = $Session['Theme'];
 
-			// Database values
-			$DB['Ontbijt_datums'] = $this->Inschrijving->Get_Dates_Full(); 
-			$DB['Inschrijvingen'] = $this->Inschrijving->Inschrijvingen_All(); 
-			$DB['Datums']         = $this->Inschrijving->Get_dates();
+				// Database values
+				$DB['Ontbijt_datums'] = $this->Inschrijving->Get_Dates_Full(); 
+				$DB['Inschrijvingen'] = $this->Inschrijving->Inschrijvingen_All(); 
+				$DB['Datums']         = $this->Inschrijving->Get_dates();
 
-			$this->load->view('components/admin_header', $Data);
-			$this->load->view('components/navbar_admin', $Data);
-			$this->load->view('admin/inschrijvingen_ontbijt', $DB);
-			$this->load->view('components/footer');
+				$this->load->view('components/admin_header', $Data);
+				$this->load->view('components/navbar_admin', $Data);
+				$this->load->view('admin/inschrijvingen_ontbijt', $DB);
+				$this->load->view('components/footer');
+			} else {
+				redirect('Admin', 'Refresh');
+			}
 		}
 
 		// Database handlings
 		public function Insert_inschrijving() {
 			if($this->session->userdata('logged_in')) {
 				$this->Inschrijving->InsertDB();
-				redirect('Admin_ontbijt');
+				redirect('Inschrijvingen/Admin_ontbijt');
 			} else {
 				// Write to database
 				$this->Inschrijving->InsertDB(); 

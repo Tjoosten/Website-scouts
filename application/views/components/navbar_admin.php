@@ -35,6 +35,12 @@
 		              <li><a href="<?php echo base_url(); ?>Fotos/Index_admin"><span class="fa fa-camera-retro"></span> Foto's</a></li>
                 </ul>
               </li>
+              
+              <li>
+                <a href="<?php echo base_url(); ?>Inschrijvingen/Admin_ontbijt">
+                  <span class="fa fa-asterisk Icon-color"></span> Inschrijvingen
+                </a>
+              </li>
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
