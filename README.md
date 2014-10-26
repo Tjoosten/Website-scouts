@@ -2,16 +2,15 @@ Website http://www.st-joris-turnhout.be (Martyr)
 =============================================
 
 ###  Changelog
-- [ ] search functions runs on timestamps
-- [ ] select only start and end from rental calendar
-- [ ] created menu in cron jobs so you can execute the cronjobs easier
-- [ ] add cronjob that deletes rentals that expired
-- [ ] add cronjob that deletes expired activities
-- [ ] Setting cronjobs in crontab 
-- [ ] Mail confirmation to user if they ask for a rental
-- [ ] Made sign up front + backend for breakfast
-
-### Todo 
+- [x] search functions runs on timestamps
+- [x] select only start and end from rental calendar
+- [x] created menu in cron jobs so you can execute the cronjobs easier
+- [x] add cronjob that deletes rentals that expired
+- [x] add cronjob that deletes expired activities
+- [x] Setting cronjobs in crontab 
+- [x] Mail confirmation to user if they ask for a rental
+- [x] Made sign up front + backend for breakfast 
 - [ ] upgrade insert activities with unix timestamp
 - [ ] Rebase login form.
 - [ ] Warning massages if no photos found on photo's
+- [ ] Set valid mail function at email adresses on Descriptions Breakfastnkj
