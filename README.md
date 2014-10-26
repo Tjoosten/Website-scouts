@@ -14,3 +14,4 @@ Website http://www.st-joris-turnhout.be (Martyr)
 ### Todo 
 - [ ] upgrade insert activities with unix timestamp
 - [ ] Rebase login form.
+- [ ] Warning massages if no photos found on photo's
