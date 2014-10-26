@@ -188,7 +188,7 @@ class leiding extends CI_Controller {
     $Session = $this->session->userdata('logged_in'); 
 
     if($Session) {
-      if($Session['Admin_role']  == 1 ) { 
+      if($Session['Admin']  == 1 ) { 
 			  $this->Log->Delete_admin();
         $this->Leiding->Leiding_downgrade(); 
         redirect('leiding');

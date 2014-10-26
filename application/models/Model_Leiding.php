@@ -53,26 +53,27 @@
 			return $Query->result(); 
 		}
 		
-	/* function Settings_edit() {
-			
-				if(!empty($this->input->post('Pass'))) {
-					$Values = array(
-						"Mail"  => $this->input->post('Email'),
-						"GSM"   => $this->input->post('GSM'),
-						"Theme" => $this->input->post('Theme'),
-					  );
+	 function Settings_edit() {
+			$Pass = $this->input->post('Pass');
+
+				if(!empty($Pass)) {
+					 $Values = array(
+            "Mail"  => $this->input->post('Email'),
+            "GSM"   => $this->input->post('GSM'),
+            "password" => md5($this->input->post('Pass')),
+            "Theme" => $this->input->post('Theme'),
+            );
 				  } else {
-						$Values = array(
-							"Mail"     => $this->input->post('Email'),
-							"GSM"      => $this->input->post('GSM'),
-				   	 	"password" => md5($this->input->post('Pass')),
-							"Theme"    => $this->input->post('Theme'),
-						);
+            $Values = array(
+              "Mail"     => $this->input->post('Email'),
+              "GSM"      => $this->input->post('GSM'),
+              "Theme"    => $this->input->post('Theme'),
+            );
 				  }
 	   
 			$this->db->where('id', $this->uri->segment(3))
 				       ->update("users", $Values);
-		} */
+		}
 
     function Leiding_Block() {
       $Value = array(

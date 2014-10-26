@@ -55,15 +55,25 @@
             $data['Groep'] = $this->input->post('Groep');
             $data['Mail']  = $this->input->post('Email');
             
-            $message = $this->load->view('email/verhuur', $data , TRUE);
+            $administrator = $this->load->view('email/verhuur', $data , TRUE);
             
             $this->email->from('contact@st-joris-turnhout.be', 'Contact st-joris turnhout');
             $this->email->to('Topairy@gmail.com, Verhuur@st-joris-turnhout.be'); 
-
             $this->email->set_mailtype("html");
             $this->email->subject('Nieuwe verhuring');
-            $this->email->message($message);  
+            $this->email->message($administrator);  
+            $this->email->send();
 
+            // End mail to verantwoordelijke.
+            $this->email->clear();
+
+            // Start mail naar client
+            $client = $this->load->view('email/verhuur_client', $data, TRUE);
+
+            $this->email->from('Verhuur@st-joris-turnhout.be', 'Verhuur St-joris Turnhout');
+            $this->email->to($this->input->post('Email'));
+            $this->email->subject('Verhuur aanvraag - St-joris, Turnhout');
+            $this->email->message($client);
             $this->email->send();
 
             // echo $this->email->print_debugger();

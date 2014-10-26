@@ -18,10 +18,10 @@
 	<?php echo validation_errors(); ?>
     <?php echo form_open('verifylogin'); ?>
       <label for="username">Username:</label>
-      <input style="width:25%;" class="form-control"type="text" size="20" id="username" name="username"/>
+      <input style="width:25%;" placeholder="Gebruikersnaam" class="form-control"type="text" size="20" id="username" name="username"/>
       <br/>
       <label for="password">Password:</label>
-      <input style="width: 25%" class="form-control" type="password" size="20" id="passowrd" name="password"/>
+      <input style="width: 25%" placeholder="Wachtwoord" class="form-control" type="password" size="20" id="passowrd" name="password"/>
       <br/>
       <input class="btn btn-default" type="submit" value="Login"/>
     </form>

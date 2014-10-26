@@ -9,7 +9,7 @@
 
 	// Client side
 	function Verhuring_kalender() {
-		$this->db->select('Start_datum','Eind_datum');
+		$this->db->select()
 				 ->order_by("Start_datum", "asc");
 
 		$Query = $this->db->get('Verhuur'); 
@@ -49,12 +49,12 @@
 		$Term = str_replace($old_sep, $new_sep, $this->input->post('Term'));
 
 		$Values = array(
-			"Start_datum" => $Term,
-			"Eind_datum"  => $Term,
+			"Start_datum" => strtotime($Term),
+			"Eind_datum"  => strtotime($Term),
 		);
 			
-		$this->db->select();
-		$this->db->like($Values);
+		$this->db->select()
+				 ->like($Values);
 			
 		$Query = $this->db->get('Verhuur');
 		return $Query->Result();
@@ -90,7 +90,6 @@
 		$this->db->where("ID", $this->uri->segment(3))
 				 ->update("Verhuur", $Value);
 		
-		return $this->db->affected_rows(); 
 	}
 
 	function Status_bevestigd() {
@@ -101,7 +100,6 @@
 		$this->db->where("ID", $this->uri->segment(3))
 				 ->update("Verhuur", $Value);
 
-		return $this->db->affected_row();
 	}
 		
 	function Verhuur_delete() {

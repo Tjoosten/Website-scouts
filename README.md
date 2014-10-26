@@ -8,6 +8,9 @@ Website http://www.st-joris-turnhout.be (Martyr)
 - [ ] add cronjob that deletes rentals that expired
 - [ ] add cronjob that deletes expired activities
 - [ ] Setting cronjobs in crontab 
+- [ ] Mail confirmation to user if they ask for a rental
+- [ ] Made sign up front + backend for breakfast
 
 ### Todo 
 - [ ] upgrade insert activities with unix timestamp
+- [ ] Rebase login form.
