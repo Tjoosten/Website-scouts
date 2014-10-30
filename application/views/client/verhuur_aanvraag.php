@@ -32,6 +32,8 @@
             			<h2 style="margin-bottom: -5px;">Verhuur aanvraag</h2>
           			</div>
 
+          			<p><span class="label label-danger"><span class="octicon octicon-info"></span> Info:</span> Het laatste weekend van een maand verhuren we niet.</p>
+
           			<form method="POST" action="<?php echo base_url(); ?>/verhuur/toevoegen_verhuur">
           				<label for="Start">Start datum:</label>
           				<input style="width: 35%;" name="Start_datum" class="form-control" id="Start" placeholder="bv. 00/00/00">

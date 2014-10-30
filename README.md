@@ -18,5 +18,6 @@ Website http://www.st-joris-turnhout.be (Martyr)
 - [ ] Set valid mail function at email adresses on Descriptions Breakfast
 - [ ] Backup function in PHP Cron CLI.
 - [ ] Extended UNIX timestamps for log functions
-- [ ] Band verhuur laatste weekend word er niet verhuurd.
+- [x] Band verhuur laatste weekend word er niet verhuurd.
 - [ ] Info bij verhuur over toog moet eruit. (Alinea 2)
+-
