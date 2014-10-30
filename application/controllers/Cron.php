@@ -17,8 +17,6 @@
 
       // Load helpers
       $this->load->dbutil();
-      $this->load->helper('file');
-      $this->load->helper('download');
     }
 
     function index() {
@@ -30,9 +28,8 @@
       echo "1) Optimaliseer database".PHP_EOL;
       echo "2) Verwijder afgelopen verhuringen".PHP_EOL;
       echo "3) Verwijder afgelopen activiteiten".PHP_EOL;
-      echo "4) Backup database".PHP_EOL;
       echo "---------------------------------------------".PHP_EOL;
-      echo "Welke taak wil je uitvoeren? (1 - 4):";
+      echo "Welke taak wil je uitvoeren? (1 - 3):";
 
       $Cron = fopen ("php://stdin","r");
       $Taak = fgets($Cron);
@@ -47,10 +44,6 @@
 
       elseif(trim($Taak) == 3) {
         shell_exec('php /scoutnet.be/users/st-joris/public_html/index.php Cron Del_activiteiten');
-      }
-
-       elseif(trim($Taak) == 4) {
-        shell_exec('php /scoutnet.be/users/st-joris/public_html/index.php Cron Backup_DB');
       }
 
       else {
@@ -69,16 +62,5 @@
 
     function Del_activiteiten() {
       $this->Cron->Del_activiteiten();
-    }
-
-    function Backup_DB() {
-      // Backup your entire database and assign it to a variable
-      $backup = $this->dbutil->backup(); 
-
-      // Load the file helper and write the file to your server
-      write_file('mybackup.gz', $backup); 
-
-      // Load the download helper and send the file to your desktop
-      force_download('mybackup.gz', $backup);
     }
 }
