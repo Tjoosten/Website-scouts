@@ -72,7 +72,7 @@ class VerifyLogin extends CI_Controller {
       // Mail voor bevestiging
       $this->email->from('contact@st-joris-turnhout.be', 'Contact st-joris turnhout');
       $this->email->to($this->input->post('recovery')); 
-      $this->email->subject('Bevestiging inschrijving ontbijt');
+      $this->email->subject('Reset wachtwoord - Sint Joris Turnhout');
       $this->email->message($mail);
       $this->email->set_mailtype("html");  
       $this->email->send();

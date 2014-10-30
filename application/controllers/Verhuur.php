@@ -46,7 +46,7 @@
         public function toevoegen_verhuur() {
 					if($this->session->userdata('logged_in')) {
             $this->Verhuringen->InsertDB();
-            redirect('Verhuur/Admin');
+            redirect('Verhuur/Admin_verhuur');
           } else {
             // Email template
             $data['exec']  = $this->benchmark->elapsed_time();
