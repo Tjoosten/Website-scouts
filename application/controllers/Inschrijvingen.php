@@ -6,6 +6,7 @@
 			 	parent::__construct();
 				// Load model
 				$this->load->library('Email');
+				$this->load->helper('Email');
 				$this->load->model('Model_inschrijvingen','Inschrijving');
     	}
 
@@ -39,20 +40,24 @@
 			$Data['Active'] = "4";
 
 			if($Session) {
-				// Session
-       	$Data['Role']  = $Session['Admin'];
-				$Data['User']  = $Session['username'];
-				$Data['Theme'] = $Session['Theme'];
+				if($Session['Admin'] == 1) {
+					// Session
+	       	$Data['Role']  = $Session['Admin'];
+					$Data['User']  = $Session['username'];
+					$Data['Theme'] = $Session['Theme'];
 
-				// Database values
-				$DB['Ontbijt_datums'] = $this->Inschrijving->Get_Dates_Full(); 
-				$DB['Inschrijvingen'] = $this->Inschrijving->Inschrijvingen_All(); 
-				$DB['Datums']         = $this->Inschrijving->Get_dates();
+					// Database values
+					$DB['Ontbijt_datums'] = $this->Inschrijving->Get_Dates_Full(); 
+					$DB['Inschrijvingen'] = $this->Inschrijving->Inschrijvingen_All(); 
+					$DB['Datums']         = $this->Inschrijving->Get_dates();
 
-				$this->load->view('components/admin_header', $Data);
-				$this->load->view('components/navbar_admin', $Data);
-				$this->load->view('admin/inschrijvingen_ontbijt', $DB);
-				$this->load->view('components/footer');
+					$this->load->view('components/admin_header', $Data);
+					$this->load->view('components/navbar_admin', $Data);
+					$this->load->view('admin/inschrijvingen_ontbijt', $DB);
+					$this->load->view('components/footer');
+				} else {
+
+				}
 			} else {
 				redirect('Admin', 'Refresh');
 			}
@@ -78,12 +83,13 @@
 
 				// Mail voor bevestiging
 				$this->email->from('contact@st-joris-turnhout.be', 'Contact st-joris turnhout');
-            	$this->email->to($this->input->post('Email')); 
-            	$this->email->set_mailtype("html");
-            	$this->email->subject('Bevestiging inschrijving ontbijt');
-           	 	$this->email->message($mail_ontbijt);  
-            	$this->email->send();
-            	$this->email->clear();
+        $this->email->to($this->input->post('Email')); 
+        $this->email->subject('Bevestiging inschrijving ontbijt');
+        $this->email->message($mail_ontbijt);
+        $this->email->set_mailtype("html");  
+        $this->email->send();
+        
+        $this->email->clear();
 
 				// Redirect 
 				redirect('Ontbijt_beschrijving');

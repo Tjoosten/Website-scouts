@@ -33,6 +33,7 @@
         }
 
         public function verhuur_aanvraag() {
+    
             $data['Title'] = " Aanvraag verhuur"; 
 			      $data['Active'] = "2";
 

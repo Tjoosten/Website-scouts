@@ -80,7 +80,7 @@
               </li>
 
               <li>
-                <a href="/Planning.pdf">
+                <a href="/assets/files/Planning.pdf">
                   <span class="fa fa-file-text-o Icon-color"></span> Planning
                 </a>
               </li>

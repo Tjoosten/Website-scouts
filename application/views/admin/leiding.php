@@ -1,51 +1,51 @@
 <div class="container">
-	<div class="row">
-		<div class="col-sm-12 col-md-12 col-lg-12">
-			
-			<!-- Nav tabs -->
-			<ul class="nav nav-tabs" role="tablist">
+    <div class="row">
+        <div class="col-sm-12 col-md-12 col-lg-12">
+            
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs" role="tablist">
                 <li class="active"><a href="#admin" role="tab" data-toggle="tab">Admin's</a></li>
                 <li><a href="#leiding" role="tab" data-toggle="tab">Leiding</a></li>
                 
                 <?php if($Role == 1): ?>
                     <li><a href="#new" role="tab" data-toggle="tab">Nieuwe Admin / Leiding</a></li>
-			    <?php endif; ?>
+                <?php endif; ?>
             </ul>
 
-			<!-- Tab panes -->
-			<div class="tab-content">
+            <!-- Tab panes -->
+            <div class="tab-content">
         <div class="tab-pane active" id="admin">
-        	<div class="row">
-					<div class="col-sm-8 col-md-8 col-lg-8">
-        		<p>
-        		  <table class="table table-condensed">
-        		  	<thead>
-        		  		<tr>
-      		  				<th>#</th>
-      		  				<th>Naam:</th>
-      		  				<th>Mail:</th>
-      		  				<th>GSM:</th>
-      		  				<th></th> <!-- Functies -->
-        		  		</tr>
-        		  	</thead>
-        		  	<tbody>
-        		  		<?php foreach($Admin as $Output): ?>
-        		  			<tr>
-        		  				<td><code>#<?php echo $Output->id; ?></code></td>
-        		  				<td><?php echo $Output->username; ?></td>
+            <div class="row">
+                    <div class="col-sm-8 col-md-8 col-lg-8">
+                <p>
+                  <table class="table table-condensed">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Naam:</th>
+                            <th>Mail:</th>
+                            <th>GSM:</th>
+                            <th></th> <!-- Functies -->
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach($Admin as $Output): ?>
+                            <tr>
+                                <td><code>#<?php echo $Output->id; ?></code></td>
+                                <td><?php echo $Output->username; ?></td>
 
-        		  				<td>
-												<?php if (valid_email($Output->Mail)): ?> 
-                      		<a href="mailto:<?php echo $Output->Mail; ?>"><?php echo $Output->Mail; ?></a>
-                     		<?php else: ?>
-													<?php echo $Output->Mail; ?>
-												<?php endif; ?>
-										  </td>
-											
-        		  				<td><?php echo $Output->GSM; ?></td>
-        		  				<td>
+                                <td>
+                                                <?php if (valid_email($Output->Mail)): ?> 
+                            <a href="mailto:<?php echo $Output->Mail; ?>"><?php echo $Output->Mail; ?></a>
+                            <?php else: ?>
+                                                    <?php echo $Output->Mail; ?>
+                                                <?php endif; ?>
+                                          </td>
+                                            
+                                <td><?php echo $Output->GSM; ?></td>
+                                <td>
                                     <div class="btn-toolbar">
-        		  				        <div class="btn-group">
+                                        <div class="btn-group">
                                             <a title="Account verwijderen" href="<?php echo base_url(); ?>leiding/Leiding_delete/<?php echo $Output->id; ?>" class="btn btn-danger btn-xs">
                                                 <span class="fa fa-close"></span>
                                             </a>
@@ -59,16 +59,16 @@
                                                     <span class="fa fa-lock"></span> 
                                                 </a>
                                             <?php endif; ?>
-        		  				        </div>
+                                        </div>
                                     </div>
-        		  				</td>
-        		  			</tr>
-        		  		<?php endforeach; ?>
-        		  	</tbody>
-        		  </table>
-        		</p>
-        	</div>
-				</div>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                  </table>
+                </p>
+            </div>
+                </div>
         </div>
         
         <?php if($Role == 1): ?>
@@ -109,7 +109,7 @@
         
         <div class="tab-pane" id="leiding">
             <p>
-							<div class="row">
+                            <div class="row">
                 <div class="col-sm-9 col-md-9 col-lg-9">
                     <table class="table table-condensed">
                         <thead>
@@ -131,11 +131,11 @@
                                     <td><code>#<?php echo $Output->id; ?></code></td>
                                     <td><?php echo $Output->username; ?></td>
                                     <td>
-																			<?php if (valid_email($Output->Mail)): ?> 
-							                      		<a href="mailto:<?php echo $Output->Mail; ?>"><?php echo $Output->Mail; ?></a>
-							                     		<?php else: ?>
-																				<?php echo $Output->Mail; ?>
-																			<?php endif; ?>
+                                                                            <?php if (valid_email($Output->Mail)): ?> 
+                                                        <a href="mailto:<?php echo $Output->Mail; ?>"><?php echo $Output->Mail; ?></a>
+                                                        <?php else: ?>
+                                                                                <?php echo $Output->Mail; ?>
+                                                                            <?php endif; ?>
                                     </td>
                                     <td><?php echo $Output->GSM; ?></td>
 
@@ -190,12 +190,12 @@
                             <?php endforeach; ?>
                         </tbody>
                     </table>
-									</div>
+                                    </div>
                 </p>
             </div>
         </div>
-			</div>
+            </div>
 
-		</div>
-	</div>
+        </div>
+    </div>
 </div>

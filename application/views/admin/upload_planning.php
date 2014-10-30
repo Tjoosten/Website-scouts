@@ -6,6 +6,10 @@
 				<h2 style="margin-bottom: -5px;"> Upload nieuw groen'tje </div>
 			</div>
 			
+			<div style="width: 40%;" class="alert alert-danger">
+				<p> Het groen'tje kan alleen geupload worden in <code>.PDF</code> Formaat. </p> 
+			</div>
+
 			<?php echo $error;?>
 
 			<?php echo form_open_multipart('Upload_files/do_upload');?>

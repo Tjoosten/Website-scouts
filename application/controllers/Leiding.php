@@ -108,7 +108,7 @@ class leiding extends CI_Controller {
 			
 			// Write to database  
 			$this->Leiding->Settings_edit();
-			redirect('Leiding', 'Refresh');
+			redirect('Leiding/Settings', 'Refresh');
 		} else {
 			redirect('Admin', 'Refresh');
 		}

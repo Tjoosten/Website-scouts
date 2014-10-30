@@ -21,7 +21,7 @@
 					</tr>
 					<tr>
 						<td> <strong> Eind Datum: </strong> </td>
-						<td> <?php echo $Start; ?>
+						<td> <?php echo $Eind; ?>
 					</tr>
 					<tr>
 						<td> <strong> Groep: </strong> </td>

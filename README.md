@@ -9,8 +9,12 @@ Website http://www.st-joris-turnhout.be (Martyr)
 - [x] add cronjob that deletes expired activities
 - [x] Setting cronjobs in crontab 
 - [x] Mail confirmation to user if they ask for a rental
+- [x] added notification to upload planning.
+- [x] Redesign login form
 - [x] Made sign up front + backend for breakfast 
 - [ ] upgrade insert activities with unix timestamp
 - [ ] Rebase login form.
-- [ ] Warning massages if no photos found on photo's
-- [ ] Set valid mail function at email adresses on Descriptions Breakfastnkj
+- [x] Warning massages if no photos found on photo's. (Backend)
+- [ ] Set valid mail function at email adresses on Descriptions Breakfast
+- [ ] Backup function in PHP Cron CLI.
+- [ ] Extended UNIX timestamps for log functions
