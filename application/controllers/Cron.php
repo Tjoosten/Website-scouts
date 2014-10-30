@@ -12,9 +12,13 @@
       // this controller can only be called from the command line
       if (!$this->input->is_cli_request()) show_error('Direct access is not allowed');
 			// Load model
-      $this->load->dbutil();
 			$this->load->model('Model_cron','Cron');
       $this->load->model('Model_log','Log');
+
+      // Load helpers
+      $this->load->dbutil();
+      $this->load->helper('file');
+      $this->load->helper('download');
     }
 
     function index() {
@@ -64,10 +68,17 @@
     }
 
     function Del_activiteiten() {
-        $this->Cron->Del_activiteiten();
+      $this->Cron->Del_activiteiten();
     }
 
     function Backup_DB() {
+      // Backup your entire database and assign it to a variable
+      $backup = $this->dbutil->backup(); 
 
+      // Load the file helper and write the file to your server
+      write_file('mybackup.gz', $backup); 
+
+      // Load the download helper and send the file to your desktop
+      force_download('mybackup.gz', $backup);
     }
 }
