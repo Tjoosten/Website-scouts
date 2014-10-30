@@ -5,7 +5,11 @@
   		}
 
   		public function index() {
-    		$this->load->helper('form');
-    		$this->load->view('admin/login');
+  			if($this->session->userdata('logged_in')) {
+  				redirect('backend','refresh');
+  			} else {
+  				$this->load->helper('form');
+    			$this->load->view('admin/login');
+  			}
   		}
 	}

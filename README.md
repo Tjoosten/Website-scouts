@@ -13,7 +13,7 @@ Website http://www.st-joris-turnhout.be (Martyr)
 - [x] Redesign login form
 - [x] Made sign up front + backend for breakfast 
 - [ ] upgrade insert activities with unix timestamp
-- [ ] Rebase login form.
+- [x] Rebase login form.
 - [x] Warning massages if no photos found on photo's. (Backend)
 - [ ] Set valid mail function at email adresses on Descriptions Breakfast
 - [ ] Backup function in PHP Cron CLI.
