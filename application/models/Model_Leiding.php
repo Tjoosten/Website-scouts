@@ -99,17 +99,10 @@
       $Value = array(
         "Admin_role" => "1",
       );
-			
-			$Values = array(
-				"User"  => $Session['username'],
-				"Email" => $Session['Email'],
-				"Verhuur" => "0",
-			);
       
       $this->db->where("id", $this->uri->segment(3))
                ->update("users", $Value);
 			
-			$this->db->insert('Notifications', $Values);
     }
     
     function Leiding_downgrade() {
