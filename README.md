@@ -1,7 +1,7 @@
 Website http://www.st-joris-turnhout.be (Martyr)
 =============================================
 
-###  Changelog
+###  Changelog (Martyr)
 - [x] search functions runs on timestamps
 - [x] select only start and end from rental calendar
 - [x] created menu in cron jobs so you can execute the cronjobs easier
