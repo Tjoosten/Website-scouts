@@ -15,8 +15,7 @@ Website http://www.st-joris-turnhout.be (Martyr)
 - [ ] upgrade insert activities with unix timestamp
 - [x] Rebase login form.
 - [x] Warning massages if no photos found on photo's. (Backend)
-- [ ] Set valid mail function at email adresses on Descriptions Breakfast
-- [ ] Backup function in PHP Cron CLI.
+- [x] Set valid mail function at email adresses on Descriptions Breakfast
 - [ ] Extended UNIX timestamps for log functions
 - [x] Band verhuur laatste weekend word er niet verhuurd.
 - [ ] Info bij verhuur over toog moet eruit. (Alinea 2)

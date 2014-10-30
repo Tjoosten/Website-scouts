@@ -40,7 +40,15 @@
   								<tr>
   									<td><code> #<?php echo $Output->ID; ?></code></td>
   									<td><?php echo $Output->Voornaam; ?> <?php echo $Output->Naam; ?></td>
-  									<td><?php echo $Output->Email; ?></td>
+  									
+                    <td>
+                      <?php if(valid_email($Output->Email)): ?>
+                        <a href="mailto:<?php echo $Output->Email; ?>"><?php echo $Output->Email; ?></a>
+                      <?php else: ?>
+                        <?php echo $Output->Email; ?>
+                      <?php endif; ?>
+                    </td>
+
   									<td><?php echo $Output->Aantal_Personen; ?> Personen</td>
   									<td><?php echo $Output->Te_betalen; ?> Euro.</td>
   								</tr>
