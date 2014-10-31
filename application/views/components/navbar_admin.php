@@ -36,11 +36,13 @@
                 </ul>
               </li>
               
-              <li>
-                <a href="<?php echo base_url(); ?>Inschrijvingen/Admin_ontbijt">
-                  <span class="fa fa-asterisk Icon-color"></span> Inschrijvingen
-                </a>
-              </li>
+              <?php if($Role == 1); ?>
+                <li>
+                  <a href="<?php echo base_url(); ?>Inschrijvingen/Admin_ontbijt">
+                    <span class="fa fa-asterisk Icon-color"></span> Inschrijvingen
+                  </a>
+                </li>
+              <?php endif; ?>
             </ul>
 
             <ul class="nav navbar-nav navbar-right">

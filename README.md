@@ -26,3 +26,4 @@ Website http://www.st-joris-turnhout.be (Martyr)
 - [ ] rebase account create
 - [ ] clean up document root (server)
 - [ ] add WAI-ARIA support (role attributes)
+- [ ] add template sql database (sql file)
