@@ -20,3 +20,9 @@ Website http://www.st-joris-turnhout.be (Martyr)
 - [x] Band verhuur laatste weekend word er niet verhuurd.
 - [ ] Info bij verhuur over toog moet eruit. (Alinea 2)
 - [ ] Add notification system (rentals)
+
+### changelog (Snow Thar)
+- [ ] migrate to bootstrap V3.3.0
+- [ ] rebase account create
+- [ ] clean up document root (server)
+- [ ] add WAI-ARIA support (role attributes)
