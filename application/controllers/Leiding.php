@@ -14,6 +14,7 @@ class leiding extends CI_Controller {
     $this->load->model('Model_log', 'Log');
     $this->load->library('email');
 		$this->load->helper('email');
+    $this->load->helper('string');
   }
 
   function Leidingsploeg() {
@@ -119,16 +120,23 @@ class leiding extends CI_Controller {
     $Admin   = $Session['Admin'];
 
     if($Session) {
+      // Mail variables
+      $Mail['Mail'] = $this->input->post('Mail');
+      $Mail['Pass'] = random_string('alnum', 16);
+      $Mail['Name'] = $this->input->post('Naam');
+      $Mail_view    = $this->load->view('email/login', $Mail , TRUE);
+
 			// Email the new user
-			$this->email->from('Topairy@gmail.com', 'Your Name');
-			$this->email->to('Topairy@gmail.com');
-			$this->email->subject('Email Test');
-			$this->email->message('test');	
+			$this->email->from('Webmaster@st-joris-turnhout.be', 'Webmaster');
+			$this->email->to($this->input->post('Mail'));
+			$this->email->subject('Login gegevens');
+			$this->email->message($Mail_view);	
+      $this->email->set_mailtype('html');
 			$this->email->send();		
 			
 			// Database Handlings
 			$this->Log->Created_login();
-      $this->Leiding->Leiding_insert();
+      $this->Leiding->Leiding_insert($Mail);
       redirect('leiding');
     } else {
       redirect('Admin', 'refresh');

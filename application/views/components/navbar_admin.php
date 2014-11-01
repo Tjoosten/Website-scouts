@@ -36,7 +36,7 @@
                 </ul>
               </li>
               
-              <?php if($Role == 1); ?>
+              <?php if($Role == 1): ?>
                 <li>
                   <a href="<?php echo base_url(); ?>Inschrijvingen/Admin_ontbijt">
                     <span class="fa fa-asterisk Icon-color"></span> Inschrijvingen

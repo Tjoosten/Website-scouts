@@ -14,7 +14,7 @@
         return $Query->result();
      }
 
-    function Leiding_insert() {
+    function Leiding_insert($Mail) {
       $Values = array(
         "username" => $this->input->post('Naam'),
         "Mail" => $this->input->post('Mail'),
@@ -23,7 +23,7 @@
         "Admin_role" => "0",
         "Blocked" => "0",
 				"Theme" => "0",
-        "password" => md5('root'),
+        "password" => md5($Mail['Pass']),
       );
       
       $this->db->insert('users', $Values);
