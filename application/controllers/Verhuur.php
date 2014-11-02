@@ -3,7 +3,7 @@
   	function __construct() {
             parent::__construct();
             $this->load->model('Model_verhuringen','Verhuringen');
-	          $this->load->model('Model_Log', 'Log');
+	        $this->load->model('Model_Log', 'Log');
             $this->load->library('email');
             $this->load->helper('email');
             $this->load->helper('date');
