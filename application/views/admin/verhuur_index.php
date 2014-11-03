@@ -26,6 +26,27 @@
 							
 							<div class="col-md-6">
 								<span class="pull-right">
+
+										<?php foreach($Notification as $Result) {
+											$Val = $Result->Verhuur;
+										}
+										?>
+									
+										<?php if($Val== 1): ?>
+											<a class="btn btn-success" title="Notificaties is ingeschakeld" href="<?php echo base_url(); ?>/Notifications/Verhuur_uit">
+												Notificaties <span class="badge">Aan</span>
+											</a>
+										<?php elseif($Val == 0): ?>
+											<a class="btn btn-danger" title="Notificaties zijn uitgeschakeld" href="<?php echo base_url(); ?>/Notifications/Verhuur_aan">
+												Notificaties <span class="badge">Uit</span>
+											</a>
+										<?php else: ?>
+											<a class="btn btn-warning" title="herstel" href="<?php echo base_url(); ?>Notifications/herstel_verhuur">
+												Herstel
+											</a>
+										<?php endif; ?>
+									
+
 									<a href="<?php echo base_url();?>Verhuur/Download_verhuringen" class="btn btn-info">
 										<span class="octicon octicon-cloud-download"></span> Download
 									</a>

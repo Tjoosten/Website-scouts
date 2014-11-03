@@ -3,11 +3,10 @@
   	function __construct() {
             parent::__construct();
             $this->load->model('Model_verhuringen','Verhuringen');
-	          $this->load->model('Model_Log', 'Log');
-            $this->load->library('email');
-            $this->load->helper('email');
-            $this->load->helper('date');
-            $this->load->helper('text');
+	        $this->load->model('Model_Log', 'Log');
+            $this->load->model('Model_notifications', 'Not');
+            $this->load->library(array('email'));
+            $this->load->helper(array('email','date','text'));
         }
 
 		  public function index() {
@@ -48,7 +47,7 @@
             $this->Verhuringen->InsertDB();
             redirect('Verhuur/Admin_verhuur');
           } else {
-            // Email template
+            // Email Variables
             $data['exec']  = $this->benchmark->elapsed_time();
             $data['Start'] = $this->input->post('Start_datum');
             $data['Eind']  = $this->input->post('Eind_datum');
@@ -56,17 +55,19 @@
             $data['Groep'] = $this->input->post('Groep');
             $data['Mail']  = $this->input->post('Email');
             
-            $administrator = $this->load->view('email/verhuur', $data , TRUE);
-            
-            $this->email->from('contact@st-joris-turnhout.be', 'Contact st-joris turnhout');
-            $this->email->to('Topairy@gmail.com, Verhuur@st-joris-turnhout.be'); 
-            $this->email->set_mailtype("html");
-            $this->email->subject('Nieuwe verhuring');
-            $this->email->message($administrator);  
-            $this->email->send();
+            $Mailing = $this->Not->Verhuur_mailing(); 
 
-            // End mail to verantwoordelijke.
-            $this->email->clear();
+            foreach($Mailing as $Output) {
+                $administrator = $this->load->view('email/verhuur', $data , TRUE);
+            
+                $this->email->from('contact@st-joris-turnhout.be', 'Contact st-joris turnhout');
+                $this->email->to($Output->Mail); 
+                $this->email->set_mailtype("html");
+                $this->email->subject('Nieuwe verhuring');
+                $this->email->message($administrator);  
+                $this->email->send();
+                $this->email->clear();
+            }
 
             // Start mail naar client
             $client = $this->load->view('email/verhuur_client', $data, TRUE);
@@ -139,6 +140,8 @@
             if($this->session->userdata('logged_in'))  {
 							$Session = $this->session->userdata('logged_in');
               $Admin = $Session['Admin']; 
+              $this->Not->Get();
+              $data['Notification'] = $this->Not->Get();
 
               if($Admin == 1) {
                 // Load Helpers & Drivers
