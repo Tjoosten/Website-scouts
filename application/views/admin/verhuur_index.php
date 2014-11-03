@@ -26,6 +26,20 @@
 							
 							<div class="col-md-6">
 								<span class="pull-right">
+									<?php if($Notification == 1): ?>
+										<a class="btn btn-success" title="Notificaties is ingeschakeld" href="">
+											Notificaties
+										</a>
+									<?php elseif($Notification == 0): ?>
+										<a class="btn btn-danger" title="Notificaties zijn uitgeschakeld" href="">
+											Notificaties
+										</a>
+									<?php else: ?>
+										<a class="btn btn-warning" title="herstel" href="">
+											Herstel
+										</a>
+									<?php endif; ?>
+
 									<a href="<?php echo base_url();?>Verhuur/Download_verhuringen" class="btn btn-info">
 										<span class="octicon octicon-cloud-download"></span> Download
 									</a>

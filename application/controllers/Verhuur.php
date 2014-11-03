@@ -139,6 +139,7 @@
             if($this->session->userdata('logged_in'))  {
 							$Session = $this->session->userdata('logged_in');
               $Admin = $Session['Admin']; 
+              $data['Notification'] = "0";
 
               if($Admin == 1) {
                 // Load Helpers & Drivers
