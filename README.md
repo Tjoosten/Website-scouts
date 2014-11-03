@@ -19,7 +19,7 @@ Website http://www.st-joris-turnhout.be (Martyr)
 - [ ] Extended UNIX timestamps for log functions
 - [x] Band verhuur laatste weekend word er niet verhuurd.
 - [ ] Info bij verhuur over toog moet eruit. (Alinea 2)
-- [ ] Add notification system (rentals)
+- [x] Add notification system (rentals)
 
 ### changelog (Snow Thar)
 - [ ] migrate to bootstrap V3.3.0
