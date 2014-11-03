@@ -13,7 +13,7 @@
       $Values = array(
 			  "Gebruiker" => $Session['username'], 
 			  "Bericht"   => "Heeft zich ingelogd", 
-			  "Datum"     => date("F j, Y, g:i a"),
+			  "Datum"     => time(),
 			 );
 			
 			$this->db->insert('Activity_log', $Values);
@@ -25,7 +25,7 @@
       $Values = array(
 			  "Gebruiker" => $Session['username'],
 			  "Bericht"   => "Heeft zich uitgelogd",
-			  "Datum"     => date("F j, Y, g:i a"),
+			  "Datum"     => time(),
 			);
 			
 			$this->db->insert('Activity_log', $Values);
@@ -37,7 +37,7 @@
 		  $Values = array(
 		    "Gebruiker" => $Session['username'],
 		    "Bericht"   => "Heeft een login toegegevoegd",
-		    "Datum"     => date("F j, Y, g:i a"),
+		    "Datum"     => time(),
 		  );
 		  
 		  $this->db->insert('Activity_log', $Values);
@@ -49,7 +49,7 @@
 			$Values = array(
 				"Gebruiker" => $Session['username'],
 				"Bericht"   => "Heeft een login verwijderd",
-				"Datum"     => date("F j, Y, g:i a"),
+				"Datum"     => time(),
  			);
 
  			$this->db->insert('Activity_log', $Values);
@@ -61,7 +61,7 @@
 			$Values = array(
 				"Gebruiker" => $Session['username'],
 				"Bericht"   => "Heeft iemand administrator gemaakt",
-				"Datum"     => date("F j, Y, g:i a"),
+				"Datum"     => time(),
 				);
 				
 			$this->db->insert('Activity_log', $Values);
@@ -73,7 +73,7 @@
 			$Values = array(
 				"Gebruiker" => $Session['username'],
 				"Bericht"   => "Heeft iemand verwijderd als administrator",
-				"Datum"     => date("F j, Y, g:i a"),
+				"Datum"     => time(),
 				);
 				
 			$this->db->insert('Activity_log', $Values);
@@ -85,7 +85,7 @@
 			$Values = array(
 				"Gebruiker" => $Session['username'],
 				"Bericht"   => "Heeft een login geblokkeerd",
-				"Datum"     => date("F j, Y, g:i a"),
+				"Datum"     => time(),
 				);
 				
 				$this->db->insert('Activity_log', $Values);
@@ -97,7 +97,7 @@
 			$Values = array(
 				"Gebruiker" => $Session['username'],
 				"Bericht"   => "Heeft een login vrijgegeven",
-				"Datum"     => date("F j, Y, g:i a"),
+				"Datum"     => time(),
 			 );
 			 
 			 $this->db->insert('Activity_log', $Values);
@@ -109,7 +109,7 @@
 			$Values = array(
 				"Gebruiker" => $Session['username'],
 				"Bericht"   => "Heeft een login aangemaakt",
-				"Datum"     => date("F j, Y, g:i a"),
+				"Datum"     => time(),
 				);
 				
 			$this->db->insert('Activity_log', $Values);
@@ -121,7 +121,7 @@
 			$Values = array(
 				"Gebruiker" => $Session['username'],
 				"Bericht"   => "Heeft de optie van een verhuring aangepast",
-				"Datum"     => date("F j, Y, g:i a"),
+				"Datum"     => time(),
 				);
 				
 			$this->db->insert('Activity_log', $Values);
@@ -133,7 +133,7 @@
 			$Values = array(
 				"Gebruiker" => $Session['username'],
 				"Bericht"   => "Heeft een verhuring verwijderd", 
-				"Datum"     => date("F j, Y, g:i a"),
+				"Datum"     => time(),
 				);
 				
 			$this->db->insert('Activity_log', $Values);
@@ -145,7 +145,7 @@
 			$Values = array(
 				"Gebruiker" => $Session['username'], 
 				"Bericht"   => "Heeft een verhuring toegevoegd",
-				"Datum"     => date("F j, Y, g:i a"),
+				"Datum"     => time(),
 				);
 			
 			$this->db->insert('Activity_log', $Values);
@@ -157,7 +157,7 @@
 			$Values = array(
 				"Gebruiker" => $Session['username'],
 				"Bericht"   => "Heeft de data van een verhuring gewijzigd",
-				"Datum"     => date('F j, Y, g:i a'),
+				"Datum"     => time(),
 				);
 				
 				$this->db->insert('Activity_log', $Values);
