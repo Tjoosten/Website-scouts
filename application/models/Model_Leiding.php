@@ -92,16 +92,8 @@
       $this->db->where('id', $this->uri->segment(3))
                ->update("users", $Value);
     }
-
-    function Get_user() {
-      $this->db->select()
-               ->where('ID', $this->uri->segment(3));
-
-      $Query = $this->db->get('users');
-      return $Query->result();
-    }
     
-    function Leiding_upgrade($Mailing) {
+    function Leiding_upgrade() {
 			$Session = $this->session->userdata('logged_in');
 			
       $Value = array(
@@ -110,27 +102,16 @@
       
       $this->db->where("id", $this->uri->segment(3))
                ->update("users", $Value);
-
-      $Values = array(
-        "Naam"    => $Mailing['Naam'],
-        "Mail"    => $Mailing['Email'],
-        "Verhuur" => "1",
-        );
-
-      $this->db->insert('Notifications', $Values);
 			
     }
     
-    function Leiding_downgrade($Mailing) {
+    function Leiding_downgrade() {
       $Value = array(
         "Admin_role" => "0",
       );
       
       $this->db->where("id", $this->uri->segment(3))
                ->update("users", $Value);
-
-      $this->db->where('Mail', $Mailing['Naam'])
-               ->delete('users');
     }
 
     function Leiding_delete() {

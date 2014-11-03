@@ -180,16 +180,9 @@ class leiding extends CI_Controller {
     $Session = $this->session->userdata('logged_in');
 
     if($Session) {
-      if($Session['Admin'] == 1) {
-        $Leiding = $this->Leiding->Get_user();
-
-        foreach($Leiding as $Output) {
-          $Mailing['Naam']  = $Output->username;
-          $Mailing['Email'] = $Output->Mail;
-        }
-
+      if($Session['Admin'] == 1) { 
 			  $this->Log->Add_admin();
-        $this->Leiding->Leiding_upgrade($Mailing);
+        $this->Leiding->Leiding_upgrade();
         redirect('leiding');
       } else {
         $this->load->view('alerts/no_permission');
@@ -220,14 +213,8 @@ class leiding extends CI_Controller {
 
     if($Session) {
       if($Session['Admin'] == 1) { 
-        $Leiding = $this->Leiding->Get_user();
-
-        foreach($Leiding as $Output) {
-          $Mailing['Email'] = $Output->Mail;
-        }
-
 			  $this->Log->Delete_login();
-        $this->Leiding->Leiding_delete($Mailing);
+        $this->Leiding->Leiding_delete();
         redirect('leiding');
       } else {
         $this->load->view('alerts/no_permission');
