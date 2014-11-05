@@ -43,7 +43,7 @@
           <!-- Photo's -->
           <div class="row">
             <div class="col-md-6">
-              <img class="img-rounded img-thumbnail" style="width: 400px; height: 200px;" src="" alt="">              
+              <img class="img-rounded img-thumbnail" style="width: 400px; height: 200px;" src="/assets/files/1.jpg" alt="">              
             </div>
 
             <div class="col-md-6">
