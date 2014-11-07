@@ -35,7 +35,7 @@
           			<p> 
           				Hier vind u wanner onze lokalen al reeds verhuurd zijn. 
           				Vind u hier de datum niet dat u onze lokalen wilt huren leg dan snel je datum vast. 
-          				Dat doe je door dit <a href="<?php echo base_url(); ?>verhuur/verhuur/aanvraag">formulier</a> in te vullen..
+          				Dat doe je door dit <a href="<?php echo base_url(); ?>verhuur/verhuur_aanvraag">formulier</a> in te vullen..
           			</p>
 
           				<div class="row">

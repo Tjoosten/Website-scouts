@@ -28,7 +28,7 @@
             $this->load->view('components/header', $data);
             $this->load->view('components/navbar', $data);
             $this->load->view('client/verhuur_kalender', $DB);
-            $this->load->view('components/footer');
+            $this->load->view('components/footer'); 
         }
 
         public function verhuur_aanvraag() {
