@@ -8,7 +8,8 @@
      */
 
      function ploeg() {
-        $this->db->select();
+        $this->db->select()
+                 ->where_not_in('Tak','6');
 
         $Query = $this->db->get('users');
         return $Query->result();
