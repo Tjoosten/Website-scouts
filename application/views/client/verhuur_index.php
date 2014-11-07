@@ -47,25 +47,24 @@
             </div>
 
             <div class="col-md-6">
-              <img class="img-rounded img-thumbnail" style="width: 400px; height: 200px;" src="" alt="">
+              <img class="img-rounded img-thumbnail" style="width: 400px; height: 200px;" src="/assets/files/2.jpg" alt="">
             </div>
           </div>
           <!-- /// -->
 
           <p style="margin-top: 7px;">
             Onze lokalen Bestaan uit 2 Blokken. Waarin 1 grote zaal en 5 lokalen en sanitaire blok gevestigd zijn. De grote zaal is<br>
-            Polyvalente zaal uitgerust met een toog. Deze toog bevat een tapinstallatie en een grote koelkast.<br>
-            Verder is er ook nog een keuken. Deze keuken is voorzien 2 gasfornuizen, friet ketel ,keuken eilend, enz...
+            Polyvalente. Verder is er ook nog een keuken. Deze keuken is voorzien 2 gasfornuizen, friet ketel ,keuken eilend, enz...
           </p>
 
           <!-- Photo's -->
           <div class="row">
             <div class="col-md-6">
-              <img class="img-rounded img-thumbnail" style="width: 400px; height: 200px;" src="" alt="">
+              <img class="img-rounded img-thumbnail" style="width: 400px; height: 200px;" src="/assets/files/3.jpg" alt="">
             </div>
 
             <div class="col-md-6">
-              <img class="img-rounded img-thumbnail" style="width: 400px; height: 200px;" src="" alt="">
+              <img class="img-rounded img-thumbnail" style="width: 400px; height: 200px;" src="/assets/files/4.jpg" alt="">
             </div>
           </div>
           <!-- /// -->

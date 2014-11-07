@@ -16,7 +16,11 @@
 				</div>
 				
 				<div class="list-group">
-					<a href="" class="list-group-item">Foto's kapoenen</a>
+					<a href="<?php echo base_url(); ?>Fotos/Tak/2" class="list-group-item">Foto's kapoenen</a>
+					<a href="<?php echo base_url(); ?>Fotos/Tak/3" class="list-group-item">Foto's welpen</a>
+					<a href="<?php echo base_url(); ?>Fotos/Tak/4" class="list-group-item">Foto's Jong-Givers</a>
+					<a href="<?php echo base_url(); ?>Fotos/Tak/5" class="list-group-item">Foto's Givers</a>
+					<a href="<?php echo base_url(); ?>Fotos/Tak/6" class="list-group-item">Foto's Jins</a>
 				</div>
 			</div>
 		</div>
@@ -29,19 +33,25 @@
 						<h2 style="margin-bottom: -5px;"> Foto's </h2>
 					</div>
 					
-					<div class="row">
+					<?php if(count($Foto) > 0): ?>
+						<div class="row">
 						<?php foreach($Foto as $Output): ?>
 							<div class="col-xs-4 col-sm-4 col-md-4">
 								<div class="thumbnail">
-	                <div class="caption">
-	                	<h4><?php echo $Output->Naam; ?></h4>
-	                   <p><a href="<?php echo $Output->Web_url; ?>" class="label label-default">Bekijk</a></p>
-	                </div>
-	                <img style="width: 300px; height:150px;" src="<?php echo $Output->File_path; ?>" alt="<?php echo $Output->Naam; ?>">
+	                				<div class="caption">
+	                					<h4><?php echo $Output->Naam; ?></h4>
+	                   					<p><a href="<?php echo $Output->Web_url; ?>" class="label label-default">Bekijk</a></p>
+	                				</div>
+	                					<img style="width: 300px; height:150px;" src="<?php echo $Output->File_path; ?>" alt="<?php echo $Output->Naam; ?>">
 								</div>
 							</div>
 						<?php endforeach; ?>
 					<div>
+				<?php else: ?>
+					<div class="alert alert-danger">
+						<p>Er zijn geen foto albums geuploads.</p>
+					</div>
+				<?php endif; ?>
 			</div>
 		</div>
 	</div>

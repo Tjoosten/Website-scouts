@@ -8,6 +8,14 @@
 			return $Query->result();
 		}
 		
+		function Select_tak() {
+			$this->db->select()
+					  ->where('Tak', $this->uri->segment(3));
+
+			$Query = $this->db->get('Photo_Gallery');
+			return $Query->Result();
+		}
+
 		function Insert($image_data = array()) {
 			$Values = array(
 				"Naam"      => $this->input->post('Naam'),
@@ -32,7 +40,5 @@
 		function Delete() {
       $this->db->where('File_name', $this->uri->segment(3))
          	     ->delete('Photo_Gallery');
-
-      return $this->db->affected_rows(); 
 		}
 	} 

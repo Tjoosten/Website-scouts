@@ -17,8 +17,21 @@ class Fotos extends CI_Controller {
 
     $this->load->view('components/header', $data);
     $this->load->view('components/navbar', $data);
-    $this->load->view('client/Fotos'); 
+    $this->load->view('client/Fotos', $data); 
     $this->load->view('components/footer');
+  }
+
+  function Tak() {
+  	$data['Title']  = "Fotos";
+  	$data['Active'] = "3";
+
+  	// Database Variables
+  	$data['Foto'] = $this->Images->select_tak(); 
+
+  	$this->load->view('components/header', $data);
+  	$this->load->view('components/navbar', $data);
+  	$this->load->view('client/Fotos', $data);
+  	$this->load->view('components/footer');
   }
 
 	// Admin side
