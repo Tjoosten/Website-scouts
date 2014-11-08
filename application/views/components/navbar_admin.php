@@ -46,20 +46,25 @@
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
-              <?php if($Role == 1): ?>
-                <li <?php if($Active == 6): ?> class="active "<?php endif; ?>>
-                  <a href="<?php echo base_url(); ?>leiding/"><span class="octicon octicon-organization Icon-color"></span></a>
-                </li>
-              <?php endif; ?>
-              
-              <li>
-                <a href="<?php echo base_url(); ?>Leiding/settings/<?php echo $User ?>">
-                  <span class="octicon octicon-gear Icon-color"></span>
-                </a>
-              </li>
+              <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href=""><?php echo $User; ?></a>
 
-              <li>
-                <a href="<?php echo base_url(); ?>backend/Logout"><span class="octicon octicon-sign-out Icon-color"></span></a>
+                <ul class="dropdown-menu" role="menu">
+                  <?php if($Role == 1): ?>
+                    <li <?php if($Active == 6): ?> class="active "<?php endif; ?>>
+                      <a href="<?php echo base_url(); ?>leiding/"><span class="octicon octicon-organization"></span> Leiding</a>
+                    </li>
+                  <?php endif; ?>
+                  <li>
+                    <a href="<?php echo base_url(); ?>Leiding/settings/<?php echo $User ?>">
+                      <span class="octicon octicon-gear"></span> Account configuratie
+                    </a>
+                  </li>
+                  <li class="divider"></li>
+                  <li>
+                    <a href="<?php echo base_url(); ?>backend/Logout"><span class="octicon octicon-sign-out"></span> Logout</a>
+                </li>
+              </ul>
               </li>
             </ul>
           </div>
