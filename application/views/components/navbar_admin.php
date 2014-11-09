@@ -56,6 +56,11 @@
                     </li>
                   <?php endif; ?>
                   <li>
+                    <a href="mailto:Webmaster@st-joris-turnhout.be?SUBJECT=Bug - http://wwww,st-joris-turnhout.be">
+                      <span class="octicon octicon-bug"></span> Meld een bug!
+                    </a>
+                  </li>
+                  <li>
                     <a href="<?php echo base_url(); ?>Leiding/settings/<?php echo $User ?>">
                       <span class="octicon octicon-gear"></span> Account configuratie
                     </a>
