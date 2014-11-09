@@ -20,6 +20,11 @@
             return $Query->result();
         }
 
+        function Download() {
+            $Query = $this->db->get('Inschrijvingen_ontbijt');
+            return $Query->result();
+        }
+
         function Start_inschrijving_ontbijt() {
             $Value = array(
                 "Status" => "1",

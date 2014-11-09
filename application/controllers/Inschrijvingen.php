@@ -5,8 +5,9 @@
     	function __construct(){
 			 	parent::__construct();
 				// Load model
-				$this->load->library('Email');
-				$this->load->helper('Email');
+				$this->load->dbutil();
+				$this->load->library(array('Email','dompdf_gen'));
+				$this->load->helper(array('Email'));
 				$this->load->model('Model_inschrijvingen','Inschrijving');
     	}
 
@@ -126,6 +127,18 @@
 				// If no session, redirect to login
 				redirect('Admin', 'Refresh');
 			}
+		}
+
+		public function Download_ontbijt() {
+			$Data['Query'] = $this->Inschrijving->Download(); 
+
+        	$this->load->view('pdf/ontbijt', $Data);
+        	$html = $this->output->get_output();
+         
+        	// Convert to PDF
+        	$this->dompdf->load_html($html);
+        	$this->dompdf->render();
+        	$this->dompdf->stream("Onbijt_inschrijvingen.pdf");
 		}
 
 		public function Delete_inschrijving() {

@@ -25,6 +25,10 @@
 			<div class="tab-content">
   			<div class="tab-pane active" id="Inschrijvingen">
   				<p>
+            <div style="padding-bottom: 15px;" class="pull-right">
+              <a href="<?php echo base_url(); ?>Inschrijvingen/Download_ontbijt" Role="button" class="btn btn-info">Download Inschrijvingen</a>
+            </div>
+
   					<table class="table table-condensed">
   						<thead>
   							<tr>
