@@ -42,6 +42,12 @@
                     <span class="fa fa-asterisk Icon-color"></span> Inschrijvingen
                   </a>
                 </li>
+
+                <li>
+                  <a href="<?php echo base_url(); ?>Mailing">
+                    <span class="fa fa-envelope Icon-color"></span> Mailing
+                  </a>
+                </li>
               <?php endif; ?>
             </ul>
 
