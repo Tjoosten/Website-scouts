@@ -1,8 +1,8 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 	class Cron extends CI_Controller {
- 
-    /* 
-     | Developer: Tim Joosten. 
+
+    /*
+     | Developer: Tim Joosten.
      | License: 4GPL
      | Copyright: Tim Joosten, Scouts & Gidsen - Sint-Joris
      */
@@ -21,37 +21,42 @@
 
     function index() {
       echo "".PHP_EOL;
-      echo "// Cronjoboos st-joris-turnhout.be".PHP_EOL;
+      echo "// Cronjobs st-joris-turnhout.be".PHP_EOL;
       echo "// Menu zal niet werken als je je niet in public_html bevind".PHP_EOL;
       echo "".PHP_EOL;
 
       echo "1) Optimaliseer database".PHP_EOL;
       echo "2) Verwijder afgelopen verhuringen".PHP_EOL;
       echo "3) Verwijder afgelopen activiteiten".PHP_EOL;
+			echo "4) Run migrations".PHP_EOL;
       echo "---------------------------------------------".PHP_EOL;
-      echo "Welke taak wil je uitvoeren? (1 - 3):";
+      echo "Welke taak wil je uitvoeren? (1 - 4):";
 
       $Cron = fopen ("php://stdin","r");
       $Taak = fgets($Cron);
 
       if(trim($Taak) == 1) {
         shell_exec('php /scoutnet.be/users/st-joris/public_html/index.php Cron Optimize_DB');
-      } 
+      }
 
       elseif(trim($Taak) == 2) {
         shell_exec('php /scoutnet.be/users/st-joris/public_html/index.php Cron Del_verhuring');
-      } 
+      }
 
       elseif(trim($Taak) == 3) {
         shell_exec('php /scoutnet.be/users/st-joris/public_html/index.php Cron Del_activiteiten');
       }
+
+			elseif(trim($Taak) == 4) {
+				shell_exec('php /scoutnet.be/users/st-joris/public_html/index.php Migrate');
+			}
 
       else {
         echo "Ongeldige keuze".PHP_EOL;
       }
 
     }
- 
+
     function Optimize_DB() {
 			$this->Cron->Optimize();
     }

@@ -1,13 +1,24 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 	class Verhuur extends CI_Controller {
+
+		// Constructor
+		public $Session = array();
+		public $Heading = array();
+		public $Message = array();
+
   	function __construct() {
-            parent::__construct();
-            $this->load->model('Model_verhuringen','Verhuringen');
-	        $this->load->model('Model_Log', 'Log');
-            $this->load->model('Model_notifications', 'Not');
-            $this->load->library(array('email'));
-            $this->load->helper(array('email','date','text'));
-        }
+      parent::__construct();
+      $this->load->model('Model_verhuringen','Verhuringen');
+	    $this->load->model('Model_Log', 'Log');
+      $this->load->model('Model_notifications', 'Not');
+      $this->load->library(array('email','dompdf_gen'));
+      $this->load->helper(array('email','date','text'));
+
+			$this->Session = $this->session->userdata('logged_in');
+			$this->Heading = "No permission";
+			$this->Message = "U hebt geen rechten om deze handeling uit te voeren";
+    }
+		// End constructor
 
 		  public function index() {
             $data['Title']  = "verhuur";
@@ -22,23 +33,23 @@
         public function verhuur_kalender() {
             $data['Title']  = "Verhuur kalender";
 			      $data['Active'] = "2";
-						
-            $DB['Verhuringen'] = $this->Verhuringen->Verhuring_kalender(); 
+
+            $DB['Verhuringen'] = $this->Verhuringen->Verhuring_kalender();
 
             $this->load->view('components/header', $data);
             $this->load->view('components/navbar', $data);
             $this->load->view('client/verhuur_kalender', $DB);
-            $this->load->view('components/footer'); 
+            $this->load->view('components/footer');
         }
 
         public function verhuur_aanvraag() {
-    
-            $data['Title'] = " Aanvraag verhuur"; 
+
+            $data['Title'] = " Aanvraag verhuur";
 			      $data['Active'] = "2";
 
             $this->load->view('components/header', $data);
             $this->load->view('components/navbar', $data);
-            $this->load->view('client/verhuur_aanvraag'); 
+            $this->load->view('client/verhuur_aanvraag');
             $this->load->view('components/footer');
         }
 
@@ -54,17 +65,17 @@
             $data['GSM']   = $this->input->post('GSM');
             $data['Groep'] = $this->input->post('Groep');
             $data['Mail']  = $this->input->post('Email');
-            
-            $Mailing = $this->Not->Verhuur_mailing(); 
+
+            $Mailing = $this->Not->Verhuur_mailing();
 
             foreach($Mailing as $Output) {
                 $administrator = $this->load->view('email/verhuur', $data , TRUE);
-            
+
                 $this->email->from('contact@st-joris-turnhout.be', 'Contact st-joris turnhout');
-                $this->email->to($Output->Mail); 
+                $this->email->to($Output->Mail);
                 $this->email->set_mailtype("html");
                 $this->email->subject('Nieuwe verhuring');
-                $this->email->message($administrator);  
+                $this->email->message($administrator);
                 $this->email->send();
                 $this->email->clear();
             }
@@ -81,92 +92,82 @@
             // echo $this->email->print_debugger();
 
             // Schrijft naar database
-            $this->Verhuringen->InsertDB(); 
+            $this->Verhuringen->InsertDB();
             redirect('Verhuur');
           }
         }
 
         // Admin side
 				public function Download_verhuringen() {
-          $Session = $this->session->userdata('logged_in');
-          $Admin = $Session['Admin'];
+          if($this->Session) {
+            if($this->Session['Admin'] == 1) {
+						  $Data['Query'] = $this->Verhuringen->Download_verhuringen();
 
-					if($Session) {
-            if ($Admin == 1) {
-						  $this->load->dbutil();
-						  $this->Verhuringen->Download_verhuringen();
-						  redirect('Verhuur/Admin_verhuur');	
+              $this->load->view('pdf/verhuur', $Data);
+              $html = $this->output->get_output();
+
+              // Convert to PDF
+              $this->dompdf->set_paper('letter', 'landscape');
+              $this->dompdf->load_html($html);
+              $this->dompdf->render();
+              $this->dompdf->stream("Onbijt_inschrijvingen.pdf");
             } else {
-              $this->load->view('alerts/no_permission');
-            }		
+							$Data['Heading'] = $this->Heading;
+							$Data['Message'] = $this->Message;
+              $this->load->view('errors/html/alert', $Data);
+            }
 					} else {
 						// if no session, redirect to login page
 						redirect('Admin');
 					}
 				}
-				
-				public function Search() {
-          $Session = $this->session->userdata('logged_in');
-          $Admin = $Session['Admin'];
 
-					if($Session) {
-						if($Admin == 1) {
-						  // Session variables
-						  $data['Role']  = $Session['Admin'];
-						  $data['User']  = $Session['username'];
-						  $data['Theme'] = $Session['Theme'];
-						
+				public function Search() {
+          if($this->Session) {
+						if($this->Session['Admin'] == 1) {
 						  // Global variables
-						  $data['Title'] = "Verhuringen";
-						  $data['Active'] = "2";
-						
+						  $Data['Title'] = "Verhuringen";
+						  $Data['Active'] = "2";
+
 						  // Database Variables
-						  $data['Bevestigd'] = $this->Verhuringen->Search();
-						
-						  $this->load->view('components/admin_header', $data);
-						  $this->load->view('components/navbar_admin', $data);
-						  $this->load->view('admin/verhuur_index', $data);
+							$Data['Notification'] = $this->Not->Get();
+						  $Data['Bevestigd'] = $this->Verhuringen->Search();
+
+						  $this->load->view('components/admin_header', $Data);
+						  $this->load->view('components/navbar_admin', $Data);
+						  $this->load->view('admin/verhuur_index', $Data);
 						  $this->load->view('components/footer');
             } else {
-              $this->load->view('alerts/no_permission');
+							$Data['Heading'] = $this->Heading;
+							$Data['Message'] = $this->Message;
+              $this->load->view('errors/html/alert', $Data);
             }
 					} else {
 						// if no session, redirect to login page
 						redirect('Admin','Refresh');
 					}
 				}
-				
+
         public function Admin_verhuur() {
-            if($this->session->userdata('logged_in'))  {
-							$Session = $this->session->userdata('logged_in');
-              $Admin = $Session['Admin']; 
-              $this->Not->Get();
-              $data['Notification'] = $this->Not->Get();
+				    if($this->Session)  {
+              $Data['Notification'] = $this->Not->Get();
 
-              if($Admin == 1) {
-                // Load Helpers & Drivers
-							  $this->load->helper('email');
-								
-                $Session = $this->session->userdata('logged_in');
-                
-								// Session variables
-                $data['Role']  = $Session['Admin'];
-								$data['User']  = $Session['username'];
-								$data['Theme'] = $Session['Theme'];
-
+              if($this->Session['Admin'] == 1) {
                 // Gobal variables
-                $data['Title']  = "Verhuringen";
-								$data['Active'] = "2";
+                $Data['Title']  = "Verhuringen";
+								$Data['Active'] = "2";
 
                 // Database variabels
-                $data['Bevestigd'] = $this->Verhuringen->Verhuur_api(); 
+                $Data['Bevestigd'] = $this->Verhuringen->Verhuur_api();
 
-                $this->load->view('components/admin_header', $data);
-                $this->load->view('components/navbar_admin', $data);
-                $this->load->view('admin/verhuur_index', $data);
+                $this->load->view('components/admin_header', $Data);
+                $this->load->view('components/navbar_admin', $Data);
+                $this->load->view('admin/verhuur_index', $Data);
                 $this->load->view('components/footer');
               } else {
-                $this->load->view('alerts/no_permission');
+								$Data['Heading'] = $this->Heading;
+								$Data['Message'] = $this->Message;
+                $this->load->view('errors/html/alerts', $Data);
               }
             } else {
                 //If no session, redirect to login page
@@ -175,31 +176,23 @@
         }
 
         public function verhuur_edit() {
-            if($this->session->userdata('logged_in')) {
-							$Session = $this->session->userdata('logged_in'); 
-							$Admin = $Session['Admin']; 
-							
-							if($Admin == 1) {
+            if($this->Session) {
+							if($this->Session['Admin'] == 1) {
                 // Global variables
                 $data['Title']  = "Wijzig verhuring";
 								$data['Active'] = "2";
-
-                // Session Variables
-                $Session = $this->session->userdata('logged_in');
-                
-								$data['Role']  = $Session['Admin'];
-								$data['User']  = $Session['username'];
-								$data['Theme'] = $Session['Theme'];
 
                 // Database variables
                 $data['Info'] = $this->Verhuringen->verhuur_info();
 
                 $this->load->view('components/admin_header', $data);
                 $this->load->view('components/navbar_admin', $data);
-                $this->load->view('admin/Verhuur_edit', $data); 
+                $this->load->view('admin/Verhuur_edit', $data);
                 $this->load->view('components/footer');
 							} else {
-								$this->load->view('alerts/no_permission');
+								$Data['Heading'] = $this->Heading;
+								$Data['Message'] = $this->Message;
+								$this->load->view('errors/html/alert', $Data);
 							}
             } else {
                 // Geen sessie gevonden, ga naar login pagina
@@ -209,11 +202,8 @@
         }
 
         public function verhuur_info() {
-            if($this->session->userdata('logged_in')) {
-							$Session = $this->session->userdata('logged_in');
-							$Admin   = $Session['Admin'];
-							
-							if($Admin == 1) {
+            if($this->Session) {
+							if($this->Session['Admin'] == 1) {
                 // Global variables
                 $data['Title']  = "Verhuur info";
 								$data['Active'] = "2";
@@ -221,54 +211,47 @@
                 // Database variables
                 $data['Info'] = $this->Verhuringen->verhuur_info();
 
-                // Session variables
-                $Session = $this->session->userdata('logged_in'); // Load session
-                
-								$data['Role']  = $Session['Admin'];
-								$data['User']  = $Session['Username'];
-								$data['Theme'] = $Session['Theme'];
-
-                $this->load->view('components/admin_header', $data); 
+                $this->load->view('components/admin_header', $data);
                 $this->load->view('components/navbar_admin', $data);
-                $this->load->view('admin/verhuur_info', $data); 
+                $this->load->view('admin/verhuur_info', $data);
                 $this->load->view('components/footer');
 							} else {
-								$this->load->view('alert/no_permission');
+								$Data['Heading'] = $this->Heading;
+								$Data['Message'] = $this->Message;
+								$this->load->view('errors/html/alert', $Data);
 							}
             } else {
                 // Geen sessie gevonden, ga naar login pagina
                 redirect('Admin', 'Refresh');
             }
         }
-				
+
         public function Wijzig_verhuur() {
-            if($this->session->userdata('logged_in')) {
-							$Session = $this->session->userdata('logged_in');
-							$Admin = $Session['Admin']; 
-							
-						  if($Admin == 1 ) {
+            if($this->Session) {
+						  if($this->Session['Admin'] == 1 ) {
                 $this->Verhuringen->Wijzig_verhuur();
                 redirect('Verhuur/Admin_verhuur');
 						  } else {
-						  	$this->load->view('alert_no_permission');
+								$Data['Heading'] = $this->Heading;
+								$Data['Message'] = $this->Message;
+						  	$this->load->view('errors/html/alert', $Data);
 						  }
             } else {
                 // Geen sessie gevonden, ga naar login pagina
                 redirect('Admin', 'Refresh');
             }
         }
-				
+
         public function Change_optie() {
-            if($this->session->userdata('logged_in')) {
-							$Session = $this->session->userdata('logged_in'); 
-							$Admin = $Session['Admin']; 
-							
-							if($Admin == 1) {
+            if($this->Session) {
+							if($this->Session['Admin'] == 1) {
                 $this->Verhuringen->Status_optie();
 								$this->Log->Verhuur_option();
                 redirect('Verhuur/Admin_verhuur');
 							} else {
-								redirect('alert/no_permission'); 
+								$Data['Heading'] = $this->Heading;
+								$Data['Message'] = $this->Message;
+								$this->load->view('errors/html/alert', $Data);
 							}
             } else {
                 // Geen sessie gevonden, ga naar login pagina
@@ -277,16 +260,15 @@
         }
 
         public function Change_bevestigd() {
-            if($this->session->userdata('logged_in')) {
-							$Session = $this->session->userdata('logged_in');
-							$Admin = $Session['Admin'];
-							
-							if($Admin == 1) {
+            if($this->Session) {
+							if($this->Session['Admin'] == 1) {
 								$this->Log->Verhuur_option();
-                $this->Verhuringen->Status_bevestigd(); 
+                $this->Verhuringen->Status_bevestigd();
                 redirect('Verhuur/Admin_verhuur');
 							} else {
-								redirect('alerts/no_permission');
+								$Data['Heading'] = $this->Heading;
+								$Data['Message'] = $this->Message;
+								$this->load->view('errors/html/alert', $Data);
 							}
             } else {
                 // Geen sessie gevonden, ga naar login pagina
@@ -295,17 +277,15 @@
         }
 
         public function Verhuur_delete() {
-            if($this->session->userdata('logged_in')) {
-							// Session gedeelte
-							$Session = $this->session->userdata('logged_in');
-							$Admin = $Session['Admin'];
-							
-							if($Admin == 1) {
+            if($this->Session) {
+							if($this->Session['Admin'] == 1) {
                 $this->Verhuringen->Verhuur_delete();
 								$this->Log->Verhuur_delete();
                 redirect('Verhuur/Admin_verhuur');
 							} else {
-								$this->load->view('alerts/no_permission');
+								$Data['Heading'] = $this->Heading;
+								$Data['Message'] = $this->Message;
+								$this->load->view('errors/html/alert', $Data);
 							}
             } else {
                 // Geen sessie gevonden, ga naar login pagina

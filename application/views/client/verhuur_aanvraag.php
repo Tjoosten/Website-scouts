@@ -36,11 +36,11 @@
 
           			<form method="POST" action="<?php echo base_url(); ?>/verhuur/toevoegen_verhuur">
           				<label for="Start">Start datum:</label>
-          				<input style="width: 35%;" name="Start_datum" class="form-control" id="Start" placeholder="bv. 00/00/00">
+          				<input style="width: 35%;" name="Start_datum" class="form-control" id="Start" placeholder="bv. 00/00/0000">
           				<br>
 
           				<label for="Eind">Eind datum:</label>
-          				<input style="width: 35%;" name="Eind_datum" class="form-control" id="Eind" placeholder="bv. 00/00/00">
+          				<input style="width: 35%;" name="Eind_datum" class="form-control" id="Eind" placeholder="bv. 00/00/0000">
           				<br>
 
           				<label for="Groep">Groep:</label>

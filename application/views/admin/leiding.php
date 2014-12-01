@@ -1,13 +1,13 @@
 <div class="container">
     <div class="row">
         <div class="col-sm-12 col-md-12 col-lg-12">
-            
+
             <!-- Nav tabs -->
             <ul class="nav nav-tabs" role="tablist">
                 <li class="active"><a href="#admin" role="tab" data-toggle="tab">Admin's</a></li>
                 <li><a href="#leiding" role="tab" data-toggle="tab">Leiding</a></li>
-                
-                <?php if($Role == 1): ?>
+
+                <?php if($this->Session['Admin'] == 1): ?>
                     <li><a href="#new" role="tab" data-toggle="tab">Nieuwe Admin / Leiding</a></li>
                 <?php endif; ?>
             </ul>
@@ -35,13 +35,13 @@
                                 <td><?php echo $Output->username; ?></td>
 
                                 <td>
-                                                <?php if (valid_email($Output->Mail)): ?> 
+                                                <?php if (valid_email($Output->Mail)): ?>
                             <a href="mailto:<?php echo $Output->Mail; ?>"><?php echo $Output->Mail; ?></a>
                             <?php else: ?>
                                                     <?php echo $Output->Mail; ?>
                                                 <?php endif; ?>
                                           </td>
-                                            
+
                                 <td><?php echo $Output->GSM; ?></td>
                                 <td>
                                     <div class="btn-toolbar">
@@ -51,12 +51,12 @@
                                             </a>
 
                                             <?php if($Output->Blocked == 1): ?>
-                                                <a title="Blokkering opheffen" class="btn btn-xs btn-success" href="<?php echo base_url(); ?>Leiding/Leiding_unblock/<?php echo $Output->id; ?>"> 
-                                                    <span class="fa fa-lock"></span> 
+                                                <a title="Blokkering opheffen" class="btn btn-xs btn-success" href="<?php echo base_url(); ?>Leiding/Leiding_unblock/<?php echo $Output->id; ?>">
+                                                    <span class="fa fa-lock"></span>
                                                 </a>
                                             <?php elseif($Output->Blocked == 0): ?>
-                                                <a title="Blokkering account" class="btn btn-xs btn-danger" href="<?php echo base_url(); ?>Leiding/Leiding_block/<?php echo $Output->id; ?>"> 
-                                                    <span class="fa fa-lock"></span> 
+                                                <a title="Blokkering account" class="btn btn-xs btn-danger" href="<?php echo base_url(); ?>Leiding/Leiding_block/<?php echo $Output->id; ?>">
+                                                    <span class="fa fa-lock"></span>
                                                 </a>
                                             <?php endif; ?>
                                         </div>
@@ -70,8 +70,8 @@
             </div>
                 </div>
         </div>
-        
-        <?php if($Role == 1): ?>
+
+        <?php if($this->Session['Admin'] == 1): ?>
             <div class="tab-pane" id="new">
                 <p>
                     <form method="POST" action="<?php echo base_url(); ?>leiding/Insert_leiding">
@@ -82,7 +82,7 @@
                         <label for="Mail">Mail:</label>
                         <input class="form-control" type="text" style="width: 30%;" name="Mail" placeholder="Naam" />
                         <br>
-                    
+
                         <label for="GSM">GSM-nummer:</label>
                         <input class="form-control" type="text" style="width: 30%" name="GSM" placeholder="GSM-nummer" />
                         <br>
@@ -106,7 +106,7 @@
                 </p>
             </div>
         <?php endif; ?>
-        
+
         <div class="tab-pane" id="leiding">
             <p>
                             <div class="row">
@@ -120,7 +120,7 @@
                                 <th>GSM:</th>
                                 <th>Tak:</th>
 
-                                <?php if($Role == 1): ?>
+                                <?php if($this->Session['Admin'] == 1): ?>
                                     <th></th> <!-- only used for functions -->
                                 <?php endif; ?>
                             </tr>
@@ -131,7 +131,7 @@
                                     <td><code>#<?php echo $Output->id; ?></code></td>
                                     <td><?php echo $Output->username; ?></td>
                                     <td>
-                                                                            <?php if (valid_email($Output->Mail)): ?> 
+                                                                            <?php if (valid_email($Output->Mail)): ?>
                                                         <a href="mailto:<?php echo $Output->Mail; ?>"><?php echo $Output->Mail; ?></a>
                                                         <?php else: ?>
                                                                                 <?php echo $Output->Mail; ?>
@@ -153,7 +153,7 @@
                                         <?php endif; ?>
                                     </td>
 
-                                    <?php if($Role == 1): ?>
+                                    <?php if($this->Session['Admin'] == 1): ?>
                                         <td>
                                             <div class="btn-toolbar">
                                                 <div class="btn-group">
@@ -164,12 +164,12 @@
 
                                                 <div class="btn-group">
                                                     <?php if($Output->Blocked == 1): ?>
-                                                        <a title="blokkering opheffen" class="btn btn-xs btn-success" href="<?php echo base_url(); ?>leiding/Leiding_unblock/<?php echo $Output->id; ?>"> 
-                                                            <span class="fa fa-lock"></span> 
+                                                        <a title="blokkering opheffen" class="btn btn-xs btn-success" href="<?php echo base_url(); ?>leiding/Leiding_unblock/<?php echo $Output->id; ?>">
+                                                            <span class="fa fa-lock"></span>
                                                         </a>
                                                     <?php elseif($Output->Blocked == 0): ?>
-                                                        <a title="blokkering account" class="btn btn-xs btn-danger" href="<?php echo base_url(); ?>leiding/Leiding_block/<?php echo $Output->id; ?>"> 
-                                                            <span class="fa fa-lock"></span> 
+                                                        <a title="blokkering account" class="btn btn-xs btn-danger" href="<?php echo base_url(); ?>leiding/Leiding_block/<?php echo $Output->id; ?>">
+                                                            <span class="fa fa-lock"></span>
                                                         </a>
                                                     <?php endif; ?>
 

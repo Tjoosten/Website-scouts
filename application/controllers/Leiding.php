@@ -2,26 +2,35 @@
 session_start(); //we need to call PHP's session object to access it through CI
 class leiding extends CI_Controller {
 
-  /* 
+  /*
    | Developer: Tim Joosten
    | Licence: 4GPL
-   | Copyright: Sint-Joris Turnhout, Tim Joosten  
+   | Copyright: Tim Joosten
    */
+
+  // Constructor
+  public $Session       = array();
+  public $Error_message = array();
+  public $Error_heading = array();
 
   function __construct() {
     parent::__construct();
     $this->load->model('Model_leiding', 'Leiding');
     $this->load->model('Model_log', 'Log');
-    $this->load->library('email');
-		$this->load->helper('email');
-    $this->load->helper('string');
+    $this->load->library(array('email'));
+		$this->load->helper(array('email','string'));
+
+    $this->Session = $this->session->userdata('logged_in');
+    $this->Error_heading = "No permission";
+    $this->Error_message = "U hebt geen rechten om deze handeling uit te voeren";
   }
+  // END Constructor
 
   function Leidingsploeg() {
     $data['Title']  = "Leidingsploeg";
     $data['Active'] = "1";
 
-    $DB['ploeg'] = $this->Leiding->Ploeg(); 
+    $DB['ploeg'] = $this->Leiding->ploeg();
 
     $this->load->view('components/header', $data);
     $this->load->view('components/navbar', $data);
@@ -30,23 +39,15 @@ class leiding extends CI_Controller {
   }
 
   function index() {
-    if($this->session->userdata('logged_in'))  {
-      $Session = $this->session->userdata('logged_in');
-
-      if($Session['Admin'] == 1) { 
+    if($this->Session)  {
+      if($this->Session['Admin'] == 1) {
         // General
         $data['Title']  = "Leiding";
 			  $data['Active'] = "6";
-      
-        // Session
-        $data['Role']  = $Session['Admin'];
-			  $data['User']  = $Session['username'];
-			  $data['Theme'] = $Session['Theme'];
- 
         // Database
         $data['Admin']   = $this->Leiding->Administrators();
         $data['Leiding'] = $this->Leiding->Leiding();
-      
+
         $this->load->view('components/admin_header', $data);
         $this->load->view('components/navbar_admin', $data);
         $this->load->view('admin/leiding', $data);
@@ -58,23 +59,16 @@ class leiding extends CI_Controller {
       redirect('Admin', 'refresh');
 	  }
   }
-	
+
 	function Settings() {
-		if($this->session->userdata('logged_in')) {
-			$Session = $this->session->userdata('logged_in');
-			
+		if($this->Session) {
 			// General variables
 			$data['Title'] =  "Account configuratie";
 			$data['Active'] = "7";
-			
-			// Session variables
-			$data['Role']  = $Session['Admin'];
-			$data['User']  = $Session['username'];
-			$data['Theme'] = $Session['Theme'];
-			
-			// Database variables 
+
+			// Database variables
 			$DB['Account'] = $this->Leiding->Account();
-			
+
 			$this->load->view('components/admin_header', $data);
 			$this->load->view('components/navbar_admin', $data);
 			$this->load->view('admin/settings', $DB);
@@ -86,16 +80,16 @@ class leiding extends CI_Controller {
 
   // Database functies
 	function Settings_edit() {
-		if($this->session->userdata('logged_in')) {
-			// Old Session 
+		if($this->Session) {
+			// Old Session
 			$Session = $this->session->userdata('logged_in');
-			
+
 			$data['id']    = $Session['id'];
 			$data['Admin'] = $Session['Admin'];
 			$data['User']  = $Session['username'];
 			$data['Tak']   = $Session['Tak'];
 			$data['Theme'] = $Session['Theme'];
-			
+
 			// New database
 			$Update = array(
 				"id"       => $data['id'],
@@ -104,22 +98,19 @@ class leiding extends CI_Controller {
 				"Tak"      => $data['Tak'],
 				"Theme"    => $this->input->post('Theme'),
 			);
-			
+
 			$this->session->set_userdata('logged_in', $Update);
-			
-			// Write to database  
+
+			// Write to database
 			$this->Leiding->Settings_edit();
 			redirect('Leiding/Settings', 'Refresh');
 		} else {
 			redirect('Admin', 'Refresh');
 		}
 	}
-	
-  function Insert_leiding() {
-    $Session = $this->session->userdata('logged_in');
-    $Admin   = $Session['Admin'];
 
-    if($Session) {
+  function Insert_leiding() {
+    if($this->Session) {
       // Mail variables
       $Mail['Mail'] = $this->input->post('Mail');
       $Mail['Pass'] = random_string('alnum', 16);
@@ -130,10 +121,10 @@ class leiding extends CI_Controller {
 			$this->email->from('Webmaster@st-joris-turnhout.be', 'Webmaster');
 			$this->email->to($this->input->post('Mail'));
 			$this->email->subject('Login gegevens');
-			$this->email->message($Mail_view);	
+			$this->email->message($Mail_view);
       $this->email->set_mailtype('html');
-			$this->email->send();		
-			
+			$this->email->send();
+
 			// Database Handlings
 			$this->Log->Created_login();
       $this->Leiding->Leiding_insert($Mail);
@@ -144,13 +135,10 @@ class leiding extends CI_Controller {
   }
 
   function Leiding_block() {
-    $Session = $this->session->userdata('logged_in');
-    $Admin   = $Session['Admin']; 
-
-    if($Session) {
-      if($Admin == 1) {
+    if($this->Session) {
+      if($this->Session['Admin'] == 1) {
         $this->Leiding->Leiding_Block();
-			  $this->Log->block(); 
+			  $this->Log->block();
         redirect('leiding');
       } else {
         $this->load->view('alerts/no_permission');
@@ -161,10 +149,8 @@ class leiding extends CI_Controller {
   }
 
   function Leiding_unblock() {
-    $Session = $this->session->userdata('logged_in'); 
-
-    if($Session) {
-      if($Session['Admin'] == 1) {
+    if($this->Session) {
+      if($this->Session['Admin'] == 1) {
         $this->Leiding->Leiding_unblock();
 			  $this->Log->Log_Unblock();
         redirect('leiding');
@@ -177,10 +163,8 @@ class leiding extends CI_Controller {
   }
 
   function Leiding_upgrade() {
-    $Session = $this->session->userdata('logged_in');
-
-    if($Session) {
-      if($Session['Admin'] == 1) {
+    if($this->Session) {
+      if($this->Session['Admin'] == 1) {
         $Leiding = $this->Leiding->Get_user();
 
         foreach($Leiding as $Output) {
@@ -200,15 +184,13 @@ class leiding extends CI_Controller {
   }
 
   function Leiding_downgrade() {
-    $Session = $this->session->userdata('logged_in'); 
-
-    if($Session) {
-      if($Session['Admin']  == 1 ) { 
+    if($this->Session) {
+      if($this->Session['Admin']  == 1 ) {
 			  $this->Log->Delete_admin();
-        $this->Leiding->Leiding_downgrade(); 
+        $this->Leiding->Leiding_downgrade();
         redirect('leiding');
       } else {
-        $this->load->view('alerts/no_permission'); 
+        $this->load->view('alerts/no_permission');
       }
     } else {
       redirect('Admin', 'refresh');
@@ -216,10 +198,8 @@ class leiding extends CI_Controller {
   }
 
   function Leiding_delete() {
-    $Session = $this->session->userdata('logged_in');
-
-    if($Session) {
-      if($Session['Admin'] == 1) { 
+    if($this->Session) {
+      if($this->Session['Admin'] == 1) {
         $Leiding = $this->Leiding->Get_user();
 
         foreach($Leiding as $Output) {
@@ -237,4 +217,3 @@ class leiding extends CI_Controller {
     }
   }
 }
-

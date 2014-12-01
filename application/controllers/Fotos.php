@@ -1,23 +1,28 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 class Fotos extends CI_Controller {
 
+  // Constructor
+  public $Session = array();
+
   function __construct() {
     parent::__construct();
 		$this->load->model('Model_fotos', 'Images');
 		$this->load->helper(array('form', 'url'));
+    $this->Session = $this->session->userdata('logged_in');
   }
+  // End constructor
 
 	// Client side
   function index() {
-    $data['Title']  = "Fotos"; 
+    $data['Title']  = "Fotos";
 		$data['Active'] = "3";
-		
+
 		// Database variables
 		$data['Foto'] = $this->Images->select();
 
     $this->load->view('components/header', $data);
     $this->load->view('components/navbar', $data);
-    $this->load->view('client/Fotos', $data); 
+    $this->load->view('client/Fotos', $data);
     $this->load->view('components/footer');
   }
 
@@ -26,7 +31,7 @@ class Fotos extends CI_Controller {
   	$data['Active'] = "3";
 
   	// Database Variables
-  	$data['Foto'] = $this->Images->select_tak(); 
+  	$data['Foto'] = $this->Images->select_tak();
 
   	$this->load->view('components/header', $data);
   	$this->load->view('components/navbar', $data);
@@ -36,19 +41,12 @@ class Fotos extends CI_Controller {
 
 	// Admin side
 	function Index_admin() {
-		if($this->session->userdata('logged_in')) {
+		if($this->Session) {
 			// Global Variables
 			$data['Title']  = "Admin media";
 			$data['Active'] = "3";
 			$data['DB'] = $this->Images->Backend_select();
-			
-			// Session Variables
-			$Session = $this->session->userdata('logged_in');
-			
-			$data['Role']  = $Session['Admin'];
-			$data['User']  = $Session['username'];
-			$data['Theme'] = $Session['Theme'];
-			
+
 			$this->load->view('components/admin_header', $data);
 			$this->load->view('components/navbar_admin', $data);
 			$this->load->view('admin/index_foto', array('error' => ''), $data);
@@ -58,37 +56,28 @@ class Fotos extends CI_Controller {
 			redirect('Admin', 'Refresh');
 		}
 	}
-	
+
 	public function do_upload() {
-		if($this->session->userdata('logged_in')) {
+		if($this->Session) {
 			$config['allowed_types'] = 'jpg';
 			$config['upload_path'] = './assets/fotos/';
 
 			$this->load->library('upload', $config);
 
 			if (!$this->upload->do_upload()) {
-				$Session = $this->session->userdata('logged_in');
-				
+
 				// Global Variables
 				$data['Title']  = "Wijzig groen'tje";
 				$data['Active'] = "9";
-				
-				// Session Variables
-				$data['id']    = $Session['id'];
-				$data['Admin'] = $Session['Admin'];
-				$data['User']  = $Session['username'];
-				$data['Tak']   = $Session['Tak'];
-				$data['Role']  = $Session['Admin']; 
-				$data['Theme'] = $Session['Theme'];
-				
+
 				// Database variables
 				$data['DB'] = $this->Images->Backend_select();
-				
+
 				$this->load->view('components/admin_header', $data);
 				$this->load->view('components/navbar_admin', $data);
 				$this->load->view('admin/index_foto',array('error' => $this->upload->display_errors()),  $data);
 				$this->load->view('components/footer');
-				
+
 			}	else {
 					$this->Images->Insert($this->upload->data());
 					$this->load->view('alerts/upload_success');
@@ -98,10 +87,10 @@ class Fotos extends CI_Controller {
 				redirect('Admin', 'Refresh');
 		}
 	}
-	
+
 	function delete() {
-		if($this->session->userdata('logged_in')) {
-			
+		if($this->Session) {
+
 			unlink('./assets/fotos/'. $this->uri->segment(3));
 			$this->Images->Delete();
 			redirect('Fotos/Index_admin');

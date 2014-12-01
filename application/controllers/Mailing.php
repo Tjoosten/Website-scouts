@@ -1,23 +1,27 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 	class Mailing extends CI_Controller {
+
+		// Constructor
+		public $Session       = array();
+		public $Error_heading = array();
+		public $Error_message = array();
+
   	function __construct() {
       parent::__construct();
       $this->load->model('Model_mailing','Mailing');
       $this->load->helper(array('Email'));
       $this->load->library(array('Email'));
+
+			$this->Session = $this->session->userdata('logged_in');
     }
-			
+		// END constructor
+
 		public function index() {
-			$Session = $this->session->userdata('logged_in'); 
-			if($Session) {
-				if($Session['Admin'] == 1) {
+			if($this->Session) {
+				if($this->Session['Admin'] == 1) {
 					// Global variables
-					$Data['Title']  = "Mailing"; 
+					$Data['Title']  = "Mailing";
 					$Data['Active'] = "6";
-					// Session variables
-					$Data['Role']  = $Session['Admin'];
-					$Data['User']  = $Session['username'];
-					$Data['Theme'] = $Session['Theme'];
 
 					// Database variables
 					$Data['Mailing'] = $this->Mailing->Mailing();
@@ -27,7 +31,10 @@
 					$this->load->view('admin/Mailing', $Data);
 					$this->load->view('components/footer');
 				} else {
-					$this->load->view('alerts/no_permission');
+					$Data['Heading'] = $this->Error_heading;
+					$Data['Message'] = $this->Error_message;
+
+					$this->load->view('errors/html/alert', $Data);
 				}
 			} else {
 				redirect('Admin','Refresh');
@@ -35,14 +42,14 @@
 		}
 
 		public function Mail() {
-			$List = $this->input->post('List'); 
+			$List = $this->input->post('List');
 
 			// Switch statement
 			switch ($List) {
    			case "Iedereen":
-     			$Query = $this->Mailing->Mailing_Iedereen(); 
+     			$Query = $this->Mailing->Mailing_Iedereen();
      				break;
-   			
+
    			case "VZW":
      			$Query = $this->Mailing->Mailing_VZW();
      				break;
@@ -52,7 +59,7 @@
      				break;
 
      		case "Leiding":
-     			$Query = $this->Mailing->Mailing_Leiding(); 
+     			$Query = $this->Mailing->Mailing_Leiding();
      				break;
 
      		case "Oudervergadering":
@@ -69,9 +76,9 @@
       foreach($Query as $Output) {
       	$this->email->set_mailtype("html");
         $this->email->from('Mailing@st-joris-turnhout.be', 'Mailing st-joris turnhout');
-        $this->email->to($Output->Email); 
+        $this->email->to($Output->Email);
         $this->email->subject($this->input->post('subject'));
-        $this->email->message(Parsedown::instance()->parse($text));  
+        $this->email->message(Parsedown::instance()->parse($text));
         $this->email->send();
         $this->email->clear();
       }
@@ -81,7 +88,7 @@
 
 		// Database Handlingss
 		public function Add_address() {
-			if($this->session->userdata('logged_in')) {
+			if($this->Session) {
 				$this->Mailing->Insert_address();
 				redirect('Mailing');
 			} else {
@@ -90,7 +97,7 @@
 		}
 
 		public function Delete_address() {
-			if($this->session->userdata('logged_in')) {
+			if($this->Session) {
 				$this->Mailing->Delete_address();
 				redirect('Mailing');
 			} else {
@@ -99,7 +106,7 @@
 		}
 
 		public function Inactief() {
-			if($this->session->userdata('logged_in')) {
+			if($this->Session) {
 				$this->Mailing->Inactief();
 				redirect('Mailing');
 			} else {
@@ -108,7 +115,7 @@
 		}
 
 		public function Actief() {
-			if($this->session->userdata('logged_in')) {
+			if($this->Session) {
 				$this->Mailing->Actief();
 				redirect('Mailing');
 			} else {

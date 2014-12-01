@@ -46,7 +46,7 @@
   								<tr>
   									<td><code> #<?php echo $Output->ID; ?></code></td>
   									<td><?php echo $Output->Voornaam; ?> <?php echo $Output->Naam; ?></td>
-  									
+
                     <td>
                       <?php if(valid_email($Output->Email)): ?>
                         <a href="mailto:<?php echo $Output->Email; ?>"><?php echo $Output->Email; ?></a>
@@ -125,7 +125,7 @@
   											<td> <?php echo $Output->Deathline; ?> </td>
   											<td>
   												<?php if($Output->Status == 1): ?>
-  													<a href="<?php echo base_url(); ?>inschrijvingen/Ontbijt_Stop/<?php echo $Output->ID; ?>" class="label label-danger"> Sluiten </a>
+  													<a href="<?php echo base_url(); ?>inschrijvingen/Ontbijt_Stop/<?php echo $Output->ID; ?>/<?php echo $Output->Month_nr; ?>" class="label label-danger"> Sluiten </a>
   												<?php elseif($Output->Status == 0): ?>
   													<a href="<?php echo base_url(); ?>Inschrijvingen/Ontbijt_Start/<?php echo $Output->ID; ?>" class="label label-success"> Vrijgeven </a>
   												<?php endif; ?>
@@ -136,7 +136,7 @@
   							</table>
   						</div>
   					</div>
-  				</p>	
+  				</p>
   			</div>
 			</div>
 

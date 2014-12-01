@@ -1,24 +1,30 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 	class Takken extends CI_Controller {
-		
+
    /*
-    | Developer: Tim Joosten 
+    | Developer: Tim Joosten
     | License: 4GPL
     | Copyright: St-joris Turnhout, Tim Joosten
     */
 
-    function __construct() { 
+		// Constructor
+		public $Auth = array();
+
+    function __construct() {
       parent::__construct();
       $this->load->model('Model_Takken', 'Takken');
       $this->load->model('Model_activiteiten', 'Activiteiten');
+
+			$this->Auth = $this->session->userdata('logged_in');
     }
+		// End constructor
 
 		public function index() {
 			// Variable(s)
 				// General
 				$Data['Title']  = "Takken";
 				$Data['Active'] = "1";
-                $Data['Limit']  = "40"; 
+                $Data['Limit']  = "40";
 
 				// Database
 				$DB['Kapoenen']   = $this->Takken->Kapoenen();
@@ -39,12 +45,12 @@
     public function Kapoenen() {
     	// Variable(s)
     	  // General
-        $Data['Title']  = "De Kapoenen"; 
+        $Data['Title']  = "De Kapoenen";
 				$Data['Active'] = "1";
 
         // Database
         $DB['Beschrijving'] = $this->Takken->Kapoenen();
-        $DB['Activiteiten'] = $this->Activiteiten->Kapoenen(); 
+        $DB['Activiteiten'] = $this->Activiteiten->Kapoenen();
       // == END Variables == //
 
         // View(s)
@@ -57,7 +63,7 @@
     public function Welpen() {
     	// Variable(s)
     	  // General
-    	  $Data['Title']  = "De Welpen"; 
+    	  $Data['Title']  = "De Welpen";
 				$Data['Active'] = "1";
 
     	  // Database
@@ -74,14 +80,14 @@
 
     public function JongGivers() {
     	// Variable(s)
-    	  // General 
+    	  // General
     	  $Data['Title']  = "De Jong-Givers";
 				$Data['Active'] = "1";
 
     	  // Database
     	  $DB['Beschrijving'] = $this->Takken->JongGivers();
     	  $DB['Activiteiten'] = $this->Activiteiten->JongGivers();
-    	// == END Variables == // 
+    	// == END Variables == //
 
     	  // View(s)
     	  $this->load->view('components/header', $Data);
@@ -92,13 +98,13 @@
 
     public function Givers() {
     	// Variable(s)
-    	  // General 
+    	  // General
     	  $Data['Title']  = "De Givers";
 				$Data['Active'] = "1";
 
     	  // Database
     	  $DB['Beschrijving'] = $this->Takken->Givers();
-    	  $DB['Activiteiten'] = $this->Activiteiten->Givers(); 
+    	  $DB['Activiteiten'] = $this->Activiteiten->Givers();
     	  // == END Variables == //
 
     	  // View(s)
@@ -111,8 +117,8 @@
     public function Jins() {
     	// Variables
     	  // General
-    	  $Data['Title']  = "De Jins"; 
-				$Data['Active'] = "1"; 
+    	  $Data['Title']  = "De Jins";
+				$Data['Active'] = "1";
 
         // Database
         $DB['Beschrijving'] = $this->Takken->Jins();
@@ -129,12 +135,12 @@
     public function Leiding() {
     	// Variables
     	  // General
-    	  $Data['Title']  = "De Leiding"; 
-		  	$Data['Active'] = "1";
+    	  $Data['Title']  = "De Leiding";
+		  $Data['Active'] = "1";
 
     	  // Database
     	  $DB['Beschrijving'] = $this->Takken->Leiding();
-    		// == END Variables == // 
+    		// == END Variables == //
 
     	  // View(s)
     	  $this->load->view('components/header', $Data);
@@ -145,12 +151,12 @@
 
     // Admin controllers
     public function Takken_edit() {
-        if($this->session->userdata('logged_in')) {
+        if($this->Auth) {
             $this->load->model('Model_takken', 'Takken');
             $this->Takken->Takken_edit();
             redirect('backend', 'refresh');
         } else {
-            // If nos session found redirect to login 
+            // If nos session found redirect to login
             redirect('Admin', 'refresh');
         }
     }

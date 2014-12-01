@@ -1,18 +1,22 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 	class Notifications extends CI_Controller {
+		// Constructor
+		public $Session = array();
+
 		function __construct() {
-            parent::__construct();
-            $this->load->model('Model_leiding','Leiding');
-            $this->load->model('Model_notifications','Notification');
-        }
+      parent::__construct();
+      $this->load->model('Model_leiding','Leiding');
+      $this->load->model('Model_notifications','Notification');
+
+			$this->Session = $this->session->userdata('logged_in');
+  	}
+		// End constructor
 
 		public function herstel_verhuur() {
-			$Session = $this->session->userdata('logged_in');
+			if($this->Sessio,) {
 
-			if($Session) {
-
-				$Person['Naam']  = $Session['username'];
-				$Person['Email'] = $Session['Email']; 
+				$Person['Naam']  = $this->Auth['username'];
+				$Person['Email'] = $this->Auth['Email'];
 
 				$this->Notification->Herstel_verhuur($Person);
 
@@ -24,7 +28,7 @@
 		}
 
 		function Verhuur_aan() {
-			if($this->session->userdata('logged_in')) {
+			if($this->Session) {
 				$this->Notification->Verhuur_aan();
 				redirect('Verhuur/admin_verhuur');
 			} else {
@@ -34,7 +38,7 @@
 		}
 
 		function Verhuur_uit() {
-			if($this->session->userdata('logged_in')) {
+			if($this->Session) {
 				$this->Notification->Verhuur_uit();
 				redirect('Verhuur/admin_verhuur');
 			} else {

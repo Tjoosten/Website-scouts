@@ -11,20 +11,20 @@
           </div>
           <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-              <li <?php if($Active == 1): ?> class="active" <?php endif; ?>> 
-                <a href="<?php echo base_url(); ?>backend"> <span class="fa fa-leaf Icon-color"></span> Takken </a> 
+              <li <?php if($Active == 1): ?> class="active" <?php endif; ?>>
+                <a href="<?php echo base_url(); ?>backend"> <span class="fa fa-leaf Icon-color"></span> Takken </a>
               </li>
-              
-              <?php if($Role == 1): ?>
-                <li <?php if($Active == 2): ?> class="active" <?php endif; ?>> 
-                  <a href="<?php echo base_url(); ?>verhuur/admin_verhuur"> <span class="fa fa-home Icon-color"></span> Verhuur </a> 
+
+              <?php if($this->Session['Admin'] == 1): ?>
+                <li <?php if($Active == 2): ?> class="active" <?php endif; ?>>
+                  <a href="<?php echo base_url(); ?>verhuur/admin_verhuur"> <span class="fa fa-home Icon-color"></span> Verhuur </a>
                </li>
               <?php endif; ?>
-              
-              <li <?php if($Active == 5): ?> class="active" <?php endif; ?>> 
-                <a href=""><span class="fa fa-info-circle Icon-color"></span> Info </a> 
+
+              <li <?php if($Active == 5): ?> class="active" <?php endif; ?>>
+                <a href=""><span class="fa fa-info-circle Icon-color"></span> Info </a>
               </li>
-              
+
               <li class="<?php if($Active == 1): ?> active <?php endif; ?> dropdown">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="<?php echo base_url(); ?>Takken">
                   <span class="fa fa-asterisk Icon-color"></span> Media
@@ -35,8 +35,8 @@
                   <li><a href="<?php echo base_url(); ?>Fotos/Index_admin"><span class="fa fa-camera-retro"></span> Foto's</a></li>
                 </ul>
               </li>
-              
-              <?php if($Role == 1): ?>
+
+              <?php if($this->Session['Admin'] == 1): ?>
                 <li>
                   <a href="<?php echo base_url(); ?>Inschrijvingen/Admin_ontbijt">
                     <span class="fa fa-asterisk Icon-color"></span> Inschrijvingen
@@ -53,11 +53,11 @@
 
             <ul class="nav navbar-nav navbar-right">
               <li class="dropdown">
-                <a class="dropdown-toggle" data-toggle="dropdown" href=""><?php echo $User; ?></a>
+                <a class="dropdown-toggle" data-toggle="dropdown" href=""><?php echo $this->Session['username']; ?></a>
 
                 <ul class="dropdown-menu" role="menu">
-                  <?php if($Role == 1): ?>
-                    <li <?php if($Active == 6): ?> class="active "<?php endif; ?>>
+                  <?php if($this->Session['Admin'] == 1): ?>
+                    <li>
                       <a href="<?php echo base_url(); ?>leiding/"><span class="octicon octicon-organization"></span> Leiding</a>
                     </li>
                   <?php endif; ?>
@@ -67,7 +67,7 @@
                     </a>
                   </li>
                   <li>
-                    <a href="<?php echo base_url(); ?>Leiding/settings/<?php echo $User ?>">
+                    <a href="<?php echo base_url(); ?>Leiding/settings/<?php echo $this->Session['username']; ?>">
                       <span class="octicon octicon-gear"></span> Account configuratie
                     </a>
                   </li>

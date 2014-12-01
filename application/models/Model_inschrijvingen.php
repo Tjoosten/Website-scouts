@@ -1,4 +1,4 @@
-<?php 
+<?php
 	Class Model_inschrijvingen extends CI_Model {
 
     	function __construct(){
@@ -7,7 +7,7 @@
 
     	function Get_dates() {
     		$this->db->select()
-    		         ->where('Status', '1'); 
+    		         ->where('Status', '1');
 
     		$Query = $this->db->get('Ontbijt_datums');
     		return $Query->Result();
@@ -24,6 +24,14 @@
             $Query = $this->db->get('Inschrijvingen_ontbijt');
             return $Query->result();
         }
+
+				function Download_month() {
+					$this->db->select()
+									 ->where('Maand', $this->uri->segment(4));
+
+					$Query = $this->db->get('Inschrijvingen_ontbijt');
+					return $Query->result();
+				}
 
         function Start_inschrijving_ontbijt() {
             $Value = array(
@@ -46,17 +54,17 @@
         function Inschrijvingen_All() {
             $this->db->select();
 
-            $Query = $this->db->get('Inschrijvingen_ontbijt'); 
+            $Query = $this->db->get('Inschrijvingen_ontbijt');
             return $Query->result();
         }
 
     	function InsertDB() {
-    		// Calculate bedrag 
+    		// Calculate bedrag
     		$Aantal = $this->input->post('Personen');
     		$Prijs  = "3";
-    		$Bedrag = $Aantal * $Prijs; 
+    		$Bedrag = $Aantal * $Prijs;
 
-    		// Start Insert 
+    		// Start Insert
     		$Values = array(
     			"Naam"            => $this->input->post('Naam'),
     			"Voornaam"        => $this->input->post('Voornaam'),
