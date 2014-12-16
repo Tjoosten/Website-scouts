@@ -25,5 +25,6 @@ Website http://www.st-joris-turnhout.be (Martyr)
 - [ ] migrate to bootstrap V3.3.0
 - [x] rebase account create
 - [ ] clean up document root (server)
+- [ ] set flash messages database handlings
 - [ ] add WAI-ARIA support (role attributes)
 - [x] add template sql database (sql file)
