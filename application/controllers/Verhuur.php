@@ -37,9 +37,11 @@
       public function verhuur_kalender() {
 				$this->output->cache(3);
 
-				$data['Title']  = "Verhuur kalender";
-			  $data['Active'] = "2";
-
+				$data = array(
+					'Title'  => 'Verhuur kalender',
+					'Active' => '2',
+				);
+				
         $DB['Verhuringen'] = $this->Verhuringen->Verhuring_kalender();
 
         $this->load->view('components/header', $data);
@@ -65,13 +67,15 @@
           $this->Verhuringen->InsertDB();
           redirect('Verhuur/Admin_verhuur');
         } else {
-          // Email Variables
-          $data['exec']  = $this->benchmark->elapsed_time();
-          $data['Start'] = $this->input->post('Start_datum');
-          $data['Eind']  = $this->input->post('Eind_datum');
-          $data['GSM']   = $this->input->post('GSM');
-          $data['Groep'] = $this->input->post('Groep');
-          $data['Mail']  = $this->input->post('Email');
+					$data = array(
+						// Email variables
+						'exec'  => $this->benchmark->elapsed_time();
+						'Start' => $this->input->post('Start_datum');
+						'Eind'  => $this->input->post('Eind_datum');
+						'GSM'   => $this->input->post('GSM');
+						'Groep' => $this->input->post('Groep');
+						'Mail'  => $this->input->post('Email');
+ 					);
 
           $Mailing = $this->Not->Verhuur_mailing();
 
