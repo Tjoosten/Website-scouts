@@ -7,9 +7,9 @@
 # sudo crontab -l <= see what cronjobs are running
 # sudo crontab -e <= edit the crontab
 #
-# ---------------
-# The crontab
-# ---------------
+# ---------------------
+# The crontab  syntax
+# ---------------------
 #
 # .---------------- Minutes (0 - 59)
 # |  .------------- Hour (0 - 23)
