@@ -1,7 +1,7 @@
 <div class="container">
 	<div class="row">
 		<div class="col-sm-12 col-md-12 col-lg-12">
-			
+
 			<!-- Nav Tabs -->
 			<ul class="nav nav-tabs" role="tablist">
 				<li class="active"><a href="#Nieuwe" role="tab" data-toggle="tab">Verhuringen</a></li>
@@ -23,7 +23,7 @@
 									</form>
 								</span>
 							</div>
-							
+
 							<div class="col-md-6">
 								<span class="pull-right">
 
@@ -31,21 +31,21 @@
 											$Val = $Result->Verhuur;
 										}
 										?>
-									
+
 										<?php if($Val== 1): ?>
-											<a class="btn btn-success" title="Notificaties is ingeschakeld" href="<?php echo base_url(); ?>/Notifications/Verhuur_uit">
+											<a role="button" class="btn btn-success" title="Notificaties is ingeschakeld" href="<?php echo base_url(); ?>/Notifications/Verhuur_uit">
 												Notificaties <span class="badge">Aan</span>
 											</a>
 										<?php elseif($Val == 0): ?>
-											<a class="btn btn-danger" title="Notificaties zijn uitgeschakeld" href="<?php echo base_url(); ?>/Notifications/Verhuur_aan">
+											<a role="button" class="btn btn-danger" title="Notificaties zijn uitgeschakeld" href="<?php echo base_url(); ?>/Notifications/Verhuur_aan">
 												Notificaties <span class="badge">Uit</span>
 											</a>
 										<?php else: ?>
-											<a class="btn btn-warning" title="herstel" href="<?php echo base_url(); ?>Notifications/herstel_verhuur">
+											<a role="button" class="btn btn-warning" title="herstel" href="<?php echo base_url(); ?>Notifications/herstel_verhuur">
 												Herstel
 											</a>
 										<?php endif; ?>
-									
+
 
 									<a href="<?php echo base_url();?>Verhuur/Download_verhuringen" class="btn btn-info">
 										<span class="octicon octicon-cloud-download"></span> Download
@@ -53,7 +53,7 @@
 								</span>
 							</div>
 						</div>
-						
+
 						<table class="table table-condensed">
 							<thead>
 								<tr>
@@ -83,7 +83,7 @@
 										</td>
 
 										<td><?php echo $Output->Groep; ?></td>
-										
+
 										<td>
 											<?php if(valid_email($Output->Email)): ?>
 												<a href="mailto:<?php echo $Output->Email; ?>">
@@ -93,7 +93,7 @@
 												<?php echo $Output->Email; ?>
 											<?php endif; ?>
 										</td>
-										
+
 										<td><?php echo $Output->GSM; ?></td>
 
 										<td>
@@ -143,7 +143,7 @@
 									</tr>
 								<?php endforeach; ?>
 							</tbody>
-						</table>	
+						</table>
 					</p>
 				</div>
 
@@ -157,11 +157,11 @@
 					 	<label for="Eind">Eind datum:</label>
 					 	<input class="form-control" style="width: 30%;" id="Eind" name="Eind_datum" placeholder="bv. 00/00/00">
 					 	<br>
-					 	
+
 					 	<label for="Groep">Groep:</label>
 					 	<input class="form-control" style="width: 30%;" id="Groep" name="Groep" placeholder="Groep">
 					 	<br>
-					 
+
 					 	<label for="GSM">Gsm-nummer:</label>
 					 	<input class="form-control" style="width: 30%;" id="GSM" name="GSM" placeholder="GSM nummer">
 					 	<br>
@@ -170,9 +170,9 @@
 					 	<input class="form-control" style="width: 30%;" id="Mail" name="Email" placeholder="E-mail adres">
 					 	<br>
 
-					 	<button type="submite" class="btn btn-success">Toevoegen</button>
-					 	<button type="reset" class="btn btn-danger">Reset!</button>
-					 </form>  						
+					 	<button role="button" type="submite" class="btn btn-success">Toevoegen</button>
+					 	<button role="button" type="reset" class="btn btn-danger">Reset!</button>
+					 </form>
   					</p>
   				</div>
   			</div>

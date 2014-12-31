@@ -41,7 +41,7 @@
 					'Title'  => 'Verhuur kalender',
 					'Active' => '2',
 				);
-				
+
         $DB['Verhuringen'] = $this->Verhuringen->Verhuring_kalender();
 
         $this->load->view('components/header', $data);
@@ -53,8 +53,10 @@
       public function verhuur_aanvraag() {
 				$this->output->cache(5);
 
-				$data['Title'] = " Aanvraag verhuur";
-			  $data['Active'] = "2";
+				$data = array(
+					'Title' => 'Aanvraag verhuur',
+					'Active' => '2',
+				);
 
       	$this->load->view('components/header', $data);
         $this->load->view('components/navbar', $data);

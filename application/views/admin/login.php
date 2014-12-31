@@ -5,8 +5,8 @@
 	<link rel="stylesheet" href="/assets/css/bootstrap.min.css">
 
 	<style type="text/css">
-			:: Login Section
-	-------------------------------------------------- */
+	/* Login Section */
+	/* -------------------------------------------------- */
 #login {
     padding-top: 50px
 }
@@ -146,8 +146,8 @@
 					<input placeholder="Email adres" type="email" name="recovery" id="recovery-email" class="form-control" autocomplete="off">
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-					<button type="submit" class="btn btn-custom">Recupereer</button>
+					<button role="button" type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+					<button role="button" type="submit" class="btn btn-custom">Recupereer</button>
 					</form>
 			</div>
 		</div> <!-- /.modal-content -->
@@ -168,21 +168,21 @@
   	<script src="/assets/js/bootstrap.min.js"></script>
 <script type="text/javascript">
 	function showPassword() {
-    
+
     var key_attr = $('#key').attr('type');
-    
+
     if(key_attr != 'text') {
-        
+
         $('.checkbox').addClass('show');
         $('#key').attr('type', 'text');
-        
+
     } else {
-        
+
         $('.checkbox').removeClass('show');
         $('#key').attr('type', 'password');
-        
+
     }
-    
+
 }
 </script>
 

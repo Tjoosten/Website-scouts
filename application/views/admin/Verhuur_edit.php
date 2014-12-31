@@ -27,8 +27,8 @@
 				<input id="Mail" type="text" class="form-control" style="width: 30%;" name="Mail" value="<?php echo $Output->Email; ?>" placeholder="Mail adres">
 				<br>
 
-				<button type="submit" class="btn btn-success">Wijzig!</button>
-				<button type="reset" class="btn btn-danger">Reset</button>
+				<button role="button" type="submit" class="btn btn-success">Wijzig!</button>
+				<button role="button" type="reset" class="btn btn-danger">Reset</button>
 			</form>
 			<?php endforeach; ?>
 

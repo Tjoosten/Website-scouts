@@ -99,8 +99,8 @@
                       <br>
 
               				<!-- Form options -->
-              				<button type="submit" class="btn btn-success">Inschrijven</button>
-              				<button type="reset" class="btn btn-danger">Reset formulier</button>
+              				<button role="button" type="submit" class="btn btn-success">Inschrijven</button>
+              				<button role="button" type="reset" class="btn btn-danger">Reset formulier</button>
               			</form>
               		<?php endif; ?>
               		</p>
