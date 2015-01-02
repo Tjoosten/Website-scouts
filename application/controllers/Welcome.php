@@ -5,7 +5,7 @@
 			$this->output->cache(5);
 			// END
 
-			$data['Title'] = "Index";
-			$this->load->view('client/index', $data);
+			$Data['Title'] = "Index";
+			$this->load->view('client/index', $Data);
 		}
 	}

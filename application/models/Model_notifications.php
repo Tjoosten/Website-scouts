@@ -12,7 +12,7 @@
 		function Herstel_verhuur($Person) {
 			$Values = array(
 				"Naam"    => $Person['Naam'],
-				"Mail"   => $Person['Email'],
+				"Mail"    => $Person['Email'],
 				"Verhuur" => "0"
 				);
 

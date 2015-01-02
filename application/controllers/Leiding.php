@@ -43,12 +43,15 @@ class leiding extends CI_Controller {
   function index() {
     if($this->Session)  {
       if($this->Session['Admin'] == 1) {
-        // General
-        $data['Title']  = "Leiding";
-			  $data['Active'] = "6";
-        // Database
-        $data['Admin']   = $this->Leiding->Administrators();
-        $data['Leiding'] = $this->Leiding->Leiding();
+        $data = array(
+          // General variables
+          'Title'  => 'Leiding',
+          'Active' => '6',
+
+          // Database variables
+          'Admin'   => $this->Leiding->Administrators(),
+          'Leiding' => $this->Leiding->Leiding(),
+        ):
 
         $this->load->view('components/admin_header', $data);
         $this->load->view('components/navbar_admin', $data);
@@ -68,7 +71,7 @@ class leiding extends CI_Controller {
 			$data['Title'] =  "Account configuratie";
 			$data['Active'] = "7";
 
-			// Database variables
+			// Database variables. Not an array because it is one item.
 			$DB['Account'] = $this->Leiding->Account();
 
 			$this->load->view('components/admin_header', $data);
@@ -86,6 +89,8 @@ class leiding extends CI_Controller {
 			// Old Session
 			$Session = $this->session->userdata('logged_in');
 
+      // Dun'no where i used this variables.
+      // I was drunk when i writing those variables.
 			$data['id']    = $Session['id'];
 			$data['Admin'] = $Session['Admin'];
 			$data['User']  = $Session['username'];
@@ -170,8 +175,10 @@ class leiding extends CI_Controller {
         $Leiding = $this->Leiding->Get_user();
 
         foreach($Leiding as $Output) {
-          $Mailing['Naam']  = $Output->username;
-          $Mailing['Email'] = $Output->Mail;
+          $Mailing = array(
+            'Naam'  => $Output->username,
+            'Email' => $Output->Mail,
+          );
         }
 
 			  $this->Log->Add_admin();

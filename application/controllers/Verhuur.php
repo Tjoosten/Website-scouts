@@ -140,23 +140,26 @@
 			public function Search() {
         if($this->Session) {
 					if($this->Session['Admin'] == 1) {
-					  // Global variables
 						$Data = array(
+							// Global variables
 							'Title'  => 'Verhuringen',
 							'Active' => '2',
-						);
 
-					  // Database Variables
-						$Data['Notification'] = $this->Not->Get();
-					  $Data['Bevestigd'] = $this->Verhuringen->Search();
+							// Database Variables
+							'Notification' => $this->Not->Get(),
+							'Bevestigd'    => $this->Verhuringen->Search(),
+						);
 
 					  $this->load->view('components/admin_header', $Data);
 					  $this->load->view('components/navbar_admin', $Data);
 					  $this->load->view('admin/verhuur_index', $Data);
 					  $this->load->view('components/footer');
           } else {
-						$Data['Heading'] = $this->Heading;
-						$Data['Message'] = $this->Message;
+						$Data = array(
+							'Heading' => $this->Heading,
+							'Message' => $this->Message,
+						);
+
             $this->load->view('errors/html/alert', $Data);
             }
 					} else {
