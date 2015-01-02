@@ -42,6 +42,7 @@
 					'Active' => '2',
 				);
 
+				// Database variables. Not an array because it's one item.
         $DB['Verhuringen'] = $this->Verhuringen->Verhuring_kalender();
 
         $this->load->view('components/header', $data);
@@ -140,8 +141,10 @@
         if($this->Session) {
 					if($this->Session['Admin'] == 1) {
 					  // Global variables
-					  $Data['Title'] = "Verhuringen";
-					  $Data['Active'] = "2";
+						$Data = array(
+							'Title'  => 'Verhuringen',
+							'Active' => '2',
+						);
 
 					  // Database Variables
 						$Data['Notification'] = $this->Not->Get();

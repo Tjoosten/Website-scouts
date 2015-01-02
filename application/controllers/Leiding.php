@@ -27,14 +27,16 @@ class leiding extends CI_Controller {
   // END Constructor
 
   function Leidingsploeg() {
-    $data['Title']  = "Leidingsploeg";
-    $data['Active'] = "1";
+    $Data = array(
+      'Title'  => 'Leidingsploeg',
+      'Active' => '1',
+      // Database variables
+      'ploeg'  => $this->Leiding->ploeg(),
+    );
 
-    $DB['ploeg'] = $this->Leiding->ploeg();
-
-    $this->load->view('components/header', $data);
-    $this->load->view('components/navbar', $data);
-    $this->load->view('client/leidingsploeg', $DB);
+    $this->load->view('components/header', $Data);
+    $this->load->view('components/navbar', $Data);
+    $this->load->view('client/leidingsploeg', $Data);
     $this->load->view('components/footer');
   }
 

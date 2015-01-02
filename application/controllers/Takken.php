@@ -22,17 +22,21 @@
 		public function index() {
 			// Variable(s)
 				// General
-				$Data['Title']  = "Takken";
-				$Data['Active'] = "1";
-                $Data['Limit']  = "40";
+				$Data = array(
+					'Title'  => 'Takken',
+					'Active' => '1',
+					'Limit'  => '40',
+				);
 
 				// Database
-				$DB['Kapoenen']   = $this->Takken->Kapoenen();
-				$DB['Welpen']     = $this->Takken->Welpen();
-				$DB['JongGivers'] = $this->Takken->JongGivers();
-				$DB['Givers']     = $this->Takken->Givers();
-				$DB['Jins']       = $this->Takken->Jins();
-				$DB['Leiding']    = $this->Takken->Leiding();
+				$DB = array(
+					'Kapoenen'   => $this->Takken->Kapoenen(),
+					'Welpen'     => $this->Takken->Welpen(),
+					'JongGivers' => $this->Takken->JongGivers(),
+					'Givers'     => $this->Takken->Givers(),
+					'Jins'       => $this->Takken->Jins(),
+					'Leiding'    => $this->Takken->Leiding(),
+				);
 		  // == END Variables == //
 
 			// View(s)
@@ -45,12 +49,16 @@
     public function Kapoenen() {
     	// Variable(s)
     	  // General
-        $Data['Title']  = "De Kapoenen";
-				$Data['Active'] = "1";
+				$Data = array(
+					'Title'  => 'De Kapoenen',
+					'Active' => '1',
+				);
 
         // Database
-        $DB['Beschrijving'] = $this->Takken->Kapoenen();
-        $DB['Activiteiten'] = $this->Activiteiten->Kapoenen();
+				$DB = array(
+					'Beschrijving' => $this->Takken->Kapoenen(),
+					'Activiteiten' => $this->Activiteiten->Kapoenen(),
+				);
       // == END Variables == //
 
         // View(s)
@@ -63,12 +71,16 @@
     public function Welpen() {
     	// Variable(s)
     	  // General
-    	  $Data['Title']  = "De Welpen";
-				$Data['Active'] = "1";
+				$Data = array(
+					'Title'  => 'De Welpen',
+					'Active' => '1',
+				);
 
     	  // Database
-    	  $DB['Beschrijving'] = $this->Takken->Welpen();
-    	  $DB['Activiteiten'] = $this->Activiteiten->Welpen();
+				$DB = array(
+					'Beschrijving' => $this->Takken->Welpen(),
+					'Activiteiten' => $this->Activiteiten->>Welpen(),
+				);
     	// == END Variables == //
 
     	  // View(s)
@@ -81,12 +93,16 @@
     public function JongGivers() {
     	// Variable(s)
     	  // General
-    	  $Data['Title']  = "De Jong-Givers";
-				$Data['Active'] = "1";
+				$Data = array(
+					'Title'  => 'De Jong-Givers',
+					'Active' => '1',
+				);
 
     	  // Database
-    	  $DB['Beschrijving'] = $this->Takken->JongGivers();
-    	  $DB['Activiteiten'] = $this->Activiteiten->JongGivers();
+				$DB = array(
+					'Beschrijving' => $this->Takken->JongGivers(),
+					'Activiteiten' => $this->Activiteiten->JongGivers(),
+				);
     	// == END Variables == //
 
     	  // View(s)
@@ -99,12 +115,16 @@
     public function Givers() {
     	// Variable(s)
     	  // General
-    	  $Data['Title']  = "De Givers";
-				$Data['Active'] = "1";
+				$Data = array(
+					'Title'  => 'De Givers',
+					'Active' => '1',
+				);
 
     	  // Database
-    	  $DB['Beschrijving'] = $this->Takken->Givers();
-    	  $DB['Activiteiten'] = $this->Activiteiten->Givers();
+				$DB = array(
+					'Beschrijving' => $this->Takken->Givers(),
+					'Activiteiten' => $this->Activiteiten->Givers(),
+				);
     	  // == END Variables == //
 
     	  // View(s)
@@ -117,12 +137,16 @@
     public function Jins() {
     	// Variables
     	  // General
-    	  $Data['Title']  = "De Jins";
-				$Data['Active'] = "1";
+				$Data = array(
+					'Title'  => 'De Jins',
+					'Active' => '1',
+				);
 
         // Database
-        $DB['Beschrijving'] = $this->Takken->Jins();
-        $DB['Activiteiten'] = $this->Activiteiten->Jins();
+				$DB = array(
+					'Beschrijving' => $this->Takken->Jins(),
+					'Activiteiten' => $this->Activiteiten->Jins(),
+				);
       // == END Variables == //
 
         // View(s)
@@ -135,10 +159,12 @@
     public function Leiding() {
     	// Variables
     	  // General
-    	  $Data['Title']  = "De Leiding";
-		  $Data['Active'] = "1";
+				$Data = array(
+					'Title'  => 'De Leiding',
+					'Active' => '1',
+				);
 
-    	  // Database
+    	  // Database. Not an array because it's one variable.
     	  $DB['Beschrijving'] = $this->Takken->Leiding();
     		// == END Variables == //
 

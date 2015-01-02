@@ -15,11 +15,11 @@
 				$Session = $this->session->userdata('logged_in');
 
 				// Global Variables
-				$data['Title']  = "Wijzig groen'tje";
-				$data['Active'] = "9";
+				$Data['Title']  = "Wijzig groen'tje";
+				$Data['Active'] = "9";
 
-				$this->load->view('components/admin_header', $data);
-				$this->load->view('components/navbar_admin', $data);
+				$this->load->view('components/admin_header', $Data);
+				$this->load->view('components/navbar_admin', $Data);
 				$this->load->view('admin/upload_planning', array('error' => ''));
 				$this->load->view('components/footer');
 			} else {
