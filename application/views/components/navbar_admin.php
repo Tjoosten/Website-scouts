@@ -62,7 +62,7 @@
                     </li>
                   <?php endif; ?>
                   <li>
-                    <a href="mailto:Webmaster@st-joris-turnhout.be?SUBJECT=Bug - http://www.st-joris-turnhout.be">
+                    <a href="<?php echo base_url(); ?>issue">
                       <span class="octicon octicon-bug"></span> Meld een bug!
                     </a>
                   </li>

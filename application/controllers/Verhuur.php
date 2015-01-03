@@ -11,6 +11,7 @@
       $this->load->model('Model_verhuringen','Verhuringen');
 	    $this->load->model('Model_Log', 'Log');
       $this->load->model('Model_notifications', 'Not');
+			 
       $this->load->library(array('email','dompdf_gen'));
       $this->load->helper(array('email','date','text'));
 
