@@ -51,7 +51,7 @@ class leiding extends CI_Controller {
           // Database variables
           'Admin'   => $this->Leiding->Administrators(),
           'Leiding' => $this->Leiding->Leiding(),
-        ):
+        );
 
         $this->load->view('components/admin_header', $data);
         $this->load->view('components/navbar_admin', $data);
