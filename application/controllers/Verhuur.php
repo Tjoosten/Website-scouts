@@ -11,7 +11,7 @@
       $this->load->model('Model_verhuringen','Verhuringen');
 	    $this->load->model('Model_Log', 'Log');
       $this->load->model('Model_notifications', 'Not');
-			 
+
       $this->load->library(array('email','dompdf_gen'));
       $this->load->helper(array('email','date','text'));
 
@@ -73,12 +73,12 @@
         } else {
 					$data = array(
 						// Email variables
-						'exec'  => $this->benchmark->elapsed_time();
-						'Start' => $this->input->post('Start_datum');
-						'Eind'  => $this->input->post('Eind_datum');
-						'GSM'   => $this->input->post('GSM');
-						'Groep' => $this->input->post('Groep');
-						'Mail'  => $this->input->post('Email');
+						'exec'  => $this->benchmark->elapsed_time(),
+						'Start' => $this->input->post('Start_datum'),
+						'Eind'  => $this->input->post('Eind_datum'),
+						'GSM'   => $this->input->post('GSM'),
+						'Groep' => $this->input->post('Groep'),
+						'Mail'  => $this->input->post('Email'),
  					);
 
           $Mailing = $this->Not->Verhuur_mailing();
