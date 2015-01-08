@@ -1,7 +1,7 @@
 Website scouts
 =============================================
 
-[![SensioLabsInsight](https://insight.sensiolabs.com/projects/6c810428-0178-42f8-a8c0-f903ea067aaa/small.png)](https://insight.sensiolabs.com/projects/6c810428-0178-42f8-a8c0-f903ea067aaa)
+[![SensioLabsInsight](https://insight.sensiolabs.com/projects/05261ef7-d6f4-47db-8d9b-dcf08eb8693b/mini.png)](https://insight.sensiolabs.com/projects/05261ef7-d6f4-47db-8d9b-dcf08eb8693b)
 
 **This code is currently under development.**
 
