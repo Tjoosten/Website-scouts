@@ -79,7 +79,7 @@
     	  // Database
 				$DB = array(
 					'Beschrijving' => $this->Takken->Welpen(),
-					'Activiteiten' => $this->Activiteiten->>Welpen(),
+					'Activiteiten' => $this->Activiteiten->Welpen(),
 				);
     	// == END Variables == //
 
