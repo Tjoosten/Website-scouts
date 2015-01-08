@@ -13,7 +13,7 @@
 		// End constructor
 
 		public function herstel_verhuur() {
-			if($this->Sessio,) {
+			if($this->Session) {
 
 				$Person = array(
 					'Naam'  => $this->Auth['username'],
