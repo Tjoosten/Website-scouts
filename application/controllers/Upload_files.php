@@ -12,8 +12,6 @@
 
 		public function index() {
 			if($this->Session) {
-				$Session = $this->session->userdata('logged_in');
-
 				// Global Variables
 				$Data['Title']  = "Wijzig groen'tje";
 				$Data['Active'] = "9";
