@@ -33,7 +33,7 @@
 
    $config['Mail'] = array(
      'Webmaster' => '',
-     'Verhuur'   => '';
+     'Verhuur'   => '',
    );
 
    /**
@@ -49,5 +49,5 @@
     */
 
     $config['Site'] = array(
-      
+
     );
