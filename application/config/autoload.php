@@ -129,7 +129,7 @@ $autoload['helper'] = array('url', 'text');
 |
 */
 
-$autoload['config'] = array();
+$autoload['config'] = array('Platform_config');
 
 
 /*

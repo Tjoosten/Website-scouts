@@ -66,7 +66,7 @@
 						$this->load->view('alerts/upload_success', $Data);
 					}
 				} else {
-					// geen sessie gevonden, ga naar login pagina
+					// If no session found, redirect to login
 					redirect('Admin', 'Refresh');
 			}
 		}

@@ -2,6 +2,9 @@
 	class Verhuur extends CI_Controller {
 
 		// Constructor
+
+		// $Session, $Heading, $Message
+		// are emty because they filled in later in the constructor
 		public $Session = array();
 		public $Heading = array();
 		public $Message = array();
@@ -24,13 +27,13 @@
 		  public function index() {
 				$this->output->cache(5);
 
-				$data = array(
+				$Data = array(
 					'Title' => 'Verhuur',
 					'Active' => '2',
 				);
 
-        $this->load->view('components/header', $data);
-      	$this->load->view('components/navbar', $data);
+        $this->load->view('components/header', $Data);
+      	$this->load->view('components/navbar', $Data);
         $this->load->view('client/verhuur_index');
         $this->load->view('components/footer');
       }
@@ -128,8 +131,11 @@
             $this->dompdf->render();
             $this->dompdf->stream("Onbijt_inschrijvingen.pdf");
           } else {
-						$Data['Heading'] = $this->Heading;
-						$Data['Message'] = $this->Message;
+						$Data = array(
+							'Heading' => $this->Heading,
+							'Message' => $this->Message,
+						);
+					
             $this->load->view('errors/html/alert', $Data);
           }
 				} else {

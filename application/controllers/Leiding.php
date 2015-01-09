@@ -2,10 +2,10 @@
 session_start(); //we need to call PHP's session object to access it through CI
 class leiding extends CI_Controller {
 
-  /*
-   | Developer: Tim Joosten
-   | Licence: 4GPL
-   | Copyright: Tim Joosten
+  /**
+   * @author: Tim Joosten
+   * @copyright: Closed License, Tim Joosten
+   * @package: Scouts website (http://www.st-joris-turnhout.be)
    */
 
   // Constructor
@@ -119,9 +119,12 @@ class leiding extends CI_Controller {
   function Insert_leiding() {
     if($this->Session) {
       // Mail variables
-      $Mail['Mail'] = $this->input->post('Mail');
-      $Mail['Pass'] = random_string('alnum', 16);
-      $Mail['Name'] = $this->input->post('Naam');
+      $MAil = array(
+        'Mail' => $this->input->post('Mail'),
+        'Pass' => random_string('alnum', 16),
+        'Name' => $this->input->post('Naam'),
+      );
+
       $Mail_view    = $this->load->view('email/login', $Mail , TRUE);
 
 			// Email the new user
