@@ -135,7 +135,7 @@
 							'Heading' => $this->Heading,
 							'Message' => $this->Message,
 						);
-					
+
             $this->load->view('errors/html/alert', $Data);
           }
 				} else {
@@ -252,8 +252,8 @@
                 $this->load->view('components/footer');
 							} else {
 								$Data = array(
-									'Heading' => $this->Heading;
-									'Message' => $this->Message;
+									'Heading' => $this->Heading,
+									'Message' => $this->Message,
 								);
 
 								$this->load->view('errors/html/alert', $Data);
