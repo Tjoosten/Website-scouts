@@ -55,7 +55,7 @@
 
     /**
      * --------------------------------------------------
-     * 3) Redirecxt variables
+     * 3) Redirect variables
      * --------------------------------------------------
      * The variables vor the redirects
      *
@@ -66,6 +66,6 @@
      *
      */
 
-    $config['redirect'] = array(
-      'Not_logged_in' = 'admin',
+    $config['Redirect'] = array(
+      'Not_logged_in' => 'admin',
     );
