@@ -20,7 +20,7 @@ class Issue extends CI_Controller {
       $this->load->view('admin/issue');
       $this->load->view('components/footer');
     } else {
-      redirect('/');
+      redirect($this->config->item('Redirect','Not_logged_in'));
     }
   }
 }
