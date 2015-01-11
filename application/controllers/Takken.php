@@ -8,14 +8,14 @@
     */
 
 		// Constructor
-		public $Auth = array();
+		public $Session = array();
 
     function __construct() {
       parent::__construct();
       $this->load->model('Model_Takken', 'Takken');
       $this->load->model('Model_activiteiten', 'Activiteiten');
 
-			$this->Auth = $this->session->userdata('logged_in');
+			$this->Session = $this->session->userdata('logged_in');
     }
 		// End constructor
 
@@ -177,7 +177,7 @@
 
     // Admin controllers
     public function Takken_edit() {
-        if($this->Auth) {
+        if($this->Session) {
             $this->load->model('Model_takken', 'Takken');
             $this->Takken->Takken_edit();
             redirect('backend', 'refresh');
