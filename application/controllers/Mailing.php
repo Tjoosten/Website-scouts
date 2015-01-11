@@ -78,7 +78,7 @@
         $this->email->from('Mailing@st-joris-turnhout.be', 'Mailing st-joris turnhout');
         $this->email->to($Output->Email);
         $this->email->subject($this->input->post('subject'));
-        $this->email->message(Parsedown::instance()->parse($text));
+        $this->email->message(Parsedown::instance()->parse($text)); // Pasedown???? Bug possible!
         $this->email->send();
         $this->email->clear();
       }
