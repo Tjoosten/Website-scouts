@@ -13,8 +13,10 @@
 		public function index() {
 			if($this->Session) {
 				// Global Variables
-				$Data['Title']  = "Wijzig groen'tje";
-				$Data['Active'] = "9";
+				$Data = array(
+					'Title'  => 'Wijzig groentje',
+					'Active' => '9',
+				);
 
 				$this->load->view('components/admin_header', $Data);
 				$this->load->view('components/navbar_admin', $Data);
@@ -28,10 +30,12 @@
 
 		public function do_upload() {
 			if($this->Session) {
-				$config['upload_path'] = './assets/files/';
-				$config['allowed_types'] = 'pdf';
-				$config['file_name'] = 'Planning';
-				$config['overwrite']= TRUE;
+				$config = array(
+					'upload_path' => './assets/files/',
+					'allowed_types' => 'pdf',
+					'file_name' => 'Planning'
+					'overwrite' => TRUE,
+				);
 
 				// Library word niet constructor geladen.
 				// Omdat deze config variables bevat
@@ -41,10 +45,13 @@
 					$Session = $this->session->userdata('logged_in');
 
 					// Global Variables
-					$data['Title']  = "Wijzig groen'tje";
-					$data['Active'] = "9";
+					$data = array(
+						'Title'  => 'Wijzig groentje',
+						'Active' => '9',
+					);
 
 					// Session Variables
+					// Possible to delete. Need to research this.
 					$data['id']    = $Session['id'];
 					$data['Admin'] = $Session['Admin'];
 					$data['User']  = $Session['username'];
@@ -61,6 +68,7 @@
 					$this->load->view('components/footer');
 
 				}	else {
+						// Not in array because it is one variable.
 						$Data['Heading'] = $this->Succes_heading;
 
 						$this->load->view('alerts/upload_success', $Data);
