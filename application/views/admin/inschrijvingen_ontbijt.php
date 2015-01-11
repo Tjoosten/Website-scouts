@@ -7,7 +7,7 @@
 
           <!-- List group -->
           <div class="list-group">
-            <a href="<?php echo base_url(); ?>Inschrijvingen/Admin_ontbijt" class="list-group-item">Ontbijt / Brunch</a>
+            <a href="<?php echo base_url(). 'Inschrijvingen/Admin_ontbijt'; ?>" class="list-group-item">Ontbijt / Brunch</a>
           </div>
         </div>
 		</div> <!-- END Sidebar -->
@@ -26,7 +26,7 @@
   			<div class="tab-pane active" id="Inschrijvingen">
   				<p>
             <div style="padding-bottom: 15px;" class="pull-right">
-              <a href="<?php echo base_url(); ?>Inschrijvingen/Download_ontbijt" Role="button" class="btn btn-info">
+              <a href="<?php echo base_url(). 'Inschrijvingen/Download_ontbijt'; ?>" Role="button" class="btn btn-info">
                 <span class="octicon octicon-cloud-download"></span>  Download
               </a>
             </div>
@@ -71,7 +71,7 @@
               				<p> Activeer eerst een datum. Voor mensen zich kunnen inschrijven </p>
               			</div>
               		<?php else: ?>
-              			<form method="POST" action="<?php echo base_url(); ?>Inschrijvingen/Insert_inschrijving">
+              			<form method="POST" action="<?php echo base_url(). 'Inschrijvingen/Insert_inschrijving'; ?>">
               				<label for="01">Naam:</label>
               				<input class="form-control" style="width: 35%;" placeholder="Achternaam" name="Naam" id="01" />
               				<br>
@@ -125,9 +125,13 @@
   											<td> <?php echo $Output->Deathline; ?> </td>
   											<td>
   												<?php if($Output->Status == 1): ?>
-  													<a href="<?php echo base_url(); ?>inschrijvingen/Ontbijt_Stop/<?php echo $Output->ID; ?>/<?php echo $Output->Month_nr; ?>" class="label label-danger"> Sluiten </a>
+  													<a href="<?php echo base_url(). 'inschrijvingen/Ontbijt_stop'. $Output->ID .'/'. $Output->Month_nr; ?>" class="label label-danger">
+															Sluiten
+														</a>
   												<?php elseif($Output->Status == 0): ?>
-  													<a href="<?php echo base_url(); ?>Inschrijvingen/Ontbijt_Start/<?php echo $Output->ID; ?>" class="label label-success"> Vrijgeven </a>
+  													<a href="<?php echo base_url(). 'Inschrijvingen/Ontbijt_Start/' .$Output->ID; ?>" class="label label-success">
+															Vrijgeven
+														</a>
   												<?php endif; ?>
   											</td>
   										</tr>
