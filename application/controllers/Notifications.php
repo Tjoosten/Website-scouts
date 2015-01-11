@@ -45,7 +45,7 @@
 				redirect('Verhuur/admin_verhuur');
 			} else {
 				// if no session found, redirect to login
-				redirect('Admin','Refresh');
+				redirect($this->config->item('Redirect','Not_logged_in'),'Refresh');
 			}
 		}
 	}
