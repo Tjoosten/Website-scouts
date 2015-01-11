@@ -8,9 +8,6 @@
 		}
 
 		public function index() {
-			// Cache
-			$this->output->cache(5);
-			// END
 
 			// Not in array, because it's one variable.
 			$Data['Title'] = "Index";
