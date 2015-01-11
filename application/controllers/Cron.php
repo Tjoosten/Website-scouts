@@ -19,17 +19,18 @@
       $this->load->dbutil();
     }
 
+		// '\n' = Break line
     function index() {
-      echo "".PHP_EOL;
-      echo "// Cronjobs st-joris-turnhout.be".PHP_EOL;
-      echo "// Menu zal niet werken als je je niet in public_html bevind".PHP_EOL;
-      echo "".PHP_EOL;
+      echo "\n";
+      echo "// Cronjobs st-joris-turnhout.be \n";
+      echo "// Menu zal niet werken als je je niet in public_html bevind \n";
+      echo "\n";
 
-      echo "1) Optimaliseer database".PHP_EOL;
-      echo "2) Verwijder afgelopen verhuringen".PHP_EOL;
-      echo "3) Verwijder afgelopen activiteiten".PHP_EOL;
-			echo "4) Run migrations".PHP_EOL;
-      echo "---------------------------------------------".PHP_EOL;
+      echo "1) Optimaliseer database \n";
+      echo "2) Verwijder afgelopen verhuringen \n";
+      echo "3) Verwijder afgelopen activiteiten \n";
+			echo "4) Run migrations \n";
+      echo "--------------------------------------------- \n";
       echo "Welke taak wil je uitvoeren? (1 - 4):";
 
       $Cron = fopen ("php://stdin","r");
@@ -52,7 +53,7 @@
 			}
 
       else {
-        echo "Ongeldige keuze".PHP_EOL;
+        echo "Ongeldige keuze \n";
       }
 
     }
