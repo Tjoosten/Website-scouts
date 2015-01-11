@@ -1,10 +1,10 @@
-<?php 
+<?php
 	Class Model_Takken extends CI_Model {
 
-		/* 
-		 | Developer: Tim Joosten
-		 | License: 4GPL
-		 | Copyright: Sint-Joris Turnhout, Tim Joosten
+		/**
+		 * Developer: Tim Joosten
+		 * License: 4GPL
+		 * Copyright: Sint-Joris Turnhout, Tim Joosten
 		 */
 
 		// Selecting Queries
@@ -13,15 +13,15 @@
 					 ->where('Tak', 'Kapoenen');
 
 			$Query = $this->db->get('Takken');
-			return $Query->result(); 
+			return $Query->result();
 		}
-		
+
 		function Welpen() {
 			$this->db->select()
 					 ->where('Tak', 'Welpen');
 
 			$Query = $this->db->get('Takken');
-			return $Query->result(); 
+			return $Query->result();
 		}
 
 		function JongGivers() {
@@ -37,7 +37,7 @@
 					 ->where('Tak', 'Givers');
 
 			$Query = $this->db->get('Takken');
-			return $Query->result(); 
+			return $Query->result();
 		}
 
 		function Jins() {
@@ -45,7 +45,7 @@
 					 ->where('Tak', 'Jins');
 
 			$Query = $this->db->get('Takken');
-			return $Query->result(); 
+			return $Query->result();
 		}
 
 		function Leiding() {
@@ -53,9 +53,9 @@
 					 ->where('Tak', 'Leiding');
 
 			$Query = $this->db->get('Takken');
-			return $Query->result(); 
+			return $Query->result();
 		}
-		
+
 		// Edit Query's
 		function Takken_edit() {
 			$Values = array(

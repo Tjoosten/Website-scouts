@@ -14,11 +14,13 @@ class Fotos extends CI_Controller {
 
 	// Client side
   function index() {
-    $data['Title']  = "Fotos";
-		$data['Active'] = "3";
-
-		// Database variables
-		$data['Foto'] = $this->Images->select();
+    $data = array(
+      // Normal variables
+      'Title' > 'Fotos',
+      'Active' => '3',
+      // DB variables
+      'Foto' => $this->Images->select(),
+    );
 
     $this->load->view('components/header', $data);
     $this->load->view('components/navbar', $data);
@@ -59,8 +61,11 @@ class Fotos extends CI_Controller {
 
 	public function do_upload() {
 		if($this->Session) {
-			$config['allowed_types'] = 'jpg';
-			$config['upload_path'] = './assets/fotos/';
+      $config = array(
+          'allowed_types' => 'jpg',
+          'upload_path'   => './assets/fotos',
+      );
+
 
 			$this->load->library('upload', $config);
 
@@ -70,7 +75,7 @@ class Fotos extends CI_Controller {
 				$data['Title']  = "Wijzig groen'tje";
 				$data['Active'] = "9";
 
-				// Database variables
+				// Database variable(s). Not an array because it is one variable.
 				$data['DB'] = $this->Images->Backend_select();
 
 				$this->load->view('components/admin_header', $data);

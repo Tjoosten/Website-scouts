@@ -32,8 +32,8 @@
     */
 
    $config['Mail'] = array(
-     'Webmaster' => '',
-     'Verhuur'   => '',
+     'Webmaster' => 'webmaster@st-joris-turnhout.be',
+     'Verhuur'   => 'verhuur@st-joris-turnhout.be',
    );
 
    /**
@@ -45,9 +45,27 @@
     * ---------------------------------------------------
     * Explantion of the variables
     * ---------------------------------------------------
+    * $config['Site']['siteName'] = the nieuw in the right corner of the navbar.
     *
     */
 
     $config['Site'] = array(
+      'siteName' => 'St-Joris',
+    );
 
+    /**
+     * --------------------------------------------------
+     * 3) Redirecxt variables
+     * --------------------------------------------------
+     * The variables vor the redirects
+     *
+     *---------------------------------------------------
+     * Explanation of the variables
+     * --------------------------------------------------
+     * $config['redirect']['Not_logged_in'] = The redirect when the user is not logged in.
+     *
+     */
+
+    $config['redirect'] = array(
+      'Not_logged_in' = 'admin',
     );

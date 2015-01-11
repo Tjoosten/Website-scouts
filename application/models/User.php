@@ -10,19 +10,19 @@ Class User extends CI_Model {
 
 		$query = $this->db->get();
 
-		if($query -> num_rows() == 1) {
+		if($query->num_rows() == 1) {
 			return $query->result();
 		} else {
 			return false;
 		}
 
 	}
-	
+
 	function reset_pass() {
-		$this->db->select()
-						 ->from('users')
-						 ->where('Mail', $this->input->post('recovery'));
-		
+		$this->db->select('*')
+				 ->from('users')
+				 ->where('Mail', $this->input->post('recovery'));
+
 		$Query = $this->db->get();
 		return $Query->result();
 	}
@@ -31,7 +31,7 @@ Class User extends CI_Model {
 		$Values = array(
 			"password" => md5($New['New']),
 		);
-		
+
 		$this->db->where('Mail', $this->input->post('recovery'))
 				 ->update('users', $Values);
 	}

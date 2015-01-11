@@ -64,7 +64,15 @@
     		$Prijs  = "3";
     		$Bedrag = $Aantal * $Prijs;
 
-    		// Start Insert
+    		/**
+				 * Start insert
+				 * ------------------
+				 * @var Naaam, STRING
+				 * @var Voornaam, STRING
+				 * @var Email, STRING
+				 * @var Maand, STRING
+				 * @var Personen, STRING
+				 */
     		$Values = array(
     			"Naam"            => $this->input->post('Naam'),
     			"Voornaam"        => $this->input->post('Voornaam'),
