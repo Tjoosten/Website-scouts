@@ -181,9 +181,11 @@
 
         if($this->Session['Admin'] == 1) {
           // Gobal variables
-          $Data['Title']  = "Verhuringen";
-					$Data['Active'] = "2";
-
+					$Data = array(
+						'Title' => 'Verhuringen',
+						'Active' => '2',
+					);
+					
           // Database variabels
           $Data['Bevestigd'] = $this->Verhuringen->Verhuur_api();
 
