@@ -5,6 +5,7 @@
 		public $Error_heading = array();
 		public $Error_message = array();
 		public $Session       = array();
+		public $Redirect      = array();
 
     function __construct(){
 			parent::__construct();
@@ -18,6 +19,7 @@
 			$this->Error_heading = "No Permission";
 			$this->Error_message = "Hebt heb geen rechten om deze handeling uit te voeren";
 			$this->Session = $this->session->userdata('logged_in');
+			$this->Redirect = $this->config->item('Redirect','Not_logged_in');
     }
 		// End constructor
 
@@ -35,11 +37,11 @@
 		}
 
 		public function Ontbijt_inschrijving() {
-			$Data['Title']  = "Inschrijving ontbijt";
-			$Data['Active'] = "4";
-
-			// Variable is not array because it is one item.
-			$DB['Datums']   = $this->Inschrijving->Get_dates();
+			$Data = array(
+				'Title'  => 'Inschrijving ontbijt',
+				'Active' => '4',
+				'Datums' => $this->Inschrijving->Get_dates();
+			);
 
 			$this->load->view('components/header', $Data);
 			$this->load->view('components/navbar', $Data);
@@ -71,7 +73,7 @@
 
 				}
 			} else {
-				redirect('Admin', 'Refresh');
+				redirect($this->Redirect, 'Refresh');
 			}
 		}
 
@@ -125,7 +127,7 @@
 				}
 			} else {
 				// If no session, redirect to login
-				redirect('Admin', 'Refresh');
+				redirect($this->Redirect, 'Refresh');
 			}
 		}
 
@@ -155,7 +157,7 @@
 				}
 			} else {
 				// If no session, redirect to login
-				redirect('Admin', 'Refresh');
+				redirect($this->Redirect, 'Refresh');
 			}
 		}
 
@@ -186,7 +188,7 @@
 				}
 			} else {
 				// If no session, redirect to login
-				redirect('Admin', 'Refresh');
+				redirect($this->Redirect, 'Refresh');
 			}
 		}
 	}
