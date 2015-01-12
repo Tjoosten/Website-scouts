@@ -3,11 +3,12 @@
 
 		// Constructor
 
-		// $Session, $Heading, $Message
+		// $Session, $Heading, $Message, $Redirect
 		// are emty because they filled in later in the constructor
-		public $Session = array();
-		public $Heading = array();
-		public $Message = array();
+		public $Session  = array();
+		public $Heading  = array();
+		public $Message  = array();
+		public $Redirect = array();
 
   	function __construct() {
       parent::__construct();
@@ -18,9 +19,11 @@
       $this->load->library(array('email','dompdf_gen'));
       $this->load->helper(array('email','date','text'));
 
-			$this->Session = $this->session->userdata('logged_in');
-			$this->Heading = "No permission";
-			$this->Message = "U hebt geen rechten om deze handeling uit te voeren";
+			$this->Session  = $this->session->userdata('logged_in');
+			$this->Redirect = $this->config->item('Redirect','Not_logged_in');
+
+			$this->Heading  = "No permission";
+			$this->Message  = "U hebt geen rechten om deze handeling uit te voeren";
     }
 		// End constructor
 
@@ -120,6 +123,7 @@
 			public function Download_verhuringen() {
         if($this->Session) {
           if($this->Session['Admin'] == 1) {
+						// Not in array, because it is one variable.
 					  $Data['Query'] = $this->Verhuringen->Download_verhuringen();
 
             $this->load->view('pdf/verhuur', $Data);
@@ -140,7 +144,7 @@
           }
 				} else {
 					// if no session, redirect to login page
-					redirect('Admin');
+					redirect($this->Redirect, 'refresh');
 				}
 			}
 
@@ -171,7 +175,7 @@
             }
 					} else {
 					// if no session, redirect to login page
-					redirect('Admin','Refresh');
+					redirect($this->Redirect, 'Refresh');
 				}
 			}
 
@@ -185,7 +189,7 @@
 						'Title' => 'Verhuringen',
 						'Active' => '2',
 					);
-					
+
           // Database variabels
           $Data['Bevestigd'] = $this->Verhuringen->Verhuur_api();
 
@@ -203,7 +207,7 @@
         }
       } else {
         // If no session, redirect to login page
-        redirect('Admin', 'refresh');
+        redirect($this->Redirect, 'refresh');
       }
     }
 
@@ -232,7 +236,7 @@
 							}
             } else {
                 // Geen sessie gevonden, ga naar login pagina
-                redirect('Admin', 'refresh');
+                redirect($this->Redirect, 'refresh');
             }
 
         }
@@ -262,7 +266,7 @@
 							}
             } else {
                 // Geen sessie gevonden, ga naar login pagina
-                redirect('Admin', 'Refresh');
+                redirect($this->Redirect, 'Refresh');
             }
         }
 
@@ -281,7 +285,7 @@
 						  }
             } else {
                 // Geen sessie gevonden, ga naar login pagina
-                redirect('Admin', 'Refresh');
+                redirect($this->Redirect, 'Refresh');
             }
         }
 
@@ -301,7 +305,7 @@
 							}
             } else {
                 // Geen sessie gevonden, ga naar login pagina
-                redirect('Admin', 'refresh');
+                redirect($this->Redirect, 'refresh');
             }
         }
 
@@ -321,7 +325,7 @@
 							}
             } else {
                 // Geen sessie gevonden, ga naar login pagina
-                redirect('Admin', 'refresh');
+                redirect($this->Redirect, 'refresh');
             }
         }
 
