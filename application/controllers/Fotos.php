@@ -18,11 +18,9 @@ class Fotos extends CI_Controller {
 	// Client side
   function index() {
     $data = array(
-      // Normal variables
-      'Title' > 'Fotos',
+      'Title'  => 'Fotos',
       'Active' => '3',
-      // DB variables
-      'Foto' => $this->Images->select(),
+      'Foto'   => $this->Images->select(),
     );
 
     $this->load->view('components/header', $data);
@@ -32,11 +30,11 @@ class Fotos extends CI_Controller {
   }
 
   function Tak() {
-  	$data['Title']  = "Fotos";
-  	$data['Active'] = "3";
-
-  	// Database Variables
-  	$data['Foto'] = $this->Images->select_tak();
+    $data = array(
+      'Title'  => 'Fotos',
+      'Active' => '3',
+      'Foto'   => $this->Images->select_tak();
+    );
 
   	$this->load->view('components/header', $data);
   	$this->load->view('components/navbar', $data);
@@ -47,10 +45,11 @@ class Fotos extends CI_Controller {
 	// Admin side
 	function Index_admin() {
 		if($this->Session) {
-			// Global Variables
-			$data['Title']  = "Admin media";
-			$data['Active'] = "3";
-			$data['DB'] = $this->Images->Backend_select();
+      $data = array(
+        'Title'  => 'Admin media',
+        'Active' => '3',
+        'DB'     => $this->Images->Backend_select();
+      );
 
 			$this->load->view('components/admin_header', $data);
 			$this->load->view('components/navbar_admin', $data);
@@ -73,13 +72,13 @@ class Fotos extends CI_Controller {
 			$this->load->library('upload', $config);
 
 			if (!$this->upload->do_upload()) {
-
-				// Global Variables
-				$data['Title']  = "Wijzig groen'tje";
-				$data['Active'] = "9";
-
-				// Database variable(s). Not an array because it is one variable.
-				$data['DB'] = $this->Images->Backend_select();
+        $data = array(
+          // Global variables
+          'Title'  => 'Wijzig groentje',
+          'Active' => '9',
+          // Database veriables
+          'DB' => $this->Images->Backend_select();
+        );
 
 				$this->load->view('components/admin_header', $data);
 				$this->load->view('components/navbar_admin', $data);
