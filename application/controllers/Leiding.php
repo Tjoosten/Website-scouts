@@ -12,6 +12,7 @@ class leiding extends CI_Controller {
   public $Session       = array();
   public $Error_message = array();
   public $Error_heading = array();
+  public $Redirect
 
   function __construct() {
     parent::__construct();
@@ -23,6 +24,8 @@ class leiding extends CI_Controller {
     $this->Session = $this->session->userdata('logged_in');
     $this->Error_heading = "No permission";
     $this->Error_message = "U hebt geen rechten om deze handeling uit te voeren";
+
+    $this->Redirect = $this->config->item('Redirect', 'Not_logged_in');
   }
   // END Constructor
 
@@ -61,7 +64,7 @@ class leiding extends CI_Controller {
         $this->load->view('alerts/no_permission');
       }
     } else {
-      redirect('Admin', 'refresh');
+      redirect($this->Redirect, 'refresh');
 	  }
   }
 
@@ -79,7 +82,7 @@ class leiding extends CI_Controller {
 			$this->load->view('admin/settings', $DB);
 			$this->load->view('components/footer');
 		} else {
-			redirect('Admin', 'Refresh');
+			redirect($this->Redirect, 'Refresh');
 		}
 	}
 
@@ -112,7 +115,7 @@ class leiding extends CI_Controller {
 			$this->Leiding->Settings_edit();
 			redirect('Leiding/Settings', 'Refresh');
 		} else {
-			redirect('Admin', 'Refresh');
+			redirect($this->Redirect, 'Refresh');
 		}
 	}
 
@@ -140,7 +143,7 @@ class leiding extends CI_Controller {
       $this->Leiding->Leiding_insert($Mail);
       redirect('leiding');
     } else {
-      redirect('Admin', 'refresh');
+      redirect($this->Redirect, 'refresh');
     }
   }
 
@@ -154,7 +157,7 @@ class leiding extends CI_Controller {
         $this->load->view('alerts/no_permission');
       }
     } else {
-      redirect('Admin', 'refresh');
+      redirect($this->Redirect, 'refresh');
     }
   }
 
@@ -168,7 +171,7 @@ class leiding extends CI_Controller {
         $this->load->view('alerts/no_permission');
       }
     } else {
-      redirect('Admin', 'refresh');
+      redirect($this->Redirect, 'refresh');
     }
   }
 
@@ -191,7 +194,7 @@ class leiding extends CI_Controller {
         $this->load->view('alerts/no_permission');
       }
     } else {
-      redirect('Admin', 'refresh');
+      redirect($this->Redirect, 'refresh');
     }
   }
 
@@ -205,7 +208,7 @@ class leiding extends CI_Controller {
         $this->load->view('alerts/no_permission');
       }
     } else {
-      redirect('Admin', 'refresh');
+      redirect($this->Redirect, 'refresh');
     }
   }
 
@@ -225,7 +228,7 @@ class leiding extends CI_Controller {
         $this->load->view('alerts/no_permission');
       }
     } else {
-      redirect('Admin', 'refresh');
+      redirect($this->Redirect, 'refresh');
     }
   }
 }

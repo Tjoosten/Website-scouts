@@ -2,13 +2,16 @@
 class Fotos extends CI_Controller {
 
   // Constructor
-  public $Session = array();
+  public $Session  = array();
+  public $Redirect = array();
 
   function __construct() {
     parent::__construct();
 		$this->load->model('Model_fotos', 'Images');
 		$this->load->helper(array('form', 'url'));
-    $this->Session = $this->session->userdata('logged_in');
+
+    $this->Session  = $this->session->userdata('logged_in');
+    $this->Redirect = $this->config->item('Redirect','Not_logged_in');
   }
   // End constructor
 
@@ -55,7 +58,7 @@ class Fotos extends CI_Controller {
 			$this->load->view('components/footer');
 		} else {
 			// geen sessie gevonden, ga naar login
-			redirect('Admin', 'Refresh');
+			redirect($this->Redirect, 'Refresh');
 		}
 	}
 
@@ -89,7 +92,7 @@ class Fotos extends CI_Controller {
 				}
 			} else {
 				// geen sessie gevonden, ga naar login pagina
-				redirect('Admin', 'Refresh');
+				redirect($this->Redirect, 'Refresh');
 		}
 	}
 
@@ -101,7 +104,7 @@ class Fotos extends CI_Controller {
 			redirect('Fotos/Index_admin');
 		} else {
 			// geen sessie gevonden, ga naar login
-			redirect('Admin', 'Refresh');
+			redirect($this->Redirect, 'Refresh');
 		}
 	}
 }

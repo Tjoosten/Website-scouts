@@ -8,14 +8,16 @@
     */
 
 		// Constructor
-		public $Session = array();
+		public $Session  = array();
+		public $Redirect = array();
 
     function __construct() {
       parent::__construct();
       $this->load->model('Model_Takken', 'Takken');
       $this->load->model('Model_activiteiten', 'Activiteiten');
 
-			$this->Session = $this->session->userdata('logged_in');
+			$this->Session  = $this->session->userdata('logged_in');
+			$this->Redirect = $this->config->item('Redirect','Not_logged_in');
     }
 		// End constructor
 
@@ -183,7 +185,7 @@
             redirect('backend', 'refresh');
         } else {
             // If nos session found redirect to login
-            redirect('Admin', 'refresh');
+            redirect($this->Redirect, 'refresh');
         }
     }
 }
