@@ -67,5 +67,5 @@
      */
 
     $config['Redirect'] = array(
-      'Not_logged_in' => 'admin',
+      'Not_logged_in' => 'Admin',
     );

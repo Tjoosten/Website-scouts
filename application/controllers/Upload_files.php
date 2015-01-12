@@ -1,12 +1,14 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 	class Upload_files extends CI_Controller {
 		// Constructor
-		public $Session = array();
+		public $Session  = array();
+		public $Redirect = array();
 
 		function __construct() {
 			parent::__construct();
 			$this->load->helper(array('form', 'url'));
 			$this->Session = $this->session->userdata('logged_in');
+			$this->Redirect = $this->config->item('Redirect','Not_logged_in');
 		}
 		// END Constructor
 
@@ -24,7 +26,7 @@
 				$this->load->view('components/footer');
 			} else {
 				// Geen sessie gevonden , ga naar login
-				redirect('Admin', 'Refresh');
+				redirect($this->Redirect, 'Refresh');
 			}
 		}
 
@@ -75,7 +77,7 @@
 					}
 				} else {
 					// If no session found, redirect to login
-					redirect('Admin', 'Refresh');
+					redirect($this->Redirect, 'Refresh');
 			}
 		}
 	}
