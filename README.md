@@ -18,4 +18,4 @@ The soruce code of [http://www.st-joris-turnhout.be](http://www.st-joris-turnhou
 
 ### License
 Codeigniter Framework: MIT License
-Application files: Apache License
+Website itself = Closed license
