@@ -19,11 +19,8 @@
 		public function index() {
 			if($this->Session) {
 				if($this->Session['Admin'] == 1) {
-					// Global variables
 					$Data['Title']  = "Mailing";
 					$Data['Active'] = "6";
-
-					// Database variables
 					$Data['Mailing'] = $this->Mailing->Mailing();
 
 					$this->load->view('components/admin_header', $Data);

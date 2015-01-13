@@ -2,9 +2,9 @@
 	class Takken extends CI_Controller {
 
    /*
-    | Developer: Tim Joosten
-    | License: 4GPL
-    | Copyright: St-joris Turnhout, Tim Joosten
+    * Developer: Tim Joosten
+    * License: 4GPL
+    * Copyright: St-joris Turnhout, Tim Joosten
     */
 
 		// Constructor
