@@ -17,5 +17,5 @@ The soruce code of [http://www.st-joris-turnhout.be](http://www.st-joris-turnhou
 - Topairy@gmail.com
 
 ### License
-Codeigniter Framework: MIT License
-Website itself = Closed license
+- Codeigniter Framework: MIT License
+- Website itself = Closed license
