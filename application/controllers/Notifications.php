@@ -1,14 +1,24 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
+
+	/**
+	 * @author: Tim Joosten
+	 * @license: Closed license
+	 * @since: 2015
+	 * @package: Webste scouts (http://www.st-jris-turnhout.be)
+	 */
+
 	class Notifications extends CI_Controller {
 		// Constructor
-		public $Session = array();
+		public $Session  = array();
+		public $Redirect = array();
 
 		function __construct() {
       parent::__construct();
       $this->load->model('Model_leiding','Leiding');
       $this->load->model('Model_notifications','Notification');
 
-			$this->Session = $this->session->userdata('logged_in');
+			$this->Redirect = $this->config->item('Redirect', 'Not_logged_in')
+			$this->Session  = $this->session->userdata('logged_in');
   	}
 		// End constructor
 
@@ -25,7 +35,7 @@
 				redirect('Verhuur/admin_verhuur');
 			} else {
 				// If no session found, redirect to login
-				redirect('Admin','Refresh');
+				redirect($this->Redirect, 'Refresh');
 			}
 		}
 
@@ -35,7 +45,7 @@
 				redirect('Verhuur/admin_verhuur');
 			} else {
 				// if no session found, redirect to login
-				redirect('Admin','Refresh');
+				redirect($this->Redirect ,'Refresh');
 			}
 		}
 
