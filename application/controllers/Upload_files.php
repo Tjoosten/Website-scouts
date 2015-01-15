@@ -35,7 +35,7 @@
 				$config = array(
 					'upload_path' => './assets/files/',
 					'allowed_types' => 'pdf',
-					'file_name' => 'Planning'
+					'file_name' => 'Planning';
 					'overwrite' => TRUE,
 				);
 
