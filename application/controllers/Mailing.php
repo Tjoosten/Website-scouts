@@ -1,7 +1,7 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
 	/**
-	 * 
+	 *
 	 */
 
 	class Mailing extends CI_Controller {
@@ -28,7 +28,7 @@
 					$Data = array(
 						'Title'   => 'Mailing',
 						'Active'  => '6',
-						'Mailing' => $this->Mailing->Mailing();
+						'Mailing' => $this->Mailing->Mailing(),
 					);
 
 					$this->load->view('components/admin_header', $Data);
