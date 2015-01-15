@@ -48,7 +48,7 @@
 			$Data = array(
 				'Title'  => 'Inschrijving ontbijt',
 				'Active' => '4',
-				'Datums' => $this->Inschrijving->Get_dates();
+				'Datums' => $this->Inschrijving->Get_dates(),
 			);
 
 			$this->load->view('components/header', $Data);
