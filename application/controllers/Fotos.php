@@ -64,8 +64,8 @@ class Fotos extends CI_Controller {
 	public function do_upload() {
 		if($this->Session) {
       $config = array(
-          'allowed_types' => 'jpg',
-          'upload_path'   => './assets/fotos',
+        'allowed_types' => 'jpg',
+        'upload_path'   => './assets/fotos',
       );
 
 

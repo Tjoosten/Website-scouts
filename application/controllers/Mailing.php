@@ -1,7 +1,10 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
-	class Mailing extends CI_Controller {
 
-		// Constructor
+	/**
+	 * 
+	 */
+
+	class Mailing extends CI_Controller {
 		public $Session       = array();
 		public $Error_heading = array();
 		public $Error_message = array();
@@ -16,12 +19,17 @@
     }
 		// END constructor
 
+		/**
+		 *
+		 */
 		public function index() {
 			if($this->Session) {
 				if($this->Session['Admin'] == 1) {
-					$Data['Title']  = "Mailing";
-					$Data['Active'] = "6";
-					$Data['Mailing'] = $this->Mailing->Mailing();
+					$Data = array(
+						'Title'   => 'Mailing',
+						'Active'  => '6',
+						'Mailing' => $this->Mailing->Mailing();
+					);
 
 					$this->load->view('components/admin_header', $Data);
 					$this->load->view('components/navbar_admin', $Data);
@@ -38,6 +46,9 @@
 			}
 		}
 
+		/**
+		 *
+		 */
 		public function Mail() {
 			$List = $this->input->post('List');
 
@@ -83,7 +94,9 @@
       redirect('Mailing');
 		}
 
-		// Database Handlingss
+		/**
+		 *
+		 */
 		public function Add_address() {
 			if($this->Session) {
 				$this->Mailing->Insert_address();
@@ -93,6 +106,9 @@
 			}
 		}
 
+		/**
+		 *
+		 */
 		public function Delete_address() {
 			if($this->Session) {
 				$this->Mailing->Delete_address();
@@ -102,6 +118,9 @@
 			}
 		}
 
+		/**
+		 *
+		 */
 		public function Inactief() {
 			if($this->Session) {
 				$this->Mailing->Inactief();
@@ -111,6 +130,9 @@
 			}
 		}
 
+		/**
+		 *
+		 */
 		public function Actief() {
 			if($this->Session) {
 				$this->Mailing->Actief();

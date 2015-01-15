@@ -1,11 +1,15 @@
 <?php
-	Class Model_Takken extends CI_Model {
 
-		/**
-		 * Developer: Tim Joosten
-		 * License: 4GPL
-		 * Copyright: Sint-Joris Turnhout, Tim Joosten
-		 */
+ /**
+  * Model takken.
+  *
+  * @author Tim Joosten
+  * @license: Closed license
+  * @since 2015
+  * @package Website-models
+  */
+
+	Class Model_Takken extends CI_Model {
 
 		// Selecting Queries
 		function Kapoenen() {
@@ -16,6 +20,9 @@
 			return $Query->result();
 		}
 
+		/**
+		 * Output: array's met takbeschrijving over the Welpen
+		 */
 		function Welpen() {
 			$this->db->select()
 					 ->where('Tak', 'Welpen');
@@ -24,6 +31,9 @@
 			return $Query->result();
 		}
 
+		/**
+		 * Output: Array's met takbeschrijving over de Jong-givers.
+	   */
 		function JongGivers() {
 			$this->db->select()
 					 ->where('Tak', 'JongGivers');
@@ -32,6 +42,9 @@
 			return $Query->result();
 		}
 
+		/**
+		 * Output: Array's met takbeeschrijving over de Givers
+		 */
 		function Givers() {
 			$this->db->select()
 					 ->where('Tak', 'Givers');
@@ -40,6 +53,9 @@
 			return $Query->result();
 		}
 
+		/**
+		 * Output: Array's met takbeschrijving over de Jins.
+		 */
 		function Jins() {
 			$this->db->select()
 					 ->where('Tak', 'Jins');
@@ -48,6 +64,9 @@
 			return $Query->result();
 		}
 
+		/**
+		 * Output: Array's met beschijving over de leiding.
+		 */
 		function Leiding() {
 			$this->db->select()
 					 ->where('Tak', 'Leiding');

@@ -1,12 +1,13 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
+	/**
+	 * Takken controller
+	 *
+	 * @package Website
+	 * @copyright Tim Joosten
+	 * @since 2015
+	 */
+
 	class Takken extends CI_Controller {
-
-   /*
-    * Developer: Tim Joosten
-    * License: 4GPL
-    * Copyright: St-joris Turnhout, Tim Joosten
-    */
-
 		// Constructor
 		public $Session  = array();
 		public $Redirect = array();
@@ -21,6 +22,9 @@
     }
 		// End constructor
 
+		/**
+		 * Output: Takken pagina
+		 */
 		public function index() {
 			// Variable(s)
 				// General
@@ -48,6 +52,9 @@
 			$this->load->view('components/footer');
 		}
 
+		/**
+		 * Output: Kapoenen pagina.
+		 */
     public function Kapoenen() {
     	// Variable(s)
     	  // General
@@ -70,6 +77,10 @@
         $this->load->view('components/footer');
     }
 
+
+		/**
+	 	 * Outputs Welpen page.
+		 */
     public function Welpen() {
     	// Variable(s)
     	  // General
@@ -114,6 +125,9 @@
     	  $this->load->view('components/footer');
     }
 
+		/**
+		 * Output: Givers pagina
+		 */
     public function Givers() {
     	// Variable(s)
     	  // General
@@ -136,28 +150,29 @@
     	  $this->load->view('components/footer');
     }
 
+		/**
+		 * Output: Jins pagina.
+		 */
     public function Jins() {
-    	// Variables
-    	  // General
-				$Data = array(
-					'Title'  => 'De Jins',
-					'Active' => '1',
-				);
+			$Data = array(
+				'Title'  => 'De Jins',
+				'Active' => '1',
+			);
 
-        // Database
-				$DB = array(
-					'Beschrijving' => $this->Takken->Jins(),
-					'Activiteiten' => $this->Activiteiten->Jins(),
-				);
-      // == END Variables == //
+			$DB = array(
+				'Beschrijving' => $this->Takken->Jins(),
+				'Activiteiten' => $this->Activiteiten->Jins(),
+			);
 
-        // View(s)
-        $this->load->view('components/header', $Data);
-        $this->load->view('components/navbar', $Data);
-        $this->load->view('client/tak_pagina', $DB);
-        $this->load->view('components/footer');
+      $this->load->view('components/header', $Data);
+      $this->load->view('components/navbar', $Data);
+      $this->load->view('client/tak_pagina', $DB);
+      $this->load->view('components/footer');
     }
 
+		/**
+		 * Output: Leiding pagina.
+		 */
     public function Leiding() {
     	// Variables
     	  // General

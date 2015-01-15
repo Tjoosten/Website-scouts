@@ -33,7 +33,7 @@
 					return $Query->result();
 				}
 
-        function Start_inschrijving_ontbijt() {
+        function startInschrijvingOntbijt() {
             $Value = array(
                 "Status" => "1",
                 );
@@ -58,7 +58,7 @@
             return $Query->result();
         }
 
-    	function InsertDB() {
+    	function insertDb() {
     		// Calculate bedrag
     		$Aantal = $this->input->post('Personen');
     		$Prijs  = "3";
@@ -85,7 +85,7 @@
     		$this->db->insert('Inschrijvingen_ontbijt', $Values);
     	}
 
-    	function DeleteDB() {
+    	function deleteDb() {
 
     	}
 	}

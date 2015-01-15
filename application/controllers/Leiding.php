@@ -6,6 +6,9 @@ class leiding extends CI_Controller {
    * @author: Tim Joosten
    * @copyright: Closed License, Tim Joosten
    * @package: Scouts website (http://www.st-joris-turnhout.be)
+   *
+   * @todo Clean out comments
+   * @todo Clean out variables
    */
 
   // Constructor
@@ -29,13 +32,16 @@ class leiding extends CI_Controller {
   }
   // END Constructor
 
-  function Leidingsploeg() {
-    $Data = array(
+  /**
+   * Output de leidings pagina.
+   */
+  public function Leidingsploeg() {
+    $Data = [
       'Title'  => 'Leidingsploeg',
       'Active' => '1',
       // Database variables
       'ploeg'  => $this->Leiding->ploeg(),
-    );
+    ];
 
     $this->load->view('components/header', $Data);
     $this->load->view('components/navbar', $Data);
@@ -43,15 +49,15 @@ class leiding extends CI_Controller {
     $this->load->view('components/footer');
   }
 
-  function index() {
+  /*
+   *
+   */
+  public function index() {
     if($this->Session)  {
       if($this->Session['Admin'] == 1) {
         $data = array(
-          // General variables
-          'Title'  => 'Leiding',
-          'Active' => '6',
-
-          // Database variables
+          'Title'   => 'Leiding',
+          'Active'  => '6',
           'Admin'   => $this->Leiding->Administrators(),
           'Leiding' => $this->Leiding->Leiding(),
         );
@@ -68,11 +74,16 @@ class leiding extends CI_Controller {
 	  }
   }
 
+  /**
+   *
+   */
 	function Settings() {
 		if($this->Session) {
 			// General variables
-			$data['Title'] =  "Account configuratie";
-			$data['Active'] = "7";
+      $data = [
+          'Title'  => 'Account configuratie',
+          'Active' => '7',
+      ];
 
 			// Database variables. Not an array because it is one item.
 			$DB['Account'] = $this->Leiding->Account();
@@ -86,7 +97,9 @@ class leiding extends CI_Controller {
 		}
 	}
 
-  // Database functies
+  /**
+   *
+   */
 	function Settings_edit() {
 		if($this->Session) {
 			// Old Session
@@ -147,6 +160,9 @@ class leiding extends CI_Controller {
     }
   }
 
+  /**
+   * Blokkeer een login.
+   */
   function Leiding_block() {
     if($this->Session) {
       if($this->Session['Admin'] == 1) {
@@ -161,6 +177,9 @@ class leiding extends CI_Controller {
     }
   }
 
+  /**
+   * Deblokkeer een login.
+   */
   function Leiding_unblock() {
     if($this->Session) {
       if($this->Session['Admin'] == 1) {
@@ -175,6 +194,9 @@ class leiding extends CI_Controller {
     }
   }
 
+  /**
+   * Maak leiding tot administror.
+   */
   function Leiding_upgrade() {
     if($this->Session) {
       if($this->Session['Admin'] == 1) {
@@ -198,6 +220,9 @@ class leiding extends CI_Controller {
     }
   }
 
+  /**
+   * maak een login van administrator naar leiding.
+   */
   function Leiding_downgrade() {
     if($this->Session) {
       if($this->Session['Admin']  == 1 ) {
@@ -212,6 +237,9 @@ class leiding extends CI_Controller {
     }
   }
 
+  /**
+   * Verwijder een leiding login.
+   */
   function Leiding_delete() {
     if($this->Session) {
       if($this->Session['Admin'] == 1) {

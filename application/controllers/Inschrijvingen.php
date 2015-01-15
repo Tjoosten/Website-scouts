@@ -1,7 +1,15 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
+
+	/**
+	 * Inschrijvingen controller
+	 *
+   * @package Website
+	 * @copyright Tim Joosten
+	 * @since 2015
+	 */
+
 	class Inschrijvingen extends CI_Controller {
 
-		// Constructer
 		public $Error_heading = array();
 		public $Error_message = array();
 		public $Session       = array();
@@ -115,7 +123,7 @@
 		public function Ontbijt_Start() {
 			if($this->Session) {
 				if($this->Session['Admin'] == 1) {
-					$this->Inschrijving->Start_inschrijving_ontbijt();
+					$this->Inschrijving->startInschrijvingOntbijt();
 					redirect('Inschrijvingen/Admin_ontbijt');
 				} else {
 					$Data = array(
@@ -134,7 +142,7 @@
 		public function Ontbijt_Stop() {
 			if($this->Session) {
 				if($this->Session['Admin'] == 1) {
-					$Data['Query'] = $this->Inschrijving->Download_month();
+					$Data['Query'] = $this->Inschrijving->downloadMonth();
 
 					$this->Inschrijving->Stop_inschrijving_ontbijt();
 
@@ -161,11 +169,14 @@
 			}
 		}
 
+		/**
+		 * Download de inschrijvingen voor het ontbijt / brunch
+		 */
 		public function Download_ontbijt() {
-			$Data['Query'] = $this->Inschrijving->Download();
+			$Data['Query'] = $this->Inschrijving->download();
 
         	$this->load->view('pdf/ontbijt', $Data);
-        	$html = $this->output->get_output();
+        	$html = $this->output->getOutput();
 
         	// Convert to PDF
         	$this->dompdf->load_html($html);
@@ -173,10 +184,13 @@
         	$this->dompdf->stream("Onbijt_inschrijvingen.pdf");
 		}
 
+		/**
+		 * Verwijder een inschrijving
+		 */
 		public function Delete_inschrijving() {
 			if($this->Session) {
 				if($this->Session['Admin'] == 1) {
-					$this->Inschrijving->DeleteDB();
+					$this->Inschrijving->deleteDb();
 					redirect('Admin_ontbijt');
 				} else {
 					$Data = array(

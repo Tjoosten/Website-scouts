@@ -1,17 +1,21 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
 	/**
-	 * @author: Tim Joosten
+	 * Notifications controller
+	 *
+	 * @author Tim Joosten
 	 * @license: Closed license
-	 * @since: 2015
-	 * @package: Webste scouts (http://www.st-jris-turnhout.be)
+	 * @since 2015
+	 * @package Website
 	 */
 
 	class Notifications extends CI_Controller {
-		// Constructor
 		public $Session  = array();
 		public $Redirect = array();
 
+		/**
+		* Constuctor for the Notifications file.
+		*/
 		function __construct() {
       parent::__construct();
       $this->load->model('Model_leiding','Leiding');
@@ -22,6 +26,9 @@
   	}
 		// End constructor
 
+		/**
+		 * Repair option that tries to set the email adress in the notifications.
+		 */
 		public function herstel_verhuur() {
 			if($this->Session) {
 
@@ -39,6 +46,9 @@
 			}
 		}
 
+		/**
+		 * Enable email notifications - Verhuur
+		 */
 		function Verhuur_aan() {
 			if($this->Session) {
 				$this->Notification->Verhuur_aan();
@@ -49,6 +59,9 @@
 			}
 		}
 
+		/**
+		 * Disable email notifications - Verhuur
+		 */
 		function Verhuur_uit() {
 			if($this->Session) {
 				$this->Notification->Verhuur_uit();

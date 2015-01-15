@@ -1,10 +1,15 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
+
+	/**
+	 * Verhuur controller.
+	 *
+	 * @author Tim Joosten
+	 * @license: Closed license
+	 * @since 2015
+	 * @package Website
+	 */
+
 	class Verhuur extends CI_Controller {
-
-		// Constructor
-
-		// $Session, $Heading, $Message, $Redirect
-		// are emty because they filled in later in the constructor
 		public $Session  = array();
 		public $Heading  = array();
 		public $Message  = array();
@@ -41,6 +46,9 @@
         $this->load->view('components/footer');
       }
 
+			/**
+			 * Generates the page for the calendar - Verhuur
+			 */
       public function verhuur_kalender() {
 				$this->output->cache(3);
 
@@ -72,6 +80,10 @@
         $this->load->view('components/footer');
       }
 
+
+			/**
+			 * Voegt een verhuring toe aan de database en stuurt een mail naar de bevoegde personen.
+			 */
       public function toevoegen_verhuur() {
 				if($this->session->userdata('logged_in')) {
           $this->Verhuringen->InsertDB();

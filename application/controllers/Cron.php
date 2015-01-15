@@ -36,9 +36,12 @@
       $Cron = fopen ("php://stdin","r");
       $Taak = fgets($Cron);
 
-      if(trim($Taak) == 1) {
-        shell_exec('php /scoutnet.be/users/st-joris/public_html/index.php Cron Optimize_DB');
-      }
+			switch($Taak)
+				case "1"
+					shell_exec('php /scoutnet.be/users/st-joris/public_html/index.php Cron Optimize_DB');
+						break;
+
+  
 
       elseif(trim($Taak) == 2) {
         shell_exec('php /scoutnet.be/users/st-joris/public_html/index.php Cron Del_verhuring');
@@ -58,14 +61,23 @@
 
     }
 
+		/**
+		 * Optimaliseer de darabase.
+		 */
     function Optimize_DB() {
 			$this->Cron->Optimize();
     }
 
+		/**
+		 * Verwijder afgelopen verhuringen uit de database.
+		 */
     function Del_verhuring() {
     	$this->Cron->Del_verhuringen();
     }
 
+		/**
+		 * Verwijder afgelopen activiteiten uit de database.
+		 */
     function Del_activiteiten() {
       $this->Cron->Del_activiteiten();
     }

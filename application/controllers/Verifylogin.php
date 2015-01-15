@@ -1,5 +1,14 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
+/**
+ * Login verification.
+ *
+ * @author Tim Joosten
+ * @license: Closed license
+ * @since 2015
+ * @package Website-controllers
+ */
+
 class VerifyLogin extends CI_Controller {
 
   function __construct() {
@@ -10,17 +19,14 @@ class VerifyLogin extends CI_Controller {
   }
 
   function index() {
-    // This method will have the credentials validation
     $this->load->library('form_validation');
 
     $this->form_validation->set_rules('username', 'Username', 'trim|required|xss_clean');
     $this->form_validation->set_rules('password', 'Password', 'trim|required|xss_clean|callback_check_database');
 
     if($this->form_validation->run() == FALSE) {
-      // Field validation failed.  User redirected to login page
       $this->load->view('admin/login');
     } else {
-      // Go to private area
       redirect('backend', 'refresh');
     }
 
@@ -71,6 +77,9 @@ class VerifyLogin extends CI_Controller {
     }
   }
 
+  /**
+    * Wachtwoord reset
+    */
 	function reset() {
 		$Output = $this->user->reset_pass();
 
@@ -89,13 +98,10 @@ class VerifyLogin extends CI_Controller {
       $this->email->message($mail);
       $this->email->set_mailtype("html");
       $this->email->send();
-
       $this->email->clear();
 
-			// Output view
 			$this->load->view('alerts/reset_success');
 		} else {
-			// Output view
 			$this->load->view('alerts/reset_failed');
 		}
 	}
