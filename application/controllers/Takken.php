@@ -17,6 +17,8 @@
       $this->load->model('Model_Takken', 'Takken');
       $this->load->model('Model_activiteiten', 'Activiteiten');
 
+			$this->load->helper(array('text','xml'));
+
 			$this->Session  = $this->session->userdata('logged_in');
 			$this->Redirect = $this->config->item('Redirect','Not_logged_in');
     }
@@ -28,8 +30,8 @@
 		public function index() {
 			// Variable(s)
 				// General
-				$Data = [
-					'Title'     => 'Takken',
+				$Data = array(
+					'Title'      => 'Takken',
 					'Active'     => '1',
 					'Limit'      => '40',
 					'Kapoenen'   => $this->Takken->Kapoenen(),
@@ -38,7 +40,7 @@
 					'Givers'     => $this->Takken->Givers(),
 					'Jins'       => $this->Takken->Jins(),
 					'Leiding'    => $this->Takken->Leiding(),
-				];
+				);
 		  // == END Variables == //
 
 			// View(s)
@@ -46,6 +48,24 @@
 			$this->load->view('components/navbar', $Data);
 			$this->load->view('client/takken', $Data);
 			$this->load->view('components/footer');
+		}
+
+		/**
+		 * Rss Feed controller
+		 */
+		public function Feed() {
+			$Data = array(
+				'feed_name'				 => 'Activiteiten RSS feed',
+				'encoding'				 => 'utf-8',
+				'feed_url'         => 'http://www.st-joris-turnhout.be/index.php/takken/Feed',
+				'page_description' => 'RSS over de tak activiteiten',
+				'page_language'    => 'en-en',
+				'creator_email'    => 'webmaster@st-joris-turnhout.be',
+				'activiteiten'     => $this->Activiteiten->Kapoenen(5),
+			);
+
+			header("Content-Type: application/rss+xml");
+			$this->load->view('client/rss', $Data);
 		}
 
 		/**
@@ -173,7 +193,7 @@
 			$Data = array(
 				'Title'        => 'De Leiding',
 				'Active'       => '1',
-				'Beschrijving' => $this->Takken->Leiding();
+				'Beschrijving' => $this->Takken->Leiding(),
 			);
 
 
