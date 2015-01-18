@@ -20,7 +20,7 @@
 		// End constructor
 
 		/**
-		 * Repair notification in the database - Verhuur 
+		 * Repair notification in the database - Verhuur
 		 */
 		function Herstel_verhuur($Person) {
 			$Values = array(
@@ -32,6 +32,9 @@
 			$this->db->insert('Notifications', $Values);
 		}
 
+		/**
+		 *
+		 */
 		function Get() {
 			$this->db->select('Verhuur')
 			         ->where('Naam', $this->Auth['username']);

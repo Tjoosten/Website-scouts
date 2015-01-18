@@ -19,7 +19,9 @@
       $this->load->dbutil();
     }
 
-		// '\n' = Break line
+		/**
+		 *
+		 */
     function index() {
       echo "\n";
       echo "// Cronjobs st-joris-turnhout.be \n";
@@ -41,7 +43,7 @@
 					shell_exec('php /scoutnet.be/users/st-joris/public_html/index.php Cron Optimize_DB');
 						break;
 
-  
+
 
       elseif(trim($Taak) == 2) {
         shell_exec('php /scoutnet.be/users/st-joris/public_html/index.php Cron Del_verhuring');

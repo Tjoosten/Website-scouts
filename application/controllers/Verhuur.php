@@ -66,6 +66,9 @@
         $this->load->view('components/footer');
       }
 
+			/**
+			 * controller voor verhuur aanvraag.
+			 */
       public function verhuur_aanvraag() {
 				$this->output->cache(5);
 
@@ -160,15 +163,16 @@
 				}
 			}
 
+			/**
+			 * Zoekt in de database.
+			 */
 			public function Search() {
         if($this->Session) {
 					if($this->Session['Admin'] == 1) {
 						$Data = array(
 							// Global variables
-							'Title'  => 'Verhuringen',
-							'Active' => '2',
-
-							// Database Variables
+							'Title'  			 => 'Verhuringen',
+							'Active' 			 => '2',
 							'Notification' => $this->Not->Get(),
 							'Bevestigd'    => $this->Verhuringen->Search(),
 						);
@@ -191,6 +195,9 @@
 				}
 			}
 
+			/**
+			 * Back-end paneel voor de verhuringen
+			 */
       public function Admin_verhuur() {
 		   if($this->Session)  {
         $Data['Notification'] = $this->Not->Get();
@@ -198,12 +205,10 @@
         if($this->Session['Admin'] == 1) {
           // Gobal variables
 					$Data = array(
-						'Title' => 'Verhuringen',
-						'Active' => '2',
+						'Title' 		=> 'Verhuringen',
+						'Active' 	  => '2',
+						'Bevestigd' => $this->Verhuringen->Verhuur_api();
 					);
-
-          // Database variabels
-          $Data['Bevestigd'] = $this->Verhuringen->Verhuur_api();
 
           $this->load->view('components/admin_header', $Data);
           $this->load->view('components/navbar_admin', $Data);
@@ -226,13 +231,11 @@
         public function verhuur_edit() {
             if($this->Session) {
 							if($this->Session['Admin'] == 1) {
-								$data = array(
-									// Global variables
-									'Title' => 'Wijzig verhuring',
+								$data = [
+									'Title'  => 'Wijzig verhuring',
 									'Active' => '2',
-									// Database variables
-									'Info' => $this->Verhuringen->verhuur_info(),
-								);
+									'Info'   => $this->Verhuringen->verhuur_info(),
+								];
 
                 $this->load->view('components/admin_header', $data);
                 $this->load->view('components/navbar_admin', $data);
@@ -256,13 +259,11 @@
         public function verhuur_info() {
             if($this->Session) {
 							if($this->Session['Admin'] == 1) {
-								$Data = array(
-									// Global variables
+								$Data = [
 									'Title'  => 'Verhuur Info',
 									'Active' => '2',
-									// Database variables
 									'Info'   => $this->Verhuringen->verhuur_info(),
-								);
+								];
 
                 $this->load->view('components/admin_header', $Data);
                 $this->load->view('components/navbar_admin', $Data);
@@ -288,10 +289,10 @@
                 $this->Verhuringen->Wijzig_verhuur();
                 redirect('Verhuur/Admin_verhuur');
 						  } else {
-								$Data = array(
+								$Data = [
 									'Heading' => $this->Heading,
 									'Message' => $this->Message,
-								);
+								];
 
 						  	$this->load->view('errors/html/alert', $Data);
 						  }
@@ -308,10 +309,10 @@
 								$this->Log->Verhuur_option();
                 redirect('Verhuur/Admin_verhuur');
 							} else {
-								$Data = array(
+								$Data = [
 									'Heading' => $this->Heading,
 									'Message' => $this->Message,
-								);
+								];
 
 								$this->load->view('errors/html/alert', $Data);
 							}
@@ -348,10 +349,10 @@
 								$this->Log->Verhuur_delete();
                 redirect('Verhuur/Admin_verhuur');
 							} else {
-								$Data = array(
+								$Data = [
 									'Heading' => $this->Heading,
 									'Message' => $this->Message,
-								);
+								];
 
 								$this->load->view('errors/html/alert', $Data);
 							}

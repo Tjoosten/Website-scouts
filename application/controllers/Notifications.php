@@ -32,10 +32,10 @@
 		public function herstel_verhuur() {
 			if($this->Session) {
 
-				$Person = array(
+				$Person = [
 					'Naam'  => $this->Auth['username'],
 					'Email' => $this->Auth['Email'],
-				);
+				];
 
 				$this->Notification->Herstel_verhuur($Person);
 

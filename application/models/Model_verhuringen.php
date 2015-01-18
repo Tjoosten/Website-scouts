@@ -1,18 +1,14 @@
-<?php 
+<?php
 	class Model_verhuringen extends CI_Model {
-		
-	/*
-	 | Developer: Tim Joosten
-	 | License: 4GPL
-	 | Copyright: Sint-Joris Turnhout, Tim Joosten
-	 */
 
-	// Client side
+	/**
+	 *
+	 */
 	function Verhuring_kalender() {
 		$this->db->select()
 				 ->order_by("Start_datum", "asc");
 
-		$Query = $this->db->get('Verhuur'); 
+		$Query = $this->db->get('Verhuur');
 		return $Query->result();
 	}
 
@@ -28,8 +24,8 @@
 		// start insert
 		$Values = array(
 			"Start_datum" => strtotime($Start),
-			"Eind_datum"  => strtotime($Eind), 
-			"Groep"       => $this->input->post('Groep'), 
+			"Eind_datum"  => strtotime($Eind),
+			"Groep"       => $this->input->post('Groep'),
 			"Email"       => $this->input->post('Email'),
 			"GSM"         => $this->input->post('GSM'),
 			"Status"      => "0",
@@ -39,7 +35,7 @@
 	}
 	// -------- //
 
-	// Admin side 
+	// Admin side
 	function Search() {
 		// replace characters that can jam the timestamp
 		$old_sep = array("/","-");
@@ -52,14 +48,14 @@
 			"Start_datum" => strtotime($Term),
 			"Eind_datum"  => strtotime($Term),
 		);
-			
+
 		$this->db->select()
 				 ->like($Values);
-			
+
 		$Query = $this->db->get('Verhuur');
 		return $Query->Result();
 	}
-		
+
 	function Wijzig_verhuur() {
 		// replace characters that can jam the timestamp
 		$old_sep = array("/","-");
@@ -89,26 +85,26 @@
 
 		$this->db->where("ID", $this->uri->segment(3))
 				 ->update("Verhuur", $Value);
-		
+
 	}
 
 	function Status_bevestigd() {
 		$Value = array(
 				"Status" => "2",
-			); 
+			);
 
 		$this->db->where("ID", $this->uri->segment(3))
 				 ->update("Verhuur", $Value);
 
 	}
-		
+
 	function Verhuur_delete() {
 		$this->db->where('ID', $this->uri->segment(3))
-				 ->delete('Verhuur'); 
+				 ->delete('Verhuur');
 
-		return $this->db->affected_rows(); 
+		return $this->db->affected_rows();
 	}
-		
+
 	function Verhuur_api() {
 		$this->db->select()
 				 ->order_by("Start_datum", "asc");
@@ -117,14 +113,20 @@
 		return $Query->result();
 	}
 
+	/**
+	 *
+	 */
 	function verhuur_info() {
-		$this->db->select() 
+		$this->db->select()
   					 ->where("ID", $this->uri->segment(3));
 
-		$Query = $this->db->get('Verhuur'); 
+		$Query = $this->db->get('Verhuur');
 		return $Query->result();
 	}
-		
+
+	/**
+	 *
+	 */
 	function Download_verhuringen() {
 		$this->db->select();
 

@@ -28,27 +28,23 @@
 		public function index() {
 			// Variable(s)
 				// General
-				$Data = array(
-					'Title'  => 'Takken',
-					'Active' => '1',
-					'Limit'  => '40',
-				);
-
-				// Database
-				$DB = array(
+				$Data = [
+					'Title'     => 'Takken',
+					'Active'     => '1',
+					'Limit'      => '40',
 					'Kapoenen'   => $this->Takken->Kapoenen(),
 					'Welpen'     => $this->Takken->Welpen(),
 					'JongGivers' => $this->Takken->JongGivers(),
 					'Givers'     => $this->Takken->Givers(),
 					'Jins'       => $this->Takken->Jins(),
 					'Leiding'    => $this->Takken->Leiding(),
-				);
+				];
 		  // == END Variables == //
 
 			// View(s)
 			$this->load->view('components/header', $Data);
 			$this->load->view('components/navbar', $Data);
-			$this->load->view('client/takken', $DB);
+			$this->load->view('client/takken', $Data);
 			$this->load->view('components/footer');
 		}
 
@@ -66,7 +62,7 @@
         // Database
 				$DB = array(
 					'Beschrijving' => $this->Takken->Kapoenen(),
-					'Activiteiten' => $this->Activiteiten->Kapoenen(),
+					'Activiteiten' => $this->Activiteiten->Kapoenen(5),
 				);
       // == END Variables == //
 
@@ -92,7 +88,7 @@
     	  // Database
 				$DB = array(
 					'Beschrijving' => $this->Takken->Welpen(),
-					'Activiteiten' => $this->Activiteiten->Welpen(),
+					'Activiteiten' => $this->Activiteiten->Welpen(5),
 				);
     	// == END Variables == //
 
@@ -114,7 +110,7 @@
     	  // Database
 				$DB = array(
 					'Beschrijving' => $this->Takken->JongGivers(),
-					'Activiteiten' => $this->Activiteiten->JongGivers(),
+					'Activiteiten' => $this->Activiteiten->JongGivers(5),
 				);
     	// == END Variables == //
 
@@ -139,7 +135,7 @@
     	  // Database
 				$DB = array(
 					'Beschrijving' => $this->Takken->Givers(),
-					'Activiteiten' => $this->Activiteiten->Givers(),
+					'Activiteiten' => $this->Activiteiten->Givers(5),
 				);
     	  // == END Variables == //
 
@@ -161,7 +157,7 @@
 
 			$DB = array(
 				'Beschrijving' => $this->Takken->Jins(),
-				'Activiteiten' => $this->Activiteiten->Jins(),
+				'Activiteiten' => $this->Activiteiten->Jins(5),
 			);
 
       $this->load->view('components/header', $Data);
@@ -174,22 +170,17 @@
 		 * Output: Leiding pagina.
 		 */
     public function Leiding() {
-    	// Variables
-    	  // General
-				$Data = array(
-					'Title'  => 'De Leiding',
-					'Active' => '1',
-				);
+			$Data = array(
+				'Title'        => 'De Leiding',
+				'Active'       => '1',
+				'Beschrijving' => $this->Takken->Leiding();
+			);
 
-    	  // Database. Not an array because it's one variable.
-    	  $DB['Beschrijving'] = $this->Takken->Leiding();
-    		// == END Variables == //
 
-    	  // View(s)
-    	  $this->load->view('components/header', $Data);
-    	  $this->load->view('components/navbar', $Data);
-    	  $this->load->view('client/tak_leiding', $DB);
-    	  $this->load->view('components/footer');
+    	$this->load->view('components/header', $Data);
+    	$this->load->view('components/navbar', $Data);
+    	$this->load->view('client/tak_leiding', $DB);
+    	$this->load->view('components/footer');
     }
 
     // Admin controllers

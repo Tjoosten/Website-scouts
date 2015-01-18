@@ -1,56 +1,74 @@
 <?php
+ /**
+  *
+  */
+  
  Class Model_activiteiten extends CI_Model {
-   /* 
-    | Developer: Tim Joosten
-    | License: 4GPL
-    | Copyright: Sint-Joris Turnhout, Tim Joosten
-    */
 
-   function Kapoenen() {
-     $this->db->select() 
+    /**
+     *
+     */
+   function Kapoenen($limit = NULL) {
+     $this->db->select()
               ->where('Tak', 'Kapoenen')
-              ->limit(5);
+              ->limit($limit);
 
      $Query = $this->db->get('Activiteiten');
      return $Query->result();
    }
 
-   function Welpen() {
+
+   /**
+    * Output: activiteiten van de welpen
+    */
+   function Welpen($limit = NULL) {
      $this->db->select()
               ->where('Tak', 'Welpen')
-              ->limit(5);
-
-     $Query = $this->db->get('Activiteiten');
-     return $Query->result(); 
-   }
-
-   function JongGivers() {
-     $this->db->select()
-              ->where('Tak', 'JongGivers')
-              ->limit(5);
-
-     $Query = $this->db->get('Activiteiten');
-     return $Query->result(); 
-   }
-
-   function Givers() {
-     $this->db->select()
-               ->where('Tak', 'Givers')
-               ->limit(5);
-
-     $Query = $this->db->get('Activiteiten');
-     return $Query->result(); 
-   }
-
-   function Jins() {
-     $this->db->select()
-              ->where('Tak', 'Jins')
-              ->limit(5);
+              ->limit($limit);
 
      $Query = $this->db->get('Activiteiten');
      return $Query->result();
    }
-	 
+
+   /**
+    * Output: activiteiten van de Jong-Givers.
+    */
+   function JongGivers($limit = NULL) {
+     $this->db->select()
+              ->where('Tak', 'JongGivers')
+              ->limit($limit);
+
+     $Query = $this->db->get('Activiteiten');
+     return $Query->result();
+   }
+
+   /**
+    * Output: activiteiten van de Givers.
+    */
+   function Givers($limit = NULL) {
+     $this->db->select()
+               ->where('Tak', 'Givers')
+               ->limit($limit);
+
+     $Query = $this->db->get('Activiteiten');
+     return $Query->result();
+   }
+
+   /**
+    *
+    */
+   function Jins($limit = NULL) {
+     $this->db->select()
+              ->where('Tak', 'Jins')
+              ->limit($limit);
+
+     $Query = $this->db->get('Activiteiten');
+     return $Query->result();
+   }
+
+   /**
+    *
+    */
 	 function Insert() {
       // Replace characters that can jam the timestamp
       $old_sep = array("/","-");
@@ -65,7 +83,7 @@
 				"Naam" => $this->input->post('Naam'),
 				"Beschrijving" => $this->input->post('Beschrijving'),
 		 	);
-			
+
 			$this->db->insert('Activiteiten', $Values);
       return $this->db->affected_rows();
 	 }

@@ -1,5 +1,14 @@
 <?php
+
+ /**
+  *
+	*/
+
 	Class Model_fotos extends CI_Model {
+
+		/**
+		 *
+		 */
 		function Select() {
 			$this->db->select()
 					     ->limit(9);
@@ -8,6 +17,9 @@
 			return $Query->result();
 		}
 
+		/**
+		 *
+		 */
 		function Select_tak() {
 			$this->db->select()
 					  ->where('Tak', $this->uri->segment(3));
@@ -16,6 +28,9 @@
 			return $Query->Result();
 		}
 
+		/**
+		 * Insert a photo
+		 */
 		function Insert($image_data = array()) {
 			$Values = array(
 				"Naam"      => $this->input->post('Naam'),
@@ -29,6 +44,9 @@
 			return $this->db->affected_rows();
 		}
 
+		/**
+		 *
+		 */
 		function Backend_select() {
 			$this->db->select()
 					     ->limit(25);
@@ -40,7 +58,6 @@
 		/**
 		 * Deletes a photo in the database
 		 */
-
 		function Delete() {
       $this->db->where('File_name', $this->uri->segment(3))
          	     ->delete('Photo_Gallery');

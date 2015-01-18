@@ -76,6 +76,7 @@
 
    			default:
      			echo "Kan niet bepalen naar welke lijst hij de mails moet sturen ;-(";
+					die();
 				}
 
 			$text = $this->input->post('Message');

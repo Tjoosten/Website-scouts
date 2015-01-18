@@ -1,20 +1,23 @@
 <?php
 
-/**
-* Logging model.
-*
-* Log actions to the database.
-*
-* @todo Clean up session usage
-*
-* @author Tim Joosten
-* @license: Closed license
-* @since 2015
-* @package Website-models
-*/
-
+  /**
+   * Logging model.
+   *
+   * Log actions to the database.
+   *
+   * @todo Clean up session usage
+   *
+   * @author Tim Joosten
+   * @license: Closed license
+   * @since 2015
+   * @package Website-models
+   */
 
   Class Model_Log extends CI_Model {
+
+    /**
+     *
+     */
     function logged_in() {
 			$Session = $this->session->userdata('logged_in');
 
@@ -27,6 +30,9 @@
 			$this->db->insert('Activity_log', $Values);
     }
 
+    /**
+     *
+     */
     function Logged_out() {
 			$Session = $this->session->userdata('logged_in');
 
@@ -159,6 +165,9 @@
 			$this->db->insert('Activity_log', $Values);
 		}
 
+    /**
+     *
+     */
 		function Verhuur_delete() {
 			$Session = $this->session->userdata('logged_in');
 

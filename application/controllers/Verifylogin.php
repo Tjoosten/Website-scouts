@@ -32,6 +32,9 @@ class VerifyLogin extends CI_Controller {
 
   }
 
+  /**
+   *
+   */
   function check_database($password) {
     // Field validation succeeded.  Validate against database
     $username = $this->input->post('username');
@@ -43,19 +46,6 @@ class VerifyLogin extends CI_Controller {
       $sess_array = array();
 
       foreach($result as $row) {
-
-        /**
-         * -------------------------
-         * Session Params:
-         * -------------------------
-         * @param id, INT
-         * @param username, STRING
-         * @param Admin, INT
-         * @param Tak, STRING
-         * @param Theme, INT
-         * @param Email, STRING
-         */
-
         $sess_array = array(
           'id'       => $row->id,
           'username' => $row->username,

@@ -26,10 +26,10 @@
 				"Theme" => "0",
         "password" => md5($Mail['Pass']),
       );
-      
+
       $this->db->insert('users', $Values);
     }
-    
+
     function Administrators() {
       $this->db->select()
                ->where('Admin_role','1');
@@ -45,15 +45,15 @@
       $Query = $this->db->get('users');
       return $Query->result();
     }
-		
+
 		function Account() {
 			$this->db->select()
 				       ->where('username', $this->uri->segment(3));
-			
+
 			$Query = $this->db->get('users');
-			return $Query->result(); 
+			return $Query->result();
 		}
-		
+
 	 function Settings_edit() {
 			$Pass = $this->input->post('Pass');
 
@@ -71,7 +71,7 @@
               "Theme"    => $this->input->post('Theme'),
             );
 				  }
-	   
+
 			$this->db->where('id', $this->uri->segment(3))
 				       ->update("users", $Values);
 		}
@@ -80,16 +80,16 @@
       $Value = array(
         "Blocked" => "1",
       );
-    
+
       $this->db->where("id", $this->uri->segment(3))
                ->update("users", $Value);
     }
-    
+
     function Leiding_Unblock() {
       $Value = array(
         "Blocked" => "0",
       );
-    
+
       $this->db->where('id', $this->uri->segment(3))
                ->update("users", $Value);
     }
@@ -101,14 +101,14 @@
       $Query = $this->db->get('users');
       return $Query->result();
     }
-    
+
     function Leiding_upgrade($Mailing) {
 			$Session = $this->session->userdata('logged_in');
-			
+
       $Value = array(
         "Admin_role" => "1",
       );
-      
+
       $this->db->where("id", $this->uri->segment(3))
                ->update("users", $Value);
 
@@ -119,14 +119,14 @@
         );
 
       $this->db->insert('Notifications', $Values);
-			
+
     }
-    
+
     function Leiding_downgrade($Mailing) {
       $Value = array(
         "Admin_role" => "0",
       );
-      
+
       $this->db->where("id", $this->uri->segment(3))
                ->update("users", $Value);
 
@@ -136,6 +136,6 @@
 
     function Leiding_delete() {
       $this->db->where('id', $this->uri->segment(3))
-               ->delete('users'); 
+               ->delete('users');
     }
   }

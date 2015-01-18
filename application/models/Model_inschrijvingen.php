@@ -25,54 +25,60 @@
             return $Query->result();
         }
 
-				function Download_month() {
-					$this->db->select()
-									 ->where('Maand', $this->uri->segment(4));
+			/**
+			 *
+			 */
+			function Download_month() {
+				$this->db->select()
+									->where('Maand', $this->uri->segment(4));
 
-					$Query = $this->db->get('Inschrijvingen_ontbijt');
-					return $Query->result();
-				}
+				$Query = $this->db->get('Inschrijvingen_ontbijt');
+				return $Query->result();
+			}
 
-        function startInschrijvingOntbijt() {
-            $Value = array(
-                "Status" => "1",
-                );
+			/**
+			 * Start inschrijvingen in de database
+			 */
+      function startInschrijvingOntbijt() {
+        $Value = array(
+          "Status" => "1",
+        );
 
-            $this->db->where('ID', $this->uri->segment(3))
-                     ->update('Ontbijt_datums', $Value);
-        }
+        $this->db->where('ID', $this->uri->segment(3))
+                 ->update('Ontbijt_datums', $Value);
+      }
 
-        function Stop_inschrijving_ontbijt() {
-            $Value = array(
-                "Status" => "0",
-                );
+			/**
+			 * Stop inschrijvingen in de database
+			 */
+      function Stop_inschrijving_ontbijt() {
+        $Value = array(
+          "Status" => "0",
+        );
 
-            $this->db->where('ID', $this->uri->segment(3))
-                     ->update('Ontbijt_datums', $Value);
-        }
+        $this->db->where('ID', $this->uri->segment(3))
+                 ->update('Ontbijt_datums', $Value);
+      }
 
-        function Inschrijvingen_All() {
-            $this->db->select();
+			/**
+			 * Neem alle inschrijvingen uit de database.
+			 */
+      function Inschrijvingen_All() {
+        $this->db->select();
 
-            $Query = $this->db->get('Inschrijvingen_ontbijt');
-            return $Query->result();
-        }
+        $Query = $this->db->get('Inschrijvingen_ontbijt');
+        return $Query->result();
+      }
 
+			/**
+			 * Inschrijving invoegen in de database.
+			 */
     	function insertDb() {
     		// Calculate bedrag
     		$Aantal = $this->input->post('Personen');
     		$Prijs  = "3";
     		$Bedrag = $Aantal * $Prijs;
 
-    		/**
-				 * Start insert
-				 * ------------------
-				 * @var Naaam, STRING
-				 * @var Voornaam, STRING
-				 * @var Email, STRING
-				 * @var Maand, STRING
-				 * @var Personen, STRING
-				 */
     		$Values = array(
     			"Naam"            => $this->input->post('Naam'),
     			"Voornaam"        => $this->input->post('Voornaam'),
@@ -85,6 +91,9 @@
     		$this->db->insert('Inschrijvingen_ontbijt', $Values);
     	}
 
+			/**
+			 *
+			 */
     	function deleteDb() {
 
     	}
