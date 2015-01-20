@@ -61,7 +61,7 @@
 				'page_description' => 'RSS over de tak activiteiten',
 				'page_language'    => 'en-en',
 				'creator_email'    => 'webmaster@st-joris-turnhout.be',
-				'activiteiten'     => $this->Activiteiten->Kapoenen(5),
+				'Activiteiten'     => $this->Activiteiten->Kapoenen(5),
 			);
 
 			header("Content-Type: application/rss+xml");
