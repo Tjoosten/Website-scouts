@@ -15,12 +15,10 @@ class VerifyLogin extends CI_Controller {
     parent::__construct();
     $this->load->model('user','',TRUE);
     $this->load->helper(array('string'));
-		$this->load->library(array('email'));
+		$this->load->library(array('email', 'form_validation'));
   }
 
   function index() {
-    $this->load->library('form_validation');
-
     $this->form_validation->set_rules('username', 'Username', 'trim|required|xss_clean');
     $this->form_validation->set_rules('password', 'Password', 'trim|required|xss_clean|callback_check_database');
 
@@ -76,6 +74,8 @@ class VerifyLogin extends CI_Controller {
 		if(count($Output) == 1) {
       // Write to database
       $New['New'] = random_string('alnum', 16);
+
+      // Insert to database
       $this->user->insert_new($New);
 
 			// Email
