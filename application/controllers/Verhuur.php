@@ -7,6 +7,8 @@
 	 * @license: Closed license
 	 * @since 2015
 	 * @package Website
+	 *
+	 * @todo validation on form inputs; begin datum, eind datum en email adres
 	 */
 
 	class Verhuur extends CI_Controller {
@@ -21,7 +23,7 @@
 	    $this->load->model('Model_Log', 'Log');
       $this->load->model('Model_notifications', 'Not');
 
-      $this->load->library(array('email','dompdf_gen'));
+      $this->load->library(array('email','dompdf_gen','form_validation'));
       $this->load->helper(array('email','date','text'));
 
 			$this->Session  = $this->session->userdata('logged_in');
@@ -88,50 +90,60 @@
 			 * Voegt een verhuring toe aan de database en stuurt een mail naar de bevoegde personen.
 			 */
       public function toevoegen_verhuur() {
-				if($this->session->userdata('logged_in')) {
-          $this->Verhuringen->InsertDB();
-          redirect('Verhuur/Admin_verhuur');
-        } else {
-					$data = array(
-						// Email variables
-						'exec'  => $this->benchmark->elapsed_time(),
-						'Start' => $this->input->post('Start_datum'),
-						'Eind'  => $this->input->post('Eind_datum'),
-						'GSM'   => $this->input->post('GSM'),
-						'Groep' => $this->input->post('Groep'),
-						'Mail'  => $this->input->post('Email'),
- 					);
+				// Validation rules
+				$this->form_validation->set_rules('Start_datum', 'Eind datum', 'trim|required|xss_clean');
+				$this->form_validation->set_rules('Eind_datum', 'Start Datum', 'trim|required|xss_clean');
+				$this->form_validation->set_rules('Email', 'Email', 'trim|required|xss_clean');
 
-          $Mailing = $this->Not->Verhuur_mailing();
+				if ($this->form_validation->run() == FALSE) {
+					echo validation_errors();
+					// redirect('Verhuur/verhuur_aanvraag');
+				} else {
+					if($this->session->userdata('logged_in')) {
+          	$this->Verhuringen->InsertDB();
+          	redirect('Verhuur/Admin_verhuur');
+        	} else {
+						$data = array(
+							// Email variables
+							'exec'  => $this->benchmark->elapsed_time(),
+							'Start' => $this->input->post('Start_datum'),
+							'Eind'  => $this->input->post('Eind_datum'),
+							'GSM'   => $this->input->post('GSM'),
+							'Groep' => $this->input->post('Groep'),
+							'Mail'  => $this->input->post('Email'),
+ 						);
 
-          foreach($Mailing as $Output) {
-            $administrator = $this->load->view('email/verhuur', $data , TRUE);
+          	$Mailing = $this->Not->Verhuur_mailing();
 
-            $this->email->from('contact@st-joris-turnhout.be', 'Contact st-joris turnhout');
-            $this->email->to($Output->Mail);
-            $this->email->set_mailtype("html");
-            $this->email->subject('Nieuwe verhuring');
-            $this->email->message($administrator);
-            $this->email->send();
-            $this->email->clear();
-          }
+          	foreach($Mailing as $Output) {
+            	$administrator = $this->load->view('email/verhuur', $data , TRUE);
 
-          // Start mail naar client
-          $client = $this->load->view('email/verhuur_client', $data, TRUE);
+	            $this->email->from('contact@st-joris-turnhout.be', 'Contact st-joris turnhout');
+	            $this->email->to($Output->Mail);
+	            $this->email->set_mailtype("html");
+	            $this->email->subject('Nieuwe verhuring');
+	            $this->email->message($administrator);
+	            $this->email->send();
+	            $this->email->clear();
+	          }
 
-        	$this->email->from('Verhuur@st-joris-turnhout.be', 'Verhuur St-joris Turnhout');
-        	$this->email->to($this->input->post('Email'));
-          $this->email->subject('Verhuur aanvraag - St-joris, Turnhout');
-          $this->email->message($client);
-          $this->email->send();
+	          // Start mail naar client
+	          $client = $this->load->view('email/verhuur_client', $data, TRUE);
 
-					// Debugging proposes
-          // echo $this->email->print_debugger();
+	        	$this->email->from('Verhuur@st-joris-turnhout.be', 'Verhuur St-joris Turnhout');
+	        	$this->email->to($this->input->post('Email'));
+	          $this->email->subject('Verhuur aanvraag - St-joris, Turnhout');
+	          $this->email->message($client);
+	          $this->email->send();
 
-          // Schrijft naar database
-          $this->Verhuringen->InsertDB();
-          redirect('Verhuur');
-        }
+						// Debugging proposes
+	          // echo $this->email->print_debugger();
+
+          	// Schrijft naar database
+          	$this->Verhuringen->InsertDB();
+          	redirect('Verhuur');
+        	}
+				}
       }
 
       // Admin side
@@ -207,7 +219,7 @@
 					$Data = array(
 						'Title' 		=> 'Verhuringen',
 						'Active' 	  => '2',
-						'Bevestigd' => $this->Verhuringen->Verhuur_api();
+						'Bevestigd' => $this->Verhuringen->Verhuur_api(),
 					);
 
           $this->load->view('components/admin_header', $Data);
@@ -231,11 +243,11 @@
         public function verhuur_edit() {
             if($this->Session) {
 							if($this->Session['Admin'] == 1) {
-								$data = [
+								$data = array(
 									'Title'  => 'Wijzig verhuring',
 									'Active' => '2',
 									'Info'   => $this->Verhuringen->verhuur_info(),
-								];
+								);
 
                 $this->load->view('components/admin_header', $data);
                 $this->load->view('components/navbar_admin', $data);
@@ -256,14 +268,17 @@
 
         }
 
+				/**
+				 * Haal de verhuur infmortie op.
+				 */
         public function verhuur_info() {
             if($this->Session) {
 							if($this->Session['Admin'] == 1) {
-								$Data = [
+								$Data = array(
 									'Title'  => 'Verhuur Info',
 									'Active' => '2',
 									'Info'   => $this->Verhuringen->verhuur_info(),
-								];
+								);
 
                 $this->load->view('components/admin_header', $Data);
                 $this->load->view('components/navbar_admin', $Data);
@@ -283,16 +298,19 @@
             }
         }
 
+				/**
+				 * Wijzig een verhuring.
+				 */
         public function Wijzig_verhuur() {
             if($this->Session) {
 						  if($this->Session['Admin'] == 1 ) {
                 $this->Verhuringen->Wijzig_verhuur();
                 redirect('Verhuur/Admin_verhuur');
 						  } else {
-								$Data = [
+								$Data = array(
 									'Heading' => $this->Heading,
 									'Message' => $this->Message,
-								];
+								);
 
 						  	$this->load->view('errors/html/alert', $Data);
 						  }
@@ -302,6 +320,9 @@
             }
         }
 
+				/**
+				 * Wijzig status naar optie
+				 */
         public function Change_optie() {
             if($this->Session) {
 							if($this->Session['Admin'] == 1) {
@@ -309,10 +330,10 @@
 								$this->Log->Verhuur_option();
                 redirect('Verhuur/Admin_verhuur');
 							} else {
-								$Data = [
+								$Data = array(
 									'Heading' => $this->Heading,
 									'Message' => $this->Message,
-								];
+								);
 
 								$this->load->view('errors/html/alert', $Data);
 							}
@@ -322,6 +343,9 @@
             }
         }
 
+				/**
+				 * Wijzig status naar bevestigd
+				 */
         public function Change_bevestigd() {
             if($this->Session) {
 							if($this->Session['Admin'] == 1) {
@@ -342,6 +366,9 @@
             }
         }
 
+				/**
+				 * Verwijderd een verhuring
+				 */
         public function Verhuur_delete() {
             if($this->Session) {
 							if($this->Session['Admin'] == 1) {
@@ -349,10 +376,10 @@
 								$this->Log->Verhuur_delete();
                 redirect('Verhuur/Admin_verhuur');
 							} else {
-								$Data = [
+								$Data = array(
 									'Heading' => $this->Heading,
 									'Message' => $this->Message,
-								];
+								);
 
 								$this->load->view('errors/html/alert', $Data);
 							}
