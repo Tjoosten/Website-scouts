@@ -17,7 +17,7 @@
   				margin-bottom: 20px;
   				text-align: center;
 			}
-			
+
 			.marketing h2 {
   				font-weight: normal;
 			}
@@ -27,7 +27,7 @@
   				margin-left: 10px;
 			}
 
-			.Icon-color, 
+			.Icon-color,
 .Title-color {
 	color: #bdd732;
 }
@@ -97,27 +97,43 @@
                 </a>
               </li>
          	</ul>
+
+					<?php if($this->Session): ?>
+						<ul class="nav navbar-nav navbar-right">
+							<li>
+								<a title="Go to backend" href="<?php echo base_url(). 'Admin'; ?>">
+									<span class="fa fa-wrench Icon-color"></span> Backend
+								</a>
+							</li>
+
+							<li>
+								<a title="logout" href="<?php echo base_url(). 'backend/Logout'; ?>">
+									<span class="fa fa-power-off Icon-color"></span> Logout
+								</a>
+							</li>
+						</ul>
+					<?php endif; ?>
         </div><!--/.navbar-collapse -->
       </div>
     </div>
-    <img style="margin-bottom: 60px; width: 100%; height: 400px;" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==">
+    <img style="margin-bottom: 60px; width: 100%; height: 400px;" src="/assets/files/front.jpg">
 
     <div class="container marketing">
     	<div class="row">
         <div class="col-lg-4">
-        <img class="img-thumbnail img-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" style="width: 140px; height: 140px;">
+        <img class="img-thumbnail img-circle" src="/assets/files/front-2.jpg" alt="Generic placeholder image" style="width: 140px; height: 140px;">
           <h2 class="font-heading">Ontbijt!</h2>
           <p>Elke laatste zondag  van de maand! Doe onze scouts een ontbijt. Een ontbijt waar u als u wilt aanwezig kunt zijn met uw kinderen. Dit vind plaats op de scouts gronden U zicht enkel in te schrijven. Hier voor kunt u voorlopig terecht bij Leo Willems.  </p>
           <p><a class="btn btn-default" href="<?php echo base_url(); ?>Inschrijvingen/Ontbijt_beschrijving">Inschrijven &raquo;</a></p>
         </div>
         <div class="col-lg-4">
-        <img class="img-thumbnail img-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" style="width: 140px; height: 140px;">
+        <img class="img-thumbnail img-circle" src="/assets/files/front-1.jpg" alt="Generic placeholder image" style="width: 140px; height: 140px;">
           <h2 class="font-heading">Takken</h2>
            <p>Benieuwd in welke tak je zit? Of wil je gewoon je tak-pagina bezoeken? Wel u kunt hem in een paar klikken bezoeken. Want elke tak heeft zijn eigen pagina. Das straf he! Nee helemaal niet! U vind hier ook alle beschrijvingen van takken. </p>
           <p><a class="btn btn-default" href="<?php echo base_url(); ?>Takken">Lees meer &raquo;</a></p>
        </div>
         <div class="col-lg-4">
-        <img class="img-thumbnail img-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" style="width: 140px; height: 140px;">
+        <img class="img-thumbnail img-circle" src="/assets/files/front-3.jpg" alt="Generic placeholder image" style="width: 140px; height: 140px;">
           <h2 class="font-heading">Verhuur</h2>
           <p>Bent u jeugdbeweging of organisatie die een kamplaats of overnachtingsplaats zoekt? Dan bent u hier aan het juiste adres wij stellen namelijk onze lokalen te huur aan jullie. Indien u geintresseerd bent kunt hier op onze verhuur pagina meer vinden. </p>
           <p><a class="btn btn-default" href="<?php echo base_url(); ?>Verhuur">Lees meer &raquo;</a></p>

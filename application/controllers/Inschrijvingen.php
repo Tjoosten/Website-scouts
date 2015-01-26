@@ -67,11 +67,11 @@
 			if($this->Session) {
 				if($this->Session['Admin'] == 1) {
 					// Database values
-					$DB = [
+					$DB = array(
 						'Ontbijt_datums' => $this->Inschrijving->Get_Dates_Full(),
 						'Inschrijvingen' => $this->Inschrijving->Inschrijvingen_All(),
 						'Datums' 				 => $this->Inschrijving->Get_dates(),
-					];
+					);
 
 					$this->load->view('components/admin_header', $Data);
 					$this->load->view('components/navbar_admin', $Data);
@@ -95,12 +95,12 @@
 				$this->Inschrijving->InsertDB();
 
 				// Variables User => Mail
-				$Input = [
+				$Input = array(
 					'Naam'     => $this->input->post('Naam'),
 					'Voornaam' => $this->input->post('Voornaam'),
 					'Email'    => $this->input->post('Email'),
 					'Personen' => $this->input->post('Personen'),
-				];
+				);
 
 				// View voor email
 				$mail_ontbijt = $this->load->view('email/ontbijt_inschrijving', $Input , TRUE);
@@ -156,10 +156,10 @@
 
 					redirect('Inschrijvingen/Admin_ontbijt');
 				} else {
-					$Data = [
+					$Data = array(
 						'Heading' => $this->Error_heading,
 						'Message' => $this->Error_message,
-					];
+					);
 
 					$this->load->view('errors/html/alert', $Data);
 				}

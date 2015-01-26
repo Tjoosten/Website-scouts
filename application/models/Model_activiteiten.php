@@ -2,7 +2,7 @@
  /**
   *
   */
-  
+
  Class Model_activiteiten extends CI_Model {
 
     /**
@@ -67,7 +67,7 @@
    }
 
    /**
-    *
+    * Voeg een tak beschrijving toe
     */
 	 function Insert() {
       // Replace characters that can jam the timestamp

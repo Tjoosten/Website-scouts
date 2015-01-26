@@ -1,11 +1,14 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 	class Cron extends CI_Controller {
 
-    /*
-     | Developer: Tim Joosten.
-     | License: 4GPL
-     | Copyright: Tim Joosten, Scouts & Gidsen - Sint-Joris
-     */
+		/**
+	 	 * Notifications controller
+	   *
+		 * @author Tim Joosten
+		 * @license: Closed license
+		 * @since 2015
+		 * @package Website
+		 */
 
     function __construct(){
 		  parent::__construct();

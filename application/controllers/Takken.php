@@ -98,8 +98,7 @@
 	 	 * Outputs Welpen page.
 		 */
     public function Welpen() {
-    	// Variable(s)
-    	  // General
+    
 				$Data = array(
 					'Title'  => 'De Welpen',
 					'Active' => '1',

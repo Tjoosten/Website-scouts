@@ -20,7 +20,7 @@
 		// END constructor
 
 		/**
-		 *
+		 * Index for mailing backend 
 		 */
 		public function index() {
 			if($this->Session) {

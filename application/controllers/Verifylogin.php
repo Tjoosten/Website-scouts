@@ -31,7 +31,7 @@ class VerifyLogin extends CI_Controller {
   }
 
   /**
-   *
+   * Run the login against the database
    */
   function check_database($password) {
     // Field validation succeeded.  Validate against database

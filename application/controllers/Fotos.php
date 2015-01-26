@@ -22,11 +22,11 @@
 
   	// Client side
     function index() {
-      $data = [
+      $data = array(
         'Title'  => 'Fotos',
         'Active' => '3',
         'Foto'   => $this->Images->select(),
-      ];
+      );
 
       $this->load->view('components/header', $data);
       $this->load->view('components/navbar', $data);
@@ -38,7 +38,7 @@
       $data = array(
         'Title'  => 'Fotos',
         'Active' => '3',
-        'Foto'   => $this->Images->select_tak();
+        'Foto'   => $this->Images->select_tak(),
       );
 
     	$this->load->view('components/header', $data);
@@ -53,7 +53,7 @@
         $data = array(
           'Title'  => 'Admin media',
           'Active' => '3',
-          'DB'     => $this->Images->Backend_select();
+          'DB'     => $this->Images->Backend_select(),
         );
 
   			$this->load->view('components/admin_header', $data);
@@ -71,20 +71,20 @@
      */
   	public function do_upload() {
   		if($this->Session) {
-        $config = array[
+        $config = array(
           'allowed_types' => 'jpg',
           'upload_path'   => './assets/fotos',
-        ];
+        );
 
 
   			$this->load->library('upload', $config);
 
   			if (!$this->upload->do_upload()) {
-          $data = [
+          $data = array(
             'Title'  => 'Wijzig groentje',
             'Active' => '9',
-            'DB'     => $this->Images->Backend_select();
-          ];
+            'DB'     => $this->Images->Backend_select(),
+          );
 
   				$this->load->view('components/admin_header', $data);
   				$this->load->view('components/navbar_admin', $data);

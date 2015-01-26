@@ -33,7 +33,7 @@
 		}
 
 		/**
-		 *
+		 * Blaat
 		 */
 		function Get() {
 			$this->db->select('Verhuur')

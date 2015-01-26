@@ -14,14 +14,14 @@
 		public $Redirect = array();
 
 		/**
-		* Constuctor for the Notifications file.
-		*/
+		 * Constuctor for the Notifications file.
+		 */
 		function __construct() {
       parent::__construct();
       $this->load->model('Model_leiding','Leiding');
       $this->load->model('Model_notifications','Notification');
 
-			$this->Redirect = $this->config->item('Redirect', 'Not_logged_in')
+			$this->Redirect = $this->config->item('Redirect', 'Not_logged_in');
 			$this->Session  = $this->session->userdata('logged_in');
   	}
 		// End constructor
@@ -32,10 +32,10 @@
 		public function herstel_verhuur() {
 			if($this->Session) {
 
-				$Person = [
+				$Person = array(
 					'Naam'  => $this->Auth['username'],
 					'Email' => $this->Auth['Email'],
-				];
+				);
 
 				$this->Notification->Herstel_verhuur($Person);
 

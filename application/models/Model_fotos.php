@@ -18,7 +18,7 @@
 		}
 
 		/**
-		 *
+		 * get photos based on the tak
 		 */
 		function Select_tak() {
 			$this->db->select()
@@ -45,7 +45,7 @@
 		}
 
 		/**
-		 *
+		 * Haal de albums op 
 		 */
 		function Backend_select() {
 			$this->db->select()

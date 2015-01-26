@@ -33,9 +33,10 @@
 
 		$this->db->insert("Verhuur", $Values);
 	}
-	// -------- //
 
-	// Admin side
+	/**
+	 * Search - Zoekt voor een verhuring
+	 */
 	function Search() {
 		// replace characters that can jam the timestamp
 		$old_sep = array("/","-");
@@ -56,6 +57,9 @@
 		return $Query->Result();
 	}
 
+	/**
+	 * Wijzig een verhuring in de database.
+	 */
 	function Wijzig_verhuur() {
 		// replace characters that can jam the timestamp
 		$old_sep = array("/","-");
@@ -125,7 +129,7 @@
 	}
 
 	/**
-	 *
+	 * Download de verhuringen in een pdf
 	 */
 	function Download_verhuringen() {
 		$this->db->select();

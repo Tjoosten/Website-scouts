@@ -75,7 +75,9 @@
 			return $Query->result();
 		}
 
-		// Edit Query's
+		/**
+		 * Wijzig een tak beschrijving
+		 */
 		function Takken_edit() {
 			$Values = array(
 				"Beschrijving" => $this->input->post('Beschrijving'),

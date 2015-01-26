@@ -8,7 +8,7 @@
 	 * @since 2015
 	 * @package Website
 	 *
-	 * @todo validation on form inputs; begin datum, eind datum en email adres
+	 * @todo flash session toevoegen voor failed validation.
 	 */
 
 	class Verhuur extends CI_Controller {
@@ -96,8 +96,13 @@
 				$this->form_validation->set_rules('Email', 'Email', 'trim|required|xss_clean');
 
 				if ($this->form_validation->run() == FALSE) {
-					echo validation_errors();
-					// redirect('Verhuur/verhuur_aanvraag');
+				//	$Flash = array(
+					//	'class'
+					//	'heading'
+					//	'message'
+					//);
+
+					redirect('Verhuur/verhuur_aanvraag');
 				} else {
 					if($this->session->userdata('logged_in')) {
           	$this->Verhuringen->InsertDB();
@@ -220,6 +225,7 @@
 						'Title' 		=> 'Verhuringen',
 						'Active' 	  => '2',
 						'Bevestigd' => $this->Verhuringen->Verhuur_api(),
+						'Notification' => $this->Not->Get(),
 					);
 
           $this->load->view('components/admin_header', $Data);
