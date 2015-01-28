@@ -14,7 +14,7 @@
 	class Verhuur extends CI_Controller {
 		public $Session  = array();
 		public $Heading  = array();
-		public $Message  = array();
+		public $Flash    = array();
 		public $Redirect = array();
 
   	function __construct() {
@@ -27,6 +27,7 @@
       $this->load->helper(array('email','date','text'));
 
 			$this->Session  = $this->session->userdata('logged_in');
+			$this->Flash  = $this->session->flashdata('Message');
 			$this->Redirect = $this->config->item('Redirect','Not_logged_in');
 
 			$this->Heading  = "No permission";
@@ -96,15 +97,16 @@
 				$this->form_validation->set_rules('Email', 'Email', 'trim|required|xss_clean');
 
 				if ($this->form_validation->run() == FALSE) {
-				//	$Flash = array(
-					//	'class'
-					//	'heading'
-					//	'message'
-					//);
+					$Flash = array(
+						'Class'   => 'alert alert-danger',
+						'Heading' => 'Oh snapp!',
+						'Message' => 'Uw verhuur aanvraag kon niet worden aangemaakt worden. Omdat een of meerdere vereiste velden niet zijn ingevult.'
+					);
 
+					$this->session->set_flashdata('Message', $Flash);
 					redirect('Verhuur/verhuur_aanvraag');
 				} else {
-					if($this->session->userdata('logged_in')) {
+					if($this->Session) {
           	$this->Verhuringen->InsertDB();
           	redirect('Verhuur/Admin_verhuur');
         	} else {

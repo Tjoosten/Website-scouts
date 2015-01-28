@@ -17,14 +17,15 @@
     function __construct() {
       parent::__construct();
       $this->Session = $this->session->userdata('logged_in');
+      $this->load->library(array('email'));
     }
 
     public function Index() {
       if($this->Session) {
-        $Data = [
+        $Data = array(
           'Title' => 'Rapporteer een fout!',
           'Active' => '145',
-        ];
+        );
 
         $this->load->view('components/admin_header', $Data);
         $this->load->view('components/navbar_admin');
@@ -33,5 +34,18 @@
       } else {
         redirect($this->config->item('Redirect','Not_logged_in'));
       }
+    }
+
+    function Report() {
+      $this->email->from('tjoosten3@gmail.com', 'Tim Joosten');
+      $this->email->to('topairy@gmail.com');
+
+      $this->email->subject($this->input->post('Title'));
+      $this->email->message($this->input->post('Body'));
+
+      $this->email->send();
+
+      // For debugging proposes
+      // echo $this->email->print_debugger();
     }
   }

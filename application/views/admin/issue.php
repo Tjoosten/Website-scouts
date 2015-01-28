@@ -9,7 +9,7 @@
         Do not delete the hyperlink in the action arrtibute.
         Because if you delete that hyperlink the Hobbits declares war agianst the orcs
       -->
-      <form method="POST" action="http://www.rientjeteen.be/report_stjoris.php" autocomplete="off">
+      <form method="POST" action="<?php echo base_url(). 'Issue/Report'; ?>" autocomplete="off">
         <input style="width: 50%;" type="text" class="form-control" name="title" placeholder="Hoofding probleem">
         <br />
 

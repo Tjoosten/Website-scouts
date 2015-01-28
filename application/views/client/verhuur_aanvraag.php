@@ -21,13 +21,24 @@
 					<a class="list-group-item" href="<?php echo base_url(); ?>verhuur/verhuur_aanvraag"><span class="fa fa-plus"></span> Verhuring aanvragen</a>
 					<a class="list-group-item" href="mailto:contact@st-joris-turnhout.be"><span class="fa fa-envelope"></span> Contact</a>
 				</div>
-			</div> 
+			</div>
 		</div>
 
 		<div class="col-sm-9 col-md-9 col-lg-9">
 			<div class="panel panel-default border">
 				<div class="panel-body">
-					
+
+					<?php if($this->Flash): ?>
+						<div class="row">
+							<div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
+								<div class="<?php echo  $this->Flash['Class']; ?>">
+									<h4> <?php echo $this->Flash['Heading']; ?> </h4>
+									<p> <?php echo $this->Flash['Message']; ?> </p>
+								</div>
+							</div>
+						</div>
+					<?php endif; ?>
+
 					<div style="margin-top: -20px;" class="page-header">
             			<h2 style="margin-bottom: -5px;">Verhuur aanvraag</h2>
           			</div>
@@ -59,7 +70,7 @@
           				<button class="btn btn-danger" type="reset"> Reset </button>
 
           			</form>
-          				
+
 				</div>
 			</div>
 		</div>
