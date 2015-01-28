@@ -128,6 +128,8 @@
 					}
 				} else {
 					// If the file not exists
+					$this->Drive->Delete();
+
 					$Flash = array(
 							'Class'   => 'alert alert-danger',
 							'Heading' => 'Ohh snap!',

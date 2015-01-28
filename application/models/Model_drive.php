@@ -20,4 +20,9 @@
       $Query = $this->db->get();
       return $Query->result();
     }
+
+    public function Delete() {
+      $this->db->where('file_name', $this->uri->segment(3))
+               ->delete('Drive');
+    }
   }
