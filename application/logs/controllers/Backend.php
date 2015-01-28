@@ -17,27 +17,23 @@ class backend extends CI_Controller {
 
   function index() {
     if($this->Session)  {
-
-      $data = array(
-        'Title'  => 'Admin Takken',
-        'Active' => '1',
-      );
+      $data['Title']  = "Admin takken";
+			$data['Active'] = "1";
 
 			// Tak beschrijvingen
-      $DB = array(
-        'Kapoenen'   => $this->Takken->Kapoenen(),
-        'Welpen'     => $this->Takken->Welpen(),
-        'JongGivers' => $this->Takken->JongGivers(),
-        'Givers'     => $this->Takken->Givers(),
-        'Jins'       => $this->Takken->Jins(),
-        'Leiding'    => $this->Takken->Leiding(),
+      $DB['Kapoenen']   = $this->Takken->Kapoenen();
+      $DB['Welpen']     = $this->Takken->Welpen();
+      $DB['JongGivers'] = $this->Takken->JongGivers();
+      $DB['Givers']     = $this->Takken->Givers();
+      $DB['Jins']       = $this->Takken->Jins();
+      $DB['Leiding']    = $this->Takken->Leiding();
 
-        'Activiteiten_Kapoenen'    => $this->Activiteiten->Kapoenen(),
-        'Activiteiten_Welpen'      => $this->Activiteiten->Welpen(),
-        'Activiteiten_JongGivers'  => $this->Activiteiten->JongGivers(),
-        'Activiteiten_Givers'      => $this->Activiteiten->Givers(),
-        'Activiteiten_Jins'        => $this->Activiteiten->Jins(),
-      );
+			// Tak activiteiten
+			$DB['Activiteiten_Kapoenen']   = $this->Activiteiten->Kapoenen();
+			$DB['Activiteiten_Welpen']     = $this->Activiteiten->Welpen();
+			$DB['Activiteiten_JongGivers'] = $this->Activiteiten->JongGivers();
+			$DB['Activiteiten_Givers']     = $this->Activiteiten->Givers();
+			$DB['Activiteiten_Jins']       = $this->Activiteiten->Jins();
 
       $this->load->view('components/admin_header', $data);
       $this->load->view('components/navbar_admin', $data);
@@ -49,9 +45,6 @@ class backend extends CI_Controller {
 	  }
   }
 
-  /**
-   * Voeg een activiteit toe.
-   */
 	public function Insert_act() {
 		if($this->Auth) {
 			$this->Activiteiten->Insert();
@@ -62,9 +55,6 @@ class backend extends CI_Controller {
 		}
 	}
 
-  /**
-   * Log the gebruiker uit.
-   */
   function logout() {
 		$this->Log->Logged_out();
 		$this->session->unset_userdata('logged_in');
