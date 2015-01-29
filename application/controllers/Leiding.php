@@ -15,7 +15,7 @@ class leiding extends CI_Controller {
   public $Session       = array();
   public $Error_message = array();
   public $Error_heading = array();
-  public $Redirect
+  // public $Redirect
 
   function __construct() {
     parent::__construct();
@@ -36,11 +36,11 @@ class leiding extends CI_Controller {
    * Output de leidings pagina.
    */
   public function Leidingsploeg() {
-    $Data = [
+    $Data = array(
       'Title'  => 'Leidingsploeg',
       'Active' => '1',
       'ploeg'  => $this->Leiding->ploeg(),
-    ];
+    );
 
     $this->load->view('components/header', $Data);
     $this->load->view('components/navbar', $Data);
@@ -54,12 +54,12 @@ class leiding extends CI_Controller {
   public function index() {
     if($this->Session)  {
       if($this->Session['Admin'] == 1) {
-        $data = [
+        $data = array(
           'Title'   => 'Leiding',
           'Active'  => '6',
           'Admin'   => $this->Leiding->Administrators(),
           'Leiding' => $this->Leiding->Leiding(),
-        ];
+        );
 
         $this->load->view('components/admin_header', $data);
         $this->load->view('components/navbar_admin', $data);
@@ -79,10 +79,10 @@ class leiding extends CI_Controller {
 	function Settings() {
 		if($this->Session) {
 			// General variables
-      $data = [
+      $data = array(
           'Title'  => 'Account configuratie',
           'Active' => '7',
-      ];
+      );
 
 			// Database variables. Not an array because it is one item.
 			$DB['Account'] = $this->Leiding->Account();
@@ -134,11 +134,11 @@ class leiding extends CI_Controller {
   function Insert_leiding() {
     if($this->Session) {
       // Mail variables
-      $Mail = [
+      $Mail = array(
         'Mail' => $this->input->post('Mail'),
         'Pass' => random_string('alnum', 16),
         'Name' => $this->input->post('Naam'),
-      ];
+      );
 
       $Mail_view    = $this->load->view('email/login', $Mail , TRUE);
 
