@@ -135,8 +135,8 @@
 	          }
 
 	          // Start mail naar client
-	          $client = $this->load->view('email/verhuur_client', $data, TRUE);
-
+	          $client = $this->load->view('email/verhuur_client-1', $data, TRUE);
+						$this->email->set_mailtype("html");
 	        	$this->email->from('Verhuur@st-joris-turnhout.be', 'Verhuur St-joris Turnhout');
 	        	$this->email->to($this->input->post('Email'));
 	          $this->email->subject('Verhuur aanvraag - St-joris, Turnhout');
