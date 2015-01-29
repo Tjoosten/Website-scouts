@@ -11,3 +11,4 @@ Changelog
 08. Logout & goto backend added in frontend navbar.
 09. Enable XSS and CSRF filtering.
 10. Added file drive to the system.
+11. Add file detection for the Drive.

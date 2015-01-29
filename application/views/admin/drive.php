@@ -33,22 +33,54 @@
                   <table class="table table-hover table-condensed">
                     <thead>
                       <tr>
-                        <th> Bestand: </th>
-                        <th></th> <!-- Functies -->
+                        <th style="width: 80%;"> Bestand: </th>
+                        <th style="width: 20%;"></th> <!-- Functies -->
                       </tr>
                     </thead>
                     <tbody>
                       <?php foreach($Files as $File): ?>
+                        <?php
+                          // Start icon system
+                          switch ($File->file_extension) {
+                            case ".pdf":
+                              $icon = 'fa fa-file-pdf-o';
+                              break;
+                            case '.mp3';
+                              $icon = 'fa fa-file-sound-o';
+                              break;
+                            case '.xlxs';
+                              $icon = 'fa fa-excel-o';
+                              break;
+                            case '.docx';
+                              $icon = 'fa fa-file-word-o';
+                              break;
+                            case '.jpg';
+                              $icon = 'fa fa-file-image-o';
+                              break;
+                            case '.txt';
+                              $icon = 'fa fa-file-text-o';
+                              break;
+                            default:
+                              $icon = 'fa fa-file-o';
+                          }
+                          // End icon system
+                        ?>
+
                         <tr>
                           <td>
-                            <span class="fa fa-file-text-o"></span> <?php echo $File->Naam; ?>
+                            <span class="<?php echo $icon; ?>"></span> <?php echo $File->Naam; ?>
                           </td>
 
                           <!-- Options -->
                           <td>
                             <div class='btn-group'>
-                              <a role="button" class="btn btn-xs btn-danger" href="<?php echo base_url(). 'Drive/Delete/' .$File->file_name; ?>"> <span class="fa fa-trash"></span> </a>
-                              <a role="button" class="btn btn-xs btn-danger" href="<?php echo base_url(). 'Drive/Download/' .$File->file_name; ?>"> <span class="fa fa-cloud-download"></span> </a>
+                              <a role="button" class="btn btn-xs btn-danger" href="<?php echo base_url(). 'Drive/Delete/' .$File->file_name; ?>">
+                                <span class="fa fa-trash"></span>
+                              </a>
+
+                              <a role="button" class="btn btn-xs btn-danger" href="<?php echo base_url(). 'Drive/Download/' .$File->file_name; ?>">
+                                <span class="fa fa-cloud-download"></span>
+                              </a>
                             </div>
                           </td>
                         </td>
