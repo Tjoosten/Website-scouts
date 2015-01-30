@@ -11,7 +11,6 @@
 
 			// Not in array, because it's one variable.
 			$Data['Title'] = "Index";
-
 			$this->load->view('client/index', $Data);
 		}
 	}

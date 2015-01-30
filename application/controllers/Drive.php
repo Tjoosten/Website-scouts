@@ -106,6 +106,8 @@
 					// If the file exists
 
 					if (! unlink('./Drive/'. $this->uri->segment(3))) {
+						$this->Drive->Delete();
+
 						// Failure
 						$Flash = array(
 							'Class'   => 'alert alert-success',

@@ -359,6 +359,7 @@
 							if($this->Session['Admin'] == 1) {
 								$this->Log->Verhuur_option();
                 $this->Verhuringen->Status_bevestigd();
+								
                 redirect('Verhuur/Admin_verhuur');
 							} else {
 								$Data = array(
