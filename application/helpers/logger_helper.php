@@ -10,6 +10,13 @@
    * @todo Create function for the cronjob
    */
 
+   function __construct() {
+     parent::__construct();
+     $CI =& get_instance();
+     $CI->load->model('Model_logger', 'Logging');
+   }
+
+
    /**
     * log_user
     *
@@ -20,10 +27,12 @@
    if (! function_exists('user_log')) {
      function user_log($user, $message) {
        $Date = strtotime(date("Y/m/d"));
-
        $Filepath =  './application/logs/log-'. $Date .'.php';
 
        if(! file_exists($Filepath)) {
+         // Setting log file in the archive database
+         // Write below your magic
+
          // File doesn't exists so we need to first write it.
          $Fileheader = "<?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>\n\n";
          $LogMessage = '['. date("h:i:sa"). ']: '. $user .' --> '. $message ."\n";
