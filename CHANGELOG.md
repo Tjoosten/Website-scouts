@@ -1,6 +1,13 @@
 Changelog
 ====================
 
+### Version 1.0.1
+
+01. Improve logging system
+02. Added `Drive` table to the Database.sql file.
+
+### Version 1.0.0
+
 01. Added `crontab.sh`
 02. Added changelog file.
 03. Fixes several syntax errors
