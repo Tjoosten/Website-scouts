@@ -12,7 +12,7 @@
   	function __construct() {
       parent::__construct();
       $this->load->model('Model_mailing','Mailing');
-      $this->load->helper(array('Email'));
+      $this->load->helper(array('Email', 'logger'));
       $this->load->library(array('Email'));
 
 			$this->Session = $this->session->userdata('logged_in');
@@ -20,7 +20,7 @@
 		// END constructor
 
 		/**
-		 * Index for mailing backend 
+		 * Index for mailing backend
 		 */
 		public function index() {
 			if($this->Session) {
@@ -101,6 +101,7 @@
 		public function Add_address() {
 			if($this->Session) {
 				$this->Mailing->Insert_address();
+				log_user($this->Session['username'], 'Heeft een adres toegevoegd aan de mailinglist.');
 				redirect('Mailing');
 			} else {
 				redirect('Admin', 'refresh');
@@ -113,6 +114,7 @@
 		public function Delete_address() {
 			if($this->Session) {
 				$this->Mailing->Delete_address();
+				log_user($this->Sessonn['username'], 'Heeft een adres verwijderd uit de mailinglists.');
 				redirect('Mailing');
 			} else {
 				redirect('Admin', 'refresh');

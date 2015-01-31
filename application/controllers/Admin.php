@@ -14,6 +14,10 @@
         $this->load->helper(array('form'));
   		}
 
+			/**
+			 * The login form for the backend. 
+			 * Wil do a redirect when he is found the session Logged_in.
+			 */
   		public function index() {
   			if($this->session->userdata('logged_in')) {
   				redirect('backend','refresh');

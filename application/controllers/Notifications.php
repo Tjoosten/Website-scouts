@@ -21,6 +21,8 @@
       $this->load->model('Model_leiding','Leiding');
       $this->load->model('Model_notifications','Notification');
 
+			$this->load->helper(array('logger'));
+
 			$this->Redirect = $this->config->item('Redirect', 'Not_logged_in');
 			$this->Session  = $this->session->userdata('logged_in');
   	}
@@ -31,6 +33,8 @@
 		 */
 		public function herstel_verhuur() {
 			if($this->Session) {
+				// Logging
+				user_log($this->Session['username'], 'Heeft geprobeerd om de notificaties te herstellen.');
 
 				$Person = array(
 					'Naam'  => $this->Auth['username'],
@@ -51,6 +55,9 @@
 		 */
 		function Verhuur_aan() {
 			if($this->Session) {
+				// Logging
+				user_log($this->Session['username'], 'Heeft de optie om notificaties te ontvangen geactiveerd (verhuur).');
+
 				$this->Notification->Verhuur_aan();
 				redirect('Verhuur/admin_verhuur');
 			} else {
@@ -64,6 +71,9 @@
 		 */
 		function Verhuur_uit() {
 			if($this->Session) {
+				// Logging
+				user_log($this->Session['username'], 'Wilt geen notificaties meer ontvangen (Verhuur).');
+
 				$this->Notification->Verhuur_uit();
 				redirect('Verhuur/admin_verhuur');
 			} else {

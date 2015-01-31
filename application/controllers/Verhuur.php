@@ -24,7 +24,7 @@
       $this->load->model('Model_notifications', 'Not');
 
       $this->load->library(array('email','dompdf_gen','form_validation'));
-      $this->load->helper(array('email','date','text'));
+      $this->load->helper(array('email','date','text', 'logger'));
 
 			$this->Session  = $this->session->userdata('logged_in');
 			$this->Flash  = $this->session->flashdata('Message');
@@ -108,6 +108,9 @@
 				} else {
 					if($this->Session) {
           	$this->Verhuringen->InsertDB();
+
+						// Logging
+						user_log($this->Session['username'], 'Heeft een verhuring toegevoegd.');
           	redirect('Verhuur/Admin_verhuur');
         	} else {
 						$data = array(
@@ -154,11 +157,18 @@
       }
 
       // Admin side
+
+			/**
+			 * Download de verhuringen in een PDF
+			 */
 			public function Download_verhuringen() {
         if($this->Session) {
           if($this->Session['Admin'] == 1) {
 						// Not in array, because it is one variable.
 					  $Data['Query'] = $this->Verhuringen->Download_verhuringen();
+
+						// Logging
+						user_log($this->Session['username'], 'Heeft de verhuringen gedownload.');
 
             $this->load->view('pdf/verhuur', $Data);
             $html = $this->output->get_output();
@@ -168,6 +178,7 @@
             $this->dompdf->load_html($html);
             $this->dompdf->render();
             $this->dompdf->stream("Onbijt_inschrijvingen.pdf");
+
           } else {
 						$Data = array(
 							'Heading' => $this->Heading,
@@ -313,6 +324,9 @@
             if($this->Session) {
 						  if($this->Session['Admin'] == 1 ) {
                 $this->Verhuringen->Wijzig_verhuur();
+
+								// Logging
+								user_log($this->Session['username'], 'Heeft een verhuring gewijzigd.');
                 redirect('Verhuur/Admin_verhuur');
 						  } else {
 								$Data = array(
@@ -336,6 +350,9 @@
 							if($this->Session['Admin'] == 1) {
                 $this->Verhuringen->Status_optie();
 								$this->Log->Verhuur_option();
+
+								// Logging
+								user_log($this->Session['username'], 'Heeft de status gewijzigd naar optie.');
                 redirect('Verhuur/Admin_verhuur');
 							} else {
 								$Data = array(
@@ -359,7 +376,10 @@
 							if($this->Session['Admin'] == 1) {
 								$this->Log->Verhuur_option();
                 $this->Verhuringen->Status_bevestigd();
-								
+
+								// Logging
+								user_log($this->Session['username'], 'heeft de status gewijzigd naar bevestigd.');
+
                 redirect('Verhuur/Admin_verhuur');
 							} else {
 								$Data = array(
@@ -383,6 +403,9 @@
 							if($this->Session['Admin'] == 1) {
                 $this->Verhuringen->Verhuur_delete();
 								$this->Log->Verhuur_delete();
+
+								// Logging
+								user_log($this->Session['username'], 'Heeft een verhuring gewijzigd').
                 redirect('Verhuur/Admin_verhuur');
 							} else {
 								$Data = array(

@@ -8,6 +8,9 @@
 		 * @license: Closed license
 		 * @since 2015
 		 * @package Website
+		 *
+		 * @todo fix switch if else i function index()
+		 * @todo look for if else on logging (if session found use username else server).
 		 */
 
     function __construct(){
@@ -20,6 +23,7 @@
 
       // Load helpers
       $this->load->dbutil();
+			$this->load->helper(array('logger');
     }
 
 		/**
@@ -70,6 +74,10 @@
 		 * Optimaliseer de darabase.
 		 */
     function Optimize_DB() {
+			// Logging
+			user_log('Server', 'Beep Beep! heeft de Database geoptimaliseerd.');
+
+			// Exec
 			$this->Cron->Optimize();
     }
 
@@ -77,6 +85,10 @@
 		 * Verwijder afgelopen verhuringen uit de database.
 		 */
     function Del_verhuring() {
+			// Logging
+			user_log('Server', 'Heeft de afgelopen verhuringen verwijderd');
+
+			// Exec
     	$this->Cron->Del_verhuringen();
     }
 
@@ -84,6 +96,10 @@
 		 * Verwijder afgelopen activiteiten uit de database.
 		 */
     function Del_activiteiten() {
+			// Logging
+			user_log('Server', 'Heeft de afgelopen activiteiten verwijderd');
+
+			// Exec
       $this->Cron->Del_activiteiten();
     }
 }

@@ -14,7 +14,7 @@ class VerifyLogin extends CI_Controller {
   function __construct() {
     parent::__construct();
     $this->load->model('user','',TRUE);
-    $this->load->helper(array('string'));
+    $this->load->helper(array('string', 'logger'));
 		$this->load->library(array('email', 'form_validation'));
   }
 
@@ -56,6 +56,9 @@ class VerifyLogin extends CI_Controller {
         $this->session->set_userdata('logged_in', $sess_array);
 
 				$this->load->model('Model_log', 'Log');
+
+        // Logging
+        user_log($this->Session['Username'], 'Heeft zich aangemeld.');
 				$this->Log->logged_in();
       }
       return TRUE;
@@ -77,6 +80,9 @@ class VerifyLogin extends CI_Controller {
 
       // Insert to database
       $this->user->insert_new($New);
+
+      // Logging
+      user_log($this->input->post('recovery'), 'Heeft een wachtword reset aangevraagd.');
 
 			// Email
       $mail = $this->load->view('email/reset', $New , TRUE);

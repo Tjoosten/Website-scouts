@@ -22,7 +22,7 @@ class leiding extends CI_Controller {
     $this->load->model('Model_leiding', 'Leiding');
     $this->load->model('Model_log', 'Log');
     $this->load->library(array('email'));
-		$this->load->helper(array('email','string'));
+		$this->load->helper(array('email','string', 'logger'));
 
     $this->Session = $this->session->userdata('logged_in');
     $this->Error_heading = "No permission";
@@ -74,7 +74,7 @@ class leiding extends CI_Controller {
   }
 
   /**
-   *
+   * View voor het wijzigen van de login credentials.
    */
 	function Settings() {
 		if($this->Session) {
@@ -125,6 +125,9 @@ class leiding extends CI_Controller {
 
 			// Write to database
 			$this->Leiding->Settings_edit();
+
+      // Logging
+      user_log($this->Session['username'], 'Heeft zijn gegevens gewijzigd');
 			redirect('Leiding/Settings', 'Refresh');
 		} else {
 			redirect($this->Redirect, 'Refresh');
@@ -150,6 +153,9 @@ class leiding extends CI_Controller {
       $this->email->set_mailtype('html');
 			$this->email->send();
 
+      // Logging
+      user_log('Heeft een administrator / leiding toegevoegt. ');
+
 			// Database Handlings
 			$this->Log->Created_login();
       $this->Leiding->Leiding_insert($Mail);
@@ -167,6 +173,9 @@ class leiding extends CI_Controller {
       if($this->Session['Admin'] == 1) {
         $this->Leiding->Leiding_Block();
 			  $this->Log->block();
+
+        // Logging
+        user_log($this->Session['username'], 'Heeft een login geblokkeerd.');
         redirect('leiding');
       } else {
         $this->load->view('alerts/no_permission');
@@ -184,6 +193,9 @@ class leiding extends CI_Controller {
       if($this->Session['Admin'] == 1) {
         $this->Leiding->Leiding_unblock();
 			  $this->Log->Log_Unblock();
+
+        // Logging
+        user_log($this->Session['username'], 'Heeft terug een login geactiveerd');
         redirect('leiding');
       } else {
         $this->load->view('alerts/no_permission');
@@ -210,6 +222,9 @@ class leiding extends CI_Controller {
 
 			  $this->Log->Add_admin();
         $this->Leiding->Leiding_upgrade($Mailing);
+
+        // Logging
+        user_log($this->Session['username'], 'Heeft een leider(ster) tot administrator gemaakt.');
         redirect('leiding');
       } else {
         $this->load->view('alerts/no_permission');
@@ -227,6 +242,9 @@ class leiding extends CI_Controller {
       if($this->Session['Admin']  == 1 ) {
 			  $this->Log->Delete_admin();
         $this->Leiding->Leiding_downgrade();
+
+        // Logging
+        user_log($this->Session['username'], 'Heeft een administrator zijn rechten ingetrokken.');
         redirect('leiding');
       } else {
         $this->load->view('alerts/no_permission');
@@ -250,6 +268,9 @@ class leiding extends CI_Controller {
 
 			  $this->Log->Delete_login();
         $this->Leiding->Leiding_delete($Mailing);
+
+        // Logging
+        user_log($this->Session['username'], 'Heeft een login verwijderd.');
         redirect('leiding');
       } else {
         $this->load->view('alerts/no_permission');

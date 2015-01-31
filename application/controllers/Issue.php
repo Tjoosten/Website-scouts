@@ -18,6 +18,7 @@
       parent::__construct();
       $this->Session = $this->session->userdata('logged_in');
       $this->load->library(array('email'));
+      $this->load->helper(array('logger'));
     }
 
     public function Index() {
@@ -37,6 +38,10 @@
     }
 
     function Report() {
+      // Logging
+      log_user($this->Session['username'], 'Heeft een big gemeld.');
+
+      // Send error
       $this->email->from('tjoosten3@gmail.com', 'Tim Joosten');
       $this->email->to('topairy@gmail.com');
 

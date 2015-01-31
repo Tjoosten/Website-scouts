@@ -13,7 +13,7 @@
     function __construct() {
       parent::__construct();
   		$this->load->model('Model_fotos', 'Images');
-  		$this->load->helper(array('form', 'url'));
+  		$this->load->helper(array('form', 'url', 'logger'));
 
       $this->Session  = $this->session->userdata('logged_in');
       $this->Redirect = $this->config->item('Redirect','Not_logged_in');
@@ -71,6 +71,9 @@
      */
   	public function do_upload() {
   		if($this->Session) {
+        // Logging
+        user_log($this->Session['username'], 'Heeft een foto of album geupload');
+
         $config = array(
           'allowed_types' => 'jpg',
           'upload_path'   => './assets/fotos',
@@ -106,6 +109,8 @@
      */
   	function delete() {
   		if($this->Session) {
+        // Logging
+        user_log($this->Session['username'], 'heeft een foto of album verwijderd');
 
   			unlink('./assets/fotos/'. $this->uri->segment(3));
   			$this->Images->Delete();

@@ -15,7 +15,7 @@
 			$this->Session = $this->session->userdata('logged_in');
 			$this->Flash   = $this->session->flashdata('Message');
 
-			$this->load->helper(array('form', 'download'));
+			$this->load->helper(array('form', 'download', 'logger'));
 			$this->load->model('Model_drive', 'Drive');
 		}
 
@@ -45,6 +45,8 @@
 		 */
 		public function Upload() {
 			if($this->session) {
+				user_log($this->Session['username'], 'Heeft een bestand geupload.')
+
 				$config = array(
 					'upload_path' => './Drive/',
 					'allowed_types' => 'pdf|docx|jpg|jpeg|png|gif|txt',
@@ -102,6 +104,8 @@
 		 */
 		public function Delete() {
 			if($this->Session) {
+				user_log($this->Session['username'], 'Heeft een bestand verwijderd');
+
 				if(file_exists('./Drive/'. $this->uri->segment(3))) {
 					// If the file exists
 

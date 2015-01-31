@@ -11,6 +11,7 @@ class backend extends CI_Controller {
 		$this->load->model('Model_activiteiten', 'Activiteiten');
 		$this->load->model('Model_Log', 'Log');
 
+    $this->load->helper(array('logger'));
     $this->Session = $this->session->userdata('logged_in');
   }
   // END Constructor
@@ -54,6 +55,9 @@ class backend extends CI_Controller {
    */
 	public function Insert_act() {
 		if($this->Auth) {
+      // Logging
+      user_log($this->Session['username'], 'Heeft een activiteit toegevoegd');
+
 			$this->Activiteiten->Insert();
 			redirect('backend');
 		} else {
@@ -66,7 +70,10 @@ class backend extends CI_Controller {
    * Log the gebruiker uit.
    */
   function logout() {
+    // Logging
+    user_log($this->Session['username'], 'Heeft zich uitgelogd.');
 		$this->Log->Logged_out();
+
 		$this->session->unset_userdata('logged_in');
     session_destroy();
     redirect('Admin', 'refresh');

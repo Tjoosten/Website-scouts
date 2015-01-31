@@ -20,7 +20,7 @@
 			// Load model
 			$this->load->dbutil();
 			$this->load->library(array('Email','dompdf_gen'));
-			$this->load->helper(array('Email'));
+			$this->load->helper(array('Email', 'logger'));
 			$this->load->model('Model_inschrijvingen','Inschrijving');
 
 			// Variables
@@ -89,6 +89,9 @@
 		public function Insert_inschrijving() {
 			if($this->Session) {
 				$this->Inschrijving->InsertDB();
+
+				// Logging
+				user_log($this->Session['username'], 'heeft een inschrijving voor het ontbijt toegevoegd.');
 				redirect('Inschrijvingen/Admin_ontbijt');
 			} else {
 				// Write to database
@@ -124,6 +127,8 @@
 			if($this->Session) {
 				if($this->Session['Admin'] == 1) {
 					$this->Inschrijving->startInschrijvingOntbijt();
+					// Logging
+					user_log($this->Session['username'], 'Heeft een maand opengezet');
 					redirect('Inschrijvingen/Admin_ontbijt');
 				} else {
 					$Data = array(
@@ -143,6 +148,9 @@
 			if($this->Session) {
 				if($this->Session['Admin'] == 1) {
 					$Data['Query'] = $this->Inschrijving->downloadMonth();
+
+					// Logging
+					user_log($this->Session['username'], 'Heeft de inschrijvingen voor een maand gedownload & gesloten.');
 
 					$this->Inschrijving->Stop_inschrijving_ontbijt();
 
@@ -178,6 +186,9 @@
         	$this->load->view('pdf/ontbijt', $Data);
         	$html = $this->output->getOutput();
 
+					// Logging
+					user_log($tis->Session['username'], 'Heeft de inschrijvingen gedownload.');
+
         	// Convert to PDF
         	$this->dompdf->load_html($html);
         	$this->dompdf->render();
@@ -191,6 +202,9 @@
 			if($this->Session) {
 				if($this->Session['Admin'] == 1) {
 					$this->Inschrijving->deleteDb();
+
+					// Logging
+					user_log($this->Session['username'], 'Heeft een inschrijving verwijderd.');
 					redirect('Admin_ontbijt');
 				} else {
 					$Data = array(
