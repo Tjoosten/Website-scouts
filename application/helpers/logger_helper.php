@@ -10,6 +10,12 @@
    * @todo Create function for the cronjob
    */
 
+   function __construct() {
+     parent::__construct();
+     $CI =& get_instance();
+     $CI->load->model('Model_logger', 'Logging');
+   }
+
    /**
     * log_user
     *
