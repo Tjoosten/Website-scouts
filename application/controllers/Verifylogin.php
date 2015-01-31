@@ -58,7 +58,7 @@ class VerifyLogin extends CI_Controller {
 				$this->load->model('Model_log', 'Log');
 
         // Logging
-        user_log($this->Session['Username'], 'Heeft zich aangemeld.');
+        user_log($this->Session['username'], 'Heeft zich aangemeld.');
 				$this->Log->logged_in();
       }
       return TRUE;
