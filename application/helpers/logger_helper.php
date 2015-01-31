@@ -19,8 +19,9 @@
 
    if (! function_exists('user_log')) {
      function user_log($user, $message) {
-       $Data = strtotime(date("Y/m/d"));
-       $Filepath =  './application/logs/log-'. $Data .'.php';
+       $Date = strtotime(date("Y/m/d"));
+
+       $Filepath =  './application/logs/log-'. $Date .'.php';
 
        if(! file_exists($Filepath)) {
          // File doesn't exists so we need to first write it.
@@ -39,7 +40,6 @@
          return TRUE;
        } else {
          // The file exists sp we are write te log message only.
-         $Filepath =  './application/logs/log-'. $Data .'.php';
          $LogMessage = '['. date("h:i:sa"). ']: '. $user .' --> '. $message ."\n";
 
          // Open the log file

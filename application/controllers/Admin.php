@@ -15,7 +15,7 @@
   		}
 
 			/**
-			 * The login form for the backend. 
+			 * The login form for the backend.
 			 * Wil do a redirect when he is found the session Logged_in.
 			 */
   		public function index() {
