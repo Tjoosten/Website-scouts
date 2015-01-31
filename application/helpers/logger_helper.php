@@ -17,8 +17,8 @@
     * @param $message, string, the handling the user is doing.
     */
 
-   if (! function_exists('log_user')) {
-     function log_user($user, $message) {
+   if (! function_exists('user_log')) {
+     function user_log($user, $message) {
        $Data = strtotime(date("Y/m/d"));
        $Filepath =  './application/logs/log-'. $Data .'.php';
 
