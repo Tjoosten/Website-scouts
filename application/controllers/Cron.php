@@ -39,6 +39,7 @@
       echo "2) Verwijder afgelopen verhuringen \n";
       echo "3) Verwijder afgelopen activiteiten \n";
 			echo "4) Run migrations \n";
+			echo "5) Download logs \n";
       echo "--------------------------------------------- \n";
       echo "Welke taak wil je uitvoeren? (1 - 4):";
 
@@ -58,6 +59,10 @@
 
 			elseif(trim($Taak) == 4) {
 				shell_exec('php /scoutnet.be/users/st-joris/public_html/index.php Migrate');
+			}
+
+			elseif(trim($Taak) == 5) {
+				shell_exec('php /scoutnet.be/users/st-joris/public_html/index.php Logs_download');
 			}
 
       else {
@@ -98,4 +103,11 @@
 			// Exec
       $this->Cron->Del_activiteiten();
     }
+
+		/**
+		 * Download de logs
+		 */
+		public function Logs_download() {
+			download_logs();
+		}
 }
