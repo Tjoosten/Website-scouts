@@ -35,3 +35,4 @@
 0 0 * * * php /scoutnet.be/users/st-joris/public_html/index.php Cron Del_verhuring
 0 0 * * 0 php /scoutnet.be/users/st-joris/public_html/index.php Cron Optimize_DB
 0 0 * * 0 php /scoutnet.be/users/st-joris/public_html/index.php Cron Del_activiteiten
+@montly   php /scoutnet.be/users/st-joris/public_html/index.php Logs_download
