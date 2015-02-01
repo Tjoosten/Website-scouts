@@ -9,11 +9,8 @@
    * @todo Setting up system that creates a logged_in session for the server (cronjobs)
    * @todo Create function for the cronjob
    */
-
    function __construct() {
      parent::__construct();
-     $CI =& get_instance();
-     $CI->load->model('Model_logger', 'Logging');
    }
 
    /**
@@ -42,6 +39,11 @@
          fwrite($Logfile, $LogMessage);
          // Close file
          fclose($Logfile);
+
+         // Database
+         $CI =& get_instance();
+         $CI->load->model('Model_logger', 'Database');
+         $CI->Database->Insert($Filepath);
 
          return TRUE;
        } else {
