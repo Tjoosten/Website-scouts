@@ -45,7 +45,7 @@
 		 */
 		public function Upload() {
 			if($this->session) {
-				user_log($this->Session['username'], 'Heeft een bestand geupload.')
+				user_log($this->Session['username'], 'Heeft een bestand geupload.');
 
 				$config = array(
 					'upload_path' => './Drive/',
@@ -102,14 +102,15 @@
 		/**
 		 * Functie voor het verwijderen van een file uit de drive.
 		 */
-		public function Delete() {
+		public function Delete($file) {
 			if($this->Session) {
 				user_log($this->Session['username'], 'Heeft een bestand verwijderd');
 
-				if(file_exists('./Drive/'. $this->uri->segment(3))) {
+				if(file_exists('./Drive/'. $file)) {
 					// If the file exists
-
-					if (! unlink('./Drive/'. $this->uri->segment(3))) {
+					$this->Drive->Delete();
+					
+					if (! unlink('./Drive/'. $file)) {
 						$this->Drive->Delete();
 
 						// Failure
