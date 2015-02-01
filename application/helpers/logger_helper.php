@@ -6,6 +6,8 @@
    * @license Closed source license
    * @since 2015
    *
+   * This Helper requires the Zip Encoding library.
+   *
    * @todo Setting up system that creates a logged_in session for the server (cronjobs)
    * @todo Create function for the cronjob
    */
@@ -19,7 +21,6 @@
     * @param $user,    string, the user ding the handle.
     * @param $message, string, the handling the user is doing.
     */
-
    if (! function_exists('user_log')) {
      function user_log($user, $message) {
        $Date = strtotime(date("Y/m/d"));
@@ -58,5 +59,29 @@
          // Close file
          fclose($Logfile);
        }
+    }
+  }
+
+  /**
+   * Helper to get the logs for download
+   */
+  if(! function_exists('download_logs')) {
+    function download_logs() {
+      // Database
+      $CI =& get_instance();
+
+      // Library loading
+      $CI->load->library(array('zip'));
+
+      // Database
+      $CI->load->model('Model_logger', 'Database');
+      $Files = $CI->Database->Get();
+
+      // Zip
+      foreach($Files as $File) {
+        $CI->zip->add_data($File->Log_file, file_get_contents($File->Log_file));
+      }
+
+      $CI->zip->download('logs.zip');
     }
   }

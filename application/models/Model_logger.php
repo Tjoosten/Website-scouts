@@ -9,4 +9,13 @@
 
       $this->db->insert('Log_archive', $Values);
     }
+
+    function Get() {
+      $this->db->select('*')
+               ->where('Month', date('m'))
+               ->from('Log_archive');
+
+      $Query = $this->db->get();
+      return $Query->result();
+    }
   }
