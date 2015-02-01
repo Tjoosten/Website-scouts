@@ -45,13 +45,9 @@
       $Cron = fopen ("php://stdin","r");
       $Taak = fgets($Cron);
 
-			switch($Taak)
-				case "1"
-					shell_exec('php /scoutnet.be/users/st-joris/public_html/index.php Cron Optimize_DB');
-						break;
-
-
-
+			if(trim($Taak) == 1) {
+				shell_exec('php /scoutnet.be/users/st-joris/public_html/index.php Cron Optimize_DB');
+			}
       elseif(trim($Taak) == 2) {
         shell_exec('php /scoutnet.be/users/st-joris/public_html/index.php Cron Del_verhuring');
       }
