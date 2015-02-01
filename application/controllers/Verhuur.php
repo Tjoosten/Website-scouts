@@ -20,7 +20,6 @@
   	function __construct() {
       parent::__construct();
       $this->load->model('Model_verhuringen','Verhuringen');
-	    $this->load->model('Model_Log', 'Log');
       $this->load->model('Model_notifications', 'Not');
 
       $this->load->library(array('email','dompdf_gen','form_validation'));
@@ -349,7 +348,6 @@
             if($this->Session) {
 							if($this->Session['Admin'] == 1) {
                 $this->Verhuringen->Status_optie();
-								$this->Log->Verhuur_option();
 
 								// Logging
 								user_log($this->Session['username'], 'Heeft de status gewijzigd naar optie.');
@@ -374,7 +372,6 @@
         public function Change_bevestigd() {
             if($this->Session) {
 							if($this->Session['Admin'] == 1) {
-								$this->Log->Verhuur_option();
                 $this->Verhuringen->Status_bevestigd();
 
 								// Logging
@@ -402,7 +399,6 @@
             if($this->Session) {
 							if($this->Session['Admin'] == 1) {
                 $this->Verhuringen->Verhuur_delete();
-								$this->Log->Verhuur_delete();
 
 								// Logging
 								user_log($this->Session['username'], 'Heeft een verhuring gewijzigd').

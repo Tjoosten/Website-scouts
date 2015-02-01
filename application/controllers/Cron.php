@@ -19,7 +19,6 @@
       if (!$this->input->is_cli_request()) show_error('Direct access is not allowed');
 			// Load model
 			$this->load->model('Model_cron','Cron');
-      $this->load->model('Model_log','Log');
 
       // Load helpers
       $this->load->dbutil();

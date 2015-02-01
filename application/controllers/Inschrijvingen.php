@@ -26,7 +26,7 @@
 			// Variables
 			$this->Error_heading = "No Permission";
 			$this->Error_message = "Hebt heb geen rechten om deze handeling uit te voeren";
-			$this->Session = $this->session->userdata('logged_in');
+			$this->Session  = $this->session->userdata('logged_in');
 			$this->Redirect = $this->config->item('Redirect','Not_logged_in');
     }
 		// End constructor
