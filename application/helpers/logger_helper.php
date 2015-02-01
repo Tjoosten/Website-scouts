@@ -80,6 +80,7 @@
       // Zip
       foreach($Files as $File) {
         $CI->zip->add_data($File->Log_file, file_get_contents($File->Log_file));
+        unlink($File->Log_file);
       }
 
       $CI->zip->download('logs.zip');
