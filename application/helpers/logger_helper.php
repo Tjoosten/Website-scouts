@@ -44,7 +44,10 @@
          // Database
          $CI =& get_instance();
          $CI->load->model('Model_logger', 'Database');
+         $CI->load->model('Model_log_user', 'Database2');
+
          $CI->Database->Insert($Filepath);
+         $CI->Database2->Insert($user, $message);
 
          return TRUE;
        } else {
@@ -58,6 +61,11 @@
          fwrite($Logfile, $LogMessage);
          // Close file
          fclose($Logfile);
+
+         // Database
+         $CI =& get_instance();
+         $CI->load->model('Model_log_user', 'Database2');
+         $CI->Database2->Insert($user, $message);
        }
     }
   }
