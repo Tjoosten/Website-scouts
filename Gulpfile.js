@@ -18,6 +18,18 @@ var chmod      = require('gulp-chmod');
 var isProduction  = args.env === 'prod';        // Used: compile-less
 var isSourcemaps  = args.sourcemaps === 'true'; // Used: compile-less
 
+// Gulp Folder Paths
+// =======================================================================
+var PathResourcesLessCostum    = 'resources/less/costum/';
+var PathResourcesLessBootstrap = 'resources/less/bootstrap/';
+var PathResourcesJsBootstrap   = 'resources/js/bootstrap/';
+var PathResourcesImg           = 'resources/img/';
+var PathResourcesFonts         = 'resources/fonts/';
+var PathAssetsJs               = 'assets/js/';
+var PathAssetsFonts            = 'assets/fonts/';
+var PathAssetsCss              = 'assets/css/';
+var PathAssetsImg              = 'assets/img/';
+
 // Gulp help descriptions.
 var help = [
     "Compile all the LESS and JS resources.",
@@ -51,12 +63,16 @@ gulp.task('lint', help[6], function() {
 //
 // Gulp specific task.
 // =============================================================
+
+// Flags:
+// -----------------------------------------
+// --sourcemaps: Enable sourcemaps or not.
 gulp.task('compile-js', help[2], function() {
-    gulp.src('resources/js/bootstrap/*.js')
+    gulp.src(PathResourcesJsBootstrap + '*.js')
         .pipe(concat('bootstrap.js'))
         .pipe(gulpif(isSourcemaps, sourcemaps.init()))
         .pipe(gulpif(isSourcemaps, sourcemaps.write('./maps')))
-        .pipe(gulp.dest('assets/js'));
+        .pipe(gulp.dest(PathAssetsJs));
 }, {
     options: {
         'sourcemaps=true' : 'Compile-js -> Enable sourcemaps',
@@ -68,7 +84,7 @@ gulp.task('compile-js', help[2], function() {
 // --env:        The environment variable.
 // --sourcemaps: Enable sourcemaps or not.
 gulp.task('compile-less', help[3], function() {
-    gulp.src('resources/less/bootstrap/bootstrap.less')
+    gulp.src(PathResourcesLessBootstrap + 'bootstrap.less')
         .pipe(chmod({
             owner:  { read: true,  write: true,   execute: false },
             group:  { read: true,  write: false,  execute: false },
@@ -78,9 +94,9 @@ gulp.task('compile-less', help[3], function() {
         .pipe(less())
         .pipe(gulpif(isProduction, minifyCss()))
         .pipe(gulpif(isSourcemaps, sourcemaps.write('./maps')))
-        .pipe(gulp.dest('assets/css'));
+        .pipe(gulp.dest(PathAssetsCss));
 
-    gulp.src('resources/less/costum/costum.less')
+    gulp.src(PathResourcesLessCostum + 'costum.less')
         .pipe(chmod({
             owner:  { read: true,  write: true,   execute: false },
             group:  { read: true,  write: false,  execute: false },
@@ -90,7 +106,7 @@ gulp.task('compile-less', help[3], function() {
         .pipe(less())
         .pipe(gulpif(isProduction, minifyCss()))
         .pipe(gulpif(isSourcemaps, sourcemaps.write('./maps')))
-        .pipe(gulp.dest('assets/css'));
+        .pipe(gulp.dest(PathAssetsCss));
 
 }, {
     options: {
@@ -101,30 +117,30 @@ gulp.task('compile-less', help[3], function() {
 
 gulp.task('lint-less', help[3], function() {
     // Bootstrap LESS
-    gulp.src('resources/less/bootstrap/*.less')
+    gulp.src(PathResourcesLessBootstrap + '*.less')
         .pipe(lesshint({
             // Options
         }));
 
     // Costum LESS
-    gulp.src('resources/less/costum/*;less')
+    gulp.src(PathResourcesLessCostum + '*.less')
         .pipe(lesshint({
             // Options
         }));
 });
 
 gulp.task('lint-js', help[4], function() {
-    gulp.src('resources/js/bootstrap/*.js')
+    gulp.src(PathResourcesJsBootstrap + '*.js')
         .pipe(jshint())
         .pipe(jshint.reporter('jshint-stylish'));
 });
 
 gulp.task('copy-fonts', help[7], function() {
-    gulp.src('resources/fonts/bootstrap/*')
-        .pipe(gulp.dest('assets/fonts'));
+    gulp.src(PathResourcesFonts + 'bootstrap/*')
+        .pipe(gulp.dest(PathAssetsFonts));
 });
 
 gulp.task('copy-img', help[7], function() {
-    gulp.src('resources/img/*')
-        .pipe(gulp.dest('assets/img'));
+    gulp.src(PathResourcesImg + '*')
+        .pipe(gulp.dest(PathAssetsImg));
 });

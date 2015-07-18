@@ -40,7 +40,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | path to your installation.
 |
 */
-$config['base_url']	= '/index.php';
+$config['base_url']	= 'http://www.development.st-joris-turnhout.be';
 
 /*
 |--------------------------------------------------------------------------
@@ -70,7 +70,7 @@ $config['index_page'] = '';
 | 'QUERY_STRING'	Uses $_SERVER['QUERY_STRING']
 |
 */
-$config['uri_protocol']	= 'AUTO';
+$config['uri_protocol']	= 'REQUEST_URI';
 
 /*
 |--------------------------------------------------------------------------
