@@ -1,7 +1,23 @@
+// Color variables - Takken
+@color-kapoenen:   #FFFF00;
+@color-welpen:     #228B22;
+@color-jonggivers: #F5821F;
+@color-givers:     #256F91;
+@color-jins:       #ED1C23;
+@color-leiding:    #663399;
+
+// Color variables - Various
+@green-border:     #aac12b;
+@green:            #bdd732;
+@white:            #ffffff;
+@white-border:     #dddddd;
+@color-border:     #aac12b;
+
+
 /*  general */
 .background {
   padding-top: 75px;
-  background: #bdd732 url('../img/background.png') no-repeat fixed center 110px;
+  background: @green url('../img/background.png') no-repeat fixed center 110px;
 }
 
 .font-heading {
@@ -15,46 +31,46 @@
 }
 
 .border {
-  border: 1.2px solid #aac12b;
+  border: 1.2px solid @color-border;
 }
 
 .Icon-color,
 .Title-color {
-  color: #bdd732;
+  color: @green;
 }
 
 /* Takken pagina */
 .color-white {
-  background-color: #ffffff;
+  background-color: @white;
   padding: 6px;
-  border: 1.2px solid #dddddd;
+  border: 1.2px solid @white-border;
   border-radius: 4px;
   -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
 }
 
 .color-kapoenen {
-  background-color: #FFFF00;
+  background-color: @color-kapoenen;
 }
 
 .color-welpen {
-  background-color: #228B22;
+  background-color: @color-welpen;
 }
 
 .color-jonggivers {
-  background-color: #F5821F;
+  background-color: @color-jonggivers;
 }
 
 .color-givers {
-  background-color: #256F91;
+  background-color: @color-givers;
 }
 
 .color-jins {
-  background-color: #ED1C23;
+  background-color: @color-jins;
 }
 
 .color-leiding {
-  background-color: #663399;
+  background-color: @color-leiding;
 }
 
 .thumbnail {
@@ -71,7 +87,7 @@
   height:100%;
   padding:2%;
   text-align:center;
-  color:#fff !important;
+  color:@white !important;
   z-index:2;
   -webkit-transition: all 0.5s ease-in-out;
   -moz-transition: all 0.5s ease-in-out;
@@ -80,5 +96,5 @@
   transition: all 0.5s ease-in-out;
 }
 .thumbnail:hover .caption {
-  top:0%;
+  top: 0%;
 }
