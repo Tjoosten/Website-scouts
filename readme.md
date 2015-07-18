@@ -18,3 +18,6 @@ The following commands are avaible in the asset manager:
 | `gulp lint`          | Validate all the JS and LESS files.             | 
 | `gulp lint-js`       | Validate all the JS resources.                  |
 | `gulp lint-less`     | Validate all the LESS resources.                |
+
+## License 
+This files are placed under the MIT License.
