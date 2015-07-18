@@ -9,8 +9,10 @@ higly risk of software bugs.
 ## Gulp asset manager:
 
 - Download or clone the repo with `git clone`. 
-- Check if nodeJS is installed. *(you can check it with `node -v`*
-- Run `npm install`
+- Check if nodeJS is installed. *(you can check it with `node -v`).*
+- Run `npm install`.
+- test it by navigating to the source folder and run `gulp`.
+- Celebrate.
 
 ### Install:
 
