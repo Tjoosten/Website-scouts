@@ -123,3 +123,8 @@ gulp.task('copy-fonts', help[7], function() {
     gulp.src('resources/fonts/bootstrap/*')
         .pipe(gulp.dest('assets/fonts'));
 });
+
+gulp.task('copy-img', help[7], function() {
+    gulp.src('resources/img/*')
+        .pipe(gulp.dest('assets/img'));
+});
