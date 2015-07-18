@@ -6,9 +6,18 @@ This is the website for the scouting group, St-Joris Turnhout. Located in Belgui
 This is an active development branch. So plz don't use it for your own website. Because there is a 
 higly risk of software bugs. 
 
-## Quickstart Gulp commands: 
+## Gulp asset manager:
 
-The following commands are avaible in the asset manager: 
+- Download or clone the repo with `git clone`. 
+- Check if nodeJS is installed. *(you can check it with `node -v`*
+- Run `npm install`
+
+### Install:
+
+### Quickstart Gulp commands: 
+
+The following commands are available in the asset manager. <br>
+For the flags just run `gulp help` they are documented: 
 
 | Command:             | Description:                                    | 
 | :------------------- | :---------------------------------------------- |
