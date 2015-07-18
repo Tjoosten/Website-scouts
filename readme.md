@@ -2,6 +2,10 @@ St-Joris Turnhout, Website
 ===============================
 [![devDependency Status](https://david-dm.org/tjoosten/sijot-1/dev-status.svg)](https://david-dm.org/tjoosten/sijot-1#info=devDependencies)
 
+This is the website for the scouting group, St-Joris Turnhout. Located in Belguim. 
+This is an active development branch. So plz don't use it for your own website. Because there is a 
+higly risk of software bugs. 
+
 ## Quickstart Gulp commands: 
 
 The following commands are avaible in the asset manager: 
