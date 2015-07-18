@@ -1,0 +1,71 @@
+/*  general */
+.background {
+  padding-top: 75px;
+  background: #bdd732 url('../img/background.png') no-repeat fixed center 110px;
+}
+.font-heading {
+  font-family: Allan, helvetica, arial, sans-serif;
+  font-size: 22px;
+}
+.font-title {
+  font-family: Allan, helvetica, arial, sans-serif;
+  font-size: 18px;
+}
+.border {
+  border: 1.2px solid #aac12b;
+}
+.Icon-color,
+.Title-color {
+  color: #bdd732;
+}
+/* Takken pagina */
+.color-white {
+  background-color: #ffffff;
+  padding: 6px;
+  border: 1.2px solid #dddddd;
+  border-radius: 4px;
+  -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+}
+.color-kapoenen {
+  background-color: #ffff00;
+}
+.color-welpen {
+  background-color: #228b22;
+}
+.color-jonggivers {
+  background-color: #f5821f;
+}
+.color-givers {
+  background-color: #256f91;
+}
+.color-jins {
+  background-color: #ed1c23;
+}
+.color-leiding {
+  background-color: #663399;
+}
+.thumbnail {
+  position: relative;
+  overflow: hidden;
+}
+.caption {
+  position: absolute;
+  top: -100%;
+  right: 0;
+  background: rgba(66, 139, 202, 0.75);
+  width: 100%;
+  height: 100%;
+  padding: 2%;
+  text-align: center;
+  color: #ffffff !important;
+  z-index: 2;
+  -webkit-transition: all 0.5s ease-in-out;
+  -moz-transition: all 0.5s ease-in-out;
+  -o-transition: all 0.5s ease-in-out;
+  -ms-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
+}
+.thumbnail:hover .caption {
+  top: 0%;
+}
