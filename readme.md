@@ -1,6 +1,7 @@
 St-Joris Turnhout, Website
 ===============================
 [![devDependency Status](https://david-dm.org/tjoosten/sijot-1/dev-status.svg)](https://david-dm.org/tjoosten/sijot-1#info=devDependencies)
+[![Dependency Status](https://david-dm.org/tjoosten/sijot-1.svg)](https://david-dm.org/tjoosten/sijot-1)
 
 This is the website for the scouting group, St-Joris Turnhout. Located in Belguim. 
 This is an active development branch. So plz don't use it for your own website. Because there is a 
