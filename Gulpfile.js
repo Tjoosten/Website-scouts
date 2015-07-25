@@ -134,15 +134,11 @@ gulp.task('compile-less', help[3], function() {
 gulp.task('lint-less', help[3], function() {
     // Bootstrap LESS
     gulp.src(PathResourcesLessBootstrap + '*.less')
-        .pipe(lesshint({
-            // Options
-        }));
+        .pipe(lesshint({}));
 
     // Costum LESS
     gulp.src(PathResourcesLessCostum + '*.less')
-        .pipe(lesshint({
-            // Options
-        }));
+        .pipe(lesshint({}));
 });
 
 gulp.task('lint-js', help[4], function() {
