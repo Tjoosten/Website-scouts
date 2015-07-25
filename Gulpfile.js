@@ -4,19 +4,23 @@
 var gulp       = require('gulp-help')(require('gulp'));
 var jshint     = require('gulp-jshint');
 var less       = require('gulp-less');
+var rename     = require("gulp-rename");
 var args       = require('yargs').argv;
 var sourcemaps = require('gulp-sourcemaps');
 var minifyCss  = require('gulp-minify-css');
 var gulpif     = require('gulp-if');
+var gutil      = require('gulp-util');
+var plumber    = require('gulp-plumber');
 var concat     = require('gulp-concat');
 var lesshint   = require('gulp-lesshint');
 var chmod      = require('gulp-chmod');
+var coffee     = require('gulp-plumber');
 
 //
 // Gulp Flag variables.
 // =======================================================================
-var isProduction  = args.env === 'prod';        // Used: compile-less
-var isSourcemaps  = args.sourcemaps === 'true'; // Used: compile-less
+var isProduction  = args.env === 'prod';        // Used: compile-less and minify it.
+var isSourcemaps  = args.sourcemaps === 'true'; // Used: to generate sourcemaps.
 
 // Gulp Folder Paths
 // =======================================================================
@@ -69,10 +73,18 @@ gulp.task('lint', help[6], function() {
 // --sourcemaps: Enable sourcemaps or not.
 gulp.task('compile-js', help[2], function() {
     gulp.src(PathResourcesJsBootstrap + '*.js')
+        .pipe(plumber(function(error) {
+            gutil.log(gutil.log(gutil.colors.red('Error (' + error.plugin + '): ' + error.message)));
+            this.emit('end');
+        }))
         .pipe(concat('bootstrap.js'))
         .pipe(gulpif(isSourcemaps, sourcemaps.init()))
         .pipe(gulpif(isSourcemaps, sourcemaps.write('./maps')))
-        .pipe(gulp.dest(PathAssetsJs));
+        .pipe(plumber.stop())
+        .pipe(gulp.dest(PathAssetsJs))
+
+        gutil.log('Message (gulp): JavaScript resources are compiled.');
+
 }, {
     options: {
         'sourcemaps=true' : 'Compile-js -> Enable sourcemaps',
@@ -84,29 +96,33 @@ gulp.task('compile-js', help[2], function() {
 // --env:        The environment variable.
 // --sourcemaps: Enable sourcemaps or not.
 gulp.task('compile-less', help[3], function() {
-    gulp.src(PathResourcesLessBootstrap + 'bootstrap.less')
+    var files = [
+        PathResourcesLessCostum + 'costum.less',
+        PathResourcesLessBootstrap + 'bootstrap.less'
+    ];
+
+    gulp.src(files)
+        .pipe(plumber(function(error) {
+            gutil.log(gutil.colors.red('Error (' + error.plugin + '): ' + error.message));
+            this.emit('end');
+        }))
+
         .pipe(chmod({
             owner:  { read: true,  write: true,   execute: false },
             group:  { read: true,  write: false,  execute: false },
             others: { read: false, write: false,  execute: false }
         }))
+
         .pipe(gulpif(isSourcemaps, sourcemaps.init()))
         .pipe(less())
         .pipe(gulpif(isProduction, minifyCss()))
+        .pipe(gulpif(isProduction,  rename({suffix: '.min'})))
         .pipe(gulpif(isSourcemaps, sourcemaps.write('./maps')))
+        .pipe(plumber.stop())
         .pipe(gulp.dest(PathAssetsCss));
 
-    gulp.src(PathResourcesLessCostum + 'costum.less')
-        .pipe(chmod({
-            owner:  { read: true,  write: true,   execute: false },
-            group:  { read: true,  write: false,  execute: false },
-            others: { read: false, write: false,  execute: false }
-        }))
-        .pipe(gulpif(isSourcemaps, sourcemaps.init()))
-        .pipe(less())
-        .pipe(gulpif(isProduction, minifyCss()))
-        .pipe(gulpif(isSourcemaps, sourcemaps.write('./maps')))
-        .pipe(gulp.dest(PathAssetsCss));
+        gutil.log(gutil.colors.green('Success: Bootstrap css file created.'));
+        gutil.log(gutil.colors.green('Success: costum css file created.'));
 
 }, {
     options: {
