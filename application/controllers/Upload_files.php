@@ -39,7 +39,7 @@
 		public function do_upload() {
 			if($this->Session) {
 				// Logging
-				user_log('Probeerd een nieuw groentje te uploaden.');
+				user_log('Server','Probeerd een nieuw groentje te uploaden.');
 
 				$config = array(
 					'upload_path' => './assets/files/',
@@ -52,7 +52,7 @@
 				// Omdat deze config variables bevat
 				$this->load->library('upload', $config);
 
-				if (!$this->upload->do_upload()) {
+				if (! $this->upload->do_upload()) {
 					$Session = $this->session->userdata('logged_in');
 
 					// Logging
