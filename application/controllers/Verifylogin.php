@@ -35,6 +35,7 @@ class VerifyLogin extends CI_Controller
     /**
      * Run the login against the database.
      *
+     * @todo  Set invidual permissions.
      * @param $password
      * @return bool
      */
@@ -47,10 +48,11 @@ class VerifyLogin extends CI_Controller
         $result = $this->user->login($username, $password);
 
         if ($result) {
-            $sess_array = array();
+            $auth_array       = array();
+            $permission_array = array();
 
             foreach ($result as $row) {
-                $sess_array = array(
+                $auth_array = array(
                     'id'       => $row->id,
                     'username' => $row->username,
                     'Admin'    => $row->Admin_role,
@@ -59,7 +61,25 @@ class VerifyLogin extends CI_Controller
                     'Email'    => $row->Mail,
                 );
 
-                $this->session->set_userdata('logged_in', $sess_array);
+                $this->session->set_userdata('logged_in', $auth_array);
+                $permissions = $this->user->permissions($auth_array['id']);
+
+                foreach($permissions as $permission) {
+                   $permission_array = array(
+                        'user_id'     => $auth_array['id'],
+                        'verhuur'     => $permission->verhuur,
+                        'mailinglist' => $permission->mailinglist,
+                        'drive'       => $permission->drive,
+                   );
+                }
+
+                $this->session->set_userdata('Permissions', $permission_array);
+
+                // For debugging proposes only.
+                // -----------------------------
+                // var_dump($this->session->userdata('Permissions'));
+                // die();
+
             }
             return TRUE;
         } else {

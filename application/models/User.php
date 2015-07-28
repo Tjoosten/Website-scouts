@@ -35,4 +35,19 @@ Class User extends CI_Model {
 		$this->db->where('Mail', $this->input->post('recovery'))
 				 ->update('users', $Values);
 	}
+
+	public function permissions($user_id)
+	{
+		$this->db->select('*')
+			->from('Permissions')
+			->where('user_id', $user_id);
+
+		$query = $this->db->get();
+
+		if($query->num_rows() == 1) {
+			return $query->result();
+		} else {
+			return false;
+		}
+	}
 }
