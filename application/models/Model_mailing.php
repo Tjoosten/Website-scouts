@@ -4,7 +4,7 @@
 		/**
 		 * Mail all the email adresses.
 		 */
-		function Mailing_Iedereen() {
+		public function Mailing_Iedereen() {
 			$this->db->select();
 
 			$Query = $this->db->get('Mailing');
@@ -14,7 +14,7 @@
 		/**
 		 * Gets the email address under the label VZW.
 		 */
-		function Mailing_VZW() {
+		public function Mailing_VZW() {
 			$this->db->select()
 					 ->where('Vzw','1');
 
@@ -25,7 +25,7 @@
 		/**
 		 * Gets the email addresses under the label Ouders.
 		 */
-		function Mailing_Ouders() {
+		public function Mailing_Ouders() {
 			$this->db->select()
 			         ->where('Ouders','1');
 
@@ -36,7 +36,7 @@
 		/**
 		 * Gets the email addresses under the label Leiding.
 		 */
-		function Mailing_Leiding() {
+		public function Mailing_Leiding() {
 			$this->db->select()
 			         ->where('Leiding','1');
 
@@ -47,7 +47,7 @@
 		/**
 		 * Gets the email addresses under the label Oudervergadering.
 		 */
-		function Mailing_Oudervergadering() {
+		public function Mailing_Oudervergadering() {
 			$this->db->select()
 					 ->where('Oudervergadering','1');
 
@@ -58,7 +58,7 @@
 		/**
 		 * Insert a email address in the mailing list.
 		 */
-		function Insert_address() {
+		public function Insert_address() {
 			$Values = array(
 				"Voornaam"         => $this->input->post('Voornaam'),
 				"Achternaam"       => $this->input->post('Achternaam'),
@@ -75,19 +75,19 @@
 		/**
 		 * Delete a email address.
 		 */
-		function Delete_address() {
+		public function Delete_address() {
 			$this->db->where('ID', $this->uri->segment(3))
                		 ->delete('Mailing');
 		}
 
-		function Mailing() {
+		public function Mailing() {
 			$this->db->select();
 
 			$Query = $this->db->get('Mailing');
 			return $Query->result();
 		}
 
-		function Actief() {
+		public function Actief() {
 			$Values = array(
 				$this->uri->segment(3) => "1",
 				);
@@ -96,7 +96,7 @@
 					 ->update('Mailing', $Values);
 		}
 
-		function Inactief() {
+		public function Inactief() {
 			$Values = array(
 				$this->uri->segment(3) => "0",
 				);

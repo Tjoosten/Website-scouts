@@ -7,13 +7,15 @@
 	 | Copyright: Sint-Joris Turnhout, Tim Joosten
 	 */
 
-	 public function __construct() {
+	 public public function __construct()
+	 {
 	 	parent::__construct();
 	 	$this->load->dbutil();
 	 }
 
 	// Client side
-	function Verhuring_kalender() {
+	public function Verhuring_kalender()
+	{
 		$this->db->select()
 				 ->order_by("Start_datum", "asc");
 
@@ -21,7 +23,8 @@
 		return $Query->result();
 	}
 
-	function InsertDB() {
+	public function InsertDB()
+	{
 		// replace characters that can jam the timestamp
 		$old_sep = array("/","-");
 		$new_sep = ".";
@@ -45,7 +48,8 @@
 	// -------- //
 
 	// Admin side 
-	function Search() {
+	public function Search()
+	{
 		// replace characters that can jam the timestamp
 		$old_sep = array("/","-");
 		$new_sep = ".";
@@ -65,7 +69,8 @@
 		return $Query->Result();
 	}
 		
-	function Wijzig_verhuur() {
+	public function Wijzig_verhuur()
+	{
 		// replace characters that can jam the timestamp
 		$old_sep = array("/","-");
 		$new_sep = ".";
@@ -87,7 +92,8 @@
 		          ->update('Verhuur', $Values);
 	}
 
-	function Status_optie() {
+	public function Status_optie()
+	{
 		$Value = array(
 				"Status" => "1",
 			);
@@ -97,7 +103,8 @@
 		
 	}
 
-	function Status_bevestigd() {
+	public function Status_bevestigd()
+	{
 		$Value = array(
 				"Status" => "2",
 			); 
@@ -107,14 +114,16 @@
 
 	}
 		
-	function Verhuur_delete() {
+	public function Verhuur_delete()
+	{
 		$this->db->where('ID', $this->uri->segment(3))
 				 ->delete('Verhuur'); 
 
 		return $this->db->affected_rows(); 
 	}
 		
-	function Verhuur_api() {
+	public function Verhuur_api()
+	{
 		$this->db->select()
 				 ->order_by("Start_datum", "asc");
 
@@ -122,7 +131,8 @@
 		return $Query->result();
 	}
 
-	function verhuur_info() {
+	public function verhuur_info()
+	{
 		$this->db->select() 
   					 ->where("ID", $this->uri->segment(3));
 
@@ -130,7 +140,8 @@
 		return $Query->result();
 	}
 		
-	function Download_verhuringen() {
+	public function Download_verhuringen()
+	{
 		$this->db->select('Start_datum, Eind_datum, Groep, Email, GSM');
 		
 		$query = $this->db->get('Verhuur');

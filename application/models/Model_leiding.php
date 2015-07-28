@@ -9,7 +9,7 @@ class Model_leiding extends CI_Model
      | Copyright: Sint-Joris Turnhout, Tim Joosten
      */
 
-    function ploeg()
+    public function ploeg()
     {
         $this->db->select()
             ->where_not_in('Tak', '6');
@@ -18,7 +18,7 @@ class Model_leiding extends CI_Model
         return $Query->result();
     }
 
-    function Leiding_insert($Mail)
+    public function Leiding_insert($Mail)
     {
         $Values = array(
             "username" => $this->input->post('Naam'),
@@ -36,20 +36,20 @@ class Model_leiding extends CI_Model
         return $last_id;
     }
 
-    function insert_permission($id)
+    public function insert_permission($id)
     {
         $values['user_id'] = $id;
 
         $this->db->insert('Permissions', $values);
     }
 
-    function delete_permissions($id)
+    public function delete_permissions($id)
     {
         $this->db->where('user_id', $id)
             ->delete('Permissions');
     }
 
-    function Administrators()
+    public function Administrators()
     {
         $this->db->select()
             ->where('Admin_role', '1');
@@ -58,7 +58,7 @@ class Model_leiding extends CI_Model
         return $Query->result();
     }
 
-    function Leiding()
+    public function Leiding()
     {
         $this->db->select()
             ->where_not_in('Tak', '6');
@@ -67,7 +67,7 @@ class Model_leiding extends CI_Model
         return $Query->result();
     }
 
-    function Account()
+    public function Account()
     {
         $this->db->select()
             ->where('username', $this->uri->segment(3));
@@ -76,16 +76,16 @@ class Model_leiding extends CI_Model
         return $Query->result();
     }
 
-    function Settings_edit()
+    public function Settings_edit()
     {
         $Pass = $this->input->post('Pass');
 
         if (! empty($Pass)) {
             $Values = array(
-                "Mail" => $this->input->post('Email'),
-                "GSM" => $this->input->post('GSM'),
+                "Mail"     => $this->input->post('Email'),
+                "GSM"      => $this->input->post('GSM'),
                 "password" => md5($this->input->post('Pass')),
-                "Theme" => $this->input->post('Theme'),
+                "Theme"    => $this->input->post('Theme'),
             );
         } else {
             $Values = array(
@@ -99,7 +99,7 @@ class Model_leiding extends CI_Model
             ->update("users", $Values);
     }
 
-    function Leiding_Block()
+    public function Leiding_Block()
     {
         $Value = array(
             "Blocked" => "1",
@@ -109,7 +109,7 @@ class Model_leiding extends CI_Model
             ->update("users", $Value);
     }
 
-    function Leiding_Unblock()
+    public function Leiding_Unblock()
     {
         $Value = array(
             "Blocked" => "0",
@@ -119,7 +119,7 @@ class Model_leiding extends CI_Model
             ->update("users", $Value);
     }
 
-    function Get_user()
+    public function Get_user()
     {
         $this->db->select()
             ->where('ID', $this->uri->segment(3));
@@ -128,7 +128,7 @@ class Model_leiding extends CI_Model
         return $Query->result();
     }
 
-    function Leiding_upgrade($Mailing)
+    public function Leiding_upgrade($Mailing)
     {
         $Session = $this->session->userdata('logged_in');
 
@@ -149,7 +149,7 @@ class Model_leiding extends CI_Model
 
     }
 
-    function Leiding_downgrade($Mailing)
+    public function Leiding_downgrade($Mailing)
     {
         $Value = array(
             "Admin_role" => "0",
@@ -162,7 +162,7 @@ class Model_leiding extends CI_Model
             ->delete('users');
     }
 
-    function Leiding_delete()
+    public function Leiding_delete()
     {
         $this->db->where('id', $this->uri->segment(3))
             ->delete('users');

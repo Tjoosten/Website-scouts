@@ -13,7 +13,7 @@
 		// Constructor
 		public $Auth = array();
 
-		function __construct() {
+		public function __construct() {
 			parent::__construct();
 			$this->Auth = $this->session->userdata('logged_in');
 		}
@@ -22,7 +22,7 @@
 		/**
 		 * Repair notification in the database - Verhuur
 		 */
-		function Herstel_verhuur($Person) {
+		public function Herstel_verhuur($Person) {
 			$Values = array(
 				"Naam"    => $Person['Naam'],
 				"Mail"    => $Person['Email'],
@@ -35,7 +35,7 @@
 		/**
 		 * Blaat
 		 */
-		function Get() {
+		public function Get() {
 			$this->db->select('Verhuur')
 			         ->where('Naam', $this->Auth['username']);
 
@@ -46,7 +46,7 @@
 		/**
 		 * Enable notification in the database
 		 */
-		function Verhuur_aan() {
+		public function Verhuur_aan() {
 			$Values = array(
 				"Verhuur" => "1",
 				);
@@ -58,7 +58,7 @@
 		/**
 		 * Disables notification in the database.
 		 */
-		function Verhuur_uit() {
+		public function Verhuur_uit() {
 			$Values = array(
 				"Verhuur" => "0",
 				);
@@ -70,7 +70,7 @@
 		/**
 		 * Gets the email adresses for mailing - verhuur
 		 */
-		function Verhuur_mailing() {
+		public function Verhuur_mailing() {
 			$this->db->select()
 			         ->where('Verhuur','1');
 

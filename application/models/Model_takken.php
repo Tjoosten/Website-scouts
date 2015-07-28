@@ -17,7 +17,8 @@
 		 * @param $param, string, de tak waarvan je de info wilt.
 		 * @return string, array
 		 */
-		function Tak_info($Param) {
+		public function Tak_info($Param)
+		{
 			$this->db->select()
 					 ->where('Tak', $Param);
 
@@ -28,7 +29,8 @@
 		/**
 		 * Wijzig een tak beschrijving
 		 */
-		function Takken_edit() {
+		public function Takken_edit()
+		{
 			$Values = array(
 				"Beschrijving" => $this->input->post('Beschrijving'),
 				"Title"        => $this->input->post('Title'),

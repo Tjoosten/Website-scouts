@@ -3,12 +3,12 @@
 Class Model_inschrijvingen extends CI_Model
 {
 
-    function __construct()
+    public function __construct()
     {
         parent::__construct();
     }
 
-    function Get_dates()
+    public function Get_dates()
     {
         $this->db->select()
             ->where('Status', '1');
@@ -17,13 +17,13 @@ Class Model_inschrijvingen extends CI_Model
         return $Query->Result();
     }
 
-    function Get_Dates_Full()
+    public function Get_Dates_Full()
     {
         $Query = $this->db->get('Ontbijt_datums');
         return $Query->result();
     }
 
-    function Download()
+    public function Download()
     {
         $Query = $this->db->get('Inschrijvingen_ontbijt');
         return $Query->result();
@@ -32,7 +32,7 @@ Class Model_inschrijvingen extends CI_Model
     /**
      *
      */
-    function Download_month()
+    public function Download_month()
     {
         $this->db->select()
             ->where('Maand', $this->uri->segment(4));
@@ -44,7 +44,7 @@ Class Model_inschrijvingen extends CI_Model
     /**
      * Start inschrijvingen in de database
      */
-    function startInschrijvingOntbijt()
+    public function startInschrijvingOntbijt()
     {
         $Value = array(
             "Status" => "1",
@@ -57,7 +57,7 @@ Class Model_inschrijvingen extends CI_Model
     /**
      * Stop inschrijvingen in de database
      */
-    function Stop_inschrijving_ontbijt()
+    public function Stop_inschrijving_ontbijt()
     {
         $Value = array(
             "Status" => "0",
@@ -70,7 +70,7 @@ Class Model_inschrijvingen extends CI_Model
     /**
      * Neem alle inschrijvingen uit de database.
      */
-    function Inschrijvingen_All()
+    public function Inschrijvingen_All()
     {
         $this->db->select();
 
@@ -81,7 +81,7 @@ Class Model_inschrijvingen extends CI_Model
     /**
      * Inschrijving invoegen in de database.
      */
-    function insertDb()
+    public function insertDb()
     {
         // Calculate bedrag
         $Aantal = $this->input->post('Personen');
@@ -103,7 +103,7 @@ Class Model_inschrijvingen extends CI_Model
     /**
      *
      */
-    function deleteDb()
+    public function deleteDb()
     {
 
     }

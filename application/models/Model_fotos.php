@@ -9,7 +9,7 @@ Class Model_fotos extends CI_Model
     /**
      *
      */
-    function Select()
+    public function Select()
     {
         $this->db->select()
             ->limit(9);
@@ -21,7 +21,7 @@ Class Model_fotos extends CI_Model
     /**
      * get photos based on the tak
      */
-    function Select_tak()
+    public function Select_tak()
     {
         $this->db->select()
             ->where('Tak', $this->uri->segment(3));
@@ -33,7 +33,7 @@ Class Model_fotos extends CI_Model
     /**
      * Insert a photo
      */
-    function Insert($image_data = array())
+    public function Insert($image_data = array())
     {
         $Values = array(
             "Naam"       => $this->input->post('Naam'),
@@ -50,7 +50,7 @@ Class Model_fotos extends CI_Model
     /**
      * Haal de albums op
      */
-    function Backend_select()
+    public function Backend_select()
     {
         $this->db->select()
             ->limit(25);
@@ -62,7 +62,7 @@ Class Model_fotos extends CI_Model
     /**
      * Deletes a photo in the database
      */
-    function Delete()
+    public function Delete()
     {
         $this->db->where('File_name', $this->uri->segment(3))
             ->delete('Photo_Gallery');
