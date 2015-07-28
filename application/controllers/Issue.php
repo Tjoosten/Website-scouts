@@ -42,7 +42,7 @@
 
     function Report() {
       // Logging
-      log_user($this->Session['username'], 'Heeft een big gemeld.');
+      log_user($this->Session['username'], 'Heeft een bug gemeld.');
 
       // Send error
       $this->email->from('tjoosten3@gmail.com', 'Tim Joosten');
