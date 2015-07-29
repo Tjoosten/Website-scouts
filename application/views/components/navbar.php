@@ -58,31 +58,36 @@
 
               <li <?php if($Active == 2): ?> class="active" <?php endif; ?>>
                 <a href="<?php echo base_url() . 'Verhuur'; ?>">
-                  <span class="fa fa-home Icon-color"></span> Verhuur
+                  <span class="fa fa-home Icon-color"></span>
+                  Verhuur
                 </a>
               </li>
 
               <li <?php if($Active == 3): ?> class="active" <?php endif; ?>>
                 <a href="<?php echo base_url(); ?>Fotos">
-                  <span class="fa fa-camera-retro Icon-color"></span> Foto's
+                  <span class="fa fa-camera-retro Icon-color"></span>
+                  Foto's
                 </a>
               </li>
 
               <li <?php if($Active == 4): ?> class="active" <?php endif; ?>>
                 <a href="/assets/files/Planning.pdf">
-                  <span class="fa fa-file-text-o Icon-color"></span> Planning
+                  <span class="fa fa-file-text-o Icon-color"></span>
+                  Planning
                 </a>
               </li>
 
               <li <?php if($Active == 5): ?> class="active" <?php endif; ?>>
                 <a href="<?php echo base_url(); ?>Info">
-                  <span class="fa fa-info-circle Icon-color"></span> Info
+                  <span class="fa fa-info-circle Icon-color"></span>
+                  Info
                 </a>
               </li>
 
               <li <?php if($Active == 6): ?> class="active" <?php endif; ?>>
                 <a href="mailto:Contact@st-joris-turnhout.be">
-                  <span class="fa fa-envelope Icon-color"></span> Contact
+                  <span class="fa fa-envelope Icon-color"></span>
+                  Contact
                 </a>
               </li>
             </ul>
@@ -91,13 +96,15 @@
               <ul class="nav navbar-nav navbar-right">
                 <li>
                   <a title="Go to backend" href="<?php echo base_url(). 'Admin'; ?>">
-                    <span class="fa fa-wrench Icon-color"></span> Backend
+                    <span class="fa fa-wrench Icon-color"></span>
+                    Backend
                   </a>
                 </li>
 
                 <li>
                   <a title="logout" href="<?php echo base_url(). 'backend/Logout'; ?>">
-                    <span class="fa fa-power-off Icon-color"></span> Logout
+                    <span class="fa fa-power-off Icon-color"></span>
+                    Logout
                   </a>
                 </li>
               </ul>
