@@ -40,7 +40,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | path to your installation.
 |
 */
-$config['base_url']	= 'http://www.development.st-joris-turnhout.be';
+$config['base_url']	= '';
 
 /*
 |--------------------------------------------------------------------------
@@ -336,7 +336,7 @@ $config['sess_cookie_name']		= 'ci_session';
 $config['sess_expiration']		= 7200;
 $config['sess_expire_on_close']	= TRUE;
 $config['sess_encrypt_cookie']	= TRUE;
-$config['sess_use_database']	= FALSE;
+$config['sess_use_database']	= TRUE;
 $config['sess_table_name']		= 'ci_sessions';
 $config['sess_match_ip']		= FALSE;
 $config['sess_match_useragent']	= TRUE;
