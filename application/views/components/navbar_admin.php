@@ -31,9 +31,24 @@
                 </a>
 
                 <ul class="dropdown-menu" role="menu">
-                  <li><a href="<?php echo base_url(); ?>Upload_files"><span class="fa fa-file-text-o"></span> T groentje</a></li>
-                  <li><a href="<?php echo base_url(); ?>Fotos/Index_admin"><span class="fa fa-camera-retro"></span> Foto's</a></li>
-                  <li><a href="<?php echo base_url(). 'Drive'?>"><span class="fa fa-cloud"></span> Cloud </a></li>
+                  <li>
+                    <a href="<?php echo base_url(); ?>Upload_files">
+                      <span class="fa fa-file-text-o"></span>
+                      T groentje
+                    </a>
+                  </li>
+                  <li>
+                    <a href="<?php echo base_url(); ?>Fotos/Index_admin">
+                      <span class="fa fa-camera-retro"></span>
+                      Foto's
+                    </a>
+                  </li>
+                  <li>
+                    <a href="<?php echo base_url(). 'Drive'?>">
+                      <span class="fa fa-cloud"></span>
+                      Cloud
+                    </a>
+                  </li>
                 </ul>
               </li>
 

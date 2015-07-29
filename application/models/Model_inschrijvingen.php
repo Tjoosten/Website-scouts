@@ -10,7 +10,7 @@ Class Model_inschrijvingen extends CI_Model
 
     public function Get_dates()
     {
-        $this->db->select()
+        $this->db->select('*')
             ->where('Status', '1');
 
         $Query = $this->db->get('Ontbijt_datums');

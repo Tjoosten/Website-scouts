@@ -1,80 +1,86 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 session_start(); //we need to call PHP's session object to access it through CI
-class backend extends CI_Controller {
+class backend extends CI_Controller
+{
 
-  // Constructor
-  public $Session = array();
+    // Constructor
+    public $Session = array();
 
-  function __construct() {
-    parent::__construct();
-    $this->load->model('Model_takken', 'Takken');
-		$this->load->model('Model_activiteiten', 'Activiteiten');
+    public function __construct()
+    {
+        parent::__construct();
+        $this->load->model('Model_takken', 'Takken');
+        $this->load->model('Model_activiteiten', 'Activiteiten');
 
-    $this->load->helper(array('logger'));
-    $this->Session = $this->session->userdata('logged_in');
-  }
-  // END Constructor
+        $this->load->helper(array('logger'));
+        $this->Session = $this->session->userdata('logged_in');
+    }
 
-  function index() {
-    if($this->Session)  {
+    // END Constructor
 
-      $data = array(
-        'Title'  => 'Admin Takken',
-        'Active' => '1',
-      );
+    public function index()
+    {
+        if ($this->Session) {
 
-			// Tak beschrijvingen
-      $DB = array(
-        'Kapoenen'   => $this->Takken->Tak_info('Kapoenen'),
-        'Welpen'     => $this->Takken->Tak_info('Welpen'),
-        'JongGivers' => $this->Takken->Tak_info('JongGivers'),
-        'Givers'     => $this->Takken->Tak_info('Givers'),
-        'Jins'       => $this->Takken->Tak_info('Jins'),
-        'Leiding'    => $this->Takken->Tak_info('Leiding'),
+            $data = array(
+                'Title' => 'Admin Takken',
+                'Active' => '1',
+            );
 
-        'Activiteiten_Kapoenen'    => $this->Activiteiten->Activiteiten('5', 'Kapoenen'),
-        'Activiteiten_Welpen'      => $this->Activiteiten->Activiteiten('5', 'Welpen'),
-        'Activiteiten_JongGivers'  => $this->Activiteiten->Activiteiten('5', 'JongGivers'),
-        'Activiteiten_Givers'      => $this->Activiteiten->Activiteiten('5', 'Givers'),
-        'Activiteiten_Jins'        => $this->Activiteiten->Activiteiten('5', 'Jins'),
-      );
+            // Tak beschrijvingen
+            $DB = array(
+                'Kapoenen' => $this->Takken->Tak_info('Kapoenen'),
+                'Welpen' => $this->Takken->Tak_info('Welpen'),
+                'JongGivers' => $this->Takken->Tak_info('JongGivers'),
+                'Givers' => $this->Takken->Tak_info('Givers'),
+                'Jins' => $this->Takken->Tak_info('Jins'),
+                'Leiding' => $this->Takken->Tak_info('Leiding'),
 
-      $this->load->view('components/admin_header', $data);
-      $this->load->view('components/navbar_admin', $data);
-      $this->load->view('admin/takken', $DB);
-      $this->load->view('components/footer');
-    } else {
-      //If no session, redirect to login page
-      redirect('Admin', 'refresh');
-	  }
-  }
+                'Activiteiten_Kapoenen' => $this->Activiteiten->Activiteiten('5', 'Kapoenen'),
+                'Activiteiten_Welpen' => $this->Activiteiten->Activiteiten('5', 'Welpen'),
+                'Activiteiten_JongGivers' => $this->Activiteiten->Activiteiten('5', 'JongGivers'),
+                'Activiteiten_Givers' => $this->Activiteiten->Activiteiten('5', 'Givers'),
+                'Activiteiten_Jins' => $this->Activiteiten->Activiteiten('5', 'Jins'),
+            );
 
-  /**
-   * Voeg een activiteit toe.
-   */
-	public function Insert_act() {
-		if($this->Auth) {
-      // Logging
-      user_log($this->Session['username'], 'Heeft een activiteit toegevoegd');
+            $this->load->view('components/admin_header', $data);
+            $this->load->view('components/navbar_admin', $data);
+            $this->load->view('admin/takken', $DB);
+            $this->load->view('components/footer');
+        } else {
+            //If no session, redirect to login page
+            redirect('Admin', 'refresh');
+        }
+    }
 
-			$this->Activiteiten->Insert();
-			redirect('backend');
-		} else {
-			// If no session, redirect to login page
-			redirect('Admin', 'refresh');
-		}
-	}
+    /**
+     * Voeg een activiteit toe.
+     */
+    public function Insert_act()
+    {
+        if ($this->Auth) {
+            // Logging
+            user_log($this->Session['username'], 'Heeft een activiteit toegevoegd');
 
-  /**
-   * Log the gebruiker uit.
-   */
-  function logout() {
-    // Logging
-    user_log($this->Session['username'], 'Heeft zich uitgelogd.');
+            $this->Activiteiten->Insert();
+            redirect('backend');
+        } else {
+            // If no session, redirect to login page
+            redirect('Admin', 'refresh');
+        }
+    }
 
-		$this->session->unset_userdata('logged_in');
-    session_destroy();
-    redirect('Admin', 'refresh');
-  }
+    /**
+     * Log the gebruiker uit.
+     */
+    public function logout()
+    {
+        // Logging
+        user_log($this->Session['username'], 'Heeft zich uitgelogd.');
+
+        $this->session->unset_userdata('logged_in');
+        session_destroy();
+        redirect('Admin', 'refresh');
+    }
 
 }

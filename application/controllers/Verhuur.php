@@ -12,10 +12,11 @@
  */
 class Verhuur extends CI_Controller
 {
-    public $Session = array();
-    public $Heading = array();
-    public $Flash = array();
-    public $Redirect = array();
+    public $Session     = array();
+    public $Heading     = array();
+    public $Flash       = array();
+    public $Redirect    = array();
+    public $Permissions = array();
 
     function __construct()
     {
@@ -26,7 +27,9 @@ class Verhuur extends CI_Controller
         $this->load->library(array('email', 'dompdf_gen', 'form_validation'));
         $this->load->helper(array('email', 'date', 'text', 'logger', 'download'));
 
-        $this->Session = $this->session->userdata('logged_in');
+        $this->Session     = $this->session->userdata('logged_in');
+        $this->Permissions = $this->session->userdata('Permissions');
+
         $this->Flash = $this->session->flashdata('Message');
         $this->Redirect = $this->config->item('Redirect', 'Not_logged_in');
 
@@ -203,8 +206,8 @@ class Verhuur extends CI_Controller
      */
     public function Search()
     {
-        if ($this->Session) {
-            if ($this->Session['Admin'] == 1) {
+        if ($this->Session && $this->Permissions) {
+            if ($this->Session['Admin'] == 1 || $this->Permission['verhuur'] == 'Y') {
                 $Data = array(
                     // Global variables
                     'Title' => 'Verhuringen',
@@ -236,10 +239,10 @@ class Verhuur extends CI_Controller
      */
     public function Admin_verhuur()
     {
-        if ($this->Session) {
+        if ($this->Session && $this->Permissions) {
             $Data['Notification'] = $this->Not->Get();
 
-            if ($this->Session['Admin'] == 1) {
+            if ($this->Session['Admin'] == 1 || $this->Permissions['verhuur'] == 'Y') {
                 // Gobal variables
                 $Data = array(
                     'Title' => 'Verhuringen',
@@ -268,8 +271,8 @@ class Verhuur extends CI_Controller
 
     public function verhuur_edit()
     {
-        if ($this->Session) {
-            if ($this->Session['Admin'] == 1) {
+        if ($this->Session && $this->Permissions) {
+            if ($this->Session['Admin'] == 1 || $this->Permissions['verhuur'] == 'Y') {
                 $data = array(
                     'Title' => 'Wijzig verhuring',
                     'Active' => '2',
@@ -300,8 +303,8 @@ class Verhuur extends CI_Controller
      */
     public function verhuur_info()
     {
-        if ($this->Session) {
-            if ($this->Session['Admin'] == 1) {
+        if ($this->Session && $this->Permissions) {
+            if ($this->Session['Admin'] == 1 || $this->Permissions['verhuur'] == 1) {
                 $Data = array(
                     'Title' => 'Verhuur Info',
                     'Active' => '2',
@@ -331,8 +334,8 @@ class Verhuur extends CI_Controller
      */
     public function Wijzig_verhuur()
     {
-        if ($this->Session) {
-            if ($this->Session['Admin'] == 1) {
+        if ($this->Session && $this->Permissions) {
+            if ($this->Session['Admin'] == 1 || $this->Permissions['verhuur'] == 'Y') {
                 $this->Verhuringen->Wijzig_verhuur();
 
                 // Logging
@@ -383,8 +386,8 @@ class Verhuur extends CI_Controller
      */
     public function Change_bevestigd()
     {
-        if ($this->Session) {
-            if ($this->Session['Admin'] == 1) {
+        if ($this->Session && $this->Permissions) {
+            if ($this->Session['Admin'] == 1 || $this->Permissions['verhuur'] == 'Y') {
                 $this->Verhuringen->Status_bevestigd();
 
                 // Logging
@@ -410,12 +413,12 @@ class Verhuur extends CI_Controller
      */
     public function Verhuur_delete()
     {
-        if ($this->Session) {
-            if ($this->Session['Admin'] == 1) {
+        if ($this->Session && $this->Permissions) {
+            if ($this->Session['Admin'] == 1 || $this->Permissions['verhuur'] == 'Y') {
                 $this->Verhuringen->Verhuur_delete();
 
                 // Logging
-                user_log($this->Session['username'], 'Heeft een verhuring gewijzigd') .
+                user_log($this->Session['username'], 'Heeft een verhuring gewijzigd');
                 redirect('Verhuur/Admin_verhuur');
             } else {
                 $Data = array(
