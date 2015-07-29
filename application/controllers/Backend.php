@@ -32,18 +32,18 @@ class backend extends CI_Controller
 
             // Tak beschrijvingen
             $DB = array(
-                'Kapoenen' => $this->Takken->Tak_info('Kapoenen'),
-                'Welpen' => $this->Takken->Tak_info('Welpen'),
+                'Kapoenen'   => $this->Takken->Tak_info('Kapoenen'),
+                'Welpen'     => $this->Takken->Tak_info('Welpen'),
                 'JongGivers' => $this->Takken->Tak_info('JongGivers'),
-                'Givers' => $this->Takken->Tak_info('Givers'),
-                'Jins' => $this->Takken->Tak_info('Jins'),
-                'Leiding' => $this->Takken->Tak_info('Leiding'),
+                'Givers'     => $this->Takken->Tak_info('Givers'),
+                'Jins'       => $this->Takken->Tak_info('Jins'),
+                'Leiding'    => $this->Takken->Tak_info('Leiding'),
 
-                'Activiteiten_Kapoenen' => $this->Activiteiten->Activiteiten('5', 'Kapoenen'),
-                'Activiteiten_Welpen' => $this->Activiteiten->Activiteiten('5', 'Welpen'),
+                'Activiteiten_Kapoenen'   => $this->Activiteiten->Activiteiten('5', 'Kapoenen'),
+                'Activiteiten_Welpen'     => $this->Activiteiten->Activiteiten('5', 'Welpen'),
                 'Activiteiten_JongGivers' => $this->Activiteiten->Activiteiten('5', 'JongGivers'),
-                'Activiteiten_Givers' => $this->Activiteiten->Activiteiten('5', 'Givers'),
-                'Activiteiten_Jins' => $this->Activiteiten->Activiteiten('5', 'Jins'),
+                'Activiteiten_Givers'     => $this->Activiteiten->Activiteiten('5', 'Givers'),
+                'Activiteiten_Jins'       => $this->Activiteiten->Activiteiten('5', 'Jins'),
             );
 
             $this->load->view('components/admin_header', $data);
