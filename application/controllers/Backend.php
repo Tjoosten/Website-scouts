@@ -4,7 +4,8 @@ class backend extends CI_Controller
 {
 
     // Constructor
-    public $Session = array();
+    public $Session     = array();
+    public $Permissions = array();
 
     public function __construct()
     {
@@ -13,7 +14,9 @@ class backend extends CI_Controller
         $this->load->model('Model_activiteiten', 'Activiteiten');
 
         $this->load->helper(array('logger'));
-        $this->Session = $this->session->userdata('logged_in');
+
+        $this->Session     = $this->session->userdata('logged_in');
+        $this->Permissions = $this->session->userdata('Permissions');
     }
 
     // END Constructor

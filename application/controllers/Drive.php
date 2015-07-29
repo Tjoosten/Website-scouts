@@ -7,12 +7,15 @@
 	 */
 
 	class Drive extends CI_Controller {
-		public $Session = array();
-		public $Flash   = array();
+		public $Session     = array();
+		public $Permissions = array();
+		public $Flash       = array();
 
 		function __construct() {
 			parent::__construct();
-			$this->Session = $this->session->userdata('logged_in');
+			$this->Session     = $this->session->userdata('logged_in');
+			$this->Permissions = $this->session->userdata('Permissions');
+
 			$this->Flash   = $this->session->flashdata('Message');
 
 			$this->load->helper(array('form', 'download', 'logger'));

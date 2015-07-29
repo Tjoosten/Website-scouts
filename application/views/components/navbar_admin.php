@@ -15,7 +15,7 @@
                 <a href="<?php echo base_url(); ?>backend"> <span class="fa fa-leaf Icon-color"></span> Takken </a>
               </li>
 
-              <?php if($this->Session['Admin'] == 1): ?>
+              <?php if($this->Session['Admin'] == 1 || $this->Permissions['verhuur'] == "Y"): ?>
                 <li <?php if($Active == 2): ?> class="active" <?php endif; ?>>
                   <a href="<?php echo base_url(); ?>verhuur/admin_verhuur"> <span class="fa fa-home Icon-color"></span> Verhuur </a>
                </li>
