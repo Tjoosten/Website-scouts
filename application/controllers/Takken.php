@@ -22,7 +22,7 @@ class Takken extends CI_Controller
 
         $this->load->helper(array('text', 'xml'));
 
-        $this->Session = $this->session->userdata('logged_in');
+        $this->Session     = $this->session->userdata('logged_in');
         $this->Permissions = $this->session->userdata('Permissions');
 
         $this->Redirect = $this->config->item('Redirect', 'Not_logged_in');

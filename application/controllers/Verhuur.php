@@ -30,7 +30,7 @@ class Verhuur extends CI_Controller
         $this->Session     = $this->session->userdata('logged_in');
         $this->Permissions = $this->session->userdata('Permissions');
 
-        $this->Flash = $this->session->flashdata('Message');
+        $this->Flash    = $this->session->flashdata('Message');
         $this->Redirect = $this->config->item('Redirect', 'Not_logged_in');
 
         $this->Heading = "No permission";

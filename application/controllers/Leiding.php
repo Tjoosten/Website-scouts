@@ -13,7 +13,8 @@ class leiding extends CI_Controller
      */
 
     // Constructor
-    public $Session = array();
+    public $Session       = array();
+    public $Permissions   = array();
     public $Error_message = array();
     public $Error_heading = array();
 
@@ -24,10 +25,13 @@ class leiding extends CI_Controller
         parent::__construct();
         $this->load->model('Model_leiding', 'Leiding');
         $this->load->model('Model_log', 'Log');
+
         $this->load->library(array('email'));
         $this->load->helper(array('email', 'string', 'logger'));
 
-        $this->Session = $this->session->userdata('logged_in');
+        $this->Session     = $this->session->userdata('logged_in');
+        $this->Permissions = $this->session->userdata('Permissions');
+
         $this->Error_heading = "No permission";
         $this->Error_message = "U hebt geen rechten om deze handeling uit te voeren";
 

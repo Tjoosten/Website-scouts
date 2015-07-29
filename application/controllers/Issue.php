@@ -9,7 +9,8 @@
  */
 class Issue extends CI_Controller
 {
-    public $Session = array();
+    public $Session     = array();
+    public $Permissions = array();
 
     /**
      * Constructor for Issues.
@@ -17,7 +18,9 @@ class Issue extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->Session = $this->session->userdata('logged_in');
+        $this->Permissions = $this->session->userdata('Permissions');
+        $this->Session     = $this->session->userdata('logged_in');
+
         $this->load->library(array('email'));
         $this->load->helper(array('logger'));
     }

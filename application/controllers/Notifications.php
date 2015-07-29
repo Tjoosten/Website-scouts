@@ -10,8 +10,9 @@
  */
 class Notifications extends CI_Controller
 {
-    public $Session = array();
-    public $Redirect = array();
+    public $Session     = array();
+    public $Permissions = array();
+    public $Redirect    = array();
 
     /**
      * Constuctor for the Notifications file.
@@ -24,8 +25,9 @@ class Notifications extends CI_Controller
 
         $this->load->helper(array('logger'));
 
-        $this->Redirect = $this->config->item('Redirect', 'Not_logged_in');
-        $this->Session = $this->session->userdata('logged_in');
+        $this->Redirect    = $this->config->item('Redirect', 'Not_logged_in');
+        $this->Permissions = $this->session->userdata('Permissions');
+        $this->Session     = $this->session->userdata('logged_in');
     }
     // End constructor
 
