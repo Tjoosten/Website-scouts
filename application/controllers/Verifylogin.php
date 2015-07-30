@@ -15,6 +15,7 @@ class VerifyLogin extends CI_Controller
     {
         parent::__construct();
         $this->load->model('user', '', TRUE);
+        $this->load->model('Model_session', 'DBsession');
         $this->load->helper(array('string'));
         $this->load->library(array('email', 'form_validation'));
     }
@@ -72,6 +73,10 @@ class VerifyLogin extends CI_Controller
                         'drive'       => $permission->drive,
                    );
                 }
+
+                $this->DBsession->setUserId(
+                    $this->session->userdata('logged_in', 'id')
+                );
 
                 $this->session->set_userdata('Permissions', $permission_array);
 

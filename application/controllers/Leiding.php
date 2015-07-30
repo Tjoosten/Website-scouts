@@ -25,6 +25,7 @@ class leiding extends CI_Controller
         parent::__construct();
         $this->load->model('Model_leiding', 'Leiding');
         $this->load->model('Model_log', 'Log');
+        $this->load->model('Model_session', 'DBsession');
 
         $this->load->library(array('email'));
         $this->load->helper(array('email', 'string', 'logger'));
@@ -88,7 +89,7 @@ class leiding extends CI_Controller
      * @return Session    = View
      * @return No Session = Redirect
      */
-    function Settings()
+    public function Settings()
     {
         if ($this->Session) {
             // General variables
@@ -112,7 +113,7 @@ class leiding extends CI_Controller
     /**
      *
      */
-    function Settings_edit()
+    public function Settings_edit()
     {
         if ($this->Session) {
             // Old Session
@@ -148,7 +149,7 @@ class leiding extends CI_Controller
         }
     }
 
-    function Insert_leiding()
+    public function Insert_leiding()
     {
         if ($this->Session) {
             // Mail variables
@@ -190,6 +191,7 @@ class leiding extends CI_Controller
         if ($this->Session) {
             if ($this->Session['Admin'] == 1) {
                 $this->Leiding->Leiding_Block();
+                $this->DBsession->deleteSession($this->uri->segment(3));
                 $this->Log->block();
 
                 // Logging
@@ -206,7 +208,7 @@ class leiding extends CI_Controller
     /**
      * Deblokkeer een login.
      */
-    function Leiding_unblock()
+    public function Leiding_unblock()
     {
         if ($this->Session) {
             if ($this->Session['Admin'] == 1) {

@@ -12,6 +12,7 @@ class backend extends CI_Controller
         parent::__construct();
         $this->load->model('Model_takken', 'Takken');
         $this->load->model('Model_activiteiten', 'Activiteiten');
+        $this->load->model('Model_session', 'DBsession');
 
         $this->load->helper(array('logger'));
 
@@ -79,10 +80,13 @@ class backend extends CI_Controller
     public function logout()
     {
         // Logging
-        user_log($this->Session['username'], 'Heeft zich uitgelogd.');
+        // user_log($this->Session['username'], 'Heeft zich uitgelogd.');
+
+        $this->DBsession->deleteSession($this->Session['id']);
 
         $this->session->unset_userdata('logged_in');
-        session_destroy();
+        $this->session->unset_userdata('Permissions');
+        $this->session->sess_destroy();
         redirect('Admin', 'refresh');
     }
 
