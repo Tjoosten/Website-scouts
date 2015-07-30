@@ -50,12 +50,14 @@
                       Foto's
                     </a>
                   </li>
+                  <?php if($this->Permissions['drive'] === 'Y'): ?>
                   <li>
                     <a href="<?php echo base_url(). 'Drive'?>">
                       <span class="fa fa-cloud"></span>
                       Cloud
                     </a>
                   </li>
+                  <?php endif; ?>
                 </ul>
               </li>
 

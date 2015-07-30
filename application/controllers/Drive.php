@@ -26,7 +26,7 @@
 		 * Scouts - drive interface
 		 */
 		public function index() {
-			if($this->Session) {
+			if($this->Session && $this->Permissions['drive'] === 'Y') {
 				$Data = array(
 					'Title'  => 'St-Joris Cloud',
 					'Active' => '1',
@@ -47,7 +47,7 @@
 		 * Upload files.
 		 */
 		public function Upload() {
-			if($this->session) {
+			if($this->session && $this->Permissions['drive'] === 'Y') {
 				user_log($this->Session['username'], 'Heeft een bestand geupload.');
 
 				$config = array(
