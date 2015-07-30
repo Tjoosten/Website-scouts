@@ -9,11 +9,17 @@
  */
 class Admin extends CI_Controller
 {
+    public $Session = array();
 
     public function __construct()
     {
         parent::__construct();
         $this->load->helper(array('form'));
+        $this->load->model('user', '', TRUE);
+        $this->load->model('Model_log', 'Log');
+        $this->load->model('Model_permission', 'rights');
+
+        $this->Session     = $this->session->userdata('logged_in');
     }
 
     /**
@@ -34,12 +40,23 @@ class Admin extends CI_Controller
      */
     public function profile()
     {
-        $data['title'] = 'Gebruikers profiel';
-        $data['user']  = $this->user->getProfile();
+        $data['Title']       = 'Gebruikers profiel';
+        $data['Active']      = 4;
+        $data['user']        = $this->user->getProfile();
+        $data['logs']        = $this->Log->getUserLogs();
+        $data['permissions'] = $this->rights->getUserRights();
 
-        $this->load->view('components/header', $data);
+        $this->load->view('components/admin_header', $data);
         $this->load->view('components/navbar_admin', $data);
         $this->load->view('admin/profile', $data);
         $this->load->view('components/footer');
+    }
+
+    public function updatePermissions()
+    {
+        $this->rights->updateUserRights();
+
+        // redirect
+        redirect($_SERVER['HTTP_REFERER']);
     }
 }

@@ -16,6 +16,7 @@ class VerifyLogin extends CI_Controller
         parent::__construct();
         $this->load->model('user', '', TRUE);
         $this->load->model('Model_session', 'DBsession');
+        $this->load->model('Model_log', 'logger');
         $this->load->helper(array('string'));
         $this->load->library(array('email', 'form_validation'));
     }
@@ -28,6 +29,9 @@ class VerifyLogin extends CI_Controller
         if ($this->form_validation->run() == FALSE) {
             $this->load->view('admin/login');
         } else {
+            $this->logger->logged_in();
+            $this->user->setLoginStamp();
+            $this->user->setOnline();
             redirect('backend', 'refresh');
         }
 

@@ -18,6 +18,37 @@ Class User extends CI_Model {
 
 	}
 
+	public function setLoginStamp()
+	{
+		$session = $this->session->userdata('logged_in');
+		$this->db->where('id', $session['id'])
+			->update('users', array('last_seen' => time()));
+	}
+
+	public function setOnline()
+	{
+		$session = $this->session->userdata('logged_in');
+
+		$this->db->where('id', $session['id'])
+			->update('users', array('online' => 'Y'));
+	}
+
+	public function setOffline()
+	{
+		$session = $this->session->userdata('logged_in');
+
+		$this->db->where('id', $session['id'])
+			->update('users', array('online' => 'N'));
+	}
+
+	public function getProfile() {
+		$this->db->select('*')
+			->where('id', $this->uri->segment(3));
+
+		$query = $this->db->get('users');
+		return $query->result();
+	}
+
 	function reset_pass() {
 		$this->db->select('*')
 				 ->from('users')

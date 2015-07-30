@@ -7,7 +7,7 @@
 	 | Copyright: Sint-Joris Turnhout, Tim Joosten
 	 */
 
-	 public public function __construct()
+	 public function __construct()
 	 {
 	 	parent::__construct();
 	 	$this->load->dbutil();

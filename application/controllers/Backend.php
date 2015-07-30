@@ -13,6 +13,7 @@ class backend extends CI_Controller
         $this->load->model('Model_takken', 'Takken');
         $this->load->model('Model_activiteiten', 'Activiteiten');
         $this->load->model('Model_session', 'DBsession');
+        $this->load->model('user', '', TRUE);
 
         $this->load->helper(array('logger'));
 
@@ -83,6 +84,7 @@ class backend extends CI_Controller
         // user_log($this->Session['username'], 'Heeft zich uitgelogd.');
 
         $this->DBsession->deleteSession($this->Session['id']);
+        $this->user->setOffline();
 
         $this->session->unset_userdata('logged_in');
         $this->session->unset_userdata('Permissions');

@@ -26,6 +26,7 @@ class leiding extends CI_Controller
         $this->load->model('Model_leiding', 'Leiding');
         $this->load->model('Model_log', 'Log');
         $this->load->model('Model_session', 'DBsession');
+        $this->load->model('user', '', TRUE);
 
         $this->load->library(array('email'));
         $this->load->helper(array('email', 'string', 'logger'));
@@ -294,6 +295,7 @@ class leiding extends CI_Controller
                 $this->Log->Delete_login();
                 $this->Leiding->Leiding_delete($Mailing);
                 $this->Leiding->delete_permissions($user_id);
+                $this->user->setOffline();
 
                 // Logging
                 user_log($this->Session['username'], 'Heeft een login verwijderd.');
