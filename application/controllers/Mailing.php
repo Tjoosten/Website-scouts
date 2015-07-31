@@ -102,7 +102,7 @@ class Mailing extends CI_Controller
                 redirect('Mailing');
             }
         } else {
-            redirect('Admin', 'refresh')
+            redirect('Admin', 'refresh');
         }
     }
 
