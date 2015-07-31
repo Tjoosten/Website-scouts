@@ -9,7 +9,8 @@
  */
 class Admin extends CI_Controller
 {
-    public $Session = array();
+    public $Session     = array();
+    public $Permissions = array();
 
     public function __construct()
     {
@@ -20,15 +21,18 @@ class Admin extends CI_Controller
         $this->load->model('Model_permission', 'rights');
 
         $this->Session     = $this->session->userdata('logged_in');
+        $this->Permissions = $this->session->userdata('Permissions');
     }
 
     /**
      * The login form for the backend.
      * Wil do a redirect when he is found the session Logged_in.
+     *
+     * @todo need to research if this function is used.
      */
     public function index()
     {
-        if ($this->session->userdata('logged_in')) {
+        if ($this->Session && $this->Permissions) {
             redirect('backend', 'refresh');
         } else {
             $this->load->view('admin/login');
@@ -40,23 +44,34 @@ class Admin extends CI_Controller
      */
     public function profile()
     {
-        $data['Title']       = 'Gebruikers profiel';
-        $data['Active']      = 4;
-        $data['user']        = $this->user->getProfile();
-        $data['logs']        = $this->Log->getUserLogs();
-        $data['permissions'] = $this->rights->getUserRights();
+        if ($this->Session && $this->Permissions) {
+            if($this->Session['admin'] == 1 || $this->Permissions['profielen'] == 'Y') {
+                $data['Title']       = 'Gebruikers profiel';
+                $data['Active']      = 4;
+                $data['user']        = $this->user->getProfile();
+                $data['logs']        = $this->Log->getUserLogs();
+                $data['permissions'] = $this->rights->getUserRights();
 
-        $this->load->view('components/admin_header', $data);
-        $this->load->view('components/navbar_admin', $data);
-        $this->load->view('admin/profile', $data);
-        $this->load->view('components/footer');
+                $this->load->view('components/admin_header', $data);
+                $this->load->view('components/navbar_admin', $data);
+                $this->load->view('admin/profile', $data);
+                $this->load->view('components/footer');
+            }
+        } else {
+            redirect('Admin', 'refresh');
+        }
     }
 
     public function updatePermissions()
     {
-        $this->rights->updateUserRights();
+        if($this->Session && $this->Permissions) {
+            if ($this->Session['admin'] == 1 || $this->Permissions['profielen'] == 'Y') {
+                $this->rights->updateUserRights();
+            }
 
-        // redirect
-        redirect($_SERVER['HTTP_REFERER']);
+            redirect($_SERVER['HTTP_REFERER']);
+        } else {
+            redirect('Admin', 'refresh');
+        }
     }
 }

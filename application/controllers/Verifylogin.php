@@ -75,6 +75,7 @@ class VerifyLogin extends CI_Controller
                         'verhuur'     => $permission->verhuur,
                         'mailinglist' => $permission->mailinglist,
                         'drive'       => $permission->drive,
+                        'profilelen'  => $permission->profiles,
                    );
                 }
 
