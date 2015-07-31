@@ -5,6 +5,7 @@
 	 */
 
 	class Mailing extends CI_Controller {
+		public $Permissions   = array();
 		public $Session       = array();
 		public $Error_heading = array();
 		public $Error_message = array();
@@ -16,6 +17,7 @@
       $this->load->library(array('Email'));
 
 			$this->Session = $this->session->userdata('logged_in');
+		$this->Permissions = $this->session->userdata('Permissions');
     }
 		// END constructor
 
@@ -23,7 +25,7 @@
 		 * Index for mailing backend
 		 */
 		public function index() {
-			if($this->Session) {
+			if($this->Session && $this->Permissions) {
 				if($this->Session['Admin'] == 1) {
 					$Data = array(
 						'Title'   => 'Mailing',
