@@ -34,7 +34,7 @@
           <h2 style="margin-bottom: -5px;">Takken:</h2>
         </div>
 
-        <?php foreach($Kapoenen as $Kapoen): ?>
+        <?php foreach ($Kapoenen as $Kapoen): ?>
           <div class="well well-sm color-kapoenen">
             <div class="media">
               <a class="pull-left" href="<?php echo base_url(); ?>/Takken/<?php echo $Kapoen->Tak; ?>">
@@ -54,7 +54,7 @@
           </div>
         <?php endforeach; ?>
 
-        <?php foreach($Welpen as $Welp): ?>
+        <?php foreach ($Welpen as $Welp): ?>
           <div class="well well-sm color-welpen">
             <div class="media">
               <a class="pull-left" href="<?php echo base_url(); ?>/Takken/<?php echo $Welp->Tak ?>">
@@ -74,7 +74,7 @@
           </div>
         <?php endforeach; ?>
 
-        <?php foreach($JongGivers as $JongGiver): ?>
+        <?php foreach ($JongGivers as $JongGiver): ?>
           <div class="well well-sm color-jonggivers">
             <div class="media">
               <a class="pull-left" href="<?php echo base_url(); ?>/Takken/<?php echo $JongGiver->Tak ?>">
@@ -94,7 +94,7 @@
           </div>
         <?php endforeach; ?>
 
-        <?php foreach($Givers as $Giver): ?>
+        <?php foreach ($Givers as $Giver): ?>
           <div class="well well-sm color-givers">
             <div class="media">
               <a class="pull-left" href="<?php echo base_url(); ?>Takken/<?php echo $Giver->Tak ?>">
@@ -114,7 +114,7 @@
           </div>
         <?php endforeach; ?>
 
-        <?php foreach($Jins as $Jin): ?>
+        <?php foreach ($Jins as $Jin): ?>
           <div class="well well-sm color-jins">
             <div class="media">
               <a class="pull-left" href="<?php echo base_url(); ?>Takken/<?php $Jin->Tak; ?>">
@@ -134,7 +134,7 @@
           </div>
         <?php endforeach; ?>
 
-        <?php foreach($Leiding as $Output): ?>
+        <?php foreach ($Leiding as $Output): ?>
           <div class="well well-sm color-leiding">
             <div class="media">
               <a class="pull-left" href="<?php echo base_url(); ?>Takken/<?php $Output->Tak; ?>">

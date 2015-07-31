@@ -1,65 +1,67 @@
-<?php return array (
-  'sans-serif' => array (
-    'normal' => DOMPDF_FONT_DIR . 'Helvetica',
-    'bold' => DOMPDF_FONT_DIR . 'Helvetica-Bold',
-    'italic' => DOMPDF_FONT_DIR . 'Helvetica-Oblique',
-    'bold_italic' => DOMPDF_FONT_DIR . 'Helvetica-BoldOblique'
-  ),
-  'times' => array (
-    'normal' => DOMPDF_FONT_DIR . 'Times-Roman',
-    'bold' => DOMPDF_FONT_DIR . 'Times-Bold',
-    'italic' => DOMPDF_FONT_DIR . 'Times-Italic',
-    'bold_italic' => DOMPDF_FONT_DIR . 'Times-BoldItalic'
-  ),
-  'times-roman' => array (
-    'normal' => DOMPDF_FONT_DIR . 'Times-Roman',
-    'bold' => DOMPDF_FONT_DIR . 'Times-Bold',
-    'italic' => DOMPDF_FONT_DIR . 'Times-Italic',
-    'bold_italic' => DOMPDF_FONT_DIR . 'Times-BoldItalic'
-  ),
-  'courier' => array (
-    'normal' => DOMPDF_FONT_DIR . 'Courier',
-    'bold' => DOMPDF_FONT_DIR . 'Courier-Bold',
-    'italic' => DOMPDF_FONT_DIR . 'Courier-Oblique',
-    'bold_italic' => DOMPDF_FONT_DIR . 'Courier-BoldOblique'
-  ),
-  'helvetica' => array (
-    'normal' => DOMPDF_FONT_DIR . 'Helvetica',
-    'bold' => DOMPDF_FONT_DIR . 'Helvetica-Bold',
-    'italic' => DOMPDF_FONT_DIR . 'Helvetica-Oblique',
-    'bold_italic' => DOMPDF_FONT_DIR . 'Helvetica-BoldOblique'
-  ),
-  'zapfdingbats' => array (
-    'normal' => DOMPDF_FONT_DIR . 'ZapfDingbats',
-    'bold' => DOMPDF_FONT_DIR . 'ZapfDingbats',
-    'italic' => DOMPDF_FONT_DIR . 'ZapfDingbats',
-    'bold_italic' => DOMPDF_FONT_DIR . 'ZapfDingbats'
-  ),
-  'symbol' => array (
-    'normal' => DOMPDF_FONT_DIR . 'Symbol',
-    'bold' => DOMPDF_FONT_DIR . 'Symbol',
-    'italic' => DOMPDF_FONT_DIR . 'Symbol',
-    'bold_italic' => DOMPDF_FONT_DIR . 'Symbol'
-  ),
-  'serif' => array (
-    'normal' => DOMPDF_FONT_DIR . 'Times-Roman',
-    'bold' => DOMPDF_FONT_DIR . 'Times-Bold',
-    'italic' => DOMPDF_FONT_DIR . 'Times-Italic',
-    'bold_italic' => DOMPDF_FONT_DIR . 'Times-BoldItalic'
-  ),
-  'monospace' => array (
-    'normal' => DOMPDF_FONT_DIR . 'Courier',
-    'bold' => DOMPDF_FONT_DIR . 'Courier-Bold',
-    'italic' => DOMPDF_FONT_DIR . 'Courier-Oblique',
-    'bold_italic' => DOMPDF_FONT_DIR . 'Courier-BoldOblique'
-  ),
-  'fixed' => array (
-    'normal' => DOMPDF_FONT_DIR . 'Courier',
-    'bold' => DOMPDF_FONT_DIR . 'Courier-Bold',
-    'italic' => DOMPDF_FONT_DIR . 'Courier-Oblique',
-    'bold_italic' => DOMPDF_FONT_DIR . 'Courier-BoldOblique'
-  )
-)
+<?php
+
+return  [
+  'sans-serif' =>  [
+    'normal'      => DOMPDF_FONT_DIR.'Helvetica',
+    'bold'        => DOMPDF_FONT_DIR.'Helvetica-Bold',
+    'italic'      => DOMPDF_FONT_DIR.'Helvetica-Oblique',
+    'bold_italic' => DOMPDF_FONT_DIR.'Helvetica-BoldOblique',
+  ],
+  'times' =>  [
+    'normal'      => DOMPDF_FONT_DIR.'Times-Roman',
+    'bold'        => DOMPDF_FONT_DIR.'Times-Bold',
+    'italic'      => DOMPDF_FONT_DIR.'Times-Italic',
+    'bold_italic' => DOMPDF_FONT_DIR.'Times-BoldItalic',
+  ],
+  'times-roman' =>  [
+    'normal'      => DOMPDF_FONT_DIR.'Times-Roman',
+    'bold'        => DOMPDF_FONT_DIR.'Times-Bold',
+    'italic'      => DOMPDF_FONT_DIR.'Times-Italic',
+    'bold_italic' => DOMPDF_FONT_DIR.'Times-BoldItalic',
+  ],
+  'courier' =>  [
+    'normal'      => DOMPDF_FONT_DIR.'Courier',
+    'bold'        => DOMPDF_FONT_DIR.'Courier-Bold',
+    'italic'      => DOMPDF_FONT_DIR.'Courier-Oblique',
+    'bold_italic' => DOMPDF_FONT_DIR.'Courier-BoldOblique',
+  ],
+  'helvetica' =>  [
+    'normal'      => DOMPDF_FONT_DIR.'Helvetica',
+    'bold'        => DOMPDF_FONT_DIR.'Helvetica-Bold',
+    'italic'      => DOMPDF_FONT_DIR.'Helvetica-Oblique',
+    'bold_italic' => DOMPDF_FONT_DIR.'Helvetica-BoldOblique',
+  ],
+  'zapfdingbats' =>  [
+    'normal'      => DOMPDF_FONT_DIR.'ZapfDingbats',
+    'bold'        => DOMPDF_FONT_DIR.'ZapfDingbats',
+    'italic'      => DOMPDF_FONT_DIR.'ZapfDingbats',
+    'bold_italic' => DOMPDF_FONT_DIR.'ZapfDingbats',
+  ],
+  'symbol' =>  [
+    'normal'      => DOMPDF_FONT_DIR.'Symbol',
+    'bold'        => DOMPDF_FONT_DIR.'Symbol',
+    'italic'      => DOMPDF_FONT_DIR.'Symbol',
+    'bold_italic' => DOMPDF_FONT_DIR.'Symbol',
+  ],
+  'serif' =>  [
+    'normal'      => DOMPDF_FONT_DIR.'Times-Roman',
+    'bold'        => DOMPDF_FONT_DIR.'Times-Bold',
+    'italic'      => DOMPDF_FONT_DIR.'Times-Italic',
+    'bold_italic' => DOMPDF_FONT_DIR.'Times-BoldItalic',
+  ],
+  'monospace' =>  [
+    'normal'      => DOMPDF_FONT_DIR.'Courier',
+    'bold'        => DOMPDF_FONT_DIR.'Courier-Bold',
+    'italic'      => DOMPDF_FONT_DIR.'Courier-Oblique',
+    'bold_italic' => DOMPDF_FONT_DIR.'Courier-BoldOblique',
+  ],
+  'fixed' =>  [
+    'normal'      => DOMPDF_FONT_DIR.'Courier',
+    'bold'        => DOMPDF_FONT_DIR.'Courier-Bold',
+    'italic'      => DOMPDF_FONT_DIR.'Courier-Oblique',
+    'bold_italic' => DOMPDF_FONT_DIR.'Courier-BoldOblique',
+  ],
+]
 
 /* The proper way for web browser environment independent font handling in html/css is,
  * to defining a font search path ending in serif, sans-serif, or monospace, e.g.:
@@ -87,6 +89,4 @@
  * Courier:
  * monospace, fixed, courier, courier new, lucida console, lucida sans typewriter, freeMono, 
  * fixed, terminal, dejavu sans mono, liberation mono, luxi mono
- */
-
-?>
+ */;

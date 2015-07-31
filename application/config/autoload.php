@@ -1,6 +1,7 @@
 <?php
+
 /**
- * CodeIgniter
+ * CodeIgniter.
  *
  * An open source application development framework for PHP 5.2.4 or newer
  *
@@ -16,15 +17,15 @@
  * through the world wide web, please send an email to
  * licensing@ellislab.com so we can send you a copy immediately.
  *
- * @package		CodeIgniter
  * @author		EllisLab Dev Team
  * @copyright	Copyright (c) 2008 - 2014, EllisLab, Inc. (http://ellislab.com/)
  * @license		http://opensource.org/licenses/AFL-3.0 Academic Free License (AFL 3.0)
+ *
  * @link		http://codeigniter.com
  * @since		Version 1.0
  * @filesource
  */
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
 /*
 | -------------------------------------------------------------------
@@ -65,8 +66,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |
 */
 
-$autoload['packages'] = array();
-
+$autoload['packages'] = [];
 
 /*
 | -------------------------------------------------------------------
@@ -85,8 +85,7 @@ $autoload['packages'] = array();
 |	$autoload['libraries'] = array('user_agent' => 'ua');
 */
 
-$autoload['libraries'] = array('database','Parsedown');
-
+$autoload['libraries'] = ['database','Parsedown'];
 
 /*
 | -------------------------------------------------------------------
@@ -101,8 +100,7 @@ $autoload['libraries'] = array('database','Parsedown');
 |	$autoload['drivers'] = array('session', 'cache');
 */
 
-$autoload['drivers'] = array('session');
-
+$autoload['drivers'] = ['session'];
 
 /*
 | -------------------------------------------------------------------
@@ -113,8 +111,7 @@ $autoload['drivers'] = array('session');
 |	$autoload['helper'] = array('url', 'file');
 */
 
-$autoload['helper'] = array('url', 'text');
-
+$autoload['helper'] = ['url', 'text'];
 
 /*
 | -------------------------------------------------------------------
@@ -129,8 +126,7 @@ $autoload['helper'] = array('url', 'text');
 |
 */
 
-$autoload['config'] = array('Platform_config');
-
+$autoload['config'] = ['Platform_config'];
 
 /*
 | -------------------------------------------------------------------
@@ -145,8 +141,7 @@ $autoload['config'] = array('Platform_config');
 |
 */
 
-$autoload['language'] = array();
-
+$autoload['language'] = [];
 
 /*
 | -------------------------------------------------------------------
@@ -162,8 +157,7 @@ $autoload['language'] = array();
 |	$autoload['model'] = array('first_model' => 'first');
 */
 
-$autoload['model'] = array();
-
+$autoload['model'] = [];
 
 /* End of file autoload.php */
 /* Location: ./application/config/autoload.php */

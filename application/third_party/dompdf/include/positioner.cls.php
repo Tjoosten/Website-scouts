@@ -1,6 +1,7 @@
 <?php
+
 /**
- * DOMPDF - PHP5 HTML to PDF renderer
+ * DOMPDF - PHP5 HTML to PDF renderer.
  *
  * File: $RCSfile: positioner.cls.php,v $
  * Created on: 2004-06-08
@@ -31,41 +32,38 @@
  * http://www.dompdf.com/
  *
  * @link http://www.dompdf.com/
+ *
  * @copyright 2004 Benj Carson
  * @author Benj Carson <benjcarson@digitaljunkies.ca>
- * @package dompdf
-
  */
 
 /* $Id: positioner.cls.php 283 2010-07-19 17:57:40Z fabien.menager $ */
 
 /**
- * Base Positioner class
+ * Base Positioner class.
  *
  * Defines postioner interface
- *
- * @access private
- * @package dompdf
  */
-abstract class Positioner {
-  
-  // protected members
+abstract class Positioner
+{
+    // protected members
   protected $_frame;
-  
+
   //........................................................................
 
-  function __construct(Frame_Decorator $frame) {
-    $this->_frame = $frame;
+  public function __construct(Frame_Decorator $frame)
+  {
+      $this->_frame = $frame;
   }
-  
+
   /**
-   * Class destructor
+   * Class destructor.
    */
-  function __destruct() {
-  	clear_object($this);
+  public function __destruct()
+  {
+      clear_object($this);
   }
   //........................................................................
 
-  abstract function position();
-  
+  abstract public function position();
 }

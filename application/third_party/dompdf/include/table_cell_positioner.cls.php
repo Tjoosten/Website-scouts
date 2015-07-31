@@ -1,6 +1,7 @@
 <?php
+
 /**
- * DOMPDF - PHP5 HTML to PDF renderer
+ * DOMPDF - PHP5 HTML to PDF renderer.
  *
  * File: $RCSfile: table_cell_positioner.cls.php,v $
  * Created on: 2004-06-08
@@ -31,31 +32,29 @@
  * http://www.dompdf.com/
  *
  * @link http://www.dompdf.com/
+ *
  * @copyright 2004 Benj Carson
  * @author Benj Carson <benjcarson@digitaljunkies.ca>
- * @package dompdf
-
  */
 
 /* $Id: table_cell_positioner.cls.php 216 2010-03-11 22:49:18Z ryan.masten $ */
 
 /**
- * Positions table cells
- *
- * @access private
- * @package dompdf
+ * Positions table cells.
  */
-class Table_Cell_Positioner extends Positioner {
+class Table_Cell_Positioner extends Positioner
+{
+    public function __construct(Frame_Decorator $frame)
+    {
+        parent::__construct($frame);
+    }
 
-  function __construct(Frame_Decorator $frame) { parent::__construct($frame); }
-  
   //........................................................................
 
-  function position() {
-
-    $table = Table_Frame_Decorator::find_parent_table($this->_frame);
-    $cellmap = $table->get_cellmap();
-    $this->_frame->set_position($cellmap->get_frame_position($this->_frame));
-
+  public function position()
+  {
+      $table = Table_Frame_Decorator::find_parent_table($this->_frame);
+      $cellmap = $table->get_cellmap();
+      $this->_frame->set_position($cellmap->get_frame_position($this->_frame));
   }
 }

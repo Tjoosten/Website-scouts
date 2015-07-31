@@ -1,4 +1,6 @@
-<?php defined('BASEPATH') OR exit('No direct script access allowed');
+<?php
+
+defined('BASEPATH') or exit('No direct script access allowed');
 
 /**
  * @author: Tim Joosten
@@ -9,18 +11,18 @@
  */
 class Admin extends CI_Controller
 {
-    public $Session     = array();
-    public $Permissions = array();
+    public $Session = [];
+    public $Permissions = [];
 
     public function __construct()
     {
         parent::__construct();
-        $this->load->helper(array('form'));
-        $this->load->model('user', '', TRUE);
+        $this->load->helper(['form']);
+        $this->load->model('user', '', true);
         $this->load->model('Model_log', 'Log');
         $this->load->model('Model_permission', 'rights');
 
-        $this->Session     = $this->session->userdata('logged_in');
+        $this->Session = $this->session->userdata('logged_in');
         $this->Permissions = $this->session->userdata('Permissions');
     }
 
@@ -45,11 +47,11 @@ class Admin extends CI_Controller
     public function profile()
     {
         if ($this->Session && $this->Permissions) {
-            if($this->Session['admin'] == 1 || $this->Permissions['profielen'] == 'Y') {
-                $data['Title']       = 'Gebruikers profiel';
-                $data['Active']      = 4;
-                $data['user']        = $this->user->getProfile();
-                $data['logs']        = $this->Log->getUserLogs();
+            if ($this->Session['admin'] == 1 || $this->Permissions['profielen'] == 'Y') {
+                $data['Title'] = 'Gebruikers profiel';
+                $data['Active'] = 4;
+                $data['user'] = $this->user->getProfile();
+                $data['logs'] = $this->Log->getUserLogs();
                 $data['permissions'] = $this->rights->getUserRights();
 
                 $this->load->view('components/admin_header', $data);
@@ -64,7 +66,7 @@ class Admin extends CI_Controller
 
     public function updatePermissions()
     {
-        if($this->Session && $this->Permissions) {
+        if ($this->Session && $this->Permissions) {
             if ($this->Session['admin'] == 1 || $this->Permissions['profielen'] == 'Y') {
                 $this->rights->updateUserRights();
             }

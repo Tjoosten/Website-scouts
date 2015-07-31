@@ -1,6 +1,7 @@
 <?php
+
 /**
- * DOMPDF - PHP5 HTML to PDF renderer
+ * DOMPDF - PHP5 HTML to PDF renderer.
  *
  * File: $RCSfile: dompdf_config.inc.php,v $
  * Created on: 2004-08-04
@@ -31,13 +32,12 @@
  * http://www.dompdf.com/
  *
  * @link http://www.dompdf.com/
+ *
  * @copyright 2004 Benj Carson
  * @author Benj Carson <benjcarson@digitaljunkies.ca>
  * @contributor Helmut Tischer <htischer@weihenstephan.org>
- * @package dompdf
- *
- * Changes
  * @contributor Helmut Tischer <htischer@weihenstephan.org>
+ *
  * @version 0.5.1.htischer.20090507
  * - Allow overriding of configuration settings by calling php script.
  *   This allows replacing of dompdf by a new version in an application
@@ -55,44 +55,45 @@
 //ini_set("display_errors", 1);
 
 /**
- * The root of your DOMPDF installation
+ * The root of your DOMPDF installation.
  */
-define("DOMPDF_DIR", str_replace(DIRECTORY_SEPARATOR, '/', realpath(dirname(__FILE__))));
+define('DOMPDF_DIR', str_replace(DIRECTORY_SEPARATOR, '/', realpath(dirname(__FILE__))));
 
-/**
+/*
  * The location of the DOMPDF include directory
  */
-define("DOMPDF_INC_DIR", DOMPDF_DIR . "/include");
+define('DOMPDF_INC_DIR', DOMPDF_DIR.'/include');
 
-/**
+/*
  * The location of the DOMPDF lib directory
  */
-define("DOMPDF_LIB_DIR", DOMPDF_DIR . "/lib");
+define('DOMPDF_LIB_DIR', DOMPDF_DIR.'/lib');
 
 /**
  * Some installations don't have $_SERVER['DOCUMENT_ROOT']
- * http://fyneworks.blogspot.com/2007/08/php-documentroot-in-iis-windows-servers.html
+ * http://fyneworks.blogspot.com/2007/08/php-documentroot-in-iis-windows-servers.html.
  */
-if( !isset($_SERVER['DOCUMENT_ROOT']) ) {
-  $path = "";
-  
-  if ( isset($_SERVER['SCRIPT_FILENAME']) )
-    $path = $_SERVER['SCRIPT_FILENAME'];
-  elseif ( isset($_SERVER['PATH_TRANSLATED']) )
-    $path = str_replace('\\\\', '\\', $_SERVER['PATH_TRANSLATED']);
-    
-  $_SERVER['DOCUMENT_ROOT'] = str_replace( '\\', '/', substr($path, 0, 0-strlen($_SERVER['PHP_SELF'])));
+if (!isset($_SERVER['DOCUMENT_ROOT'])) {
+    $path = '';
+
+    if (isset($_SERVER['SCRIPT_FILENAME'])) {
+        $path = $_SERVER['SCRIPT_FILENAME'];
+    } elseif (isset($_SERVER['PATH_TRANSLATED'])) {
+        $path = str_replace('\\\\', '\\', $_SERVER['PATH_TRANSLATED']);
+    }
+
+    $_SERVER['DOCUMENT_ROOT'] = str_replace('\\', '/', substr($path, 0, 0 - strlen($_SERVER['PHP_SELF'])));
 }
 
-/** Include the custom config file if it exists */
-if ( file_exists(DOMPDF_DIR . "/dompdf_config.custom.inc.php") ){
-  require_once(DOMPDF_DIR . "/dompdf_config.custom.inc.php");
+/* Include the custom config file if it exists */
+if (file_exists(DOMPDF_DIR.'/dompdf_config.custom.inc.php')) {
+    require_once DOMPDF_DIR.'/dompdf_config.custom.inc.php';
 }
 
 //FIXME: Some function definitions rely on the constants defined by DOMPDF. However, might this location prove problematic?
-require_once(DOMPDF_INC_DIR . "/functions.inc.php");
+require_once DOMPDF_INC_DIR.'/functions.inc.php';
 
-/**
+/*
  * The location of the DOMPDF font directory
  *
  * If DOMPDF_FONT_DIR identical to DOMPDF_FONT_CACHE or user executing DOMPDF from the CLI,
@@ -120,9 +121,9 @@ require_once(DOMPDF_INC_DIR . "/functions.inc.php");
  *
  * *Please note the trailing slash.*
  */
-def("DOMPDF_FONT_DIR", DOMPDF_DIR . "/lib/fonts/");
+def('DOMPDF_FONT_DIR', DOMPDF_DIR.'/lib/fonts/');
 
-/**
+/*
  * The location of the DOMPDF font cache directory
  *
  * Note this directory must be writable by the webserver process
@@ -130,18 +131,18 @@ def("DOMPDF_FONT_DIR", DOMPDF_DIR . "/lib/fonts/");
  * It contains the .afm files, on demand parsed, converted to php syntax and cached
  * This folder can be the same as DOMPDF_FONT_DIR
  */
-def("DOMPDF_FONT_CACHE", DOMPDF_FONT_DIR);
+def('DOMPDF_FONT_CACHE', DOMPDF_FONT_DIR);
 
-/**
+/*
  * The location of a temporary directory.
  *
  * The directory specified must be writeable by the webserver process.
  * The temporary directory is required to download remote images and when
  * using the PFDLib back end.
  */
-def("DOMPDF_TEMP_DIR", sys_get_temp_dir());
+def('DOMPDF_TEMP_DIR', sys_get_temp_dir());
 
-/**
+/*
  * ==== IMPORTANT ====
  *
  * dompdf's "chroot": Prevents dompdf from accessing system files or other
@@ -153,9 +154,9 @@ def("DOMPDF_TEMP_DIR", sys_get_temp_dir());
  * direct class use like:
  * $dompdf = new DOMPDF();	$dompdf->load_html($htmldata); $dompdf->render(); $pdfdata = $dompdf->output();
  */
-def("DOMPDF_CHROOT", realpath(DOMPDF_DIR));
+def('DOMPDF_CHROOT', realpath(DOMPDF_DIR));
 
-/**
+/*
  * Whether to use Unicode fonts or not.
  *
  * When set to true the PDF backend must be set to "CPDF" and fonts must be
@@ -167,9 +168,9 @@ def("DOMPDF_CHROOT", realpath(DOMPDF_DIR));
  * When enabled, dompdf can support all Unicode glyphs.  Any glyphs used in a
  * document must be present in your fonts, however.
  */
-def("DOMPDF_UNICODE_ENABLED", true);
+def('DOMPDF_UNICODE_ENABLED', true);
 
-/**
+/*
  * The path to the tt2pt1 utility (used to convert ttf to afm)
  *
  * Not strictly necessary, but useful if you would like to install
@@ -180,12 +181,13 @@ def("DOMPDF_UNICODE_ENABLED", true);
  *
  * @link http://ttf2pt1.sourceforge.net/
  */
-if ( strpos(PHP_OS, "WIN") === false )
-  def("TTF2AFM", DOMPDF_LIB_DIR ."/ttf2ufm/ttf2ufm-src/ttf2pt1");
-else 
-  def("TTF2AFM", "C:\\Program Files\\GnuWin32\\bin\\ttf2pt1.exe");
+if (strpos(PHP_OS, 'WIN') === false) {
+    def('TTF2AFM', DOMPDF_LIB_DIR.'/ttf2ufm/ttf2ufm-src/ttf2pt1');
+} else {
+    def('TTF2AFM', 'C:\\Program Files\\GnuWin32\\bin\\ttf2pt1.exe');
+}
 
-/**
+/*
  * The PDF rendering backend to use
  *
  * Valid settings are 'PDFLib', 'CPDF' (the bundled R&OS PDF class), 'GD' and
@@ -213,9 +215,9 @@ else
  * @link http://www.ros.co.nz/pdf
  * @link http://www.php.net/image
  */
-def("DOMPDF_PDF_BACKEND", "CPDF");
+def('DOMPDF_PDF_BACKEND', 'CPDF');
 
-/**
+/*
  * PDFlib license key
  *
  * If you are using a licensed, commercial version of PDFlib, specify
@@ -229,7 +231,7 @@ def("DOMPDF_PDF_BACKEND", "CPDF");
  */
 #def("DOMPDF_PDFLIB_LICENSE", "your license key here");
 
-/**
+/*
  * html target media view which should be rendered into pdf.
  * List of types and parsing rules for future extensions:
  * http://www.w3.org/TR/REC-html40/types.html
@@ -239,26 +241,26 @@ def("DOMPDF_PDF_BACKEND", "CPDF");
  * the desired content might be different (e.g. screen or projection view of html file).
  * Therefore allow specification of content here.
  */
-def("DOMPDF_DEFAULT_MEDIA_TYPE", "screen");
+def('DOMPDF_DEFAULT_MEDIA_TYPE', 'screen');
 
-/**
+/*
  * The default paper size.
  *
  * North America standard is "letter"; other countries generally "a4"
  *
  * @see CPDF_Adapter::PAPER_SIZES for valid sizes
  */
-def("DOMPDF_DEFAULT_PAPER_SIZE", "letter");
+def('DOMPDF_DEFAULT_PAPER_SIZE', 'letter');
 
-/**
+/*
  * The default font family
  *
  * Used if no suitable fonts can be found. This must exist in the font folder.
  * @var string
  */
-def("DOMPDF_DEFAULT_FONT", "serif");
+def('DOMPDF_DEFAULT_FONT', 'serif');
 
-/**
+/*
  * Image DPI setting
  *
  * This setting determines the default DPI setting for images and fonts.  The
@@ -291,9 +293,9 @@ def("DOMPDF_DEFAULT_FONT", "serif");
  *
  * @var int
  */
-def("DOMPDF_DPI", 96);
+def('DOMPDF_DPI', 96);
 
-/**
+/*
  * Enable inline PHP
  *
  * If this setting is set to true then DOMPDF will automatically evaluate
@@ -305,9 +307,9 @@ def("DOMPDF_DPI", 96);
  *
  * @var bool
  */
-def("DOMPDF_ENABLE_PHP", false);
+def('DOMPDF_ENABLE_PHP', false);
 
-/**
+/*
  * Enable inline Javascript
  *
  * If this setting is set to true then DOMPDF will automatically insert
@@ -315,9 +317,9 @@ def("DOMPDF_ENABLE_PHP", false);
  *
  * @var bool
  */
-def("DOMPDF_ENABLE_JAVASCRIPT", true);
+def('DOMPDF_ENABLE_JAVASCRIPT', true);
 
-/**
+/*
  * Enable remote file access
  *
  * If this setting is set to true, DOMPDF will access remote sites for
@@ -334,123 +336,123 @@ def("DOMPDF_ENABLE_JAVASCRIPT", true);
  *
  * @var bool
  */
-def("DOMPDF_ENABLE_REMOTE", false);
+def('DOMPDF_ENABLE_REMOTE', false);
 
-/**
+/*
  * The debug output log
  * @var string
  */
-def("DOMPDF_LOG_OUTPUT_FILE", DOMPDF_FONT_DIR."log.htm");
+def('DOMPDF_LOG_OUTPUT_FILE', DOMPDF_FONT_DIR.'log.htm');
 
-/**
+/*
  * A ratio applied to the fonts height to be more like browsers' line height
  */
-def("DOMPDF_FONT_HEIGHT_RATIO", 1.1);
+def('DOMPDF_FONT_HEIGHT_RATIO', 1.1);
 
-/**
+/*
  * Enable CSS float
  *
  * Allows people to disabled CSS float support
  * @var bool
  */
-def("DOMPDF_ENABLE_CSS_FLOAT", false);
- 
+def('DOMPDF_ENABLE_CSS_FLOAT', false);
+
 /**
- * DOMPDF autoload function
+ * DOMPDF autoload function.
  *
  * If you have an existing autoload function, add a call to this function
  * from your existing __autoload() implementation.
  *
  * @param string $class
  */
-function DOMPDF_autoload($class) {
-  $filename = DOMPDF_INC_DIR . "/" . mb_strtolower($class) . ".cls.php";
-  
-  if ( is_file($filename) )
-    require_once($filename);
+function DOMPDF_autoload($class)
+{
+    $filename = DOMPDF_INC_DIR.'/'.mb_strtolower($class).'.cls.php';
+
+    if (is_file($filename)) {
+        require_once $filename;
+    }
 }
 
 // If SPL autoload functions are available (PHP >= 5.1.2)
-if ( function_exists("spl_autoload_register") ) {
-  $autoload = "DOMPDF_autoload";
-  $funcs = spl_autoload_functions();
-  
-  // No functions currently in the stack. 
-  if ( $funcs === false ) { 
-    spl_autoload_register($autoload); 
-  }
-  
-  // If PHP >= 5.3 the $prepend argument is available
-  else if ( version_compare(PHP_VERSION, '5.3', '>=') ) {
-    spl_autoload_register($autoload, true, true); 
-  }
-  
-  else {
-    // Unregister existing autoloaders... 
-    $compat = version_compare(PHP_VERSION, '5.1.2', '<=') && 
-              version_compare(PHP_VERSION, '5.1.0', '>=');
-              
-    foreach ($funcs as $func) { 
-      if (is_array($func)) { 
-        // :TRICKY: There are some compatibility issues and some 
-        // places where we need to error out 
-        $reflector = new ReflectionMethod($func[0], $func[1]); 
-        if (!$reflector->isStatic()) { 
-          throw new Exception('This function is not compatible with non-static object methods due to PHP Bug #44144.'); 
-        }
-        
-        // Suprisingly, spl_autoload_register supports the 
-        // Class::staticMethod callback format, although call_user_func doesn't 
-        if ($compat) $func = implode('::', $func); 
-      }
-      
-      spl_autoload_unregister($func); 
-    } 
-    
-    // Register the new one, thus putting it at the front of the stack... 
-    spl_autoload_register($autoload); 
-    
-    // Now, go back and re-register all of our old ones. 
-    foreach ($funcs as $func) { 
-      spl_autoload_register($func); 
-    }
-    
-    // Be polite and ensure that userland autoload gets retained
-    if ( function_exists("__autoload") ) {
-      spl_autoload_register("__autoload");
-    }
-  }
-}
+if (function_exists('spl_autoload_register')) {
+    $autoload = 'DOMPDF_autoload';
+    $funcs = spl_autoload_functions();
 
-else if ( !function_exists("__autoload") ) {
-  /**
-   * Default __autoload() function
+  // No functions currently in the stack.
+  if ($funcs === false) {
+      spl_autoload_register($autoload);
+  }
+
+  // If PHP >= 5.3 the $prepend argument is available
+  elseif (version_compare(PHP_VERSION, '5.3', '>=')) {
+      spl_autoload_register($autoload, true, true);
+  } else {
+      // Unregister existing autoloaders...
+    $compat = version_compare(PHP_VERSION, '5.1.2', '<=') &&
+              version_compare(PHP_VERSION, '5.1.0', '>=');
+
+      foreach ($funcs as $func) {
+          if (is_array($func)) {
+              // :TRICKY: There are some compatibility issues and some
+        // places where we need to error out
+        $reflector = new ReflectionMethod($func[0], $func[1]);
+              if (!$reflector->isStatic()) {
+                  throw new Exception('This function is not compatible with non-static object methods due to PHP Bug #44144.');
+              }
+
+        // Suprisingly, spl_autoload_register supports the
+        // Class::staticMethod callback format, although call_user_func doesn't
+        if ($compat) {
+            $func = implode('::', $func);
+        }
+          }
+
+          spl_autoload_unregister($func);
+      }
+
+    // Register the new one, thus putting it at the front of the stack...
+    spl_autoload_register($autoload);
+
+    // Now, go back and re-register all of our old ones.
+    foreach ($funcs as $func) {
+        spl_autoload_register($func);
+    }
+
+    // Be polite and ensure that userland autoload gets retained
+    if (function_exists('__autoload')) {
+        spl_autoload_register('__autoload');
+    }
+  }
+} elseif (!function_exists('__autoload')) {
+    /**
+   * Default __autoload() function.
    *
    * @param string $class
    */
-  function __autoload($class) {
-    DOMPDF_autoload($class);
+  function __autoload($class)
+  {
+      DOMPDF_autoload($class);
   }
 }
 
 // ### End of user-configurable options ###
 
-
-/**
+/*
  * Ensure that PHP is working with text internally using UTF8 character encoding.
  */
 mb_internal_encoding('UTF-8');
 
-/**
+/*
  * Global array of warnings generated by DomDocument parser and
  * stylesheet class
  *
  * @var array
  */
 global $_dompdf_warnings;
-$_dompdf_warnings = array();
+$_dompdf_warnings = [];
 
-/**
+/*
  * If true, $_dompdf_warnings is dumped on script termination when using
  * dompdf/dompdf.php or after rendering when using the DOMPDF class.
  * When using the class, setting this value to true will prevent you from
@@ -461,7 +463,7 @@ $_dompdf_warnings = array();
 global $_dompdf_show_warnings;
 $_dompdf_show_warnings = false;
 
-/**
+/*
  * If true, the entire tree is dumped to stdout in dompdf.cls.php.
  * Setting this value to true will prevent you from streaming the PDF.
  *
@@ -470,13 +472,13 @@ $_dompdf_show_warnings = false;
 global $_dompdf_debug;
 $_dompdf_debug = false;
 
-/**
+/*
  * Array of enabled debug message types
  *
  * @var array
  */
 global $_DOMPDF_DEBUG_TYPES;
-$_DOMPDF_DEBUG_TYPES = array(); //array("page-break" => 1);
+$_DOMPDF_DEBUG_TYPES = []; //array("page-break" => 1);
 
 /* Optionally enable different classes of debug output before the pdf content.
  * Visible if displaying pdf as text,

@@ -1,153 +1,157 @@
-<?php 
-	class Model_verhuringen extends CI_Model {
-		
-	/*
-	 | Developer: Tim Joosten
-	 | License: 4GPL
-	 | Copyright: Sint-Joris Turnhout, Tim Joosten
-	 */
+<?php
 
-	 public function __construct()
-	 {
-	 	parent::__construct();
-	 	$this->load->dbutil();
-	 }
 
-	// Client side
-	public function Verhuring_kalender()
-	{
-		$this->db->select()
-				 ->order_by("Start_datum", "asc");
+    class Model_verhuringen extends CI_Model
+    {
+        /*
+     | Developer: Tim Joosten
+     | License: 4GPL
+     | Copyright: Sint-Joris Turnhout, Tim Joosten
+     */
 
-		$Query = $this->db->get('Verhuur'); 
-		return $Query->result();
-	}
+     public function __construct()
+     {
+         parent::__construct();
+         $this->load->dbutil();
+     }
 
-	public function InsertDB()
-	{
-		// replace characters that can jam the timestamp
-		$old_sep = array("/","-");
-		$new_sep = ".";
+    // Client side
+    public function Verhuring_kalender()
+    {
+        $this->db->select()
+                 ->order_by('Start_datum', 'asc');
 
-		// Values
-		$Start = str_replace($old_sep, $new_sep, $this->input->post('Start_datum'));
-		$Eind  = str_replace($old_sep, $new_sep, $this->input->post('Eind_datum'));
+        $Query = $this->db->get('Verhuur');
 
-		// start insert
-		$Values = array(
-			"Start_datum" => strtotime($Start),
-			"Eind_datum"  => strtotime($Eind), 
-			"Groep"       => $this->input->post('Groep'), 
-			"Email"       => $this->input->post('Email'),
-			"GSM"         => $this->input->post('GSM'),
-			"Status"      => "0",
-			);
+        return $Query->result();
+    }
 
-		$this->db->insert("Verhuur", $Values);
-	}
-	// -------- //
+        public function InsertDB()
+        {
+            // replace characters that can jam the timestamp
+        $old_sep = ['/','-'];
+            $new_sep = '.';
 
-	// Admin side 
-	public function Search()
-	{
-		// replace characters that can jam the timestamp
-		$old_sep = array("/","-");
-		$new_sep = ".";
+        // Values
+        $Start = str_replace($old_sep, $new_sep, $this->input->post('Start_datum'));
+            $Eind = str_replace($old_sep, $new_sep, $this->input->post('Eind_datum'));
 
-		// Values
-		$Term = str_replace($old_sep, $new_sep, $this->input->post('Term'));
+        // start insert
+        $Values = [
+            'Start_datum' => strtotime($Start),
+            'Eind_datum'  => strtotime($Eind),
+            'Groep'       => $this->input->post('Groep'),
+            'Email'       => $this->input->post('Email'),
+            'GSM'         => $this->input->post('GSM'),
+            'Status'      => '0',
+            ];
 
-		$Values = array(
-			"Start_datum" => strtotime($Term),
-			"Eind_datum"  => strtotime($Term),
-		);
-			
-		$this->db->select()
-				 ->like($Values);
-			
-		$Query = $this->db->get('Verhuur');
-		return $Query->Result();
-	}
-		
-	public function Wijzig_verhuur()
-	{
-		// replace characters that can jam the timestamp
-		$old_sep = array("/","-");
-		$new_sep = ".";
+            $this->db->insert('Verhuur', $Values);
+        }
+    // -------- //
 
-		// Values
-		$Start = str_replace($old_sep, $new_sep, $this->input->post('Start'));
-		$Eind  = str_replace($old_sep, $new_sep, $this->input->post('Eind'));
+    // Admin side
+    public function Search()
+    {
+        // replace characters that can jam the timestamp
+        $old_sep = ['/','-'];
+        $new_sep = '.';
 
-		// start insert
-		$Values = array(
-			"Start_datum" => strtotime($Start),
-			"Eind_datum"  => strtotime($Eind),
-			"Groep"       => $this->input->post('Groep'),
-			"Email"       => $this->input->post('Mail'),
-			"GSM"         => $this->input->post('GSM'),
-			);
+        // Values
+        $Term = str_replace($old_sep, $new_sep, $this->input->post('Term'));
 
-		$this->db->where("ID", $this->uri->segment(3))
-		          ->update('Verhuur', $Values);
-	}
+        $Values = [
+            'Start_datum' => strtotime($Term),
+            'Eind_datum'  => strtotime($Term),
+        ];
 
-	public function Status_optie()
-	{
-		$Value = array(
-				"Status" => "1",
-			);
+        $this->db->select()
+                 ->like($Values);
 
-		$this->db->where("ID", $this->uri->segment(3))
-				 ->update("Verhuur", $Value);
-		
-	}
+        $Query = $this->db->get('Verhuur');
 
-	public function Status_bevestigd()
-	{
-		$Value = array(
-				"Status" => "2",
-			); 
+        return $Query->Result();
+    }
 
-		$this->db->where("ID", $this->uri->segment(3))
-				 ->update("Verhuur", $Value);
+        public function Wijzig_verhuur()
+        {
+            // replace characters that can jam the timestamp
+        $old_sep = ['/','-'];
+            $new_sep = '.';
 
-	}
-		
-	public function Verhuur_delete()
-	{
-		$this->db->where('ID', $this->uri->segment(3))
-				 ->delete('Verhuur'); 
+        // Values
+        $Start = str_replace($old_sep, $new_sep, $this->input->post('Start'));
+            $Eind = str_replace($old_sep, $new_sep, $this->input->post('Eind'));
 
-		return $this->db->affected_rows(); 
-	}
-		
-	public function Verhuur_api()
-	{
-		$this->db->select()
-				 ->order_by("Start_datum", "asc");
+        // start insert
+        $Values = [
+            'Start_datum' => strtotime($Start),
+            'Eind_datum'  => strtotime($Eind),
+            'Groep'       => $this->input->post('Groep'),
+            'Email'       => $this->input->post('Mail'),
+            'GSM'         => $this->input->post('GSM'),
+            ];
 
-		$Query = $this->db->get('Verhuur');
-		return $Query->result();
-	}
+            $this->db->where('ID', $this->uri->segment(3))
+                  ->update('Verhuur', $Values);
+        }
 
-	public function verhuur_info()
-	{
-		$this->db->select() 
-  					 ->where("ID", $this->uri->segment(3));
+        public function Status_optie()
+        {
+            $Value = [
+                'Status' => '1',
+            ];
 
-		$Query = $this->db->get('Verhuur'); 
-		return $Query->result();
-	}
-		
-	public function Download_verhuringen()
-	{
-		$this->db->select('Start_datum, Eind_datum, Groep, Email, GSM');
-		
-		$query = $this->db->get('Verhuur');
-		$data = $this->dbutil->csv_from_result($query, ';');
-       
-		force_download('Verhurings_data.csv', $data);
-	}
-	// -------- //
-}
+            $this->db->where('ID', $this->uri->segment(3))
+                 ->update('Verhuur', $Value);
+        }
+
+        public function Status_bevestigd()
+        {
+            $Value = [
+                'Status' => '2',
+            ];
+
+            $this->db->where('ID', $this->uri->segment(3))
+                 ->update('Verhuur', $Value);
+        }
+
+        public function Verhuur_delete()
+        {
+            $this->db->where('ID', $this->uri->segment(3))
+                 ->delete('Verhuur');
+
+            return $this->db->affected_rows();
+        }
+
+        public function Verhuur_api()
+        {
+            $this->db->select()
+                 ->order_by('Start_datum', 'asc');
+
+            $Query = $this->db->get('Verhuur');
+
+            return $Query->result();
+        }
+
+        public function verhuur_info()
+        {
+            $this->db->select()
+                     ->where('ID', $this->uri->segment(3));
+
+            $Query = $this->db->get('Verhuur');
+
+            return $Query->result();
+        }
+
+        public function Download_verhuringen()
+        {
+            $this->db->select('Start_datum, Eind_datum, Groep, Email, GSM');
+
+            $query = $this->db->get('Verhuur');
+            $data = $this->dbutil->csv_from_result($query, ';');
+
+            force_download('Verhurings_data.csv', $data);
+        }
+    // -------- //
+    }

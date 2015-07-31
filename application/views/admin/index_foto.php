@@ -47,17 +47,17 @@
 				<div class="active tab-pane" id="FOTOS">
 					<div class="row">
 						<div class="col-md-6">
-							<?php if(count($DB) == 0): ?>
+							<?php if (count($DB) == 0): ?>
 								<div style="margin-top: 10px;" class="alert alert-danger">
 									<p> Er zijn nog geen Foto's geupload.</p>
 								</div>
 							<?php else: ?>
 								<p>
 									<ul class="list-group">
-										<?php foreach($DB as $Output): ?>
+										<?php foreach ($DB as $Output): ?>
 							  				<li class="list-group-item">
 												<span class="fa fa-picture-o"></span> <?php echo $Output->Naam; ?>
-												<a href="<?php echo base_url(). 'Fotos/delete/' .$Output->File_name; ?>" class="pull-right label label-danger">Verwijder</a>
+												<a href="<?php echo base_url().'Fotos/delete/'.$Output->File_name; ?>" class="pull-right label label-danger">Verwijder</a>
 											</li>
 										<?php endforeach; ?>
 									</ul>

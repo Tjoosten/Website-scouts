@@ -165,7 +165,7 @@
                                             <td>
                                                 <div class="btn-toolbar">
                                                     <div class="btn-group">
-                                                        <a title="Account" class="btn btn-xs btn-danger" href="<?php echo base_url() . 'Admin/profile/'. $Output->id .''; ?>">
+                                                        <a title="Account" class="btn btn-xs btn-danger" href="<?php echo base_url().'Admin/profile/'.$Output->id.''; ?>">
                                                            <span class="fa fa-user"></span>
                                                         </a>
                                                     </div>

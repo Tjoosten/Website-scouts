@@ -14,7 +14,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				<?php foreach($Query as $Output): ?>
+				<?php foreach ($Query as $Output): ?>
 					<tr>
 						<td> <?php echo $Output->Voornaam; ?> <?php echo $Output->Naam; ?></td>
 						<td>

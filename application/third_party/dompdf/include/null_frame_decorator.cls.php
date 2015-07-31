@@ -1,6 +1,7 @@
 <?php
+
 /**
- * DOMPDF - PHP5 HTML to PDF renderer
+ * DOMPDF - PHP5 HTML to PDF renderer.
  *
  * File: $RCSfile: null_frame_decorator.cls.php,v $
  * Created on: 2004-07-12
@@ -31,29 +32,25 @@
  * http://www.dompdf.com/
  *
  * @link http://www.dompdf.com/
+ *
  * @copyright 2004 Benj Carson
  * @author Benj Carson <benjcarson@digitaljunkies.ca>
- * @package dompdf
-
  */
 
 /* $Id: null_frame_decorator.cls.php 216 2010-03-11 22:49:18Z ryan.masten $ */
 
 /**
- * Dummy decorator
- *
- * @access private
- * @package dompdf
+ * Dummy decorator.
  */
-class Null_Frame_Decorator extends Frame_Decorator {
-
-  function __construct(Frame $frame, DOMPDF $dompdf) {
-    parent::__construct($frame, $dompdf);
-    $style = $this->_frame->get_style();
-    $style->width = 0;
-    $style->height = 0;
-    $style->margin = 0;
-    $style->padding = 0;
-  }
-
+class Null_Frame_Decorator extends Frame_Decorator
+{
+    public function __construct(Frame $frame, DOMPDF $dompdf)
+    {
+        parent::__construct($frame, $dompdf);
+        $style = $this->_frame->get_style();
+        $style->width = 0;
+        $style->height = 0;
+        $style->margin = 0;
+        $style->padding = 0;
+    }
 }

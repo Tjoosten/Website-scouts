@@ -6,9 +6,9 @@
         <li><a href="<?php echo base_url(); ?>takken">Takken</a></li>
         <li class="active">
           <?php 
-            foreach($Beschrijving as $Tak) {
-              echo $Tak->Title; 
-            } 
+            foreach ($Beschrijving as $Tak) {
+                echo $Tak->Title;
+            }
           ?>
         </li>
       </ol>
@@ -33,7 +33,7 @@
       <div class="col-sm-9 col-md-9 col-lg-9">
         <div class="panel panel-default border">
           <div class="panel-body">
-            <?php foreach($Beschrijving as $Tak): ?>
+            <?php foreach ($Beschrijving as $Tak): ?>
               <div style="margin-top: -20px;" class="page-header">
                 <h2 style="margin-bottom: -5px;"> <?php echo $Tak->Title; ?> <small> <?php echo $Tak->Sub_title; ?> </small> </h2>
               </div>

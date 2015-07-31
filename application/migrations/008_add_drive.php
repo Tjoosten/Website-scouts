@@ -1,4 +1,6 @@
-<?php defined('BASEPATH') OR exit('No direct script access allowed');
+<?php
+
+defined('BASEPATH') or exit('No direct script access allowed');
 
 class Migration_add_drive extends CI_Migration
 {
@@ -7,34 +9,34 @@ class Migration_add_drive extends CI_Migration
      */
     public function up()
     {
-        $this->dbforge->add_field(array(
-            'ID' => array(
+        $this->dbforge->add_field([
+            'ID' => [
                 'type'           => 'INT',
                 'constraint'     => 11,
                 'unsigned'       => true,
                 'auto_increment' => true,
-            ),
-            'Naam' => array(
+            ],
+            'Naam' => [
                 'type'       => 'VARCHAR',
                 'constraint' => 255,
-            ),
-            'file_name' => array(
+            ],
+            'file_name' => [
                 'type'       => 'VARCHAR',
                 'constraint' => 255,
-            ),
-            'file_path' => array(
+            ],
+            'file_path' => [
                 'type'       => 'VARCHAR',
                 'constraint' => 255,
-            ),
-            'file_extension' => array(
+            ],
+            'file_extension' => [
                 'type'       => 'VARCHAR',
                 'constraint' => 50,
-            ),
-            'file_size' => array(
+            ],
+            'file_size' => [
                 'type'       => 'VARCHAR',
                 'constraint' => 255,
-            )
-        ));
+            ],
+        ]);
     }
 
     /**

@@ -1,6 +1,7 @@
 <?php
+
 /**
- * DOMPDF - PHP5 HTML to PDF renderer
+ * DOMPDF - PHP5 HTML to PDF renderer.
  *
  * File: $RCSfile: table_row_positioner.cls.php,v $
  * Created on: 2004-06-08
@@ -31,38 +32,36 @@
  * http://www.dompdf.com/
  *
  * @link http://www.dompdf.com/
+ *
  * @copyright 2004 Benj Carson
  * @author Benj Carson <benjcarson@digitaljunkies.ca>
- * @package dompdf
-
  */
 
 /* $Id: table_row_positioner.cls.php 216 2010-03-11 22:49:18Z ryan.masten $ */
 
 /**
- * Positions table rows
- *
- * @access private
- * @package dompdf
+ * Positions table rows.
  */
-class Table_Row_Positioner extends Positioner {
+class Table_Row_Positioner extends Positioner
+{
+    public function __construct(Frame_Decorator $frame)
+    {
+        parent::__construct($frame);
+    }
 
-  function __construct(Frame_Decorator $frame) { parent::__construct($frame); }
-  
   //........................................................................
 
-  function position() {
+  public function position()
+  {
+      $cb = $this->_frame->get_containing_block();
+      $p = $this->_frame->get_prev_sibling();
 
-    $cb = $this->_frame->get_containing_block();    
-    $p = $this->_frame->get_prev_sibling();
+      if ($p) {
+          $y = $p->get_position('y') + $p->get_margin_height();
+      } else {
+          $y = $cb['y'];
+      }
 
-    if ( $p ) 
-      $y = $p->get_position("y") + $p->get_margin_height();
-
-    else
-      $y = $cb["y"];
-
-    $this->_frame->set_position($cb["x"], $y);
-
+      $this->_frame->set_position($cb['x'], $y);
   }
 }

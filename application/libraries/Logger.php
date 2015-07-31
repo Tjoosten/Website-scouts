@@ -1,42 +1,48 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php
 
-  Class Logger {
-        function user_log($user, $message) {
+if (!defined('BASEPATH')) {
+    exit('No direct script access allowed');
+}
+
+  class Logger
+  {
+      public function user_log($user, $message)
+      {
           $this->load->model('Model_logger', 'log');
-          
-          $Date = date("Y/m/d");
 
-          $Filepath =  './application/logs/log-'. $Date .'.php';
+          $Date = date('Y/m/d');
 
-          if(! file_exists($Filepath)) {
-            // Write file name to database
+          $Filepath = './application/logs/log-'.$Date.'.php';
+
+          if (!file_exists($Filepath)) {
+              // Write file name to database
             $this->log->Insert($Filepath);
 
             // File doesn't exists so we need to first write it.
             $Fileheader = "<?php defined('BASEPATH') OR exit('No direct script access allowed'); ?>\n\n";
-            $LogMessage = '['. date("h:i:sa"). ']: '. $user .' --> '. $message ."\n";
+              $LogMessage = '['.date('h:i:sa').']: '.$user.' --> '.$message."\n";
 
             // Open the log file
-            $Logfile = fopen($Filepath, "a");
+            $Logfile = fopen($Filepath, 'a');
 
             // Write to the file.
             fwrite($Logfile, $Fileheader);
-            fwrite($Logfile, $LogMessage);
+              fwrite($Logfile, $LogMessage);
             // Close file
             fclose($Logfile);
 
-            return TRUE;
+              return true;
           } else {
-            // The file exists sp we are write te log message only.
-            $LogMessage = '['. date("h:i:sa"). ']: '. $user .' --> '. $message ."\n";
+              // The file exists sp we are write te log message only.
+            $LogMessage = '['.date('h:i:sa').']: '.$user.' --> '.$message."\n";
 
             // Open the log file
-            $Logfile = fopen($Filepath, "a");
+            $Logfile = fopen($Filepath, 'a');
 
             // Write to the file.
             fwrite($Logfile, $LogMessage);
             // Close file
             fclose($Logfile);
           }
-       }
-    }
+      }
+  }

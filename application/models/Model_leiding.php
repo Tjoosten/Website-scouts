@@ -2,7 +2,6 @@
 
 class Model_leiding extends CI_Model
 {
-
     /*
      | Developer: Tim Joosten
      | Licence: 4GPL
@@ -15,24 +14,26 @@ class Model_leiding extends CI_Model
             ->where_not_in('Tak', '6');
 
         $Query = $this->db->get('users');
+
         return $Query->result();
     }
 
     public function Leiding_insert($Mail)
     {
-        $Values = array(
-            "username" => $this->input->post('Naam'),
-            "Mail" => $this->input->post('Mail'),
-            "GSM" => $this->input->post('GSM'),
-            "Tak" => $this->input->post('Tak'),
-            "Admin_role" => "0",
-            "Blocked" => "0",
-            "Theme" => "0",
-            "password" => md5($Mail['Pass']),
-        );
+        $Values = [
+            'username'   => $this->input->post('Naam'),
+            'Mail'       => $this->input->post('Mail'),
+            'GSM'        => $this->input->post('GSM'),
+            'Tak'        => $this->input->post('Tak'),
+            'Admin_role' => '0',
+            'Blocked'    => '0',
+            'Theme'      => '0',
+            'password'   => md5($Mail['Pass']),
+        ];
 
         $this->db->insert('users', $Values);
         $last_id = $this->db->insert_id();
+
         return $last_id;
     }
 
@@ -55,6 +56,7 @@ class Model_leiding extends CI_Model
             ->where('Admin_role', '1');
 
         $Query = $this->db->get('users');
+
         return $Query->result();
     }
 
@@ -64,6 +66,7 @@ class Model_leiding extends CI_Model
             ->where_not_in('Tak', '6');
 
         $Query = $this->db->get('users');
+
         return $Query->result();
     }
 
@@ -73,6 +76,7 @@ class Model_leiding extends CI_Model
             ->where('username', $this->uri->segment(3));
 
         $Query = $this->db->get('users');
+
         return $Query->result();
     }
 
@@ -80,43 +84,43 @@ class Model_leiding extends CI_Model
     {
         $Pass = $this->input->post('Pass');
 
-        if (! empty($Pass)) {
-            $Values = array(
-                "Mail"     => $this->input->post('Email'),
-                "GSM"      => $this->input->post('GSM'),
-                "password" => md5($this->input->post('Pass')),
-                "Theme"    => $this->input->post('Theme'),
-            );
+        if (!empty($Pass)) {
+            $Values = [
+                'Mail'     => $this->input->post('Email'),
+                'GSM'      => $this->input->post('GSM'),
+                'password' => md5($this->input->post('Pass')),
+                'Theme'    => $this->input->post('Theme'),
+            ];
         } else {
-            $Values = array(
-                "Mail" => $this->input->post('Email'),
-                "GSM" => $this->input->post('GSM'),
-                "Theme" => $this->input->post('Theme'),
-            );
+            $Values = [
+                'Mail'  => $this->input->post('Email'),
+                'GSM'   => $this->input->post('GSM'),
+                'Theme' => $this->input->post('Theme'),
+            ];
         }
 
         $this->db->where('id', $this->uri->segment(3))
-            ->update("users", $Values);
+            ->update('users', $Values);
     }
 
     public function Leiding_Block()
     {
-        $Value = array(
-            "Blocked" => "1",
-        );
+        $Value = [
+            'Blocked' => '1',
+        ];
 
-        $this->db->where("id", $this->uri->segment(3))
-            ->update("users", $Value);
+        $this->db->where('id', $this->uri->segment(3))
+            ->update('users', $Value);
     }
 
     public function Leiding_Unblock()
     {
-        $Value = array(
-            "Blocked" => "0",
-        );
+        $Value = [
+            'Blocked' => '0',
+        ];
 
         $this->db->where('id', $this->uri->segment(3))
-            ->update("users", $Value);
+            ->update('users', $Value);
     }
 
     public function Get_user()
@@ -125,6 +129,7 @@ class Model_leiding extends CI_Model
             ->where('ID', $this->uri->segment(3));
 
         $Query = $this->db->get('users');
+
         return $Query->result();
     }
 
@@ -132,31 +137,30 @@ class Model_leiding extends CI_Model
     {
         $Session = $this->session->userdata('logged_in');
 
-        $Value = array(
-            "Admin_role" => "1",
-        );
+        $Value = [
+            'Admin_role' => '1',
+        ];
 
-        $this->db->where("id", $this->uri->segment(3))
-            ->update("users", $Value);
+        $this->db->where('id', $this->uri->segment(3))
+            ->update('users', $Value);
 
-        $Values = array(
-            "Naam" => $Mailing['Naam'],
-            "Mail" => $Mailing['Email'],
-            "Verhuur" => "1",
-        );
+        $Values = [
+            'Naam'    => $Mailing['Naam'],
+            'Mail'    => $Mailing['Email'],
+            'Verhuur' => '1',
+        ];
 
         $this->db->insert('Notifications', $Values);
-
     }
 
     public function Leiding_downgrade($Mailing)
     {
-        $Value = array(
-            "Admin_role" => "0",
-        );
+        $Value = [
+            'Admin_role' => '0',
+        ];
 
-        $this->db->where("id", $this->uri->segment(3))
-            ->update("users", $Value);
+        $this->db->where('id', $this->uri->segment(3))
+            ->update('users', $Value);
 
         $this->db->where('Mail', $Mailing['Naam'])
             ->delete('users');

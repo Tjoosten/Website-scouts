@@ -15,7 +15,7 @@
   				<p>
   					<div class="row">
   						<div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
-  							<?php if(count($Mailing) == 0): ?>
+  							<?php if (count($Mailing) == 0): ?>
   								<div style="margin: 15px;" class="alert alert-danger">
   									<p> Er zijn nog geen email adressen toegevoegd </p>
   								</div>
@@ -32,7 +32,7 @@
   										</tr>
   									</thead>
   									<tbody>
-  										<?php foreach($Mailing as $Mail): ?>
+  										<?php foreach ($Mailing as $Mail): ?>
   											<tr>
   												<td>
   													<a href="mailto:<?php echo $Mail->Email; ?>">
@@ -41,11 +41,11 @@
   												</td>
 
   												<td>
-  													<?php if($Mail->Vzw == 1): ?>
+  													<?php if ($Mail->Vzw == 1): ?>
   														<a href="<?php echo base_url(); ?>Mailing/Inactief/Vzw/<?php echo $Mail->ID; ?>" class="label label-success">
   															Actief
   														</a>
-  													<?php elseif($Mail->Vzw == 0): ?>
+  													<?php elseif ($Mail->Vzw == 0): ?>
   														<a href="<?php echo base_url(); ?>Mailing/Actief/Vzw/<?php echo $Mail->ID; ?>" class="label label-danger">
   															Inactief
   														</a>
@@ -53,11 +53,11 @@
   												</td>
 
   												<td>
-  													<?php if($Mail->Ouders == 1): ?>
+  													<?php if ($Mail->Ouders == 1): ?>
   														<a href="<?php echo base_url(); ?>Mailing/Inactief/Ouders/<?php echo $Mail->ID; ?>" class="label label-success">
   															Actief
   														</a>
-  													<?php elseif($Mail->Ouders == 0): ?>
+  													<?php elseif ($Mail->Ouders == 0): ?>
   														<a href="<?php echo base_url(); ?>Mailing/Actief/Ouders/<?php echo $Mail->ID; ?>" class="label label-danger">
   															Inactief
   														</a>
@@ -65,11 +65,11 @@
   												</td>
 
   												<td>
-  													<?php if($Mail->Leiding == 1): ?>
+  													<?php if ($Mail->Leiding == 1): ?>
   														<a href="<?php echo base_url(); ?>Mailing/Inactief/Leiding/<?php echo $Mail->ID; ?>" class="label label-success">
   															Actief
   														</a>
-  													<?php elseif($Mail->Leiding == 0): ?>
+  													<?php elseif ($Mail->Leiding == 0): ?>
   														<a href="<?php echo base_url(); ?>Mailing/Actief/Leiding/<?php echo $Mail->ID; ?>" class="label label-danger">
   															Inactief
   														</a>
@@ -77,11 +77,11 @@
   												</td>
 
   												<td>
-  													<?php if($Mail->Oudervergadering == 1): ?>
+  													<?php if ($Mail->Oudervergadering == 1): ?>
   														<a href="<?php echo base_url(); ?>Mailing/Inactief/Oudervergadering/<?php echo $Mail->ID; ?>" class="label label-success">
   															Actief
   														</a>
-  													<?php elseif($Mail->Oudervergadering == 0): ?>
+  													<?php elseif ($Mail->Oudervergadering == 0): ?>
   														<a href="<?php echo base_url(); ?>Mailing/Actief/Oudervergadering/<?php echo $Mail->ID; ?>" class="label label-danger">
   															Inactief
   														</a>

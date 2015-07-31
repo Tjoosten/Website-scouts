@@ -1,44 +1,47 @@
 <?php
 
-require_once("../dompdf_config.inc.php");
+require_once '../dompdf_config.inc.php';
 
 // We check wether the user is accessing the demo locally
-$local = array("::1", "127.0.0.1");
+$local = ['::1', '127.0.0.1'];
 $is_local = in_array($_SERVER['REMOTE_ADDR'], $local);
 
-if ( isset( $_POST["html"] ) && $is_local ) {
+if (isset($_POST['html']) && $is_local) {
+    if (get_magic_quotes_gpc()) {
+        $_POST['html'] = stripslashes($_POST['html']);
+    }
 
-  if ( get_magic_quotes_gpc() )
-    $_POST["html"] = stripslashes($_POST["html"]);
-  
-  $dompdf = new DOMPDF();
-  $dompdf->load_html($_POST["html"]);
-  $dompdf->set_paper($_POST["paper"], $_POST["orientation"]);
-  $dompdf->render();
+    $dompdf = new DOMPDF();
+    $dompdf->load_html($_POST['html']);
+    $dompdf->set_paper($_POST['paper'], $_POST['orientation']);
+    $dompdf->render();
 
-  $dompdf->stream("dompdf_out.pdf", array("Attachment" => false));
+    $dompdf->stream('dompdf_out.pdf', ['Attachment' => false]);
 
-  exit(0);
+    exit(0);
 }
 
 ?>
-<?php include("head.inc"); ?>
+<?php include 'head.inc'; ?>
 
 <a name="demo"> </a>
 <h2>Demo</h2>
 
-<?php if ($is_local) { ?>
+<?php if ($is_local) {
+    ?>
 
 <p>Enter your html snippet in the text box below to see it rendered as a
 PDF: (Note by default, remote stylesheets, images &amp; inline PHP are disabled.)</p>
 
-<form action="<?php echo $_SERVER["PHP_SELF"];?>" method="post">
+<form action="<?php echo $_SERVER['PHP_SELF'];
+    ?>" method="post">
 <p>Paper size and orientation:
 <select name="paper">
 <?php
-foreach ( array_keys(CPDF_Adapter::$PAPER_SIZES) as $size )
-  echo "<option ". ($size == "letter" ? "selected " : "" ) . "value=\"$size\">$size</option>\n";
-?>
+foreach (array_keys(CPDF_Adapter::$PAPER_SIZES) as $size) {
+    echo '<option '.($size == 'letter' ? 'selected ' : '')."value=\"$size\">$size</option>\n";
+}
+    ?>
 </select>
 <select name="orientation">
   <option value="portrait">portrait</option>
@@ -73,12 +76,15 @@ foreach ( array_keys(CPDF_Adapter::$PAPER_SIZES) as $size )
 based browser and are having difficulties loading the sample output, try
 saving it to a file first.)</p>
 
-<?php } else { ?>
+<?php 
+} else {
+    ?>
 
   <p style="color: red;">
     User input has been disabled for remote connections.
   </p>
   
-<?php } ?>
+<?php 
+} ?>
 
-<?php include("foot.inc"); ?>
+<?php include 'foot.inc'; ?>

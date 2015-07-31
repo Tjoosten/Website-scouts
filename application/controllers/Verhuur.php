@@ -1,40 +1,42 @@
-<?php defined('BASEPATH') OR exit('No direct script access allowed');
+<?php
+
+defined('BASEPATH') or exit('No direct script access allowed');
 
 /**
  * Verhuur controller.
  *
  * @author Tim Joosten
  * @license: Closed license
+ *
  * @since 2015
- * @package Website
  *
  * @todo flash session toevoegen voor failed validation.
  */
 class Verhuur extends CI_Controller
 {
-    public $Session     = array();
-    public $Heading     = array();
-    public $Flash       = array();
-    public $Redirect    = array();
-    public $Permissions = array();
+    public $Session = [];
+    public $Heading = [];
+    public $Flash = [];
+    public $Redirect = [];
+    public $Permissions = [];
 
-    function __construct()
+    public function __construct()
     {
         parent::__construct();
         $this->load->model('Model_verhuringen', 'Verhuringen');
         $this->load->model('Model_notifications', 'Not');
 
-        $this->load->library(array('email', 'dompdf_gen', 'form_validation'));
-        $this->load->helper(array('email', 'date', 'text', 'logger', 'download'));
+        $this->load->library(['email', 'dompdf_gen', 'form_validation']);
+        $this->load->helper(['email', 'date', 'text', 'logger', 'download']);
 
-        $this->Session     = $this->session->userdata('logged_in');
+        $this->Session = $this->session->userdata('logged_in');
         $this->Permissions = $this->session->userdata('Permissions');
 
-        $this->Flash    = $this->session->flashdata('Message');
+        $this->Flash = $this->session->flashdata('Message');
         $this->Redirect = $this->config->item('Redirect', 'Not_logged_in');
 
-        $this->Heading = "No permission";
-        $this->Message = "U hebt geen rechten om deze handeling uit te voeren";
+        $this->Heading = 'No permission';
+        $this->Message = 'U hebt geen rechten om deze handeling uit te voeren';
     }
 
     // End constructor
@@ -43,10 +45,10 @@ class Verhuur extends CI_Controller
     {
         $this->output->cache(5);
 
-        $Data = array(
-            'Title' => 'Verhuur',
+        $Data = [
+            'Title'  => 'Verhuur',
             'Active' => '2',
-        );
+        ];
 
         $this->load->view('components/header', $Data);
         $this->load->view('components/navbar', $Data);
@@ -55,15 +57,14 @@ class Verhuur extends CI_Controller
     }
 
     /**
-     * Generates the page for the calendar - Verhuur
+     * Generates the page for the calendar - Verhuur.
      */
     public function verhuur_kalender()
     {
-
-        $data = array(
-            'Title' => 'Verhuur kalender',
+        $data = [
+            'Title'  => 'Verhuur kalender',
             'Active' => '2',
-        );
+        ];
 
         // Database variables. Not an array because it's one item.
         $DB['Verhuringen'] = $this->Verhuringen->Verhuring_kalender();
@@ -79,18 +80,16 @@ class Verhuur extends CI_Controller
      */
     public function verhuur_aanvraag()
     {
-
-        $data = array(
-            'Title' => 'Aanvraag verhuur',
+        $data = [
+            'Title'  => 'Aanvraag verhuur',
             'Active' => '2',
-        );
+        ];
 
         $this->load->view('components/header', $data);
         $this->load->view('components/navbar', $data);
         $this->load->view('client/verhuur_aanvraag');
         $this->load->view('components/footer');
     }
-
 
     /**
      * Voegt een verhuring toe aan de database en stuurt een mail naar de bevoegde personen.
@@ -102,12 +101,12 @@ class Verhuur extends CI_Controller
         $this->form_validation->set_rules('Eind_datum', 'Start Datum', 'trim|required|xss_clean');
         $this->form_validation->set_rules('Email', 'Email', 'trim|required|xss_clean');
 
-        if ($this->form_validation->run() == FALSE) {
-            $Flash = array(
-                'Class' => 'alert alert-danger',
+        if ($this->form_validation->run() == false) {
+            $Flash = [
+                'Class'   => 'alert alert-danger',
                 'Heading' => 'Oh snapp!',
-                'Message' => 'Uw verhuur aanvraag kon niet worden aangemaakt worden. Omdat een of meerdere vereiste velden niet zijn ingevult.'
-            );
+                'Message' => 'Uw verhuur aanvraag kon niet worden aangemaakt worden. Omdat een of meerdere vereiste velden niet zijn ingevult.',
+            ];
 
             $this->session->set_flashdata('Message', $Flash);
             redirect('Verhuur/verhuur_aanvraag');
@@ -119,24 +118,24 @@ class Verhuur extends CI_Controller
                 user_log($this->Session['username'], 'Heeft een verhuring toegevoegd.');
                 redirect('Verhuur/Admin_verhuur');
             } else {
-                $data = array(
+                $data = [
                     // Email variables
-                    'exec' => $this->benchmark->elapsed_time(),
+                    'exec'  => $this->benchmark->elapsed_time(),
                     'Start' => $this->input->post('Start_datum'),
-                    'Eind' => $this->input->post('Eind_datum'),
-                    'GSM' => $this->input->post('GSM'),
+                    'Eind'  => $this->input->post('Eind_datum'),
+                    'GSM'   => $this->input->post('GSM'),
                     'Groep' => $this->input->post('Groep'),
-                    'Mail' => $this->input->post('Email'),
-                );
+                    'Mail'  => $this->input->post('Email'),
+                ];
 
                 $Mailing = $this->Not->Verhuur_mailing();
 
                 foreach ($Mailing as $Output) {
-                    $administrator = $this->load->view('email/verhuur', $data, TRUE);
+                    $administrator = $this->load->view('email/verhuur', $data, true);
 
                     $this->email->from('contact@st-joris-turnhout.be', 'Contact st-joris turnhout');
                     $this->email->to($Output->Mail);
-                    $this->email->set_mailtype("html");
+                    $this->email->set_mailtype('html');
                     $this->email->subject('Nieuwe verhuring');
                     $this->email->message($administrator);
                     $this->email->send();
@@ -144,9 +143,9 @@ class Verhuur extends CI_Controller
                 }
 
                 // Start mail naar client
-                $client = $this->load->view('email/verhuur_client-1', $data, TRUE);
+                $client = $this->load->view('email/verhuur_client-1', $data, true);
 
-                $this->email->set_mailtype("html");
+                $this->email->set_mailtype('html');
                 $this->email->from('Verhuur@st-joris-turnhout.be', 'Verhuur St-joris Turnhout');
                 $this->email->to($this->input->post('Email'));
                 $this->email->subject('Verhuur aanvraag - St-joris, Turnhout');
@@ -166,7 +165,7 @@ class Verhuur extends CI_Controller
     // Admin side
 
     /**
-     * Download de verhuringen in een PDF
+     * Download de verhuringen in een PDF.
      */
     public function Download_verhuringen()
     {
@@ -185,13 +184,12 @@ class Verhuur extends CI_Controller
                 $this->dompdf->set_paper('letter', 'landscape');
                 $this->dompdf->load_html($html);
                 $this->dompdf->render();
-                $this->dompdf->stream("Onbijt_inschrijvingen.pdf");
-
+                $this->dompdf->stream('Onbijt_inschrijvingen.pdf');
             } else {
-                $Data = array(
+                $Data = [
                     'Heading' => $this->Heading,
                     'Message' => $this->Message,
-                );
+                ];
 
                 $this->load->view('errors/html/alert', $Data);
             }
@@ -208,23 +206,23 @@ class Verhuur extends CI_Controller
     {
         if ($this->Session && $this->Permissions) {
             if ($this->Session['Admin'] == 1 || $this->Permission['verhuur'] == 'Y') {
-                $Data = array(
+                $Data = [
                     // Global variables
-                    'Title' => 'Verhuringen',
-                    'Active' => '2',
+                    'Title'        => 'Verhuringen',
+                    'Active'       => '2',
                     'Notification' => $this->Not->Get(),
-                    'Bevestigd' => $this->Verhuringen->Search(),
-                );
+                    'Bevestigd'    => $this->Verhuringen->Search(),
+                ];
 
                 $this->load->view('components/admin_header', $Data);
                 $this->load->view('components/navbar_admin', $Data);
                 $this->load->view('admin/verhuur_index', $Data);
                 $this->load->view('components/footer');
             } else {
-                $Data = array(
+                $Data = [
                     'Heading' => $this->Heading,
                     'Message' => $this->Message,
-                );
+                ];
 
                 $this->load->view('errors/html/alert', $Data);
             }
@@ -235,7 +233,7 @@ class Verhuur extends CI_Controller
     }
 
     /**
-     * Back-end paneel voor de verhuringen
+     * Back-end paneel voor de verhuringen.
      */
     public function Admin_verhuur()
     {
@@ -244,22 +242,22 @@ class Verhuur extends CI_Controller
 
             if ($this->Session['Admin'] == 1 || $this->Permissions['verhuur'] == 'Y') {
                 // Gobal variables
-                $Data = array(
-                    'Title' => 'Verhuringen',
-                    'Active' => '2',
-                    'Bevestigd' => $this->Verhuringen->Verhuur_api(),
+                $Data = [
+                    'Title'        => 'Verhuringen',
+                    'Active'       => '2',
+                    'Bevestigd'    => $this->Verhuringen->Verhuur_api(),
                     'Notification' => $this->Not->Get(),
-                );
+                ];
 
                 $this->load->view('components/admin_header', $Data);
                 $this->load->view('components/navbar_admin', $Data);
                 $this->load->view('admin/verhuur_index', $Data);
                 $this->load->view('components/footer');
             } else {
-                $Data = array(
+                $Data = [
                     'Heading' => $this->Heading,
                     'Message' => $this->Message,
-                );
+                ];
 
                 $this->load->view('errors/html/alerts', $Data);
             }
@@ -273,21 +271,21 @@ class Verhuur extends CI_Controller
     {
         if ($this->Session && $this->Permissions) {
             if ($this->Session['Admin'] == 1 || $this->Permissions['verhuur'] == 'Y') {
-                $data = array(
-                    'Title' => 'Wijzig verhuring',
+                $data = [
+                    'Title'  => 'Wijzig verhuring',
                     'Active' => '2',
-                    'Info' => $this->Verhuringen->verhuur_info(),
-                );
+                    'Info'   => $this->Verhuringen->verhuur_info(),
+                ];
 
                 $this->load->view('components/admin_header', $data);
                 $this->load->view('components/navbar_admin', $data);
                 $this->load->view('admin/Verhuur_edit', $data);
                 $this->load->view('components/footer');
             } else {
-                $Data = array(
+                $Data = [
                     'Heading' => $this->Heading,
                     'Message' => $this->Message,
-                );
+                ];
 
                 $this->load->view('errors/html/alert', $Data);
             }
@@ -295,7 +293,6 @@ class Verhuur extends CI_Controller
             // Geen sessie gevonden, ga naar login pagina
             redirect($this->Redirect, 'refresh');
         }
-
     }
 
     /**
@@ -305,21 +302,21 @@ class Verhuur extends CI_Controller
     {
         if ($this->Session && $this->Permissions) {
             if ($this->Session['Admin'] == 1 || $this->Permissions['verhuur'] == 1) {
-                $Data = array(
-                    'Title' => 'Verhuur Info',
+                $Data = [
+                    'Title'  => 'Verhuur Info',
                     'Active' => '2',
-                    'Info' => $this->Verhuringen->verhuur_info(),
-                );
+                    'Info'   => $this->Verhuringen->verhuur_info(),
+                ];
 
                 $this->load->view('components/admin_header', $Data);
                 $this->load->view('components/navbar_admin', $Data);
                 $this->load->view('admin/verhuur_info', $Data);
                 $this->load->view('components/footer');
             } else {
-                $Data = array(
+                $Data = [
                     'Heading' => $this->Heading,
                     'Message' => $this->Message,
-                );
+                ];
 
                 $this->load->view('errors/html/alert', $Data);
             }
@@ -342,10 +339,10 @@ class Verhuur extends CI_Controller
                 user_log($this->Session['username'], 'Heeft een verhuring gewijzigd.');
                 redirect('Verhuur/Admin_verhuur');
             } else {
-                $Data = array(
+                $Data = [
                     'Heading' => $this->Heading,
                     'Message' => $this->Message,
-                );
+                ];
 
                 $this->load->view('errors/html/alert', $Data);
             }
@@ -356,7 +353,7 @@ class Verhuur extends CI_Controller
     }
 
     /**
-     * Wijzig status naar optie
+     * Wijzig status naar optie.
      */
     public function Change_optie()
     {
@@ -368,10 +365,10 @@ class Verhuur extends CI_Controller
                 user_log($this->Session['username'], 'Heeft de status gewijzigd naar optie.');
                 redirect('Verhuur/Admin_verhuur');
             } else {
-                $Data = array(
+                $Data = [
                     'Heading' => $this->Heading,
                     'Message' => $this->Message,
-                );
+                ];
 
                 $this->load->view('errors/html/alert', $Data);
             }
@@ -382,7 +379,7 @@ class Verhuur extends CI_Controller
     }
 
     /**
-     * Wijzig status naar bevestigd
+     * Wijzig status naar bevestigd.
      */
     public function Change_bevestigd()
     {
@@ -395,10 +392,10 @@ class Verhuur extends CI_Controller
 
                 redirect('Verhuur/Admin_verhuur');
             } else {
-                $Data = array(
+                $Data = [
                     'Heading' => $this->Heading,
                     'Message' => $this->Message,
-                );
+                ];
 
                 $this->load->view('errors/html/alert', $Data);
             }
@@ -409,7 +406,7 @@ class Verhuur extends CI_Controller
     }
 
     /**
-     * Verwijderd een verhuring
+     * Verwijderd een verhuring.
      */
     public function Verhuur_delete()
     {
@@ -421,10 +418,10 @@ class Verhuur extends CI_Controller
                 user_log($this->Session['username'], 'Heeft een verhuring gewijzigd');
                 redirect('Verhuur/Admin_verhuur');
             } else {
-                $Data = array(
+                $Data = [
                     'Heading' => $this->Heading,
                     'Message' => $this->Message,
-                );
+                ];
 
                 $this->load->view('errors/html/alert', $Data);
             }

@@ -1,6 +1,7 @@
 <?php
+
 /**
- * DOMPDF - PHP5 HTML to PDF renderer
+ * DOMPDF - PHP5 HTML to PDF renderer.
  *
  * File: $RCSfile: table_row_frame_decorator.cls.php,v $
  * Created on: 2004-06-07
@@ -31,51 +32,49 @@
  * http://www.dompdf.com/
  *
  * @link http://www.dompdf.com/
+ *
  * @copyright 2004 Benj Carson
  * @author Benj Carson <benjcarson@digitaljunkies.ca>
- * @package dompdf
-
  */
 
 /* $Id: table_row_frame_decorator.cls.php 216 2010-03-11 22:49:18Z ryan.masten $ */
 
 /**
- * Decorates Frames for table row layout
- *
- * @access private
- * @package dompdf
+ * Decorates Frames for table row layout.
  */
-class Table_Row_Frame_Decorator extends Frame_Decorator {
+class Table_Row_Frame_Decorator extends Frame_Decorator
+{
+    // protected members
 
-  // protected members
-  
-  function __construct(Frame $frame, DOMPDF $dompdf) {
-    parent::__construct($frame, $dompdf);
+  public function __construct(Frame $frame, DOMPDF $dompdf)
+  {
+      parent::__construct($frame, $dompdf);
   }
-  
-  //........................................................................ 
+
+  //........................................................................
 
   /**
    * Remove all non table-cell frames from this row and move them after
    * the table.
    */
-  function normalise() {
+  public function normalise()
+  {
 
     // Find our table parent
     $p = Table_Frame_Decorator::find_parent_table($this);
-    
-    $erroneous_frames = array();
-    foreach ($this->get_children() as $child) {      
-      $display = $child->get_style()->display;
 
-      if ( $display !== "table-cell" )
-        $erroneous_frames[] = $child;
-    }
-    
+      $erroneous_frames = [];
+      foreach ($this->get_children() as $child) {
+          $display = $child->get_style()->display;
+
+          if ($display !== 'table-cell') {
+              $erroneous_frames[] = $child;
+          }
+      }
+
     //  dump the extra nodes after the table.
-    foreach ($erroneous_frames as $frame) 
-      $p->move_after($frame);
+    foreach ($erroneous_frames as $frame) {
+        $p->move_after($frame);
+    }
   }
-  
-  
 }

@@ -1,4 +1,4 @@
-<?php  echo '<?xml version="1.0" encoding="' . $encoding . '"?>' . "\n"; ?>
+<?php  echo '<?xml version="1.0" encoding="'.$encoding.'"?>'."\n"; ?>
 <rss version="2.0"
   xmlns:dc="http://purl.org/dc/elements/1.1/"
   xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
@@ -15,10 +15,10 @@
   <dc:language><?php echo $page_language; ?></dc:language>
   <dc:creator><?php echo $creator_email; ?></dc:creator>
 
-  <dc:rights>Copyright <?php echo gmdate("Y", time()); ?></dc:rights>
+  <dc:rights>Copyright <?php echo gmdate('Y', time()); ?></dc:rights>
   <admin:generatorAgent rdf:resource="http://www.codeigniter.com/" />
 
-  <?php foreach($Activiteiten as $Activiteit): ?>
+  <?php foreach ($Activiteiten as $Activiteit): ?>
 
     <item>
 

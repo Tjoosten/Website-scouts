@@ -1,28 +1,30 @@
-<?php defined('BASEPATH') OR exit('No direct script access allowed');
+<?php
+
+defined('BASEPATH') or exit('No direct script access allowed');
 
 /**
- * Takken controller
+ * Takken controller.
  *
- * @package Website
  * @copyright Tim Joosten
+ *
  * @since 2015
  */
 class Takken extends CI_Controller
 {
     // Constructor
-    public $Session = array();
-    public $Permissions = array();
-    public $Redirect = array();
+    public $Session = [];
+    public $Permissions = [];
+    public $Redirect = [];
 
-    function __construct()
+    public function __construct()
     {
         parent::__construct();
         $this->load->model('Model_Takken', 'Takken');
         $this->load->model('Model_activiteiten', 'Activiteiten');
 
-        $this->load->helper(array('text', 'xml'));
+        $this->load->helper(['text', 'xml']);
 
-        $this->Session     = $this->session->userdata('logged_in');
+        $this->Session = $this->session->userdata('logged_in');
         $this->Permissions = $this->session->userdata('Permissions');
 
         $this->Redirect = $this->config->item('Redirect', 'Not_logged_in');
@@ -30,13 +32,13 @@ class Takken extends CI_Controller
     // End constructor
 
     /**
-     * Output: Takken pagina
+     * Output: Takken pagina.
      */
     public function index()
     {
         // Variable(s)
         // General
-        $Data = array(
+        $Data = [
             'Title'      => 'Takken',
             'Active'     => '1',
             'Limit'      => '40',
@@ -46,7 +48,7 @@ class Takken extends CI_Controller
             'Givers'     => $this->Takken->Tak_info('Givers'),
             'Jins'       => $this->Takken->Tak_info('Jins'),
             'Leiding'    => $this->Takken->Tak_info('Leiding'),
-        );
+        ];
         // == END Variables == //
 
         // View(s)
@@ -57,11 +59,11 @@ class Takken extends CI_Controller
     }
 
     /**
-     * Rss Feed controller
+     * Rss Feed controller.
      */
     public function Feed()
     {
-        $Data = array(
+        $Data = [
             'feed_name'        => 'Activiteiten RSS feed',
             'encoding'         => 'utf-8',
             'feed_url'         => 'http://www.st-joris-turnhout.be/index.php/takken/Feed',
@@ -69,9 +71,9 @@ class Takken extends CI_Controller
             'page_language'    => 'en-en',
             'creator_email'    => 'webmaster@st-joris-turnhout.be',
             'Activiteiten'     => $this->Activiteiten->Kapoenen(5),
-        );
+        ];
 
-        header("Content-Type: application/rss+xml");
+        header('Content-Type: application/rss+xml');
         $this->load->view('client/rss', $Data);
     }
 
@@ -82,16 +84,16 @@ class Takken extends CI_Controller
     {
         // Variable(s)
         // General
-        $Data = array(
+        $Data = [
             'Title'  => 'De Kapoenen',
             'Active' => '1',
-        );
+        ];
 
         // Database
-        $DB = array(
+        $DB = [
             'Beschrijving' => $this->Takken->Tak_info('Kapoenen'),
             'Activiteiten' => $this->Activiteiten->Activiteiten('5', 'Kapoenen'),
-        );
+        ];
         // == END Variables == //
 
         // View(s)
@@ -101,23 +103,21 @@ class Takken extends CI_Controller
         $this->load->view('components/footer');
     }
 
-
     /**
      * Outputs Welpen page.
      */
     public function Welpen()
     {
-
-        $Data = array(
+        $Data = [
             'Title'  => 'De Welpen',
             'Active' => '1',
-        );
+        ];
 
         // Database
-        $DB = array(
+        $DB = [
             'Beschrijving' => $this->Takken->Tak_info('Welpen'),
             'Activiteiten' => $this->Activiteiten->Activiteiten('5', 'Welpen'),
-        );
+        ];
         // == END Variables == //
 
         // View(s)
@@ -131,16 +131,16 @@ class Takken extends CI_Controller
     {
         // Variable(s)
         // General
-        $Data = array(
+        $Data = [
             'Title'  => 'De Jong-Givers',
             'Active' => '1',
-        );
+        ];
 
         // Database
-        $DB = array(
+        $DB = [
             'Beschrijving' => $this->Takken->Tak_info('JongGivers'),
             'Activiteiten' => $this->Activiteiten->Activiteiten('5', 'JongGivers'),
-        );
+        ];
         // == END Variables == //
 
         // View(s)
@@ -151,22 +151,22 @@ class Takken extends CI_Controller
     }
 
     /**
-     * Output: Givers pagina
+     * Output: Givers pagina.
      */
     public function Givers()
     {
         // Variable(s)
         // General
-        $Data = array(
+        $Data = [
             'Title'  => 'De Givers',
             'Active' => '1',
-        );
+        ];
 
         // Database
-        $DB = array(
+        $DB = [
             'Beschrijving' => $this->Takken->Tak_info('Givers'),
             'Activiteiten' => $this->Activiteiten->Activiteiten('5', 'Givers'),
-        );
+        ];
         // == END Variables == //
 
         // View(s)
@@ -181,15 +181,15 @@ class Takken extends CI_Controller
      */
     public function Jins()
     {
-        $Data = array(
+        $Data = [
             'Title'  => 'De Jins',
             'Active' => '1',
-        );
+        ];
 
-        $DB = array(
+        $DB = [
             'Beschrijving' => $this->Takken->Tak_info('Jins'),
             'Activiteiten' => $this->Activiteiten->Activiteiten('5', 'Jins'),
-        );
+        ];
 
         $this->load->view('components/header', $Data);
         $this->load->view('components/navbar', $Data);
@@ -202,12 +202,11 @@ class Takken extends CI_Controller
      */
     public function Leiding()
     {
-        $Data = array(
+        $Data = [
             'Title'        => 'De Leiding',
             'Active'       => '1',
             'Beschrijving' => $this->Takken->Tak_info('Leiding'),
-        );
-
+        ];
 
         $this->load->view('components/header', $Data);
         $this->load->view('components/navbar', $Data);

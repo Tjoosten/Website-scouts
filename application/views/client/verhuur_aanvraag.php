@@ -28,7 +28,7 @@
 			<div class="panel panel-default border">
 				<div class="panel-body">
 
-					<?php if($this->Flash): ?>
+					<?php if ($this->Flash): ?>
 						<div class="row">
 							<div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
 								<div class="<?php echo  $this->Flash['Class']; ?>">

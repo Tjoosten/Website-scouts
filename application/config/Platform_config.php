@@ -1,21 +1,21 @@
 <?php
 
-  /**
-   * ---------------------------------------------------
-   * Config variables (http://www.st-joris-turnhout.be)
-   * ---------------------------------------------------
-   *
-   * The config variables for http://www.st-joris-turnhout.be
-   *
-   * Table of contents:
-   * --------------------
-   * 1) Mail variables
-   * 2) Site variables
-   *
-   * @author  Tim Joosten
-   * @package http://www.st-joris-turnhout.be
-   * @license (Closed license), Tim Joosten
-   */
+
+   /**
+    * ---------------------------------------------------
+    * Config variables (http://www.st-joris-turnhout.be)
+    * ---------------------------------------------------.
+    *
+    * The config variables for http://www.st-joris-turnhout.be
+    *
+    * Table of contents:
+    * --------------------
+    * 1) Mail variables
+    * 2) Site variables
+    *
+    * @author  Tim Joosten
+    * @license (Closed license), Tim Joosten
+    */
 
    /**
     * ---------------------------------------------------
@@ -30,13 +30,12 @@
     * $config['Mail']['Webmaster']  = The E-mail address of the webmaster.
     * $config['Mail']['Verhuur']    = The E-mail address for the rentals.
     */
-
-   $config['Mail'] = array(
+   $config['Mail'] = [
      'Webmaster' => 'webmaster@st-joris-turnhout.be',
      'Verhuur'   => 'verhuur@st-joris-turnhout.be',
-   );
+   ];
 
-   /**
+   /*
     * ---------------------------------------------------
     * 2) Site variables
     * ---------------------------------------------------
@@ -49,11 +48,11 @@
     *
     */
 
-    $config['Site'] = array(
+    $config['Site'] = [
       'siteName' => 'St-Joris',
-    );
+    ];
 
-    /**
+    /*
      * --------------------------------------------------
      * 3) Redirect variables
      * --------------------------------------------------
@@ -66,6 +65,6 @@
      *
      */
 
-    $config['Redirect'] = array(
+    $config['Redirect'] = [
       'Not_logged_in' => 'Admin',
-    );
+    ];

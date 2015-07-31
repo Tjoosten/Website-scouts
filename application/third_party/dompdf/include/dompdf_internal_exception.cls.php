@@ -1,6 +1,7 @@
 <?php
+
 /**
- * DOMPDF - PHP5 HTML to PDF renderer
+ * DOMPDF - PHP5 HTML to PDF renderer.
  *
  * File: $RCSfile: dompdf_internal_exception.cls.php,v $
  * Created on: 2004-08-07
@@ -31,29 +32,26 @@
  * http://www.dompdf.com/
  *
  * @link http://www.dompdf.com/
+ *
  * @copyright 2004 Benj Carson
  * @author Benj Carson <benjcarson@digitaljunkies.ca>
- * @package dompdf
-
  */
 
 /* $Id: dompdf_internal_exception.cls.php 216 2010-03-11 22:49:18Z ryan.masten $ */
 
 /**
- * Exception thrown by DOMPDF classes for internal errors
- *
- * @package dompdf
+ * Exception thrown by DOMPDF classes for internal errors.
  */
-class DOMPDF_Internal_Exception extends Exception {
-
-  /**
-   * Class constructor
+class DOMPDF_Internal_Exception extends Exception
+{
+    /**
+   * Class constructor.
    *
    * @param string $message Error message
    * @param int $code Error code
    */
-  function __construct($message = NULL, $code = 0) {
-    parent::__construct($message, $code);
+  public function __construct($message = null, $code = 0)
+  {
+      parent::__construct($message, $code);
   }
-
 }

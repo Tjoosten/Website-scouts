@@ -1,8 +1,7 @@
 <?php
 
-Class Model_inschrijvingen extends CI_Model
+class Model_inschrijvingen extends CI_Model
 {
-
     public function __construct()
     {
         parent::__construct();
@@ -14,18 +13,21 @@ Class Model_inschrijvingen extends CI_Model
             ->where('Status', '1');
 
         $Query = $this->db->get('Ontbijt_datums');
+
         return $Query->Result();
     }
 
     public function Get_Dates_Full()
     {
         $Query = $this->db->get('Ontbijt_datums');
+
         return $Query->result();
     }
 
     public function Download()
     {
         $Query = $this->db->get('Inschrijvingen_ontbijt');
+
         return $Query->result();
     }
 
@@ -38,30 +40,31 @@ Class Model_inschrijvingen extends CI_Model
             ->where('Maand', $this->uri->segment(4));
 
         $Query = $this->db->get('Inschrijvingen_ontbijt');
+
         return $Query->result();
     }
 
     /**
-     * Start inschrijvingen in de database
+     * Start inschrijvingen in de database.
      */
     public function startInschrijvingOntbijt()
     {
-        $Value = array(
-            "Status" => "1",
-        );
+        $Value = [
+            'Status' => '1',
+        ];
 
         $this->db->where('ID', $this->uri->segment(3))
             ->update('Ontbijt_datums', $Value);
     }
 
     /**
-     * Stop inschrijvingen in de database
+     * Stop inschrijvingen in de database.
      */
     public function Stop_inschrijving_ontbijt()
     {
-        $Value = array(
-            "Status" => "0",
-        );
+        $Value = [
+            'Status' => '0',
+        ];
 
         $this->db->where('ID', $this->uri->segment(3))
             ->update('Ontbijt_datums', $Value);
@@ -75,6 +78,7 @@ Class Model_inschrijvingen extends CI_Model
         $this->db->select();
 
         $Query = $this->db->get('Inschrijvingen_ontbijt');
+
         return $Query->result();
     }
 
@@ -85,17 +89,17 @@ Class Model_inschrijvingen extends CI_Model
     {
         // Calculate bedrag
         $Aantal = $this->input->post('Personen');
-        $Prijs = "3";
+        $Prijs = '3';
         $Bedrag = $Aantal * $Prijs;
 
-        $Values = array(
-            "Naam"            => $this->input->post('Naam'),
-            "Voornaam"        => $this->input->post('Voornaam'),
-            "Email"           => $this->input->post('Email'),
-            "Maand"           => $this->input->post('Maand'),
-            "Aantal_Personen" => $this->input->post('Personen'),
-            "Te_betalen"      => $Bedrag,
-        );
+        $Values = [
+            'Naam'            => $this->input->post('Naam'),
+            'Voornaam'        => $this->input->post('Voornaam'),
+            'Email'           => $this->input->post('Email'),
+            'Maand'           => $this->input->post('Maand'),
+            'Aantal_Personen' => $this->input->post('Personen'),
+            'Te_betalen'      => $Bedrag,
+        ];
 
         $this->db->insert('Inschrijvingen_ontbijt', $Values);
     }
@@ -105,6 +109,5 @@ Class Model_inschrijvingen extends CI_Model
      */
     public function deleteDb()
     {
-
     }
 }

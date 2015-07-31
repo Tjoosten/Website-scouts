@@ -1,16 +1,19 @@
-<?php if (!defined('BASEPATH')) exit('No direct script access allowed');
+<?php
+
+if (!defined('BASEPATH')) {
+    exit('No direct script access allowed');
+}
 
 /**
- * Issue reporter (Webplatfrom => GitHub)
+ * Issue reporter (Webplatfrom => GitHub).
  *
  * @author Tim Joosten
  * @copyright Closed License, Tim Joosten
- * @package Website
  */
 class Issue extends CI_Controller
 {
-    public $Session     = array();
-    public $Permissions = array();
+    public $Session = [];
+    public $Permissions = [];
 
     /**
      * Constructor for Issues.
@@ -19,10 +22,10 @@ class Issue extends CI_Controller
     {
         parent::__construct();
         $this->Permissions = $this->session->userdata('Permissions');
-        $this->Session     = $this->session->userdata('logged_in');
+        $this->Session = $this->session->userdata('logged_in');
 
-        $this->load->library(array('email'));
-        $this->load->helper(array('logger'));
+        $this->load->library(['email']);
+        $this->load->helper(['logger']);
     }
 
     /**
@@ -31,10 +34,10 @@ class Issue extends CI_Controller
     public function Index()
     {
         if ($this->Session) {
-            $Data = array(
-                'Title' => 'Rapporteer een fout!',
+            $Data = [
+                'Title'  => 'Rapporteer een fout!',
                 'Active' => '145',
-            );
+            ];
 
             $this->load->view('components/admin_header', $Data);
             $this->load->view('components/navbar_admin');

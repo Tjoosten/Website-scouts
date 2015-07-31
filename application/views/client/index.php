@@ -98,16 +98,16 @@
               </li>
          	</ul>
 
-					<?php if($this->Session): ?>
+					<?php if ($this->Session): ?>
 						<ul class="nav navbar-nav navbar-right">
 							<li>
-								<a title="Go to backend" href="<?php echo base_url(). 'Admin'; ?>">
+								<a title="Go to backend" href="<?php echo base_url().'Admin'; ?>">
 									<span class="fa fa-wrench Icon-color"></span> Backend
 								</a>
 							</li>
 
 							<li>
-								<a title="logout" href="<?php echo base_url(). 'backend/Logout'; ?>">
+								<a title="logout" href="<?php echo base_url().'backend/Logout'; ?>">
 									<span class="fa fa-power-off Icon-color"></span> Logout
 								</a>
 							</li>
@@ -141,7 +141,7 @@
       </div>
       <hr>
       <footer>
-        <p>© <?php echo date("Y")?> - Sint-Joris Turnhout</p>
+        <p>© <?php echo date('Y')?> - Sint-Joris Turnhout</p>
       </footer>
     </div>
 	</body>

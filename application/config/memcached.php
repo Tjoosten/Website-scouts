@@ -1,6 +1,7 @@
 <?php
+
 /**
- * CodeIgniter
+ * CodeIgniter.
  *
  * An open source application development framework for PHP 5.2.4 or newer
  *
@@ -16,15 +17,15 @@
  * through the world wide web, please send an email to
  * licensing@ellislab.com so we can send you a copy immediately.
  *
- * @package		CodeIgniter
  * @author		EllisLab Dev Team
  * @copyright	Copyright (c) 2008 - 2014, EllisLab, Inc. (http://ellislab.com/)
  * @license		http://opensource.org/licenses/AFL-3.0 Academic Free License (AFL 3.0)
+ *
  * @link		http://codeigniter.com
  * @since		Version 2.0
  * @filesource
  */
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
 /*
 | -------------------------------------------------------------------------
@@ -35,13 +36,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |	See: http://codeigniter.com/user_guide/libraries/caching.html#memcached
 |
 */
-$config = array(
-	'default' => array(
-		'hostname' => '127.0.0.1',
-		'port'     => '11211',
-		'weight'   => '1',
-	),
-);
+$config = [
+    'default' => [
+        'hostname' => '127.0.0.1',
+        'port'     => '11211',
+        'weight'   => '1',
+    ],
+];
 
 /* End of file memcached.php */
 /* Location: ./application/config/memcached.php */

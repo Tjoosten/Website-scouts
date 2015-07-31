@@ -1,14 +1,14 @@
 <?php
 
-Class Model_logger extends CI_Model
+class Model_logger extends CI_Model
 {
     public function Insert($Filepath)
     {
-        $Values = array(
-            'Date'     => date("Y/m/d"),
+        $Values = [
+            'Date'     => date('Y/m/d'),
             'Month'    => date('m'),
             'Log_file' => $Filepath,
-        );
+        ];
 
         $this->db->insert('Log_archive', $Values);
     }
@@ -20,6 +20,7 @@ Class Model_logger extends CI_Model
             ->from('Log_archive');
 
         $Query = $this->db->get();
+
         return $Query->result();
     }
 }

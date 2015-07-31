@@ -27,16 +27,16 @@
 							<div class="col-md-6">
 								<span class="pull-right">
 
-										<?php foreach($Notification as $Result) {
-											$Val = $Result->Verhuur;
-										}
-										?>
+										<?php foreach ($Notification as $Result) {
+    $Val = $Result->Verhuur;
+}
+                                        ?>
 
-										<?php if($Val== 1): ?>
+										<?php if ($Val == 1): ?>
 											<a role="button" class="btn btn-success" title="Notificaties is ingeschakeld" href="<?php echo base_url(); ?>/Notifications/Verhuur_uit">
 												Notificaties <span class="badge">Aan</span>
 											</a>
-										<?php elseif($Val == 0): ?>
+										<?php elseif ($Val == 0): ?>
 											<a role="button" class="btn btn-danger" title="Notificaties zijn uitgeschakeld" href="<?php echo base_url(); ?>/Notifications/Verhuur_aan">
 												Notificaties <span class="badge">Uit</span>
 											</a>
@@ -67,17 +67,17 @@
 								</tr>
 							</thead>
 							<tbody>
-								<?php foreach($Bevestigd as $Output): ?>
+								<?php foreach ($Bevestigd as $Output): ?>
 									<tr>
 										<td><code>#<?php echo $Output->ID; ?></code></td>
 										<td><?php echo date('d-m-Y', $Output->Start_datum); ?> / <?php echo date('d-m-Y', $Output->Eind_datum); ?></td>
 
 										<td>
-											<?php if($Output->Status == 0): ?>
+											<?php if ($Output->Status == 0): ?>
 												<span class="label label-danger"> Nieuwe aanvraag! </span>
-											<?php elseif($Output->Status == 1): ?>
+											<?php elseif ($Output->Status == 1): ?>
 												<span class="label label-warning"> Optie! </span>
-											<?php elseif($Output->Status == 2): ?>
+											<?php elseif ($Output->Status == 2): ?>
 												<span class="label label-success"> Bevestigd!</span>
 											<?php endif; ?>
 										</td>
@@ -85,7 +85,7 @@
 										<td><?php echo $Output->Groep; ?></td>
 
 										<td>
-											<?php if(valid_email($Output->Email)): ?>
+											<?php if (valid_email($Output->Email)): ?>
 												<a href="mailto:<?php echo $Output->Email; ?>">
 													<?php echo $Output->Email; ?>
 												</a>
@@ -111,7 +111,7 @@
 													</div>
 
 												<div class="btn-group">
-													<?php if($Output->Status == 1): ?>
+													<?php if ($Output->Status == 1): ?>
 														<a disabled class="btn btn-xs btn-danger" href="<?php echo base_url(); ?>Verhuur/Change_optie/<?php echo $Output->ID; ?>">
 															<span class="octicon octicon-issue-opened"></span>
 														</a>
@@ -119,7 +119,7 @@
 														<a class="btn btn-xs btn-danger" href="<?php echo base_url(); ?>Verhuur/Change_bevestigd/<?php echo $Output->ID; ?>">
 															<span class="octicon octicon-issue-closed"></span>
 														</a>
-													<?php elseif($Output->Status == 2): ?>
+													<?php elseif ($Output->Status == 2): ?>
 														<a class="btn btn-xs btn-danger" href="<?php echo base_url(); ?>Verhuur/Change_optie/<?php echo $Output->ID; ?>">
 															<span class="octicon octicon-issue-opened"></span>
 														</a>
@@ -127,7 +127,7 @@
 														<a disabled class="btn btn-xs btn-danger" href="<?php echo base_url(); ?>Verhuur/Change_bevestigd/<?php echo $Output->ID; ?>">
 															<span class="octicon octicon-issue-closed"></span>
 														</a>
-													<?php elseif($Output->Status == 0): ?>
+													<?php elseif ($Output->Status == 0): ?>
 														<a class="btn btn-xs btn-danger" href="<?php echo base_url(); ?>Verhuur/Change_optie/<?php echo $Output->ID; ?>">
 															<span class="octicon octicon-issue-opened"></span>
 														</a>

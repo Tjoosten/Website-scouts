@@ -1,6 +1,7 @@
 <?php
+
 /**
- * DOMPDF - PHP5 HTML to PDF renderer
+ * DOMPDF - PHP5 HTML to PDF renderer.
  *
  * File: $RCSfile: php_evaluator.cls.php,v $
  * Created on: 2004-07-12
@@ -31,38 +32,39 @@
  * http://www.dompdf.com/
  *
  * @link http://www.dompdf.com/
+ *
  * @copyright 2004 Benj Carson
  * @author Benj Carson <benjcarson@digitaljunkies.ca>
- * @package dompdf
  */
 
 /* $Id: javascript_embedder.cls.php 291 2010-08-02 20:55:23Z fabien.menager $ */
 
 /**
- * Embeds Javascript into the PDF document
- *
- * @access private
- * @package dompdf
+ * Embeds Javascript into the PDF document.
  */
-class Javascript_Embedder {
-  
-  /**
+class Javascript_Embedder
+{
+    /**
    * @var DOMPDF
    */
   protected $_dompdf;
 
-  function __construct(DOMPDF $dompdf) {
-    $this->_dompdf = $dompdf;
-  }
+    public function __construct(DOMPDF $dompdf)
+    {
+        $this->_dompdf = $dompdf;
+    }
 
-  function insert($code) {
-    $this->_dompdf->get_canvas()->javascript($code);
-  }
+    public function insert($code)
+    {
+        $this->_dompdf->get_canvas()->javascript($code);
+    }
 
-  function render($frame) {
-    if ( !DOMPDF_ENABLE_JAVASCRIPT )
-      return;
-      
-    $this->insert($frame->get_node()->nodeValue);
-  }
+    public function render($frame)
+    {
+        if (!DOMPDF_ENABLE_JAVASCRIPT) {
+            return;
+        }
+
+        $this->insert($frame->get_node()->nodeValue);
+    }
 }

@@ -1,6 +1,7 @@
 <?php
+
 /**
- * DOMPDF - PHP5 HTML to PDF renderer
+ * DOMPDF - PHP5 HTML to PDF renderer.
  *
  * File: $RCSfile: null_frame_reflower.cls.php,v $
  * Created on: 2004-07-12
@@ -31,24 +32,25 @@
  * http://www.dompdf.com/
  *
  * @link http://www.dompdf.com/
+ *
  * @copyright 2004 Benj Carson
  * @author Benj Carson <benjcarson@digitaljunkies.ca>
- * @package dompdf
-
  */
 
 /* $Id: null_frame_reflower.cls.php 357 2011-01-30 20:56:46Z fabien.menager $ */
 
 /**
- * Dummy reflower
- *
- * @access private
- * @package dompdf
+ * Dummy reflower.
  */
-class Null_Frame_Reflower extends Frame_Reflower {
+class Null_Frame_Reflower extends Frame_Reflower
+{
+    public function __construct(Frame $frame)
+    {
+        parent::__construct($frame);
+    }
 
-  function __construct(Frame $frame) { parent::__construct($frame); }
-
-  function reflow(Frame_Decorator $block = null) { return; }
-  
+    public function reflow(Frame_Decorator $block = null)
+    {
+        return;
+    }
 }
