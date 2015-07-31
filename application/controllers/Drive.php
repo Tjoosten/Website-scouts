@@ -93,7 +93,7 @@
 		 * Functie voor het downloaden van een bestand uit de drive.
 		 */
 		public function Download() {
-			if($this->Session) {
+			if($this->Session && $this->Permissions['drive'] == 'Y') {
 				$name = $this->uri->segment(3);
 				$data = file_get_contents('./Drive/'. $name);
 				force_download($name, $data);
@@ -106,7 +106,7 @@
 		 * Functie voor het verwijderen van een file uit de drive.
 		 */
 		public function Delete($file) {
-			if($this->Session) {
+			if($this->Session && $this->Permissions['drive'] == 'Y') {
 				user_log($this->Session['username'], 'Heeft een bestand verwijderd');
 
 				if(file_exists('./Drive/'. $file)) {
