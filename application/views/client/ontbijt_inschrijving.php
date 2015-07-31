@@ -28,7 +28,7 @@
 			    <div style="margin-top: -20px;" class="page-header">
                 		   <h2 style="margin-bottom: -5px;"> Inschrijving ontbijt </h2>
               		</div>
-              		<?php if(count($Datums) == 0 ): ?>
+              		<?php if (count($Datums) == 0): ?>
               			<div class="alert alert-danger">
               				<p> Onze excuses! U kunt zich momenteel niet inschrijven voor het ontbijt. :( </p>
               			</div>
@@ -48,7 +48,7 @@
 
               				<label for="04"> Maand </label>
               				<select style="width: 35%;" class="form-control" id="04" name="Maand">
-              					<?php foreach($Datums as $Output): ?>
+              					<?php foreach ($Datums as $Output): ?>
               						<option value="<?php echo $Output->Month_nr; ?>">
               							<?php echo $Output->Month; ?>
               						</option>

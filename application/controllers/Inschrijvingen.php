@@ -1,33 +1,34 @@
-<?php defined('BASEPATH') OR exit('No direct script access allowed');
+<?php
+
+defined('BASEPATH') or exit('No direct script access allowed');
 
 /**
- * Inschrijvingen controller
+ * Inschrijvingen controller.
  *
- * @package Website
  * @copyright Tim Joosten
+ *
  * @since 2015
  */
 class Inschrijvingen extends CI_Controller
 {
+    public $Error_heading = [];
+    public $Error_message = [];
+    public $Session = [];
+    public $Permissions = [];
+    public $Redirect = [];
 
-    public $Error_heading = array();
-    public $Error_message = array();
-    public $Session = array();
-    public $Permissions = array();
-    public $Redirect = array();
-
-    function __construct()
+    public function __construct()
     {
         parent::__construct();
         // Load model
         $this->load->dbutil();
-        $this->load->library(array('Email', 'dompdf_gen'));
-        $this->load->helper(array('Email', 'logger'));
+        $this->load->library(['Email', 'dompdf_gen']);
+        $this->load->helper(['Email', 'logger']);
         $this->load->model('Model_inschrijvingen', 'Inschrijving');
 
         // Variables
-        $this->Error_heading = "No Permission";
-        $this->Error_message = "Hebt heb geen rechten om deze handeling uit te voeren";
+        $this->Error_heading = 'No Permission';
+        $this->Error_message = 'Hebt heb geen rechten om deze handeling uit te voeren';
 
         $this->Session = $this->session->userdata('logged_in');
         $this->Permissions = $this->session->userdata('Permissions');
@@ -39,10 +40,10 @@ class Inschrijvingen extends CI_Controller
     // Client side
     public function Ontbijt_beschrijving()
     {
-        $Data = array(
-            'Title' => 'Inschrijvingen ontbijt',
+        $Data = [
+            'Title'  => 'Inschrijvingen ontbijt',
             'Active' => '10',
-        );
+        ];
 
         $this->load->view('components/header', $Data);
         $this->load->view('components/navbar', $Data);
@@ -52,11 +53,11 @@ class Inschrijvingen extends CI_Controller
 
     public function Ontbijt_inschrijving()
     {
-        $Data = array(
-            'Title' => 'Inschrijving ontbijt',
+        $Data = [
+            'Title'  => 'Inschrijving ontbijt',
             'Active' => '4',
             'Datums' => $this->Inschrijving->Get_dates(),
-        );
+        ];
 
         $this->load->view('components/header', $Data);
         $this->load->view('components/navbar', $Data);
@@ -67,26 +68,25 @@ class Inschrijvingen extends CI_Controller
     // Administrators side
     public function Admin_ontbijt()
     {
-        $Data = array(
-            'Title' => 'Admin inschrijvingen ontbijt',
+        $Data = [
+            'Title'  => 'Admin inschrijvingen ontbijt',
             'Active' => '4',
-        );
+        ];
 
         if ($this->Session) {
             if ($this->Session['Admin'] == 1) {
                 // Database values
-                $DB = array(
+                $DB = [
                     'Ontbijt_datums' => $this->Inschrijving->Get_Dates_Full(),
                     'Inschrijvingen' => $this->Inschrijving->Inschrijvingen_All(),
-                    'Datums' => $this->Inschrijving->Get_dates(),
-                );
+                    'Datums'         => $this->Inschrijving->Get_dates(),
+                ];
 
                 $this->load->view('components/admin_header', $Data);
                 $this->load->view('components/navbar_admin', $Data);
                 $this->load->view('admin/inschrijvingen_ontbijt', $DB);
                 $this->load->view('components/footer');
             } else {
-
             }
         } else {
             redirect($this->Redirect, 'Refresh');
@@ -107,22 +107,22 @@ class Inschrijvingen extends CI_Controller
             $this->Inschrijving->InsertDB();
 
             // Variables User => Mail
-            $Input = array(
-                'Naam' => $this->input->post('Naam'),
+            $Input = [
+                'Naam'     => $this->input->post('Naam'),
                 'Voornaam' => $this->input->post('Voornaam'),
-                'Email' => $this->input->post('Email'),
+                'Email'    => $this->input->post('Email'),
                 'Personen' => $this->input->post('Personen'),
-            );
+            ];
 
             // View voor email
-            $mail_ontbijt = $this->load->view('email/ontbijt_inschrijving', $Input, TRUE);
+            $mail_ontbijt = $this->load->view('email/ontbijt_inschrijving', $Input, true);
 
             // Mail voor bevestiging
             $this->email->from('contact@st-joris-turnhout.be', 'Contact st-joris turnhout');
             $this->email->to($this->input->post('Email'));
             $this->email->subject('Bevestiging inschrijving ontbijt');
             $this->email->message($mail_ontbijt);
-            $this->email->set_mailtype("html");
+            $this->email->set_mailtype('html');
             $this->email->send();
 
             $this->email->clear();
@@ -141,10 +141,10 @@ class Inschrijvingen extends CI_Controller
                 user_log($this->Session['username'], 'Heeft een maand opengezet');
                 redirect('Inschrijvingen/Admin_ontbijt');
             } else {
-                $Data = array(
+                $Data = [
                     'Heading' => $this->Error_heading,
                     'Message' => $this->Error_message,
-                );
+                ];
 
                 $this->load->view('errors/html/alert', $Data);
             }
@@ -171,14 +171,14 @@ class Inschrijvingen extends CI_Controller
 
                 $this->dompdf->load_html($html);
                 $this->dompdf->render();
-                $this->dompdf->stream("inschrijvingen.pdf");
+                $this->dompdf->stream('inschrijvingen.pdf');
 
                 redirect('Inschrijvingen/Admin_ontbijt');
             } else {
-                $Data = array(
+                $Data = [
                     'Heading' => $this->Error_heading,
                     'Message' => $this->Error_message,
-                );
+                ];
 
                 $this->load->view('errors/html/alert', $Data);
             }
@@ -189,7 +189,7 @@ class Inschrijvingen extends CI_Controller
     }
 
     /**
-     * Download de inschrijvingen voor het ontbijt / brunch
+     * Download de inschrijvingen voor het ontbijt / brunch.
      */
     public function Download_ontbijt()
     {
@@ -204,11 +204,11 @@ class Inschrijvingen extends CI_Controller
         // Convert to PDF
         $this->dompdf->load_html($html);
         $this->dompdf->render();
-        $this->dompdf->stream("Onbijt_inschrijvingen.pdf");
+        $this->dompdf->stream('Onbijt_inschrijvingen.pdf');
     }
 
     /**
-     * Verwijder een inschrijving
+     * Verwijder een inschrijving.
      */
     public function Delete_inschrijving()
     {
@@ -220,10 +220,10 @@ class Inschrijvingen extends CI_Controller
                 user_log($this->Session['username'], 'Heeft een inschrijving verwijderd.');
                 redirect('Admin_ontbijt');
             } else {
-                $Data = array(
+                $Data = [
                     'Heading' => $this->Error_heading,
                     'Message' => $this->Error_message,
-                );
+                ];
 
                 $this->load->view('errors/html/alert', $Data);
             }

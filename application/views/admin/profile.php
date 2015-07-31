@@ -1,4 +1,4 @@
-<?php foreach($user as $output): ?>
+<?php foreach ($user as $output): ?>
     <div class="container">
         <div class="row">
             <div class="col-sm-10">
@@ -24,9 +24,9 @@
                        <span class="pull-left">
                            <strong>Laatst ingelogd:</strong>
                        </span>
-                       <?php if($output->online == 'Y'): ?>
+                       <?php if ($output->online == 'Y'): ?>
                            <span class="label label-success">Online</span>
-                       <?php elseif($output->online == 'N'): ?>
+                       <?php elseif ($output->online == 'N'): ?>
                            <?php date('Y-m-d', $output->last_seen); ?>
                        <?php endif; ?>
                    </li>
@@ -44,9 +44,9 @@
                         <span class="pull-left">
                             <strong>Online:</strong>
                         </span>
-                        <?php if($output->online == 'Y'): ?>
+                        <?php if ($output->online == 'Y'): ?>
                             <span class="label label-success">Online</span>
-                            <?php elseif($output->online == 'N'): ?>
+                            <?php elseif ($output->online == 'N'): ?>
                             Nee
                         <?php endif; ?>
                     </li>
@@ -54,9 +54,9 @@
                         <span class="pull-left">
                             <strong>Geblokkeerd:</strong>
                         </span>
-                        <?php if($output->Blocked == 1): ?>
+                        <?php if ($output->Blocked == 1): ?>
                             Ja
-                        <?php elseif($output->Blocked == 0): ?>
+                        <?php elseif ($output->Blocked == 0): ?>
                             Nee
                         <?php endif; ?>
                 </ul>
@@ -98,7 +98,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php foreach($logs as $log): ?>
+                                        <?php foreach ($logs as $log): ?>
                                             <tr>
                                                 <td><code>#<?php echo $log->id ?></code></td>
                                                 <td><?php echo $log->log_message; ?></td>
@@ -117,8 +117,8 @@
 
                         <div class="row">
                             <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
-                                <form method="POST" action="<?php echo base_url() . 'admin/updatePermissions/' . $output->id . '' ?>">
-                                    <?php foreach($permissions as $permission): ?>
+                                <form method="POST" action="<?php echo base_url().'admin/updatePermissions/'.$output->id.'' ?>">
+                                    <?php foreach ($permissions as $permission): ?>
                                     <table class="table table-condensed">
                                         <thead>
                                         <tr>
@@ -135,14 +135,14 @@
                                                         type="radio"
                                                         name="verhuring"
                                                         value="Y"
-                                                        <?php if($permission->verhuur == "Y"): ?> checked<?php endif; ?>>
+                                                        <?php if ($permission->verhuur == 'Y'): ?> checked<?php endif; ?>>
                                                 </td>
                                                 <td>
                                                     <input
                                                         type="radio"
                                                         name="verhuring"
                                                         value="N"
-                                                        <?php if($permission->verhuur == "N"): ?> checked <?php endif; ?>>
+                                                        <?php if ($permission->verhuur == 'N'): ?> checked <?php endif; ?>>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -152,14 +152,14 @@
                                                         type="radio"
                                                         name="mailinglist"
                                                         value="Y"
-                                                        <?php if($permission->mailinglist == "Y"): ?> checked <?php endif; ?>>
+                                                        <?php if ($permission->mailinglist == 'Y'): ?> checked <?php endif; ?>>
                                                 </td>
                                                 <td>
                                                     <input
                                                         type="radio"
                                                         name="mailinglist"
                                                         value="N"
-                                                        <?php if($permission->mailinglist == "N"): ?> checked <?php endif; ?>>
+                                                        <?php if ($permission->mailinglist == 'N'): ?> checked <?php endif; ?>>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -169,14 +169,14 @@
                                                         type="radio"
                                                         name="profielen"
                                                         value="Y"
-                                                        <?php if($permission->profiles == "Y"): ?> checked<?php endif; ?>>
+                                                        <?php if ($permission->profiles == 'Y'): ?> checked<?php endif; ?>>
                                                 </td>
                                                 <td>
                                                     <input
                                                         type="radio"
                                                         name="profielen"
                                                         value="N"
-                                                        <?php if($permission->profiles == "N"): ?> checked<?php endif; ?>>
+                                                        <?php if ($permission->profiles == 'N'): ?> checked<?php endif; ?>>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -186,14 +186,14 @@
                                                         type="radio"
                                                         name="cloud"
                                                         value="Y"
-                                                        <?php if($permission->drive == "Y"): ?> checked <?php endif; ?>>
+                                                        <?php if ($permission->drive == 'Y'): ?> checked <?php endif; ?>>
                                                  </td>
                                                 <td>
                                                     <input
                                                         type="radio"
                                                         name="cloud"
                                                         value="N"
-                                                        <?php if($permission->drive == "N"): ?> checked <?php endif; ?>>
+                                                        <?php if ($permission->drive == 'N'): ?> checked <?php endif; ?>>
                                                 </td>
                                             </tr>
                                         </tbody>

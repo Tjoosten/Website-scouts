@@ -1,6 +1,6 @@
 <?php
 
-Class Model_activiteiten extends CI_Model
+class Model_activiteiten extends CI_Model
 {
     /*
      | Developer: Tim Joosten
@@ -10,8 +10,8 @@ Class Model_activiteiten extends CI_Model
     public function Activiteiten()
     {
         $Query = $this->db->get('Activiteiten');
-        return $Query->result();
 
+        return $Query->result();
     }
 
     public function Kapoenen()
@@ -21,6 +21,7 @@ Class Model_activiteiten extends CI_Model
             ->limit(5);
 
         $Query = $this->db->get('Activiteiten');
+
         return $Query->result();
     }
 
@@ -31,6 +32,7 @@ Class Model_activiteiten extends CI_Model
             ->limit(5);
 
         $Query = $this->db->get('Activiteiten');
+
         return $Query->result();
     }
 
@@ -41,6 +43,7 @@ Class Model_activiteiten extends CI_Model
             ->limit(5);
 
         $Query = $this->db->get('Activiteiten');
+
         return $Query->result();
     }
 
@@ -51,6 +54,7 @@ Class Model_activiteiten extends CI_Model
             ->limit(5);
 
         $Query = $this->db->get('Activiteiten');
+
         return $Query->result();
     }
 
@@ -61,26 +65,28 @@ Class Model_activiteiten extends CI_Model
             ->limit(5);
 
         $Query = $this->db->get('Activiteiten');
+
         return $Query->result();
     }
 
     public function Insert()
     {
         // Replace characters that can jam the timestamp
-        $old_sep = array("/", "-");
-        $new_sep = ".";
+        $old_sep = ['/', '-'];
+        $new_sep = '.';
 
         // Values
         $Datum = str_replace($old_sep, $new_sep, $this->input->post('Datum'));
 
-        $Values = array(
-            "Tak" => $this->uri->segment(3),
-            "Datum" => $Datum,
-            "Naam" => $this->input->post('Naam'),
-            "Beschrijving" => $this->input->post('Beschrijving'),
-        );
+        $Values = [
+            'Tak'          => $this->uri->segment(3),
+            'Datum'        => $Datum,
+            'Naam'         => $this->input->post('Naam'),
+            'Beschrijving' => $this->input->post('Beschrijving'),
+        ];
 
         $this->db->insert('Activiteiten', $Values);
+
         return $this->db->affected_rows();
     }
 }

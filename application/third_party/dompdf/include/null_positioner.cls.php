@@ -1,6 +1,7 @@
 <?php
+
 /**
- * DOMPDF - PHP5 HTML to PDF renderer
+ * DOMPDF - PHP5 HTML to PDF renderer.
  *
  * File: $RCSfile: null_positioner.cls.php,v $
  * Created on: 2004-07-12
@@ -31,26 +32,25 @@
  * http://www.dompdf.com/
  *
  * @link http://www.dompdf.com/
+ *
  * @copyright 2004 Benj Carson
  * @author Benj Carson <benjcarson@digitaljunkies.ca>
- * @package dompdf
-
  */
 
 /* $Id: null_positioner.cls.php 216 2010-03-11 22:49:18Z ryan.masten $ */
 
 /**
- * Dummy positioner
- *
- * @access private
- * @package dompdf
+ * Dummy positioner.
  */
-class Null_Positioner extends Positioner {
+class Null_Positioner extends Positioner
+{
+    public function __construct(Frame_Decorator $frame)
+    {
+        parent::__construct($frame);
+    }
 
-  function __construct(Frame_Decorator $frame) {
-    parent::__construct($frame);
-  }
-
-  function position() { return; }
-  
+    public function position()
+    {
+        return;
+    }
 }

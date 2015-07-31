@@ -1,6 +1,7 @@
 <?php
+
 /**
- * DOMPDF - PHP5 HTML to PDF renderer
+ * DOMPDF - PHP5 HTML to PDF renderer.
  *
  * File: $RCSfile: abstract_renderer.cls.php,v $
  * Created on: 2004-06-01
@@ -31,13 +32,12 @@
  * http://www.dompdf.com/
  *
  * @link http://www.dompdf.com/
+ *
  * @copyright 2004 Benj Carson
  * @author Benj Carson <benjcarson@digitaljunkies.ca>
  * @contributor Helmut Tischer <htischer@weihenstephan.org>
- * @package dompdf
- *
- * Changes
  * @contributor Helmut Tischer <htischer@weihenstephan.org>
+ *
  * @version 0.5.1.htischer.20090507
  * - On background image
  *   - Clip invisible areas from background images, then merge identical
@@ -53,37 +53,35 @@
 /* $Id: abstract_renderer.cls.php 361 2011-02-16 21:03:05Z fabien.menager $ */
 
 /**
- * Base renderer class
- *
- * @access private
- * @package dompdf
+ * Base renderer class.
  */
-abstract class Abstract_Renderer {
-
-  /**
-   * Rendering backend
+abstract class Abstract_Renderer
+{
+    /**
+   * Rendering backend.
    *
    * @var Canvas
    */
   protected $_canvas;
 
   /**
-   * Current dompdf instance
+   * Current dompdf instance.
    *
    * @var DOMPDF
    */
   protected $_dompdf;
-  
+
   /**
-   * Class constructor
+   * Class constructor.
    *
    * @param DOMPDF $dompdf The current dompdf instance
    */
-  function __construct(DOMPDF $dompdf) {
-    $this->_dompdf = $dompdf;
-    $this->_canvas = $dompdf->get_canvas();
+  public function __construct(DOMPDF $dompdf)
+  {
+      $this->_dompdf = $dompdf;
+      $this->_canvas = $dompdf->get_canvas();
   }
-  
+
   /**
    * Render a frame.
    *
@@ -91,12 +89,12 @@ abstract class Abstract_Renderer {
    *
    * @param Frame $frame The frame to render
    */
-  abstract function render(Frame $frame);
+  abstract public function render(Frame $frame);
 
   //........................................................................
 
   /**
-   * Render a background image over a rectangular area
+   * Render a background image over a rectangular area.
    *
    * @param string $img      The background image to load
    * @param float  $x        The left edge of the rectangular area
@@ -105,24 +103,29 @@ abstract class Abstract_Renderer {
    * @param float  $height   The height of the rectangular area
    * @param Style  $style    The associated Style object
    */
-  protected function _background_image($url, $x, $y, $width, $height, $style) {
-    $sheet = $style->get_stylesheet();
+  protected function _background_image($url, $x, $y, $width, $height, $style)
+  {
+      $sheet = $style->get_stylesheet();
 
     // Skip degenerate cases
-    if ( $width == 0 || $height == 0 )
-      return;
+    if ($width == 0 || $height == 0) {
+        return;
+    }
 
     //debugpng
-    if (DEBUGPNG) print '[_background_image '.$url.']';
+    if (DEBUGPNG) {
+        print '[_background_image '.$url.']';
+    }
 
-    list($img, $ext) = Image_Cache::resolve_url($url,
+      list($img, $ext) = Image_Cache::resolve_url($url,
                                                 $sheet->get_protocol(),
                                                 $sheet->get_host(),
                                                 $sheet->get_base_path());
 
     // Bail if the image is no good
-    if ( $img === DOMPDF_LIB_DIR . "/res/broken_image.png" )
-      return;
+    if ($img === DOMPDF_LIB_DIR.'/res/broken_image.png') {
+        return;
+    }
 
     //Try to optimize away reading and composing of same background multiple times
     //Postponing read with imagecreatefrom   ...()
@@ -131,118 +134,118 @@ abstract class Abstract_Renderer {
     //$img_w = imagesx($src); $img_h = imagesy($src);
 
     list($img_w, $img_h) = dompdf_getimagesize($img);
-    if (!isset($img_w) || $img_w == 0 || !isset($img_h) || $img_h == 0) {
-      return;
-    }
+      if (!isset($img_w) || $img_w == 0 || !isset($img_h) || $img_h == 0) {
+          return;
+      }
 
-    $repeat = $style->background_repeat;
-    $bg_color = $style->background_color;
+      $repeat = $style->background_repeat;
+      $bg_color = $style->background_color;
 
     //Increase background resolution and dependent box size according to image resolution to be placed in
     //Then image can be copied in without resize
-    $bg_width = round((float)($width * DOMPDF_DPI) / 72);
-    $bg_height = round((float)($height * DOMPDF_DPI) / 72);
+    $bg_width = round((float) ($width * DOMPDF_DPI) / 72);
+      $bg_height = round((float) ($height * DOMPDF_DPI) / 72);
 
     //Need %bg_x, $bg_y as background pos, where img starts, converted to pixel
 
     list($bg_x, $bg_y) = $style->background_position;
 
-    if ( is_percent($bg_x) ) {
-      // The point $bg_x % from the left edge of the image is placed
+      if (is_percent($bg_x)) {
+          // The point $bg_x % from the left edge of the image is placed
       // $bg_x % from the left edge of the background rectangle
-      $p = ((float)$bg_x)/100.0;
-      $x1 = $p * $img_w;
-      $x2 = $p * $bg_width;
+      $p = ((float) $bg_x) / 100.0;
+          $x1 = $p * $img_w;
+          $x2 = $p * $bg_width;
 
-      $bg_x = round($x2 - $x1);
-    } else {
-      $bg_x = round((float)($style->length_in_pt($bg_x)*DOMPDF_DPI) / 72);
-    }
+          $bg_x = round($x2 - $x1);
+      } else {
+          $bg_x = round((float) ($style->length_in_pt($bg_x) * DOMPDF_DPI) / 72);
+      }
 
-    if ( is_percent($bg_y) ) {
-      // The point $bg_y % from the left edge of the image is placed
+      if (is_percent($bg_y)) {
+          // The point $bg_y % from the left edge of the image is placed
       // $bg_y % from the left edge of the background rectangle
-      $p = ((float)$bg_y)/100.0;
-      $y1 = $p * $img_h;
-      $y2 = $p * $bg_height;
+      $p = ((float) $bg_y) / 100.0;
+          $y1 = $p * $img_h;
+          $y2 = $p * $bg_height;
 
-      $bg_y = round($y2 - $y1);
-    } else {
-      $bg_y = round((float)($style->length_in_pt($bg_y)*DOMPDF_DPI) / 72);
-    }
+          $bg_y = round($y2 - $y1);
+      } else {
+          $bg_y = round((float) ($style->length_in_pt($bg_y) * DOMPDF_DPI) / 72);
+      }
 
     //clip background to the image area on partial repeat. Nothing to do if img off area
     //On repeat, normalize start position to the tile at immediate left/top or 0/0 of area
     //On no repeat with positive offset: move size/start to have offset==0
     //Handle x/y Dimensions separately
 
-    if ( $repeat !== "repeat" && $repeat !== "repeat-x" ) {
-      //No repeat x
+    if ($repeat !== 'repeat' && $repeat !== 'repeat-x') {
+        //No repeat x
       if ($bg_x < 0) {
-        $bg_width = $img_w + $bg_x;
+          $bg_width = $img_w + $bg_x;
       } else {
-        $x += ($bg_x * 72)/DOMPDF_DPI;
-        $bg_width = $bg_width - $bg_x;
-        if ($bg_width > $img_w) {
-          $bg_width = $img_w;
+          $x += ($bg_x * 72) / DOMPDF_DPI;
+          $bg_width = $bg_width - $bg_x;
+          if ($bg_width > $img_w) {
+              $bg_width = $img_w;
+          }
+          $bg_x = 0;
+      }
+        if ($bg_width <= 0) {
+            return;
         }
-        $bg_x = 0;
-      }
-      if ($bg_width <= 0) {
-          return;
-      }
-      $width = (float)($bg_width * 72)/DOMPDF_DPI;
+        $width = (float) ($bg_width * 72) / DOMPDF_DPI;
     } else {
-      //repeat x
+        //repeat x
       if ($bg_x < 0) {
-        $bg_x = - ((-$bg_x) % $img_w);
+          $bg_x = -((-$bg_x) % $img_w);
       } else {
-        $bg_x = $bg_x % $img_w;
-        if ($bg_x > 0) {
-          $bg_x -= $img_w;
-        }
+          $bg_x = $bg_x % $img_w;
+          if ($bg_x > 0) {
+              $bg_x -= $img_w;
+          }
       }
     }
 
-    if ( $repeat !== "repeat" && $repeat !== "repeat-y" ) {
-      //no repeat y
+      if ($repeat !== 'repeat' && $repeat !== 'repeat-y') {
+          //no repeat y
       if ($bg_y < 0) {
-        $bg_height = $img_h + $bg_y;
+          $bg_height = $img_h + $bg_y;
       } else {
-        $y += ($bg_y * 72)/DOMPDF_DPI;
-        $bg_height = $bg_height - $bg_y;
-        if ($bg_height > $img_h) {
-          $bg_height = $img_h;
-        }
-        $bg_y = 0;
+          $y += ($bg_y * 72) / DOMPDF_DPI;
+          $bg_height = $bg_height - $bg_y;
+          if ($bg_height > $img_h) {
+              $bg_height = $img_h;
+          }
+          $bg_y = 0;
       }
-      if ($bg_height <= 0) {
-          return;
-      }
-      $height = (float)($bg_height * 72)/DOMPDF_DPI;
-    } else {
-      //repeat y
+          if ($bg_height <= 0) {
+              return;
+          }
+          $height = (float) ($bg_height * 72) / DOMPDF_DPI;
+      } else {
+          //repeat y
       if ($bg_y < 0) {
-        $bg_y = - ((-$bg_y) % $img_h);
+          $bg_y = -((-$bg_y) % $img_h);
       } else {
-        $bg_y = $bg_y % $img_h;
-        if ($bg_y > 0) {
-          $bg_y -= $img_h;
-        }
+          $bg_y = $bg_y % $img_h;
+          if ($bg_y > 0) {
+              $bg_y -= $img_h;
+          }
       }
-    }
+      }
 
     //Optimization, if repeat has no effect
-    if ( $repeat === "repeat" && $bg_y <= 0 && $img_h+$bg_y >= $bg_height ) {
-      $repeat = "repeat-x";
+    if ($repeat === 'repeat' && $bg_y <= 0 && $img_h + $bg_y >= $bg_height) {
+        $repeat = 'repeat-x';
     }
-    if ( $repeat === "repeat" && $bg_x <= 0 && $img_w+$bg_x >= $bg_width ) {
-      $repeat = "repeat-y";
-    }
-    if ( ($repeat === "repeat-x" && $bg_x <= 0 && $img_w+$bg_x >= $bg_width) ||
-         ($repeat === "repeat-y" && $bg_y <= 0 && $img_h+$bg_y >= $bg_height) ) {
-      $repeat = "no-repeat";
-    }
+      if ($repeat === 'repeat' && $bg_x <= 0 && $img_w + $bg_x >= $bg_width) {
+          $repeat = 'repeat-y';
+      }
+      if (($repeat === 'repeat-x' && $bg_x <= 0 && $img_w + $bg_x >= $bg_width) ||
+         ($repeat === 'repeat-y' && $bg_y <= 0 && $img_h + $bg_y >= $bg_height)) {
+          $repeat = 'no-repeat';
+      }
 
     //Use filename as indicator only
     //different names for different variants to have different copies in the pdf
@@ -273,7 +276,7 @@ abstract class Abstract_Renderer {
       }
     }
     */
-    
+
     $filedummy .= '_'.$bg_width.'_'.$bg_height.'_'.$bg_x.'_'.$bg_y.'_'.$repeat;
     //debugpng
     //if (DEBUGPNG) print '<pre>[_background_image name '.$filedummy.']</pre>';
@@ -281,48 +284,46 @@ abstract class Abstract_Renderer {
     //Optimization to avoid multiple times rendering the same image.
     //If check functions are existing and identical image already cached,
     //then skip creation of duplicate, because it is not needed by addImagePng
-    if ( method_exists( $this->_canvas, "get_cpdf" ) &&
-         method_exists( $this->_canvas->get_cpdf(), "addImagePng" ) &&
-         method_exists( $this->_canvas->get_cpdf(), "image_iscached" ) &&
-         $this->_canvas->get_cpdf()->image_iscached($filedummy) ) {
-       $bg = null;
+    if (method_exists($this->_canvas, 'get_cpdf') &&
+         method_exists($this->_canvas->get_cpdf(), 'addImagePng') &&
+         method_exists($this->_canvas->get_cpdf(), 'image_iscached') &&
+         $this->_canvas->get_cpdf()->image_iscached($filedummy)) {
+        $bg = null;
 
       //debugpng
       //if (DEBUGPNG) print '[_background_image skip]';
-    } 
-    
-    else {
+    } else {
 
     // Create a new image to fit over the background rectangle
     $bg = imagecreatetruecolor($bg_width, $bg_height);
-    
+
     //anyway default
     //imagealphablending($img, true);
 
     switch (strtolower($ext)) {
-      case "png":
+      case 'png':
         $src = imagecreatefrompng($img);
         break;
-  
-      case "jpg":
-      case "jpeg":
+
+      case 'jpg':
+      case 'jpeg':
         $src = imagecreatefromjpeg($img);
         break;
-  
-      case "gif":
+
+      case 'gif':
         $src = imagecreatefromgif($img);
         break;
-        
-      case "bmp":
+
+      case 'bmp':
         $src = imagecreatefrombmp($img);
         break;
-  
+
       default: return; // Unsupported image type
     }
 
-    if ($src == null) {
-      return;
-    }
+        if ($src == null) {
+            return;
+        }
 
     //Background color if box is not relevant here
     //Non transparent image: box clipped to real size. Background non relevant.
@@ -330,109 +331,98 @@ abstract class Abstract_Renderer {
     //However on transparent imaage preset the composed image with the transparency color,
     //to keep the transparency when copying over the non transparent parts of the tiles.
     $ti = imagecolortransparent($src);
-    
-    if ($ti >= 0) {
-      $tc = imagecolorsforindex($src,$ti);
-      $ti = imagecolorallocate($bg,$tc['red'],$tc['green'],$tc['blue']);
-      imagefill($bg,0,0,$ti);
-      imagecolortransparent($bg, $ti);
-    }
+
+        if ($ti >= 0) {
+            $tc = imagecolorsforindex($src, $ti);
+            $ti = imagecolorallocate($bg, $tc['red'], $tc['green'], $tc['blue']);
+            imagefill($bg, 0, 0, $ti);
+            imagecolortransparent($bg, $ti);
+        }
 
     //This has only an effect for the non repeatable dimension.
     //compute start of src and dest coordinates of the single copy
-    if ( $bg_x < 0 ) {
-      $dst_x = 0;
-      $src_x = -$bg_x;
+    if ($bg_x < 0) {
+        $dst_x = 0;
+        $src_x = -$bg_x;
     } else {
-      $src_x = 0;
-      $dst_x = $bg_x;
+        $src_x = 0;
+        $dst_x = $bg_x;
     }
 
-    if ( $bg_y < 0 ) {
-      $dst_y = 0;
-      $src_y = -$bg_y;
-    } else {
-      $src_y = 0;
-      $dst_y = $bg_y;
-    }
+        if ($bg_y < 0) {
+            $dst_y = 0;
+            $src_y = -$bg_y;
+        } else {
+            $src_y = 0;
+            $dst_y = $bg_y;
+        }
 
     //For historical reasons exchange meanings of variables:
     //start_* will be the start values, while bg_* will be the temporary start values in the loops
     $start_x = $bg_x;
-    $start_y = $bg_y;
+        $start_y = $bg_y;
 
     // Copy regions from the source image to the background
-    if ( $repeat === "no-repeat" ) {
+    if ($repeat === 'no-repeat') {
 
       // Simply place the image on the background
       imagecopy($bg, $src, $dst_x, $dst_y, $src_x, $src_y, $img_w, $img_h);
-
-    } else if ( $repeat === "repeat-x" ) {
-
-      for ( $bg_x = $start_x; $bg_x < $bg_width; $bg_x += $img_w ) {
-        if ( $bg_x < 0 ) {
-          $dst_x = 0;
-          $src_x = -$bg_x;
-          $w = $img_w + $bg_x;
-        } else {
-          $dst_x = $bg_x;
-          $src_x = 0;
-          $w = $img_w;
+    } elseif ($repeat === 'repeat-x') {
+        for ($bg_x = $start_x; $bg_x < $bg_width; $bg_x += $img_w) {
+            if ($bg_x < 0) {
+                $dst_x = 0;
+                $src_x = -$bg_x;
+                $w = $img_w + $bg_x;
+            } else {
+                $dst_x = $bg_x;
+                $src_x = 0;
+                $w = $img_w;
+            }
+            imagecopy($bg, $src, $dst_x, $dst_y, $src_x, $src_y, $w, $img_h);
         }
-        imagecopy($bg, $src, $dst_x, $dst_y, $src_x, $src_y, $w, $img_h);
-      }
-
-    } else if ( $repeat === "repeat-y" ) {
-
-      for ( $bg_y = $start_y; $bg_y < $bg_height; $bg_y += $img_h ) {
-        if ( $bg_y < 0 ) {
-          $dst_y = 0;
-          $src_y = -$bg_y;
-          $h = $img_h + $bg_y;
-        } else {
-          $dst_y = $bg_y;
-          $src_y = 0;
-          $h = $img_h;
+    } elseif ($repeat === 'repeat-y') {
+        for ($bg_y = $start_y; $bg_y < $bg_height; $bg_y += $img_h) {
+            if ($bg_y < 0) {
+                $dst_y = 0;
+                $src_y = -$bg_y;
+                $h = $img_h + $bg_y;
+            } else {
+                $dst_y = $bg_y;
+                $src_y = 0;
+                $h = $img_h;
+            }
+            imagecopy($bg, $src, $dst_x, $dst_y, $src_x, $src_y, $img_w, $h);
         }
-        imagecopy($bg, $src, $dst_x, $dst_y, $src_x, $src_y, $img_w, $h);
+    } elseif ($repeat === 'repeat') {
+        for ($bg_y = $start_y; $bg_y < $bg_height; $bg_y += $img_h) {
+            for ($bg_x = $start_x; $bg_x < $bg_width; $bg_x += $img_w) {
+                if ($bg_x < 0) {
+                    $dst_x = 0;
+                    $src_x = -$bg_x;
+                    $w = $img_w + $bg_x;
+                } else {
+                    $dst_x = $bg_x;
+                    $src_x = 0;
+                    $w = $img_w;
+                }
 
-      }
-
-    } else if ( $repeat === "repeat" ) {
-
-      for ( $bg_y = $start_y; $bg_y < $bg_height; $bg_y += $img_h ) {
-        for ( $bg_x = $start_x; $bg_x < $bg_width; $bg_x += $img_w ) {
-
-          if ( $bg_x < 0 ) {
-            $dst_x = 0;
-            $src_x = -$bg_x;
-            $w = $img_w + $bg_x;
-          } else {
-            $dst_x = $bg_x;
-            $src_x = 0;
-            $w = $img_w;
-          }
-
-          if ( $bg_y < 0 ) {
-            $dst_y = 0;
-            $src_y = -$bg_y;
-            $h = $img_h + $bg_y;
-          } else {
-            $dst_y = $bg_y;
-            $src_y = 0;
-            $h = $img_h;
-          }
-          imagecopy($bg, $src, $dst_x, $dst_y, $src_x, $src_y, $w, $h);
+                if ($bg_y < 0) {
+                    $dst_y = 0;
+                    $src_y = -$bg_y;
+                    $h = $img_h + $bg_y;
+                } else {
+                    $dst_y = $bg_y;
+                    $src_y = 0;
+                    $h = $img_h;
+                }
+                imagecopy($bg, $src, $dst_x, $dst_y, $src_x, $src_y, $w, $h);
+            }
         }
-      }
+    } else {
+        print 'Unknown repeat!';
     }
-    
-    else {
-      print 'Unknown repeat!';
-    }
-    
-    imagedestroy($src);
 
+        imagedestroy($src);
     } /* End optimize away creation of duplicates */
 
     //img: image url string
@@ -446,33 +436,37 @@ abstract class Abstract_Renderer {
     //$src: GD object of original image
     //When using cpdf and optimization to direct png creation from gd object is available,
     //don't create temp file, but place gd object directly into the pdf
-    if ( method_exists( $this->_canvas, "get_cpdf" ) && 
-         method_exists( $this->_canvas->get_cpdf(), "addImagePng" ) ) {
-      // Note: CPDF_Adapter image converts y position
+    if (method_exists($this->_canvas, 'get_cpdf') &&
+         method_exists($this->_canvas->get_cpdf(), 'addImagePng')) {
+        // Note: CPDF_Adapter image converts y position
       $this->_canvas->get_cpdf()->addImagePng($filedummy, $x, $this->_canvas->get_height() - $y - $height, $width, $height, $bg);
-    } 
-    
-    else {
-      $tmp_file = tempnam(DOMPDF_TEMP_DIR, "bg_dompdf_img_").'.png';
+    } else {
+        $tmp_file = tempnam(DOMPDF_TEMP_DIR, 'bg_dompdf_img_').'.png';
       //debugpng
-      if (DEBUGPNG) print '[_background_image '.$tmp_file.']';
+      if (DEBUGPNG) {
+          print '[_background_image '.$tmp_file.']';
+      }
 
-      imagepng($bg, $tmp_file);
-      $this->_canvas->image($tmp_file, "png", $x, $y, $width, $height);
-      imagedestroy($bg);
+        imagepng($bg, $tmp_file);
+        $this->_canvas->image($tmp_file, 'png', $x, $y, $width, $height);
+        imagedestroy($bg);
 
       //debugpng
-      if (DEBUGPNG) print '[_background_image unlink '.$tmp_file.']';
+      if (DEBUGPNG) {
+          print '[_background_image unlink '.$tmp_file.']';
+      }
 
-      if (!DEBUGKEEPTEMP)
-        unlink($tmp_file);
+        if (!DEBUGKEEPTEMP) {
+            unlink($tmp_file);
+        }
     }
   }
-  
-  protected function _get_dash_pattern($style, $width) {
-    $pattern = array();
-    
-    switch ($style) {
+
+    protected function _get_dash_pattern($style, $width)
+    {
+        $pattern = [];
+
+        switch ($style) {
       default:
       /*case "solid":
       case "double":
@@ -480,46 +474,49 @@ abstract class Abstract_Renderer {
       case "inset":
       case "outset":
       case "ridge":*/
-      case "none": break;
-      
-      case "dotted": 
-        if ( $width < 2 )
-          $pattern = array($width, 2);
-        else
-          $pattern = array($width);
+      case 'none': break;
+
+      case 'dotted':
+        if ($width < 2) {
+            $pattern = [$width, 2];
+        } else {
+            $pattern = [$width];
+        }
       break;
-      
-      case "dashed": 
-        $pattern = array(3 * $width);
+
+      case 'dashed':
+        $pattern = [3 * $width];
       break;
     }
-    
-    return $pattern;
-  }
 
-  protected function _border_none($x, $y, $length, $color, $widths, $side, $corner_style = "bevel") {
-    return;
-  }
-  
+        return $pattern;
+    }
+
+    protected function _border_none($x, $y, $length, $color, $widths, $side, $corner_style = 'bevel')
+    {
+        return;
+    }
+
   // Border rendering functions
-  protected function _border_dotted($x, $y, $length, $color, $widths, $side, $corner_style = "bevel") {
-    list($top, $right, $bottom, $left) = $widths;
+  protected function _border_dotted($x, $y, $length, $color, $widths, $side, $corner_style = 'bevel')
+  {
+      list($top, $right, $bottom, $left) = $widths;
 
-    $pattern = $this->_get_dash_pattern("dotted", $$side);
-    
-    switch ($side) {
+      $pattern = $this->_get_dash_pattern('dotted', $$side);
 
-    case "top":
+      switch ($side) {
+
+    case 'top':
       $delta = $top / 2;
-    case "bottom":
+    case 'bottom':
       $delta = isset($delta) ? $delta : -$bottom / 2;
       $this->_canvas->line($x, $y + $delta, $x + $length, $y + $delta, $color, $$side, $pattern);
       break;
 
-    case "left":
+    case 'left':
       $delta = $left / 2;
-    case "right":
-      $delta = isset($delta) ? $delta : - $right / 2;
+    case 'right':
+      $delta = isset($delta) ? $delta : -$right / 2;
       $this->_canvas->line($x + $delta, $y, $x + $delta, $y + $length, $color, $$side, $pattern);
       break;
 
@@ -529,87 +526,89 @@ abstract class Abstract_Renderer {
     }
   }
 
-  
-  protected function _border_dashed($x, $y, $length, $color, $widths, $side, $corner_style = "bevel") {
-    list($top, $right, $bottom, $left) = $widths;
+    protected function _border_dashed($x, $y, $length, $color, $widths, $side, $corner_style = 'bevel')
+    {
+        list($top, $right, $bottom, $left) = $widths;
 
-    $pattern = $this->_get_dash_pattern("dashed", $$side);
-    
-    switch ($side) {
+        $pattern = $this->_get_dash_pattern('dashed', $$side);
 
-    case "top":
+        switch ($side) {
+
+    case 'top':
       $delta = $top / 2;
-    case "bottom":
+    case 'bottom':
       $delta = isset($delta) ? $delta : -$bottom / 2;
       $this->_canvas->line($x, $y + $delta, $x + $length, $y + $delta, $color, $$side, $pattern);
       break;
 
-    case "left":
+    case 'left':
       $delta = $left / 2;
-    case "right":
-      $delta = isset($delta) ? $delta : - $right / 2;
+    case 'right':
+      $delta = isset($delta) ? $delta : -$right / 2;
       $this->_canvas->line($x + $delta, $y, $x + $delta, $y + $length, $color, $$side, $pattern);
       break;
 
     default:
       return;
     }
-    
-  }
+    }
 
-  
-  protected function _border_solid($x, $y, $length, $color, $widths, $side, $corner_style = "bevel") {
-    list($top, $right, $bottom, $left) = $widths;
+    protected function _border_solid($x, $y, $length, $color, $widths, $side, $corner_style = 'bevel')
+    {
+        list($top, $right, $bottom, $left) = $widths;
 
     // All this polygon business is for beveled corners...
     switch ($side) {
 
-    case "top":
-      if ( $corner_style === "bevel" ) {
-        
-        $points = array($x, $y,
+    case 'top':
+      if ($corner_style === 'bevel') {
+          $points = [$x, $y,
                         $x + $length, $y,
                         $x + $length - $right, $y + $top,
-                        $x + $left, $y + $top);
-        $this->_canvas->polygon($points, $color, null, null, true);
-      } else
-        $this->_canvas->filled_rectangle($x, $y, $length, $top, $color);
-      
+                        $x + $left, $y + $top, ];
+          $this->_canvas->polygon($points, $color, null, null, true);
+      } else {
+          $this->_canvas->filled_rectangle($x, $y, $length, $top, $color);
+      }
+
       break;
-      
-    case "bottom":
-      if ( $corner_style === "bevel" ) {
-        $points = array($x, $y,
+
+    case 'bottom':
+      if ($corner_style === 'bevel') {
+          $points = [$x, $y,
                         $x + $length, $y,
                         $x + $length - $right, $y - $bottom,
-                        $x + $left, $y - $bottom);
-        $this->_canvas->polygon($points, $color, null, null, true);
-      } else
-        $this->_canvas->filled_rectangle($x, $y - $bottom, $length, $bottom, $color);
-      
+                        $x + $left, $y - $bottom, ];
+          $this->_canvas->polygon($points, $color, null, null, true);
+      } else {
+          $this->_canvas->filled_rectangle($x, $y - $bottom, $length, $bottom, $color);
+      }
+
       break;
-      
-    case "left":
-      if ( $corner_style === "bevel" ) {
-        $points = array($x, $y,
+
+    case 'left':
+      if ($corner_style === 'bevel') {
+          $points = [$x, $y,
                         $x, $y + $length,
                         $x + $left, $y + $length - $bottom,
-                        $x + $left, $y + $top);
-        $this->_canvas->polygon($points, $color, null, null, true);
-      } else
-        $this->_canvas->filled_rectangle($x, $y, $left, $length, $color);
-      
+                        $x + $left, $y + $top, ];
+          $this->_canvas->polygon($points, $color, null, null, true);
+      } else {
+          $this->_canvas->filled_rectangle($x, $y, $left, $length, $color);
+      }
+
       break;
-      
-    case "right":
-      if ( $corner_style === "bevel" ) {
-        $points = array($x, $y,
+
+    case 'right':
+      if ($corner_style === 'bevel') {
+          $points = [$x, $y,
                         $x, $y + $length,
                         $x - $right, $y + $length - $bottom,
-                        $x - $right, $y + $top);
-        $this->_canvas->polygon($points, $color, null, null, true);
-      } else
-        $this->_canvas->filled_rectangle($x - $right, $y, $right, $length, $color);
+                        $x - $right, $y + $top, ];
+          $this->_canvas->polygon($points, $color, null, null, true);
+      } else {
+          $this->_canvas->filled_rectangle($x - $right, $y, $right, $length, $color);
+      }
 
       break;
 
@@ -617,152 +616,145 @@ abstract class Abstract_Renderer {
       return;
 
     }
-        
-  }
+    }
 
+    protected function _border_double($x, $y, $length, $color, $widths, $side, $corner_style = 'bevel')
+    {
+        list($top, $right, $bottom, $left) = $widths;
 
-  protected function _border_double($x, $y, $length, $color, $widths, $side, $corner_style = "bevel") {
-    list($top, $right, $bottom, $left) = $widths;
-    
-    $line_width = $$side / 4;
-    
+        $line_width = $$side / 4;
+
     // We draw the outermost edge first. Points are ordered: outer left,
     // outer right, inner right, inner left, or outer top, outer bottom,
     // inner bottom, inner top.
     switch ($side) {
 
-    case "top":
-      if ( $corner_style === "bevel" ) {
-        $left_line_width = $left / 4;
-        $right_line_width = $right / 4;
-        
-        $points = array($x, $y,
+    case 'top':
+      if ($corner_style === 'bevel') {
+          $left_line_width = $left / 4;
+          $right_line_width = $right / 4;
+
+          $points = [$x, $y,
                         $x + $length, $y,
                         $x + $length - $right_line_width, $y + $line_width,
-                        $x + $left_line_width, $y + $line_width,);
-        $this->_canvas->polygon($points, $color, null, null, true);
-        
-        $points = array($x + $left - $left_line_width, $y + $top - $line_width,
+                        $x + $left_line_width, $y + $line_width,];
+          $this->_canvas->polygon($points, $color, null, null, true);
+
+          $points = [$x + $left - $left_line_width, $y + $top - $line_width,
                         $x + $length - $right + $right_line_width, $y + $top - $line_width,
                         $x + $length - $right, $y + $top,
-                        $x + $left, $y + $top);
-        $this->_canvas->polygon($points, $color, null, null, true);
-
+                        $x + $left, $y + $top, ];
+          $this->_canvas->polygon($points, $color, null, null, true);
       } else {
-        $this->_canvas->filled_rectangle($x, $y, $length, $line_width, $color);
-        $this->_canvas->filled_rectangle($x, $y + $top - $line_width, $length, $line_width, $color);
-
+          $this->_canvas->filled_rectangle($x, $y, $length, $line_width, $color);
+          $this->_canvas->filled_rectangle($x, $y + $top - $line_width, $length, $line_width, $color);
       }
       break;
-      
-    case "bottom":
-      if ( $corner_style === "bevel" ) {
-        $left_line_width = $left / 4;
-        $right_line_width = $right / 4;
-        
-        $points = array($x, $y,
+
+    case 'bottom':
+      if ($corner_style === 'bevel') {
+          $left_line_width = $left / 4;
+          $right_line_width = $right / 4;
+
+          $points = [$x, $y,
                         $x + $length, $y,
                         $x + $length - $right_line_width, $y - $line_width,
-                        $x + $left_line_width, $y - $line_width);
-        $this->_canvas->polygon($points, $color, null, null, true);
-        
-        $points = array($x + $left - $left_line_width, $y - $bottom + $line_width,
+                        $x + $left_line_width, $y - $line_width, ];
+          $this->_canvas->polygon($points, $color, null, null, true);
+
+          $points = [$x + $left - $left_line_width, $y - $bottom + $line_width,
                         $x + $length - $right + $right_line_width, $y - $bottom + $line_width,
                         $x + $length - $right, $y - $bottom,
-                        $x + $left, $y - $bottom);
-        $this->_canvas->polygon($points, $color, null, null, true);
-
+                        $x + $left, $y - $bottom, ];
+          $this->_canvas->polygon($points, $color, null, null, true);
       } else {
-        $this->_canvas->filled_rectangle($x, $y - $line_width, $length, $line_width, $color);
-        $this->_canvas->filled_rectangle($x, $y - $bottom, $length, $line_width, $color);
+          $this->_canvas->filled_rectangle($x, $y - $line_width, $length, $line_width, $color);
+          $this->_canvas->filled_rectangle($x, $y - $bottom, $length, $line_width, $color);
       }
-          
+
       break;
 
-    case "left":
-      if ( $corner_style === "bevel" ) {
-        $top_line_width = $top / 4;
-        $bottom_line_width = $bottom / 4;
-        
-        $points = array($x, $y,
+    case 'left':
+      if ($corner_style === 'bevel') {
+          $top_line_width = $top / 4;
+          $bottom_line_width = $bottom / 4;
+
+          $points = [$x, $y,
                         $x, $y + $length,
                         $x + $line_width, $y + $length - $bottom_line_width,
-                        $x + $line_width, $y + $top_line_width);
-        $this->_canvas->polygon($points, $color, null, null, true);
+                        $x + $line_width, $y + $top_line_width, ];
+          $this->_canvas->polygon($points, $color, null, null, true);
 
-        $points = array($x + $left - $line_width, $y + $top - $top_line_width,
+          $points = [$x + $left - $line_width, $y + $top - $top_line_width,
                         $x + $left - $line_width, $y + $length - $bottom + $bottom_line_width,
                         $x + $left, $y + $length - $bottom,
-                        $x + $left, $y + $top);
-        $this->_canvas->polygon($points, $color, null, null, true);
-
+                        $x + $left, $y + $top, ];
+          $this->_canvas->polygon($points, $color, null, null, true);
       } else {
-        $this->_canvas->filled_rectangle($x, $y, $line_width, $length, $color);
-        $this->_canvas->filled_rectangle($x + $left - $line_width, $y, $line_width, $length, $color);
+          $this->_canvas->filled_rectangle($x, $y, $line_width, $length, $color);
+          $this->_canvas->filled_rectangle($x + $left - $line_width, $y, $line_width, $length, $color);
       }
-      
+
       break;
-                      
-    case "right":
-      if ( $corner_style === "bevel" ) {
-        $top_line_width = $top / 4;
-        $bottom_line_width = $bottom / 4;
-        
-      
-        $points = array($x, $y,
+
+    case 'right':
+      if ($corner_style === 'bevel') {
+          $top_line_width = $top / 4;
+          $bottom_line_width = $bottom / 4;
+
+          $points = [$x, $y,
                       $x, $y + $length,
                         $x - $line_width, $y + $length - $bottom_line_width,
-                        $x - $line_width, $y + $top_line_width);
-        $this->_canvas->polygon($points, $color, null, null, true);
-        
-        $points = array($x - $right + $line_width, $y + $top - $top_line_width,
+                        $x - $line_width, $y + $top_line_width, ];
+          $this->_canvas->polygon($points, $color, null, null, true);
+
+          $points = [$x - $right + $line_width, $y + $top - $top_line_width,
                         $x - $right + $line_width, $y + $length - $bottom + $bottom_line_width,
                         $x - $right, $y + $length - $bottom,
-                        $x - $right, $y + $top);
-        $this->_canvas->polygon($points, $color, null, null, true);
-
+                        $x - $right, $y + $top, ];
+          $this->_canvas->polygon($points, $color, null, null, true);
       } else {
-        $this->_canvas->filled_rectangle($x - $line_width, $y, $line_width, $length, $color);
-        $this->_canvas->filled_rectangle($x - $right, $y, $line_width, $length, $color);
+          $this->_canvas->filled_rectangle($x - $line_width, $y, $line_width, $length, $color);
+          $this->_canvas->filled_rectangle($x - $right, $y, $line_width, $length, $color);
       }
-      
+
       break;
 
     default:
       return;
 
     }
-        
-  }
+    }
 
-  protected function _border_groove($x, $y, $length, $color, $widths, $side, $corner_style = "bevel") {
-    list($top, $right, $bottom, $left) = $widths;
-      
-    $half_widths = array($top / 2, $right / 2, $bottom / 2, $left / 2);
-    
-    $this->_border_inset($x, $y, $length, $color, $half_widths, $side);
+    protected function _border_groove($x, $y, $length, $color, $widths, $side, $corner_style = 'bevel')
+    {
+        list($top, $right, $bottom, $left) = $widths;
 
-    switch ($side) {
+        $half_widths = [$top / 2, $right / 2, $bottom / 2, $left / 2];
 
-    case "top":
+        $this->_border_inset($x, $y, $length, $color, $half_widths, $side);
+
+        switch ($side) {
+
+    case 'top':
       $x += $left / 2;
       $y += $top / 2;
       $length -= $left / 2 + $right / 2;
       break;
 
-    case "bottom":
+    case 'bottom':
       $x += $left / 2;
       $y -= $bottom / 2;
       $length -= $left / 2 + $right / 2;
       break;
 
-    case "left":
+    case 'left':
       $x += $left / 2;
       $y += $top / 2;
       $length -= $top / 2 + $bottom / 2;
       break;
 
-    case "right":
+    case 'right':
       $x -= $right / 2;
       $y += $top / 2;
       $length -= $top / 2 + $bottom / 2;
@@ -773,38 +765,38 @@ abstract class Abstract_Renderer {
 
     }
 
-    $this->_border_outset($x, $y, $length, $color, $half_widths, $side);
-    
-  }
-  
-  protected function _border_ridge($x, $y, $length, $color, $widths, $side, $corner_style = "bevel") {
-    list($top, $right, $bottom, $left) = $widths;
-     
-    $half_widths = array($top / 2, $right / 2, $bottom / 2, $left / 2);
-    
-    $this->_border_outset($x, $y, $length, $color, $half_widths, $side);
+        $this->_border_outset($x, $y, $length, $color, $half_widths, $side);
+    }
 
-    switch ($side) {
+    protected function _border_ridge($x, $y, $length, $color, $widths, $side, $corner_style = 'bevel')
+    {
+        list($top, $right, $bottom, $left) = $widths;
 
-    case "top":
+        $half_widths = [$top / 2, $right / 2, $bottom / 2, $left / 2];
+
+        $this->_border_outset($x, $y, $length, $color, $half_widths, $side);
+
+        switch ($side) {
+
+    case 'top':
       $x += $left / 2;
       $y += $top / 2;
       $length -= $left / 2 + $right / 2;
       break;
 
-    case "bottom":
+    case 'bottom':
       $x += $left / 2;
       $y -= $bottom / 2;
       $length -= $left / 2 + $right / 2;
       break;
 
-    case "left":
+    case 'left':
       $x += $left / 2;
       $y += $top / 2;
       $length -= $top / 2 + $bottom / 2;
       break;
 
-    case "right":
+    case 'right':
       $x -= $right / 2;
       $y += $top / 2;
       $length -= $top / 2 + $bottom / 2;
@@ -815,59 +807,64 @@ abstract class Abstract_Renderer {
 
     }
 
-    $this->_border_inset($x, $y, $length, $color, $half_widths, $side);
+        $this->_border_inset($x, $y, $length, $color, $half_widths, $side);
+    }
 
-  }
+    protected function _tint($c)
+    {
+        if (!is_numeric($c)) {
+            return $c;
+        }
 
-  protected function _tint($c) {
-    if ( !is_numeric($c) )
-      return $c;
-    
-    return min(1, $c + 0.16);
-  }
+        return min(1, $c + 0.16);
+    }
 
-  protected function _shade($c) {
-    if ( !is_numeric($c) )
-      return $c;
-    
-    return max(0, $c - 0.33);
-  }
+    protected function _shade($c)
+    {
+        if (!is_numeric($c)) {
+            return $c;
+        }
 
-  protected function _border_inset($x, $y, $length, $color, $widths, $side, $corner_style = "bevel") {
-    list($top, $right, $bottom, $left) = $widths;
-    
-    switch ($side) {
+        return max(0, $c - 0.33);
+    }
 
-    case "top":
-    case "left":
-      $shade = array_map(array($this, "_shade"), $color);
+    protected function _border_inset($x, $y, $length, $color, $widths, $side, $corner_style = 'bevel')
+    {
+        list($top, $right, $bottom, $left) = $widths;
+
+        switch ($side) {
+
+    case 'top':
+    case 'left':
+      $shade = array_map([$this, '_shade'], $color);
       $this->_border_solid($x, $y, $length, $shade, $widths, $side);
       break;
 
-    case "bottom":
-    case "right":
-      $tint = array_map(array($this, "_tint"), $color);
+    case 'bottom':
+    case 'right':
+      $tint = array_map([$this, '_tint'], $color);
       $this->_border_solid($x, $y, $length, $tint, $widths, $side);
       break;
 
     default:
       return;
     }
-  }
-  
-  protected function _border_outset($x, $y, $length, $color, $widths, $side, $corner_style = "bevel") {
-    list($top, $right, $bottom, $left) = $widths;
-    
-    switch ($side) {
-    case "top":
-    case "left":
-      $tint = array_map(array($this, "_tint"), $color);
+    }
+
+    protected function _border_outset($x, $y, $length, $color, $widths, $side, $corner_style = 'bevel')
+    {
+        list($top, $right, $bottom, $left) = $widths;
+
+        switch ($side) {
+    case 'top':
+    case 'left':
+      $tint = array_map([$this, '_tint'], $color);
       $this->_border_solid($x, $y, $length, $tint, $widths, $side);
       break;
 
-    case "bottom":
-    case "right":
-      $shade = array_map(array($this, "_shade"), $color);
+    case 'bottom':
+    case 'right':
+      $shade = array_map([$this, '_shade'], $color);
       $this->_border_solid($x, $y, $length, $shade, $widths, $side);
       break;
 
@@ -875,16 +872,18 @@ abstract class Abstract_Renderer {
       return;
 
     }
-  }
-  
-  protected function _set_opacity($opacity) {
-    if ( is_numeric($opacity) && $opacity <= 1.0 && $opacity >= 0.0 ) {
-      $this->_canvas->set_opacity( $opacity );
     }
-  }
-  
-  protected function _debug_layout($box, $color = "red", $style = array()) {
-    $this->_canvas->rectangle($box[0], $box[1], $box[2], $box[3], CSS_Color::parse($color), 0.1, $style);
-  }
+
+    protected function _set_opacity($opacity)
+    {
+        if (is_numeric($opacity) && $opacity <= 1.0 && $opacity >= 0.0) {
+            $this->_canvas->set_opacity($opacity);
+        }
+    }
+
+    protected function _debug_layout($box, $color = 'red', $style = [])
+    {
+        $this->_canvas->rectangle($box[0], $box[1], $box[2], $box[3], CSS_Color::parse($color), 0.1, $style);
+    }
   //........................................................................
 }

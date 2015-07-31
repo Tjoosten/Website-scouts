@@ -1,6 +1,7 @@
 <?php
+
 /**
- * DOMPDF - PHP5 HTML to PDF renderer
+ * DOMPDF - PHP5 HTML to PDF renderer.
  *
  * File: $RCSfile: block_positioner.cls.php,v $
  * Created on: 2004-06-08
@@ -31,56 +32,55 @@
  * http://www.dompdf.com/
  *
  * @link http://www.dompdf.com/
+ *
  * @copyright 2004 Benj Carson
  * @author Benj Carson <benjcarson@digitaljunkies.ca>
- * @package dompdf
-
  */
 
 /* $Id: block_positioner.cls.php 356 2011-01-28 08:56:10Z fabien.menager $ */
 
 /**
- * Positions block frames
- *
- * @access private
- * @package dompdf
+ * Positions block frames.
  */
-class Block_Positioner extends Positioner {
+class Block_Positioner extends Positioner
+{
+    public function __construct(Frame_Decorator $frame)
+    {
+        parent::__construct($frame);
+    }
 
-
-  function __construct(Frame_Decorator $frame) { parent::__construct($frame); }
-  
   //........................................................................
 
-  function position() {
-    $frame = $this->_frame;
-    $style = $frame->get_style();
-    $cb = $frame->get_containing_block();
-    $p = $frame->find_block_parent();
-    
-    if ( $p ) {
-      $float = $style->float;
-      if ( !DOMPDF_ENABLE_CSS_FLOAT || !$float || $float === "none" ) {
-        $p->add_line();
-      }
-      $y = $p->get_current_line("y");
-      
-    } else
-      $y = $cb["y"];
+  public function position()
+  {
+      $frame = $this->_frame;
+      $style = $frame->get_style();
+      $cb = $frame->get_containing_block();
+      $p = $frame->find_block_parent();
 
-    $x = $cb["x"];
+      if ($p) {
+          $float = $style->float;
+          if (!DOMPDF_ENABLE_CSS_FLOAT || !$float || $float === 'none') {
+              $p->add_line();
+          }
+          $y = $p->get_current_line('y');
+      } else {
+          $y = $cb['y'];
+      }
+
+      $x = $cb['x'];
 
     // Relative positionning
-    if ( $style->position === "relative" ) {
-      $top =    $style->length_in_pt($style->top,    $cb["h"]);
+    if ($style->position === 'relative') {
+        $top = $style->length_in_pt($style->top, $cb['h']);
       //$right =  $style->length_in_pt($style->right,  $cb["w"]);
       //$bottom = $style->length_in_pt($style->bottom, $cb["h"]);
-      $left =   $style->length_in_pt($style->left,   $cb["w"]);
-      
-      $x += $left;
-      $y += $top;
+      $left = $style->length_in_pt($style->left, $cb['w']);
+
+        $x += $left;
+        $y += $top;
     }
-    
-    $frame->set_position($x, $y);
+
+      $frame->set_position($x, $y);
   }
 }

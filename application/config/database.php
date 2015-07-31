@@ -1,6 +1,7 @@
 <?php
+
 /**
- * CodeIgniter
+ * CodeIgniter.
  *
  * An open source application development framework for PHP 5.2.4 or newer
  *
@@ -16,15 +17,15 @@
  * through the world wide web, please send an email to
  * licensing@ellislab.com so we can send you a copy immediately.
  *
- * @package		CodeIgniter
  * @author		EllisLab Dev Team
  * @copyright	Copyright (c) 2008 - 2014, EllisLab, Inc. (http://ellislab.com/)
  * @license		http://opensource.org/licenses/AFL-3.0 Academic Free License (AFL 3.0)
+ *
  * @link		http://codeigniter.com
  * @since		Version 1.0
  * @filesource
  */
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
 /*
 | -------------------------------------------------------------------
@@ -86,30 +87,30 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 */
 
 $active_group = 'production';
-$query_builder = TRUE;
+$query_builder = true;
 
-$db['production'] = array(
-	'dsn'	=> '',
-	'hostname' => 'localhost',
-	'username' => 'root',
-	'password' => 'root',
-	'database' => 'sn1145_scouts',
-	'dbdriver' => 'mysqli',
-	'dbprefix' => '',
-	'pconnect' => TRUE,
-	'db_debug' => TRUE,
-	'cache_on' => TRUE, 									       // Setup 5 February, 2015
-	'cachedir' => './application/cache/database', // Setup 5 February, 2015
-	'char_set' => 'utf8',
-	'dbcollat' => 'utf8_general_ci',
-	'swap_pre' => '',
-	'autoinit' => TRUE,
-	'encrypt' => TRUE,
-	'compress' => FALSE,
-	'stricton' => FALSE,
-	'failover' => array(),
-	'save_queries' => TRUE
-);
+$db['production'] = [
+    'dsn'          => '',
+    'hostname'     => 'localhost',
+    'username'     => 'root',
+    'password'     => 'root',
+    'database'     => 'sn1145_scouts',
+    'dbdriver'     => 'mysqli',
+    'dbprefix'     => '',
+    'pconnect'     => true,
+    'db_debug'     => true,
+    'cache_on'     => true,                                           // Setup 5 February, 2015
+    'cachedir'     => './application/cache/database', // Setup 5 February, 2015
+    'char_set'     => 'utf8',
+    'dbcollat'     => 'utf8_general_ci',
+    'swap_pre'     => '',
+    'autoinit'     => true,
+    'encrypt'      => true,
+    'compress'     => false,
+    'stricton'     => false,
+    'failover'     => [],
+    'save_queries' => true,
+];
 
 /* End of file database.php */
 /* Location: ./application/config/database.php */

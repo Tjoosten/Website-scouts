@@ -38,7 +38,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				<?php foreach($Query as $Output): ?>
+				<?php foreach ($Query as $Output): ?>
 					<tr>
 						<td><?php echo date('d-m-Y', $Output->Start_datum); ?> / <?php echo date('d-m-Y', $Output->Eind_datum); ?></td>
 						<td><?php echo $Output->Groep; ?></td>

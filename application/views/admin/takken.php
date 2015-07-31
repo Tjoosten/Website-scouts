@@ -4,27 +4,27 @@
 
 			<!-- Nav tabs -->
 			<ul class="nav nav-tabs" role="tablist">
-				<?php if($this->Session['Tak'] == 1): ?>
+				<?php if ($this->Session['Tak'] == 1): ?>
   				<li class="active"><a href="#Kapoenen" role="tab" data-toggle="tab">De kapoenen</a></li>
 					<li><a href="#act_kapoenen" role="tab" data-toggle="tab">Kapoenen activiteiten</a></li>
 					<li><a href="#Nieuw_kapoenen" role="tab" data-toggle="tab">Nieuwe activiteit</a></li>
-				<?php elseif($this->Session['Tak'] == 2): ?>
+				<?php elseif ($this->Session['Tak'] == 2): ?>
   				<li class="active"><a href="#Welpen" role="tab" data-toggle="tab">De Welpen</a></li>
 					<li><a href="#act_welpen" role="tab" data-toggle="tab">Welpen activiteiten</a></li>
 					<li><a href="#Nieuw_welpen" role="tab" data-toggle="tab">Nieuwe activiteit</a></li>
-				<?php elseif($this->Session['Tak'] == 3): ?>
+				<?php elseif ($this->Session['Tak'] == 3): ?>
   				<li class="active"><a href="#JongGivers" role="tab" data-toggle="tab">De Jong-givers</a></li>
 					<li><a href="#act_jonggivers" role="tab" data-toggle="tab">Jong-givers activiteiten</a></li>
 					<li><a href="#Nieuw_jonggivers" role="tab" data-toggle="tab">Nieuwe activiteit</a></li>
-				<?php elseif($this->Session['Tak'] == 4): ?>
+				<?php elseif ($this->Session['Tak'] == 4): ?>
   				<li class="active"><a href="#Givers" role="tab" data-toggle="tab">De Givers</a></li>
 					<li><a href="#act_givers" role="tab" data-toggle="tab">Givers activiteiten</a></li>
 					<li><a href="#Nieuw_givers" role="tab" data-toggle="tab">Nieuwe actviteiten</a></li>
-				<?php elseif($this->Session['Tak'] == 5): ?>
+				<?php elseif ($this->Session['Tak'] == 5): ?>
   				<li class="active"><a href="#Jins" role="tab" data-toggle="tab">De Jins</a></li>
 					<li><a href="#act_jins" role="tab" data-toggle="tab">Jins activiteiten</a></li>
 					<li><a href="#Nieuw_jins" role="tab" data-toggle="tab">Nieuwe activiteiten</a></li>
-				<?php elseif($this->Session['Tak'] == 6): ?>
+				<?php elseif ($this->Session['Tak'] == 6): ?>
 					<li class="active"><a href="#Leiding" role="tab" data-toggle="tab">De Leiding</a></li>
 					<li><a href="" role="tab" data-toggle="tab">Activiteiten</a></li>
 				<?php endif; ?>
@@ -32,10 +32,10 @@
 
 			<!-- Tab panes -->
 			<div class="tab-content">
-				<?php if($this->Session['Tak'] == 1): ?>
+				<?php if ($this->Session['Tak'] == 1): ?>
   				<div class="tab-pane active" id="Kapoenen">
   					<p>
-  						<?php foreach($Kapoenen as $Kapoen): ?>
+  						<?php foreach ($Kapoenen as $Kapoen): ?>
   							<form method="POST" action="<?php echo base_url(); ?>Takken/Takken_edit/<?php echo $Kapoen->ID; ?>">
   								<label for="Title"> Heading: </label>
   								<input style="width:35%;" class="form-control" id="Title" name="Title" value="<?php echo $Kapoen->Title; ?>" placeholder="Titel">
@@ -71,7 +71,7 @@
 										<tr>
 									</thead>
 									<tbody>
-										<?php foreach($Activiteiten_Kapoenen as $Output): ?>
+										<?php foreach ($Activiteiten_Kapoenen as $Output): ?>
 											<tr>
 												<td><code>#<?php echo $Output->ID; ?></code></td>
 												<td><?php echo $Output->Datum; ?></td>
@@ -108,9 +108,9 @@
 				</div>
 			<?php endif; ?>
 
-			<?php if($this->Session['Tak'] == 2): ?>
+			<?php if ($this->Session['Tak'] == 2): ?>
  				<div class="tab-pane active" id="Welpen">
- 			  	<?php foreach($Welpen as $Welp): ?>
+ 			  	<?php foreach ($Welpen as $Welp): ?>
           	<p>
             	<form method="POST" action="<?php echo base_url(); ?>Takken/Takken_edit/<?php echo $Welp->ID; ?>">
               	<label for="Title">Heading:</label>
@@ -146,7 +146,7 @@
 										<tr>
 									</thead>
 									<tbody>
-										<?php foreach($Activiteiten_Welpen as $Output): ?>
+										<?php foreach ($Activiteiten_Welpen as $Output): ?>
 											<tr>
 												<td><code>#<?php echo $Output->ID; ?></code></td>
 												<td><?php echo $Output->Datum; ?></td>
@@ -183,9 +183,9 @@
 				</div>
 			<?php endif; ?>
 
-			<?php if($this->Session['Tak'] == 3): ?>
+			<?php if ($this->Session['Tak'] == 3): ?>
   			<div class="tab-pane active" id="JongGivers">
-  		  	<?php foreach($JongGivers as $JongGiver): ?>
+  		  	<?php foreach ($JongGivers as $JongGiver): ?>
           	<p>
             	<form method="POST" action="<?php echo base_url(); ?>Takken/Takken_edit/<?php echo $JongGiver->ID; ?>">
               	<label for="Title"> Heading: </label>
@@ -221,7 +221,7 @@
 										<tr>
 									</thead>
 									<tbody>
-										<?php foreach($Activiteiten_JongGivers as $Output): ?>
+										<?php foreach ($Activiteiten_JongGivers as $Output): ?>
 											<tr>
 												<td><code>#<?php echo $Output->ID; ?></code></td>
 												<td><?php echo $Output->Datum; ?></td>
@@ -258,9 +258,9 @@
 				</div>
 			<?php endif; ?>
 
-			<?php if($this->Session['Tak'] == 4): ?>
+			<?php if ($this->Session['Tak'] == 4): ?>
   			<div class="tab-pane" id="Givers">
-  		  	<?php foreach($Givers as $Giver): ?>
+  		  	<?php foreach ($Givers as $Giver): ?>
           	<p>
             	<form method="POST" action="<?php echo base_url(); ?>Takken/Takken_edit/<?php echo $Giver->ID; ?>">
               	<label for="title">Heiding:</label>
@@ -293,9 +293,9 @@
 				</div>
 			<?php endif; ?>
 
-			<?php if($this->Session['Tak'] == 5): ?>
+			<?php if ($this->Session['Tak'] == 5): ?>
   			<div class="tab-pane" id="Jins">
-  		  	<?php foreach($Jins as $jin): ?>
+  		  	<?php foreach ($Jins as $jin): ?>
           	<p>
             	<form method="POST" action="<?php echo base_url(); ?>Takken/Takken_edit/<?php echo $jin->ID; ?>">
               	<label for="title">Headin:</label>
@@ -328,9 +328,9 @@
 				</div>
 			<?php endif; ?>
 
-			<?php if($this->Session['Tak'] == 6): ?>
+			<?php if ($this->Session['Tak'] == 6): ?>
   			<div class="tab-pane active" id="Leiding">
-  		  	<?php foreach($Leiding as $Output): ?>
+  		  	<?php foreach ($Leiding as $Output): ?>
           	<p>
             	<form method="POST" action="<?php echo base_url(); ?>Takken/Takken_edit/<?php echo $Output->ID; ?>">
               	<label for="title">Headin:</label>

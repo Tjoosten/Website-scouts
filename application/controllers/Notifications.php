@@ -1,33 +1,35 @@
-<?php defined('BASEPATH') OR exit('No direct script access allowed');
+<?php
+
+defined('BASEPATH') or exit('No direct script access allowed');
 
 /**
- * Notifications controller
+ * Notifications controller.
  *
  * @author Tim Joosten
  * @license: Closed license
+ *
  * @since 2015
- * @package Website
  */
 class Notifications extends CI_Controller
 {
-    public $Session     = array();
-    public $Permissions = array();
-    public $Redirect    = array();
+    public $Session = [];
+    public $Permissions = [];
+    public $Redirect = [];
 
     /**
      * Constuctor for the Notifications file.
      */
-    function __construct()
+    public function __construct()
     {
         parent::__construct();
         $this->load->model('Model_leiding', 'Leiding');
         $this->load->model('Model_notifications', 'Notification');
 
-        $this->load->helper(array('logger'));
+        $this->load->helper(['logger']);
 
-        $this->Redirect    = $this->config->item('Redirect', 'Not_logged_in');
+        $this->Redirect = $this->config->item('Redirect', 'Not_logged_in');
         $this->Permissions = $this->session->userdata('Permissions');
-        $this->Session     = $this->session->userdata('logged_in');
+        $this->Session = $this->session->userdata('logged_in');
     }
     // End constructor
 
@@ -40,10 +42,10 @@ class Notifications extends CI_Controller
             // Logging
             user_log($this->Session['username'], 'Heeft geprobeerd om de notificaties te herstellen.');
 
-            $Person = array(
+            $Person = [
                 'Naam'  => $this->Auth['username'],
                 'Email' => $this->Auth['Email'],
-            );
+            ];
 
             $this->Notification->Herstel_verhuur($Person);
 
@@ -55,9 +57,9 @@ class Notifications extends CI_Controller
     }
 
     /**
-     * Enable email notifications - Verhuur
+     * Enable email notifications - Verhuur.
      */
-    function Verhuur_aan()
+    public function Verhuur_aan()
     {
         if ($this->Session) {
             // Logging
@@ -72,9 +74,9 @@ class Notifications extends CI_Controller
     }
 
     /**
-     * Disable email notifications - Verhuur
+     * Disable email notifications - Verhuur.
      */
-    function Verhuur_uit()
+    public function Verhuur_uit()
     {
         if ($this->Session) {
             // Logging

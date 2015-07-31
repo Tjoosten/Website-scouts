@@ -1,20 +1,23 @@
-<?php if (!defined('BASEPATH')) exit('No direct script access allowed');
+<?php
+
+if (!defined('BASEPATH')) {
+    exit('No direct script access allowed');
+}
 
 /**
  *
  */
 class Fotos extends CI_Controller
 {
-
     // Constructor
-    public $Session = array();
-    public $Redirect = array();
+    public $Session = [];
+    public $Redirect = [];
 
     public function __construct()
     {
         parent::__construct();
         $this->load->model('Model_fotos', 'Images');
-        $this->load->helper(array('form', 'url', 'logger'));
+        $this->load->helper(['form', 'url', 'logger']);
 
         $this->Session = $this->session->userdata('logged_in');
         $this->Redirect = $this->config->item('Redirect', 'Not_logged_in');
@@ -24,11 +27,11 @@ class Fotos extends CI_Controller
     // Client side
     public function index()
     {
-        $data = array(
-            'Title' => 'Fotos',
+        $data = [
+            'Title'  => 'Fotos',
             'Active' => '3',
-            'Foto' => $this->Images->select(),
-        );
+            'Foto'   => $this->Images->select(),
+        ];
 
         $this->load->view('components/header', $data);
         $this->load->view('components/navbar', $data);
@@ -38,11 +41,11 @@ class Fotos extends CI_Controller
 
     public function Tak()
     {
-        $data = array(
+        $data = [
             'Title'  => 'Fotos',
             'Active' => '3',
             'Foto'   => $this->Images->select_tak(),
-        );
+        ];
 
         $this->load->view('components/header', $data);
         $this->load->view('components/navbar', $data);
@@ -54,15 +57,15 @@ class Fotos extends CI_Controller
     public function Index_admin()
     {
         if ($this->Session) {
-            $data = array(
-                'Title' => 'Admin media',
+            $data = [
+                'Title'  => 'Admin media',
                 'Active' => '3',
-                'DB' => $this->Images->Backend_select(),
-            );
+                'DB'     => $this->Images->Backend_select(),
+            ];
 
             $this->load->view('components/admin_header', $data);
             $this->load->view('components/navbar_admin', $data);
-            $this->load->view('admin/index_foto', array('error' => ''), $data);
+            $this->load->view('admin/index_foto', ['error' => ''], $data);
             $this->load->view('components/footer');
         } else {
             // geen sessie gevonden, ga naar login
@@ -71,7 +74,7 @@ class Fotos extends CI_Controller
     }
 
     /**
-     * Upload een foto
+     * Upload een foto.
      */
     public function do_upload()
     {
@@ -79,26 +82,24 @@ class Fotos extends CI_Controller
             // Logging
             user_log($this->Session['username'], 'Heeft een foto of album geupload');
 
-            $config = array(
-                'allowed_types' => 'jpg',
+            $config = [
+                'allowed_types'  => 'jpg',
                 'upload_path'    => './assets/fotos',
-            );
-
+            ];
 
             $this->load->library('upload', $config);
 
             if (!$this->upload->do_upload()) {
-                $data = array(
-                    'Title' => 'Wijzig groentje',
+                $data = [
+                    'Title'  => 'Wijzig groentje',
                     'Active' => '9',
-                    'DB' => $this->Images->Backend_select(),
-                );
+                    'DB'     => $this->Images->Backend_select(),
+                ];
 
                 $this->load->view('components/admin_header', $data);
                 $this->load->view('components/navbar_admin', $data);
-                $this->load->view('admin/index_foto', array('error' => $this->upload->display_errors()), $data);
+                $this->load->view('admin/index_foto', ['error' => $this->upload->display_errors()], $data);
                 $this->load->view('components/footer');
-
             } else {
                 $this->Images->Insert($this->upload->data());
                 $this->load->view('alerts/upload_success');
@@ -110,7 +111,7 @@ class Fotos extends CI_Controller
     }
 
     /**
-     * Delete a photo
+     * Delete a photo.
      */
     public function delete()
     {
@@ -118,7 +119,7 @@ class Fotos extends CI_Controller
             // Logging
             user_log($this->Session['username'], 'heeft een foto of album verwijderd');
 
-            unlink('./assets/fotos/' . $this->uri->segment(3));
+            unlink('./assets/fotos/'.$this->uri->segment(3));
             $this->Images->Delete();
             redirect('Fotos/Index_admin');
         } else {

@@ -37,20 +37,20 @@
             <div class="row">
               <div class="col-md-6">
                 <table class="table table-condensed">
-                  <?php foreach($ploeg as $Tak): ?>
+                  <?php foreach ($ploeg as $Tak): ?>
                     <tr>
                       <td><a href="mailto:<?php echo $Tak->Mail; ?>"><?php echo $Tak->username; ?></a></td>
 
                       <td>
-                        <?php if($Tak->Tak == 1): ?>
+                        <?php if ($Tak->Tak == 1): ?>
                           <span class="label label-success">Kapoenen</span>
-                        <?php elseif($Tak->Tak == 2): ?>
+                        <?php elseif ($Tak->Tak == 2): ?>
                           <span class="label label-success">Welpen</span>
-                        <?php elseif($Tak->Tak == 3): ?>
+                        <?php elseif ($Tak->Tak == 3): ?>
                           <span class="label label-success">Jong-givers</span>
-                        <?php elseif($Tak->Tak == 4): ?>
+                        <?php elseif ($Tak->Tak == 4): ?>
                           <span class="label label-success">Givers</span>
-                        <?php elseif($Tak->Tak == 5): ?>
+                        <?php elseif ($Tak->Tak == 5): ?>
                           <span class="label label-success">Jins</span>
                         <?php endif; ?>
                       </td>

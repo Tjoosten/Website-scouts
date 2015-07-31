@@ -1,11 +1,14 @@
-<?php if (!defined('BASEPATH')) exit('No direct script access allowed');
-session_start(); //we need to call PHP's session object to access it through CI
-class backend extends CI_Controller
-{
+<?php
 
+if (!defined('BASEPATH')) {
+    exit('No direct script access allowed');
+}
+session_start(); //we need to call PHP's session object to access it through CI
+class Backend extends CI_Controller
+{
     // Constructor
-    public $Session     = array();
-    public $Permissions = array();
+    public $Session = [];
+    public $Permissions = [];
 
     public function __construct()
     {
@@ -13,11 +16,11 @@ class backend extends CI_Controller
         $this->load->model('Model_takken', 'Takken');
         $this->load->model('Model_activiteiten', 'Activiteiten');
         $this->load->model('Model_session', 'DBsession');
-        $this->load->model('user', '', TRUE);
+        $this->load->model('user', '', true);
 
-        $this->load->helper(array('logger'));
+        $this->load->helper(['logger']);
 
-        $this->Session     = $this->session->userdata('logged_in');
+        $this->Session = $this->session->userdata('logged_in');
         $this->Permissions = $this->session->userdata('Permissions');
     }
 
@@ -26,14 +29,13 @@ class backend extends CI_Controller
     public function index()
     {
         if ($this->Session) {
-
-            $data = array(
-                'Title' => 'Admin Takken',
+            $data = [
+                'Title'  => 'Admin Takken',
                 'Active' => '1',
-            );
+            ];
 
             // Tak beschrijvingen
-            $DB = array(
+            $DB = [
                 'Kapoenen'   => $this->Takken->Tak_info('Kapoenen'),
                 'Welpen'     => $this->Takken->Tak_info('Welpen'),
                 'JongGivers' => $this->Takken->Tak_info('JongGivers'),
@@ -46,7 +48,7 @@ class backend extends CI_Controller
                 'Activiteiten_JongGivers' => $this->Activiteiten->Activiteiten('5', 'JongGivers'),
                 'Activiteiten_Givers'     => $this->Activiteiten->Activiteiten('5', 'Givers'),
                 'Activiteiten_Jins'       => $this->Activiteiten->Activiteiten('5', 'Jins'),
-            );
+            ];
 
             $this->load->view('components/admin_header', $data);
             $this->load->view('components/navbar_admin', $data);
@@ -91,5 +93,4 @@ class backend extends CI_Controller
         $this->session->sess_destroy();
         redirect('Admin', 'refresh');
     }
-
 }

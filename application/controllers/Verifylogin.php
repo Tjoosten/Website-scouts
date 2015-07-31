@@ -1,32 +1,35 @@
-<?php if (!defined('BASEPATH')) exit('No direct script access allowed');
+<?php
+
+if (!defined('BASEPATH')) {
+    exit('No direct script access allowed');
+}
 
 /**
  * Login verification.
  *
  * @author Tim Joosten
  * @license: Closed license
+ *
  * @since 2015
- * @package Website-controllers
  */
-class VerifyLogin extends CI_Controller
+class Verifylogin extends CI_Controller
 {
-
-    function __construct()
+    public function __construct()
     {
         parent::__construct();
-        $this->load->model('user', '', TRUE);
+        $this->load->model('user', '', true);
         $this->load->model('Model_session', 'DBsession');
         $this->load->model('Model_log', 'logger');
-        $this->load->helper(array('string'));
-        $this->load->library(array('email', 'form_validation'));
+        $this->load->helper(['string']);
+        $this->load->library(['email', 'form_validation']);
     }
 
-    function index()
+    public function index()
     {
         $this->form_validation->set_rules('username', 'Username', 'trim|required|xss_clean');
         $this->form_validation->set_rules('password', 'Password', 'trim|required|xss_clean|callback_check_database');
 
-        if ($this->form_validation->run() == FALSE) {
+        if ($this->form_validation->run() == false) {
             $this->load->view('admin/login');
         } else {
             $this->logger->logged_in();
@@ -34,17 +37,18 @@ class VerifyLogin extends CI_Controller
             $this->user->setOnline();
             redirect('backend', 'refresh');
         }
-
     }
 
     /**
      * Run the login against the database.
      *
      * @todo  Set invidual permissions.
+     *
      * @param $password
+     *
      * @return bool
      */
-    function check_database($password)
+    public function check_database($password)
     {
         // Field validation succeeded.  Validate against database
         $username = $this->input->post('username');
@@ -53,30 +57,30 @@ class VerifyLogin extends CI_Controller
         $result = $this->user->login($username, $password);
 
         if ($result) {
-            $auth_array       = array();
-            $permission_array = array();
+            $auth_array = [];
+            $permission_array = [];
 
             foreach ($result as $row) {
-                $auth_array = array(
+                $auth_array = [
                     'id'       => $row->id,
                     'username' => $row->username,
                     'Admin'    => $row->Admin_role,
                     'Tak'      => $row->Tak,
                     'Theme'    => $row->Theme,
                     'Email'    => $row->Mail,
-                );
+                ];
 
                 $this->session->set_userdata('logged_in', $auth_array);
                 $permissions = $this->user->permissions($auth_array['id']);
 
-                foreach($permissions as $permission) {
-                   $permission_array = array(
+                foreach ($permissions as $permission) {
+                    $permission_array = [
                         'user_id'     => $auth_array['id'],
                         'verhuur'     => $permission->verhuur,
                         'mailinglist' => $permission->mailinglist,
                         'drive'       => $permission->drive,
                         'profilelen'  => $permission->profiles,
-                   );
+                   ];
                 }
 
                 $this->DBsession->setUserId(
@@ -89,19 +93,20 @@ class VerifyLogin extends CI_Controller
                 // -----------------------------
                 // var_dump($this->session->userdata('Permissions'));
                 // die();
-
             }
-            return TRUE;
+
+            return true;
         } else {
             $this->form_validation->set_message('check_database', 'Foutief wachtwoord of gebruikersnaam');
+
             return false;
         }
     }
 
     /**
-     * Wachtwoord reset
+     * Wachtwoord reset.
      */
-    function reset()
+    public function reset()
     {
         $Output = $this->user->reset_pass();
 
@@ -116,7 +121,7 @@ class VerifyLogin extends CI_Controller
             user_log($this->input->post('recovery'), 'Heeft een wachtword reset aangevraagd.');
 
             // Email
-            $mail = $this->load->view('email/reset', $New, TRUE);
+            $mail = $this->load->view('email/reset', $New, true);
 
             // Mail voor bevestiging
             $this->email->from('contact@st-joris-turnhout.be', 'Contact st-joris turnhout');
@@ -124,7 +129,7 @@ class VerifyLogin extends CI_Controller
             $this->email->bcc('Topairy@gmail.com');
             $this->email->subject('Reset wachtwoord - Sint Joris Turnhout');
             $this->email->message($mail);
-            $this->email->set_mailtype("html");
+            $this->email->set_mailtype('html');
             $this->email->send();
             $this->email->clear();
 

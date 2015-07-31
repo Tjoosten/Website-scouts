@@ -48,10 +48,10 @@
           								</tr>
           							</thead>
           							<tbody>
-          								<?php foreach($Verhuringen as $Verhuur): ?>
+          								<?php foreach ($Verhuringen as $Verhuur): ?>
           									<tr>
-          										<td><?php echo date('d.m.Y' ,$Verhuur->Start_datum); ?></td>
-          										<td><?php echo date('d.m.Y' ,$Verhuur->Eind_datum); ?></td>
+          										<td><?php echo date('d.m.Y', $Verhuur->Start_datum); ?></td>
+          										<td><?php echo date('d.m.Y', $Verhuur->Eind_datum); ?></td>
           									</tr>
           								<?php endforeach; ?>
           							</tbody>

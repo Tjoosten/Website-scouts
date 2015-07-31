@@ -1,6 +1,7 @@
 <?php
+
 /**
- * DOMPDF - PHP5 HTML to PDF renderer
+ * DOMPDF - PHP5 HTML to PDF renderer.
  *
  * File: $RCSfile: list_bullet_frame_reflower.cls.php,v $
  * Created on: 2004-06-23
@@ -31,36 +32,35 @@
  * http://www.dompdf.com/
  *
  * @link http://www.dompdf.com/
+ *
  * @copyright 2004 Benj Carson
  * @author Benj Carson <benjcarson@digitaljunkies.ca>
- * @package dompdf
-
  */
 
 /* $Id: list_bullet_frame_reflower.cls.php 357 2011-01-30 20:56:46Z fabien.menager $ */
 
 /**
- * Reflows list bullets
- *
- * @access private
- * @package dompdf
+ * Reflows list bullets.
  */
-class List_Bullet_Frame_Reflower extends Frame_Reflower {
-
-  function __construct(Frame_Decorator $frame) { parent::__construct($frame); }
-    
-  //........................................................................
-
-  function reflow(Frame_Decorator $block = null) {
-    $style = $this->_frame->get_style();
-
-    $style->width = $this->_frame->get_width();
-    $this->_frame->position();
-
-    if ( $style->list_style_position === "inside" ) {
-      $p = $this->_frame->find_block_parent();
-      $p->add_frame_to_line($this->_frame);
+class List_Bullet_Frame_Reflower extends Frame_Reflower
+{
+    public function __construct(Frame_Decorator $frame)
+    {
+        parent::__construct($frame);
     }
 
+  //........................................................................
+
+  public function reflow(Frame_Decorator $block = null)
+  {
+      $style = $this->_frame->get_style();
+
+      $style->width = $this->_frame->get_width();
+      $this->_frame->position();
+
+      if ($style->list_style_position === 'inside') {
+          $p = $this->_frame->find_block_parent();
+          $p->add_frame_to_line($this->_frame);
+      }
   }
 }

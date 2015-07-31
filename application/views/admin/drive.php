@@ -1,6 +1,6 @@
 <div class="container">
 
-  <?php if($this->Flash): ?>
+  <?php if ($this->Flash): ?>
     <div class="row">
       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
         <div class="<?php echo $this->Flash['Class']; ?>">
@@ -25,7 +25,7 @@
           <p>
             <div style="margin-bottom: 7px;" class="row">
               <div class="col-xs-6 col-sm-6 col-lg-6 col-md-6">
-                <?php if(count($Files) == 0): ?>
+                <?php if (count($Files) == 0): ?>
                   <div class="alert alert-warning">
                     <p> Er zijn nog geen bestanden toegevoegd aan de drive. </p>
                   </div>
@@ -38,11 +38,11 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <?php foreach($Files as $File): ?>
+                      <?php foreach ($Files as $File): ?>
                         <?php
                           // Start icon system
                           switch ($File->file_extension) {
-                            case ".pdf":
+                            case '.pdf':
                               $icon = 'fa fa-file-pdf-o';
                               break;
                             case '.mp3';
@@ -74,11 +74,11 @@
                           <!-- Options -->
                           <td>
                             <div class='btn-group'>
-                              <a role="button" class="btn btn-xs btn-danger" href="<?php echo base_url(). 'Drive/Delete/' .$File->file_name; ?>">
+                              <a role="button" class="btn btn-xs btn-danger" href="<?php echo base_url().'Drive/Delete/'.$File->file_name; ?>">
                                 <span class="fa fa-trash"></span>
                               </a>
 
-                              <a role="button" class="btn btn-xs btn-danger" href="<?php echo base_url(). 'Drive/Download/' .$File->file_name; ?>">
+                              <a role="button" class="btn btn-xs btn-danger" href="<?php echo base_url().'Drive/Download/'.$File->file_name; ?>">
                                 <span class="fa fa-cloud-download"></span>
                               </a>
                             </div>

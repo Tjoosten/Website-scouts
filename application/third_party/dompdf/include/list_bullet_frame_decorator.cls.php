@@ -1,6 +1,7 @@
 <?php
+
 /**
- * DOMPDF - PHP5 HTML to PDF renderer
+ * DOMPDF - PHP5 HTML to PDF renderer.
  *
  * File: $RCSfile: list_bullet_frame_decorator.cls.php,v $
  * Created on: 2004-06-23
@@ -31,14 +32,15 @@
  * http://www.dompdf.com/
  *
  * @link http://www.dompdf.com/
+ *
  * @copyright 2004 Benj Carson
  * @author Benj Carson <benjcarson@digitaljunkies.ca>
  * @contributor Helmut Tischer <htischer@weihenstephan.org>
- * @package dompdf
-
+ 
  *
  * Changes
  * @contributor Helmut Tischer <htischer@weihenstephan.org>
+ *
  * @version 20090622
  * - bullet size proportional to font size, center position
  */
@@ -46,51 +48,58 @@
 /* $Id: list_bullet_frame_decorator.cls.php 325 2010-11-07 18:05:59Z fabien.menager $ */
 
 /**
- * Decorates frames for list bullet rendering
- *
- * @access private
- * @package dompdf 
+ * Decorates frames for list bullet rendering.
  */
-class List_Bullet_Frame_Decorator extends Frame_Decorator {
-
-  const BULLET_PADDING = 1; // Distance from bullet to text in pt
+class List_Bullet_Frame_Decorator extends Frame_Decorator
+{
+    const BULLET_PADDING = 1; // Distance from bullet to text in pt
   // As fraction of font size (including descent). See also DECO_THICKNESS.
   const BULLET_THICKNESS = 0.04;   // Thickness of bullet outline. Screen: 0.08, print: better less, e.g. 0.04
   const BULLET_DESCENT = 0.3;  //descent of font below baseline. Todo: Guessed for now.
   const BULLET_SIZE = 0.35;   // bullet diameter. For now 0.5 of font_size without descent.
-  
-  static $BULLET_TYPES = array("disc", "circle", "square");
-  
+
+  public static $BULLET_TYPES = ['disc', 'circle', 'square'];
+
   //........................................................................
 
-  function __construct(Frame $frame, DOMPDF $dompdf) {
-    parent::__construct($frame, $dompdf);
+  public function __construct(Frame $frame, DOMPDF $dompdf)
+  {
+      parent::__construct($frame, $dompdf);
   }
-  
-  function get_margin_width() {
-    $style = $this->_frame->get_style();
+
+    public function get_margin_width()
+    {
+        $style = $this->_frame->get_style();
     // Small hack to prevent extra indenting of list text on list_style_position === "inside"
     // and on suppressed bullet
-    if ( $style->list_style_position === "outside" ||
-         $style->list_style_type === "none" )
-      return 0;
-    return $style->get_font_size()*self::BULLET_SIZE + 2 * self::BULLET_PADDING;
-  }
+    if ($style->list_style_position === 'outside' ||
+         $style->list_style_type === 'none') {
+        return 0;
+    }
+
+        return $style->get_font_size() * self::BULLET_SIZE + 2 * self::BULLET_PADDING;
+    }
 
   //hits only on "inset" lists items, to increase height of box
-  function get_margin_height() {
-    $style = $this->_frame->get_style();
-    if ( $style->list_style_type === 'none' ) return 0;
-    return $style->get_font_size() * self::BULLET_SIZE + 2 * self::BULLET_PADDING;
+  public function get_margin_height()
+  {
+      $style = $this->_frame->get_style();
+      if ($style->list_style_type === 'none') {
+          return 0;
+      }
+
+      return $style->get_font_size() * self::BULLET_SIZE + 2 * self::BULLET_PADDING;
   }
 
-  function get_width() {
-    return $this->get_margin_height();
-  }
-  
-  function get_height() {
-    return $this->get_margin_height();
-  }
-  
+    public function get_width()
+    {
+        return $this->get_margin_height();
+    }
+
+    public function get_height()
+    {
+        return $this->get_margin_height();
+    }
+
   //........................................................................
 }

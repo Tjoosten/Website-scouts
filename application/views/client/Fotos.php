@@ -33,9 +33,9 @@
 						<h2 style="margin-bottom: -5px;"> Foto's </h2>
 					</div>
 					
-					<?php if(count($Foto) > 0): ?>
+					<?php if (count($Foto) > 0): ?>
 						<div class="row">
-						<?php foreach($Foto as $Output): ?>
+						<?php foreach ($Foto as $Output): ?>
 							<div class="col-xs-4 col-sm-4 col-md-4">
 								<div class="thumbnail">
 	                				<div class="caption">

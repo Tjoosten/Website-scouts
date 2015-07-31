@@ -1,80 +1,89 @@
 <?php
 
-	/**
-	 * Model for Notifications.
-	 *
-	 * @author Tim Joosten
-	 * @license: Closed license
-	 * @since 2015
-	 * @package Website-models
-	 */
 
-	Class Model_notifications extends CI_Model {
-		// Constructor
-		public $Auth = array();
+    /**
+     * Model for Notifications.
+     *
+     * @author Tim Joosten
+     * @license: Closed license
+     *
+     * @since 2015
+     */
+    class Model_notifications extends CI_Model
+    {
+        // Constructor
+        public $Auth = [];
 
-		public function __construct() {
-			parent::__construct();
-			$this->Auth = $this->session->userdata('logged_in');
-		}
-		// End constructor
+        public function __construct()
+        {
+            parent::__construct();
+            $this->Auth = $this->session->userdata('logged_in');
+        }
+        // End constructor
 
-		/**
-		 * Repair notification in the database - Verhuur
-		 */
-		public function Herstel_verhuur($Person) {
-			$Values = array(
-				"Naam"    => $Person['Naam'],
-				"Mail"    => $Person['Email'],
-				"Verhuur" => "0"
-				);
+        /**
+         * Repair notification in the database - Verhuur.
+         */
+        public function Herstel_verhuur($Person)
+        {
+            $Values = [
+                'Naam'    => $Person['Naam'],
+                'Mail'    => $Person['Email'],
+                'Verhuur' => '0',
+                ];
 
-			$this->db->insert('Notifications', $Values);
-		}
+            $this->db->insert('Notifications', $Values);
+        }
 
-		/**
-		 * Blaat
-		 */
-		public function Get() {
-			$this->db->select('Verhuur')
-			         ->where('Naam', $this->Auth['username']);
+        /**
+         * Blaat.
+         */
+        public function Get()
+        {
+            $this->db->select('Verhuur')
+                     ->where('Naam', $this->Auth['username']);
 
-			$Query = $this->db->get('Notifications');
-			return $Query->result();
-		}
+            $Query = $this->db->get('Notifications');
 
-		/**
-		 * Enable notification in the database
-		 */
-		public function Verhuur_aan() {
-			$Values = array(
-				"Verhuur" => "1",
-				);
+            return $Query->result();
+        }
 
-			$this->db->where('Naam', $this->Auth['username'])
-					 ->update('Notifications', $Values);
-		}
+        /**
+         * Enable notification in the database.
+         */
+        public function Verhuur_aan()
+        {
+            $Values = [
+                'Verhuur' => '1',
+                ];
 
-		/**
-		 * Disables notification in the database.
-		 */
-		public function Verhuur_uit() {
-			$Values = array(
-				"Verhuur" => "0",
-				);
+            $this->db->where('Naam', $this->Auth['username'])
+                     ->update('Notifications', $Values);
+        }
 
-			$this->db->where('Naam', $this->Auth['username'])
-					 ->update('Notifications', $Values);
-		}
+        /**
+         * Disables notification in the database.
+         */
+        public function Verhuur_uit()
+        {
+            $Values = [
+                'Verhuur' => '0',
+                ];
 
-		/**
-		 * Gets the email adresses for mailing - verhuur
-		 */
-		public function Verhuur_mailing() {
-			$this->db->select()
-			         ->where('Verhuur','1');
+            $this->db->where('Naam', $this->Auth['username'])
+                     ->update('Notifications', $Values);
+        }
 
-			$Query = $this->db->get('Notifications');
-			return $Query->result();
-		}
-	}
+        /**
+         * Gets the email adresses for mailing - verhuur.
+         */
+        public function Verhuur_mailing()
+        {
+            $this->db->select()
+                     ->where('Verhuur', '1');
+
+            $Query = $this->db->get('Notifications');
+
+            return $Query->result();
+        }
+    }

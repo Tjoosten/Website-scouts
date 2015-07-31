@@ -1,6 +1,7 @@
 <?php
+
 /**
- * DOMPDF - PHP5 HTML to PDF renderer
+ * DOMPDF - PHP5 HTML to PDF renderer.
  *
  * File: $RCSfile: absolute_positioner.cls.php,v $
  * Created on: 2004-06-08
@@ -31,55 +32,56 @@
  * http://www.dompdf.com/
  *
  * @link http://www.dompdf.com/
+ *
  * @copyright 2004 Benj Carson
  * @author Benj Carson <benjcarson@digitaljunkies.ca>
- * @package dompdf
-
  */
 
 /* $Id */
 
 /**
- * Positions absolutly positioned frames
+ * Positions absolutly positioned frames.
  */
-class Absolute_Positioner extends Positioner {
+class Absolute_Positioner extends Positioner
+{
+    public function __construct(Frame_Decorator $frame)
+    {
+        parent::__construct($frame);
+    }
 
-  function __construct(Frame_Decorator $frame) { parent::__construct($frame); }
+    public function position()
+    {
+        $frame = $this->_frame;
+        $style = $frame->get_style();
+        $cb = $frame->get_containing_block();
 
-  function position() {
+        $top = $style->length_in_pt($style->top, $cb['h']);
+        $right = $style->length_in_pt($style->right, $cb['w']);
+        $bottom = $style->length_in_pt($style->bottom, $cb['h']);
+        $left = $style->length_in_pt($style->left, $cb['w']);
 
-    $frame = $this->_frame;
-    $style = $frame->get_style();
-    $cb = $frame->get_containing_block();
+        $p = $frame->find_positionned_parent();
 
-    $top =    $style->length_in_pt($style->top,    $cb["h"]);
-    $right =  $style->length_in_pt($style->right,  $cb["w"]);
-    $bottom = $style->length_in_pt($style->bottom, $cb["h"]);
-    $left =   $style->length_in_pt($style->left,   $cb["w"]);
-    
-    $p = $frame->find_positionned_parent();
-
-    if ( $p ) {
-      // Get the parent's padding box (see http://www.w3.org/TR/CSS21/visuren.html#propdef-top)
+        if ($p) {
+            // Get the parent's padding box (see http://www.w3.org/TR/CSS21/visuren.html#propdef-top)
       list($x, $y, $w, $h) = $p->get_padding_box();
-    } else {
-      $x = $cb["x"];
-      $y = $cb["y"];
+        } else {
+            $x = $cb['x'];
+            $y = $cb['y'];
+        }
+
+        if ($top !== 'auto') {
+            $y += $top;
+        } elseif ($bottom !== 'auto') {
+            // FIXME: need to know this frame's height before we can do this correctly
+        }
+
+        if ($left !== 'auto') {
+            $x += $left;
+        } elseif ($right !== 'auto') {
+            // FIXME: need to know this frame's width before we can do this correctly
+        }
+
+        $frame->set_position($x, $y);
     }
-
-    if ( $top !== "auto" ) {
-      $y += $top;
-    } else if ( $bottom !== "auto" ) {
-      // FIXME: need to know this frame's height before we can do this correctly
-    }
-
-    if ( $left !== "auto" ) {
-      $x += $left;
-    } else if ( $right !== "auto" ) {
-      // FIXME: need to know this frame's width before we can do this correctly
-    }
-
-    $frame->set_position($x, $y);
-
-  }
 }

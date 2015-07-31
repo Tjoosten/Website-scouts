@@ -18,18 +18,18 @@
           					</tr>
           				</thead>
           				<tbody>
-          					<?php foreach($Info as $Output): ?>
+          					<?php foreach ($Info as $Output): ?>
           						<tr>
           							<td><strong>Datum:</strong> <?php echo $Output->Start_datum; ?> - <?php echo $Output->Eind_datum; ?></td>
           						</tr>
           						<tr>
           							<td>
           								<strong>Status:</strong> 
-          								<?php if($Output->Status == 0): ?>
+          								<?php if ($Output->Status == 0): ?>
           									<span class="label label-danger"> Nieuwe aanvraag </span> 
-          								<?php elseif($Output->Status == 1): ?>
+          								<?php elseif ($Output->Status == 1): ?>
           									<span class="label label-warning"> Optie! </span>
-          								<?php elseif($Output->Status == 2): ?>
+          								<?php elseif ($Output->Status == 2): ?>
           									<span class="label label-success"> Bevestigd! </span>
           								<?php endif; ?>
           							</td>

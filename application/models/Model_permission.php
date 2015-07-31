@@ -8,6 +8,7 @@ class Model_permission extends CI_Model
             ->where('user_id', $this->uri->segment(3));
 
         $query = $this->db->get('Permissions');
+
         return $query->result();
     }
 
@@ -16,14 +17,14 @@ class Model_permission extends CI_Model
      */
     public function updateUserRights()
     {
-        $values = array(
+        $values = [
             'mailinglist' => $this->input->post('mailinglist'),
             'verhuur'     => $this->input->post('verhuring'),
             'drive'       => $this->input->post('cloud'),
             'profiles'    => $this->input->post('profielen'),
-        );
+        ];
 
         $this->db->where('user_id', $this->uri->segment(3))
-            ->update("Permissions", $values);
+            ->update('Permissions', $values);
     }
 }

@@ -7,7 +7,7 @@
 
           <!-- List group -->
           <div class="list-group">
-            <a href="<?php echo base_url(). 'Inschrijvingen/Admin_ontbijt'; ?>" class="list-group-item">Ontbijt / Brunch</a>
+            <a href="<?php echo base_url().'Inschrijvingen/Admin_ontbijt'; ?>" class="list-group-item">Ontbijt / Brunch</a>
           </div>
         </div>
 		</div> <!-- END Sidebar -->
@@ -26,7 +26,7 @@
   			<div class="tab-pane active" id="Inschrijvingen">
   				<p>
             <div style="padding-bottom: 15px;" class="pull-right">
-              <a href="<?php echo base_url(). 'Inschrijvingen/Download_ontbijt'; ?>" Role="button" class="btn btn-info">
+              <a href="<?php echo base_url().'Inschrijvingen/Download_ontbijt'; ?>" Role="button" class="btn btn-info">
                 <span class="octicon octicon-cloud-download"></span>  Download
               </a>
             </div>
@@ -42,13 +42,13 @@
   							</tr>
   						</thead>
   						<tbody>
-  							<?php foreach($Inschrijvingen as $Output): ?>
+  							<?php foreach ($Inschrijvingen as $Output): ?>
   								<tr>
   									<td><code> #<?php echo $Output->ID; ?></code></td>
   									<td><?php echo $Output->Voornaam; ?> <?php echo $Output->Naam; ?></td>
 
                     <td>
-                      <?php if(valid_email($Output->Email)): ?>
+                      <?php if (valid_email($Output->Email)): ?>
                         <a href="mailto:<?php echo $Output->Email; ?>"><?php echo $Output->Email; ?></a>
                       <?php else: ?>
                         <?php echo $Output->Email; ?>
@@ -66,12 +66,12 @@
 
   			<div class="tab-pane" id="Toevoegen">
   			<p>
-  				<?php if(count($Datums) == 0 ): ?>
+  				<?php if (count($Datums) == 0): ?>
               			<div class="alert alert-danger">
               				<p> Activeer eerst een datum. Voor mensen zich kunnen inschrijven </p>
               			</div>
               		<?php else: ?>
-              			<form method="POST" action="<?php echo base_url(). 'Inschrijvingen/Insert_inschrijving'; ?>">
+              			<form method="POST" action="<?php echo base_url().'Inschrijvingen/Insert_inschrijving'; ?>">
               				<label for="01">Naam:</label>
               				<input class="form-control" style="width: 35%;" placeholder="Achternaam" name="Naam" id="01" />
               				<br>
@@ -86,7 +86,7 @@
 
               				<label for="04"> Maand </label>
               				<select style="width: 35%;" class="form-control" id="04" name="Maand">
-              					<?php foreach($Datums as $Output): ?>
+              					<?php foreach ($Datums as $Output): ?>
               						<option value="<?php echo $Output->Month_nr; ?>">
               							<?php echo $Output->Month; ?>
               						</option>
@@ -119,17 +119,17 @@
   									</tr>
   								</thead>
   								<tbody>
-  									<?php foreach($Ontbijt_datums as $Output): ?>
+  									<?php foreach ($Ontbijt_datums as $Output): ?>
   										<tr>
   											<td> <?php echo  $Output->Month; ?> </td>
   											<td> <?php echo $Output->Deathline; ?> </td>
   											<td>
-  												<?php if($Output->Status == 1): ?>
-  													<a href="<?php echo base_url(). 'inschrijvingen/Ontbijt_stop'. $Output->ID .'/'. $Output->Month_nr; ?>" class="label label-danger">
+  												<?php if ($Output->Status == 1): ?>
+  													<a href="<?php echo base_url().'inschrijvingen/Ontbijt_stop'.$Output->ID.'/'.$Output->Month_nr; ?>" class="label label-danger">
 															Sluiten
 														</a>
-  												<?php elseif($Output->Status == 0): ?>
-  													<a href="<?php echo base_url(). 'Inschrijvingen/Ontbijt_Start/' .$Output->ID; ?>" class="label label-success">
+  												<?php elseif ($Output->Status == 0): ?>
+  													<a href="<?php echo base_url().'Inschrijvingen/Ontbijt_Start/'.$Output->ID; ?>" class="label label-success">
 															Vrijgeven
 														</a>
   												<?php endif; ?>

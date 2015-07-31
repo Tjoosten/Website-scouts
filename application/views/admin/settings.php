@@ -2,7 +2,7 @@
 	<div class="row">
 		<div class="col-sm-4 col-md-4 col-lg-4">
 
-			<?php foreach($Account as $Output): ?>
+			<?php foreach ($Account as $Output): ?>
 				<form method="POST" action="<?php echo base_url(); ?>Leiding/Settings_edit/<?php echo $Output->id; ?>" role='form'>
 					<label for="01">Naam:</label>
 					<input style="width: 80%;" id="01" class="form-control" type="text" value="<?php echo $Output->username; ?>" disabled placeholder="Naam">
