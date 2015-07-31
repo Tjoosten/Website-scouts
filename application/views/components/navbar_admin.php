@@ -90,12 +90,6 @@
                         Leiding
                       </a>
                     </li>
-                    <li>
-                      <a href="<?php echo base_url() .'Logs'; ?>">
-                        <span class="octicon octicon-file-text"></span>
-                        User Logs
-                      </a>
-                    </li>
                   <?php endif; ?>
                   <li>
                     <a href="<?php echo base_url() . 'issue'; ?>">
