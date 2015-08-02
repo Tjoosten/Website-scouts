@@ -10,9 +10,9 @@
 class Takken extends CI_Controller
 {
     // Constructor
-    public $Session = array();
+    public $Session     = array();
     public $Permissions = array();
-    public $Redirect = array();
+    public $Redirect    = array();
 
     function __construct()
     {
