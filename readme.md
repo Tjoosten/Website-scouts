@@ -1,5 +1,6 @@
 St-Joris Turnhout, Website
 ===============================
+[![Latest Version](https://img.shields.io/github/tag/Tjoosten/lumen-2.svg?style=flat&label=release)](https://github.com/tjoosten/lumen-2/tags)
 [![devDependency Status](https://david-dm.org/tjoosten/sijot-1/dev-status.svg)](https://david-dm.org/tjoosten/sijot-1#info=devDependencies)
 [![Dependency Status](https://david-dm.org/tjoosten/sijot-1.svg)](https://david-dm.org/tjoosten/sijot-1)
 
@@ -16,6 +17,12 @@ higly risk of software bugs.
 - Run `npm install`.
 - test it by navigating to the source folder and run `gulp`.
 - Celebrate.
+
+### API 
+
+There is a background api for the developers of this site. 
+
+You can read the full documentation over [here]().
 
 ### Quickstart Gulp commands: 
 
