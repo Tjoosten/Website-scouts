@@ -1,6 +1,6 @@
 St-Joris Turnhout, Website
 ===============================
-[![Latest Version](https://img.shields.io/github/tag/Tjoosten/lumen-2.svg?style=flat&label=release)](https://github.com/tjoosten/lumen-2/tags)
+[![Latest Version](https://img.shields.io/github/tag/Tjoosten/sijot-1.svg?style=flat&label=release)](https://github.com/tjoosten/sijot-1/tags)
 [![devDependency Status](https://david-dm.org/tjoosten/sijot-1/dev-status.svg)](https://david-dm.org/tjoosten/sijot-1#info=devDependencies)
 [![Dependency Status](https://david-dm.org/tjoosten/sijot-1.svg)](https://david-dm.org/tjoosten/sijot-1)
 
