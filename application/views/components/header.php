@@ -7,6 +7,20 @@
     <meta name="description" content="Website van Scouts &amp; Gidsen - Sint-joris, Turnhout">
     <meta name="author" content="Tim Joosten">
 
+    <!-- SEO: Twitter card -->
+    <meta name="twitter:card" content="photo" />
+    <meta name="twitter:title" content="Mountain sunset" />
+    <meta name="twitter:site" content="http://www.st-joris-turnhout.be" />
+    <meta name="twitter:image" content="<?php echo base_url() . 'assets/img/background.png' ?>" />
+    <meta name="twitter:url" content="http://www.st-joris-turnhout.be" />
+
+    <!-- SEO: facebook OpenGraph -->
+    <meta property="og:url" content="http://www.st-joris-turnhout.be" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="<?php echo $Title; ?>" />
+    <meta property="og:description" content="Website van Scouts & Gidsen - Sint-Joris, Turnhout" />
+    <meta property="og:image" content="<?php echo base_url() . 'assets/img/background.png' ?>" />
+
     <title> Scouts &amp; Gidsen - Sint-Joris | <?php echo $Title; ?> </title>
     <!-- Fav. icon & CSS sheets -->
     <link rel="icon" href="/assets/ico/favicon.ico">
