@@ -17,24 +17,25 @@
 
 				<div class="list-group">
 					<a class="list-group-item" href="<?php echo base_url(); ?>verhuur"><span class="fa fa-info-circle"> Info</a>
+						          <a class="list-group-item" href="<?php echo base_url() . 'verhuur/bereikbaarheid'; ?>"><span class="fa fa-asterisk"></span> Bereikbaarheid</a>
 					<a class="list-group-item" href="<?php echo base_url(); ?>verhuur/verhuur_kalender"><span class="fa fa-calendar"></span> Verhuur Kalender</a>
 					<a class="list-group-item" href="<?php echo base_url(); ?>verhuur/verhuur_aanvraag"><span class="fa fa-plus"></span> Verhuring aanvragen</a>
 					<a class="list-group-item" href="mailto:contact@st-joris-turnhout.be"><span class="fa fa-envelope"></span> Contact</a>
 				</div>
-			</div> 
+			</div>
 		</div>
 
 		<div class="col-sm-9 col-md-9 col-lg-9">
 			<div class="panel panel-default border">
 				<div class="panel-body">
-					
+
 					<div style="margin-top: -20px;" class="page-header">
             			<h2 style="margin-bottom: -5px;">Verhuur kalender</h2>
           			</div>
 
-          			<p> 
-          				Hier vind u wanner onze lokalen al reeds verhuurd zijn. 
-          				Vind u hier de datum niet dat u onze lokalen wilt huren leg dan snel je datum vast. 
+          			<p>
+          				Hier vind u wanner onze lokalen al reeds verhuurd zijn.
+          				Vind u hier de datum niet dat u onze lokalen wilt huren leg dan snel je datum vast.
           				Dat doe je door dit <a href="<?php echo base_url(); ?>verhuur/verhuur_aanvraag">formulier</a> in te vullen..
           			</p>
 

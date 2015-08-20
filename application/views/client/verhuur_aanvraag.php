@@ -17,6 +17,7 @@
 
 				<div class="list-group">
 					<a class="list-group-item" href="<?php echo base_url(); ?>verhuur"><span class="fa fa-info-circle"> Info</a>
+						          <a class="list-group-item" href="<?php echo base_url() . 'verhuur/bereikbaarheid'; ?>"><span class="fa fa-asterisk"></span> Bereikbaarheid</a>
 					<a class="list-group-item" href="<?php echo base_url(); ?>verhuur/verhuur_kalender"><span class="fa fa-calendar"></span> Verhuur Kalender</a>
 					<a class="list-group-item" href="<?php echo base_url(); ?>verhuur/verhuur_aanvraag"><span class="fa fa-plus"></span> Verhuring aanvragen</a>
 					<a class="list-group-item" href="mailto:contact@st-joris-turnhout.be"><span class="fa fa-envelope"></span> Contact</a>

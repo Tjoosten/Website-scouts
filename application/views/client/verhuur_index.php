@@ -19,6 +19,7 @@
 
         <div class="list-group">
           <a class="list-group-item" href="<?php echo base_url(); ?>verhuur"><span class="fa fa-info-circle"></span> Info</a>
+          <a class="list-group-item" href="<?php echo base_url() . 'verhuur/bereikbaarheid'; ?>"><span class="fa fa-asterisk"></span> Bereikbaarheid</a>
           <a class="list-group-item" href="<?php echo base_url(); ?>verhuur/verhuur_kalender"><span class="fa fa-calendar"></span> Verhuur kalender</a>
           <a class="list-group-item" href="<?php echo base_url(); ?>verhuur/verhuur_aanvraag"><span class="fa fa-plus"></span> Verhuring aanvragen</a>
           <a class="list-group-item" href="mailto:contact@st-joris-turnhout.be"><span class="fa fa-envelope"></span> Contact</a>
@@ -29,7 +30,7 @@
     <div class="col-sm-9 col-md-9 col-lg-9">
       <div class="panel panel-default border">
         <div class="panel-body">
-          
+
           <div style="margin-top: -20px;" class="page-header">
             <h2 style="margin-bottom: -5px;">Verhuur info</h2>
           </div>
@@ -43,7 +44,7 @@
           <!-- Photo's -->
           <div class="row">
             <div class="col-md-6">
-              <img class="img-rounded img-thumbnail" style="width: 400px; height: 200px;" src="/assets/files/1.jpg" alt="">              
+              <img class="img-rounded img-thumbnail" style="width: 400px; height: 200px;" src="/assets/files/1.jpg" alt="">
             </div>
 
             <div class="col-md-6">

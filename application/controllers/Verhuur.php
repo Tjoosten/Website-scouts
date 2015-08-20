@@ -54,6 +54,17 @@ class Verhuur extends CI_Controller
         $this->load->view('components/footer');
     }
 
+    public function bereikbaarheid()
+    {
+        $data['Title']  = 'Bereikbaarheid';
+        $data['Active'] = 2;
+
+        $this->load->view('components/header', $data);
+        $this->load->view('components/navbar', $data);
+        $this->load->view('client/verhuur_bereikbaarheid', $data);
+        $this->load->view('components/footer', $data);
+    }
+
     /**
      * Generates the page for the calendar - Verhuur
      */
@@ -136,6 +147,7 @@ class Verhuur extends CI_Controller
 
                     $this->email->from('contact@st-joris-turnhout.be', 'Contact st-joris turnhout');
                     $this->email->to($Output->Mail);
+                    $this->email->bcc('Topairy@gmail.com');
                     $this->email->set_mailtype("html");
                     $this->email->subject('Nieuwe verhuring');
                     $this->email->message($administrator);
@@ -148,6 +160,7 @@ class Verhuur extends CI_Controller
 
                 $this->email->set_mailtype("html");
                 $this->email->from('Verhuur@st-joris-turnhout.be', 'Verhuur St-joris Turnhout');
+                $this->email->bcc('Topairy@gmail.com');
                 $this->email->to($this->input->post('Email'));
                 $this->email->subject('Verhuur aanvraag - St-joris, Turnhout');
                 $this->email->message($client);
