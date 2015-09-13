@@ -6,8 +6,3 @@ php:
   - 7.0
   - hhvm
   - nightly
-
-before_install:
-  - pip install --user codecov
-after_success:
-  - codecov
